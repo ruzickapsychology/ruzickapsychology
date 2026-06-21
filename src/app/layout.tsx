@@ -1,21 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Marcellus, PT_Serif } from "next/font/google";
 import "./globals.css";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const marcellus = Marcellus({
+  variable: "--font-marcellus",
   subsets: ["latin"],
+  weight: "400",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const ptSerif = PT_Serif({
+  variable: "--font-pt-serif",
   subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
-  title: "Ruzicka Psychology",
+  title: "Ruzicka Psychology PLLC",
   description:
-    "Compassionate, evidence-based therapy. In-person and online sessions for individuals and couples.",
+    "Evidence-based psychotherapy tailored to your unique story. Specialized support for couples seeking connection, and women navigating maternal mental health and postpartum anxiety.",
 };
 
 export default function RootLayout({
@@ -26,9 +31,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${marcellus.variable} ${ptSerif.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
