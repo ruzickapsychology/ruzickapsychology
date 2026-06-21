@@ -1,22 +1,28 @@
 import type { Metadata } from "next";
-import { Marcellus, PT_Serif } from "next/font/google";
+import { Cormorant_Garamond, Mulish, Lora } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { metadataBase, pageMetadata, psychologistJsonLd } from "@/lib/seo";
 
-const marcellus = Marcellus({
-  variable: "--font-marcellus",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["300", "400", "500"],
 });
 
-const ptSerif = PT_Serif({
-  variable: "--font-pt-serif",
+const mulish = Mulish({
+  variable: "--font-mulish",
   subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
+  weight: ["400", "600", "700"],
+});
+
+const lora = Lora({
+  variable: "--font-lora",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["italic"],
 });
 
 export const metadata: Metadata = {
@@ -35,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${marcellus.variable} ${ptSerif.variable} antialiased`}
+      className={`${cormorant.variable} ${mulish.variable} ${lora.variable} antialiased`}
     >
       <body className="flex min-h-screen flex-col">
         <script

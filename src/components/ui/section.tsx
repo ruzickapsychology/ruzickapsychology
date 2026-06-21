@@ -1,8 +1,10 @@
 import type { ComponentProps } from "react";
 
 const tones = {
-  cream: "",
+  cream: "bg-cream",
+  offwhite: "",
   greige: "bg-greige/50",
+  blue: "bg-blue/30",
   ink: "bg-ink text-cream",
 } as const;
 

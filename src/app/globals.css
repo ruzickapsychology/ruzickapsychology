@@ -1,68 +1,92 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #2e1f28;
-  --color-cream: #f3eee9;
+  --color-ink: #3c2128;
+  --color-cream: #e9e2db;
+  --color-offwhite: #f9f7f5;
   --color-greige: #dbd4cd;
-  --color-rose: #c19faa;
-  --color-rose-dark: #a8838f;
+  --color-rose: #ce9ba3;
+  --color-rose-dark: #884650;
+  --color-blue: #b6c5d3;
 
-  --font-heading: var(--font-marcellus);
-  --font-body: var(--font-pt-serif);
+  --font-heading: var(--font-cormorant);
+  --font-body: var(--font-mulish);
+  --font-accent: var(--font-lora);
 }
 
 body {
-  background-color: var(--color-cream);
+  background-color: var(--color-offwhite);
   color: var(--color-ink);
-  font-family: var(--font-body), Georgia, serif;
-  font-size: 16px;
-  line-height: 1.6;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
 }
 
 h1,
 h2,
-h3,
-h4 {
+h3 {
   font-family: var(--font-heading), Georgia, serif;
-  font-weight: 400;
-  line-height: 1.1;
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 7vw, 60px);
+  font-size: clamp(2.75rem, 8vw, 76px);
 }
 
 h2 {
-  font-size: clamp(2rem, 5.5vw, 48px);
+  font-size: clamp(2.25rem, 6vw, 54px);
 }
 
 h3 {
-  font-size: clamp(1.5rem, 4vw, 36px);
+  font-size: clamp(1.5rem, 4vw, 34px);
 }
 
 h4 {
-  font-size: 10px;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
   line-height: 1.4;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
+}
+
+/* Lora-italic eyebrow above section headings — the reference's signature feminine accent */
+.eyebrow {
+  font-family: var(--font-accent), Georgia, serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+  color: var(--color-rose-dark);
+}
+
+/* Large emotional statement set in the display serif (hero / closing bands) */
+.display-statement {
+  font-family: var(--font-heading), Georgia, serif;
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
 }
 
 .btn {
   display: inline-block;
   border-radius: 9999px;
-  padding: 0.85rem 2rem;
-  font-size: 0.95rem;
-  letter-spacing: 0.02em;
+  padding: 0.9rem 2.1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   transition: all 0.2s ease;
   cursor: pointer;
 }
 
 .btn-primary {
   background-color: var(--color-ink);
-  color: var(--color-cream);
+  color: var(--color-offwhite);
 }
 .btn-primary:hover {
-  background-color: #43303b;
+  background-color: #532e38;
 }
 
 .btn-secondary {
@@ -71,6 +95,7 @@ h4 {
 }
 .btn-secondary:hover {
   background-color: var(--color-rose-dark);
+  color: var(--color-offwhite);
 }
 
 .btn-outline {
@@ -79,7 +104,7 @@ h4 {
 }
 .btn-outline:hover {
   background-color: var(--color-ink);
-  color: var(--color-cream);
+  color: var(--color-offwhite);
 }
 
 .btn:disabled {
@@ -88,7 +113,7 @@ h4 {
 }
 
 .prose {
-  line-height: 1.7;
+  line-height: 1.75;
 }
 .prose p {
   margin-bottom: 1.25rem;
