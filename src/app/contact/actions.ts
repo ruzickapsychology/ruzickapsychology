@@ -32,13 +32,10 @@ export async function submitInquiry(
     return { status: "error", message: "Please enter a valid email address." };
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL ?? "christina@ruzickapsychology.com";
-  const from =
-    process.env.CONTACT_FROM_EMAIL ?? "Ruzicka Psychology <onboarding@resend.dev>";
+  const accessKey = process.env.WEB3FORMS_ACCESS_KEY;
 
-  if (!apiKey) {
-    console.warn("[contact] RESEND_API_KEY not set — inquiry not delivered:", data);
+  if (!accessKey) {
+    console.warn("[contact] WEB3FORMS_ACCESS_KEY not set — inquiry not delivered:", data);
     return {
       status: "error",
       message:
@@ -46,29 +43,22 @@ export async function submitInquiry(
     };
   }
 
-  const res = await fetch("https://api.resend.com/emails", {
+  const res = await fetch("https://api.web3forms.com/submit", {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify({
-      from,
-      to,
-      reply_to: data.email,
+      access_key: accessKey,
       subject: `New consultation inquiry — ${data.firstName} ${data.lastName}`,
-      text: [
-        `Name: ${data.firstName} ${data.lastName}`,
-        `Email: ${data.email}`,
-        `Phone: ${data.phone || "—"}`,
-        "",
-        data.message,
-      ].join("\n"),
+      from_name: "Ruzicka Psychology Website",
+      name: `${data.firstName} ${data.lastName}`.trim(),
+      email: data.email,
+      phone: data.phone || "—",
+      message: data.message,
     }),
   });
 
   if (!res.ok) {
-    console.error("[contact] Resend error:", await res.text());
+    console.error("[contact] Web3Forms error:", await res.text());
     return {
       status: "error",
       message:

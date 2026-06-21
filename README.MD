@@ -39,11 +39,12 @@ src/
 
 ## Contact form
 
-The contact form posts to a server action (`src/app/contact/actions.ts`) that emails inquiries via [Resend](https://resend.com). Set these env vars (see `.env.example`) — locally in `.env.local`, and in Vercel project settings for production:
+The contact form posts to a server action (`src/app/contact/actions.ts`) that delivers inquiries via [Web3Forms](https://web3forms.com) (free, no DNS setup).
 
-- `RESEND_API_KEY` — required for delivery; without it the form shows a "not configured" message
-- `CONTACT_TO_EMAIL` — where inquiries go (default `christina@ruzickapsychology.com`)
-- `CONTACT_FROM_EMAIL` — a verified Resend sender
+1. Go to [web3forms.com](https://web3forms.com), enter the email that should receive inquiries (e.g. `christina@ruzickapsychology.com`), and they email you an **access key**.
+2. Set `WEB3FORMS_ACCESS_KEY` (see `.env.example`) — locally in `.env.local`, and in Vercel project settings for production.
+
+Without the key, the form shows a "please email directly" message instead of sending. Real intake/scheduling still flows through the SimplePractice **Client Portal** linked in the nav.
 
 ## Deploying
 
