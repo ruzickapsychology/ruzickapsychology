@@ -23,7 +23,7 @@ export default async function BlogPost(props: PageProps<"/blog/[slug]">) {
 
   return (
     <article className="mx-auto max-w-3xl px-6 py-20">
-      <h1 className="text-4xl">{post.title}</h1>
+      <h1>{post.title}</h1>
       <div className="mt-10 space-y-6 leading-relaxed">
         {post.body.map((para, i) => (
           <p key={i}>{para}</p>
@@ -31,7 +31,7 @@ export default async function BlogPost(props: PageProps<"/blog/[slug]">) {
       </div>
       <Link
         href="/blog"
-        className="mt-12 inline-block text-rose underline-offset-4 transition hover:text-rose-dark hover:underline"
+        className="mt-12 inline-block text-rose-dark underline-offset-4 transition hover:text-ink hover:underline"
       >
         ← Back to Blog
       </Link>

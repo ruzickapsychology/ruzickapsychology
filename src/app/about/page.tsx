@@ -19,7 +19,7 @@ const credentials = [
 export default function About() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-20">
-      <h1 className="text-4xl">Evidence-Based Psychotherapy Tailored to Your Goals</h1>
+      <h1>Evidence-Based Psychotherapy Tailored to Your Goals</h1>
 
       <div className="mt-10 space-y-6 leading-relaxed">
         <p>
@@ -51,8 +51,8 @@ export default function About() {
         </p>
       </div>
 
-      <div className="mt-12 rounded-2xl bg-beige/40 p-8">
-        <h2 className="text-2xl">Education &amp; Training</h2>
+      <div className="mt-12 rounded-2xl bg-greige/50 p-8">
+        <h2>Education &amp; Training</h2>
         <ul className="mt-6 space-y-3">
           {credentials.map((c) => (
             <li key={c} className="leading-relaxed">

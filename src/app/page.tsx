@@ -37,37 +37,34 @@ const steps = [
 export default function Home() {
   return (
     <div>
-      <section className="bg-beige/40">
+      <section className="bg-greige/50">
         <div className="mx-auto max-w-5xl px-6 py-24 text-center">
           <p className="mx-auto max-w-2xl text-lg leading-relaxed">
             Evidence-based psychotherapy tailored to your unique story.
             Specialized support for couples seeking connection, and women
             navigating maternal mental health and postpartum anxiety.
           </p>
-          <Link
-            href="/contact"
-            className="mt-8 inline-block rounded-full bg-rose px-8 py-3 text-sm tracking-wide text-cream transition hover:bg-rose-dark"
-          >
+          <Link href="/contact" className="btn btn-primary mt-8">
             Request a Consultation
           </Link>
         </div>
       </section>
 
       <section id="services" className="mx-auto max-w-5xl px-6 py-20">
-        <h2 className="text-center text-3xl">Professional Therapy Services</h2>
+        <h2 className="text-center">Professional Therapy Services</h2>
         <div className="mt-12 grid gap-8 sm:grid-cols-2">
           {services.map((s) => (
-            <div key={s.title} className="rounded-2xl bg-beige/40 p-8">
-              <h3 className="text-xl">{s.title}</h3>
+            <div key={s.title} className="rounded-2xl bg-greige/50 p-8">
+              <h3>{s.title}</h3>
               <p className="mt-3 leading-relaxed">{s.body}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="bg-beige/40">
+      <section className="bg-greige/50">
         <div className="mx-auto grid max-w-5xl gap-8 px-6 py-20 md:grid-cols-[1fr_1.4fr] md:items-start">
-          <h2 className="text-3xl">Meet Dr. Christina Ruzicka</h2>
+          <h2>Meet Dr. Christina Ruzicka</h2>
           <div>
             <p className="leading-relaxed">
               My approach is relational, warm, collaborative, and active —
@@ -78,7 +75,7 @@ export default function Home() {
             </p>
             <Link
               href="/about"
-              className="mt-6 inline-block text-rose underline-offset-4 transition hover:text-rose-dark hover:underline"
+              className="mt-6 inline-block text-rose-dark underline-offset-4 transition hover:text-ink hover:underline"
             >
               Inside the Practice →
             </Link>
@@ -87,11 +84,11 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-5xl px-6 py-20">
-        <h2 className="text-center text-3xl">How We Begin</h2>
+        <h2 className="text-center">How We Begin</h2>
         <div className="mt-12 grid gap-8 md:grid-cols-3">
           {steps.map((step) => (
             <div key={step.label}>
-              <h3 className="text-lg text-rose">{step.label}</h3>
+              <h4 className="text-rose-dark">{step.label}</h4>
               <p className="mt-2 leading-relaxed">{step.body}</p>
             </div>
           ))}
@@ -100,15 +97,12 @@ export default function Home() {
 
       <section className="bg-ink text-cream">
         <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-          <h2 className="text-4xl">Ready to take the first step?</h2>
+          <h2>Ready to take the first step?</h2>
           <p className="mx-auto mt-5 max-w-xl leading-relaxed">
             Submit the inquiry form to request your free, 15-minute introductory
             phone call. I look forward to connecting with you.
           </p>
-          <Link
-            href="/contact"
-            className="mt-8 inline-block rounded-full bg-rose px-8 py-3 text-sm tracking-wide text-cream transition hover:bg-rose-dark"
-          >
+          <Link href="/contact" className="btn btn-secondary mt-8">
             Request a Consultation
           </Link>
         </div>

@@ -10,14 +10,14 @@ export const metadata: Metadata = {
 export default function Blog() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-20">
-      <h1 className="text-4xl">Blog</h1>
+      <h1>Blog</h1>
       <div className="mt-12 space-y-10">
         {posts.map((post) => (
           <article key={post.slug}>
-            <h2 className="text-2xl">
+            <h2>
               <Link
                 href={`/blog/${post.slug}`}
-                className="transition hover:text-rose"
+                className="transition hover:text-rose-dark"
               >
                 {post.title}
               </Link>
@@ -25,7 +25,7 @@ export default function Blog() {
             <p className="mt-2 leading-relaxed">{post.excerpt}</p>
             <Link
               href={`/blog/${post.slug}`}
-              className="mt-3 inline-block text-rose underline-offset-4 transition hover:text-rose-dark hover:underline"
+              className="mt-3 inline-block text-rose-dark underline-offset-4 transition hover:text-ink hover:underline"
             >
               Read More →
             </Link>
