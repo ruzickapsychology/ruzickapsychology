@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TrackedExternalLink } from "@/components/analytics";
 import { site } from "@/content/site";
 
 const navLinks = site.nav;
@@ -14,9 +15,13 @@ function NavLink({
 }) {
   const className = "transition hover:text-rose-dark";
   return external ? (
-    <a href={href} target="_blank" rel="noreferrer" className={className}>
+    <TrackedExternalLink
+      href={href}
+      event="client_portal_click"
+      className={className}
+    >
       {label}
-    </a>
+    </TrackedExternalLink>
   ) : (
     <Link href={href} className={className}>
       {label}

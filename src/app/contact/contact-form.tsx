@@ -1,17 +1,41 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
+import { track } from "@vercel/analytics";
 import { submitInquiry, type InquiryState } from "./actions";
+import { site } from "@/content/site";
 
 const initialState: InquiryState = { status: "idle" };
 
 export function ContactForm() {
   const [state, action, pending] = useActionState(submitInquiry, initialState);
 
+  useEffect(() => {
+    if (state.status === "success") track("inquiry_submitted");
+  }, [state.status]);
+
   if (state.status === "success") {
     return (
-      <div className="mt-10 rounded-2xl bg-greige/50 p-8 text-center">
-        <p className="leading-relaxed">{state.message}</p>
+      <div className="mt-10 rounded-2xl bg-greige/50 p-8">
+        <h2>Thank you for reaching out.</h2>
+        <p className="mt-4 leading-relaxed">
+          Your message has been received. I&apos;ll personally review it and
+          respond within 1–2 business days to find a time for your free,
+          15-minute introductory call.
+        </p>
+        <p className="mt-4 leading-relaxed">
+          If you&apos;d like to get started sooner, you&apos;re welcome to
+          request an appointment directly through the secure client portal:
+        </p>
+        <a
+          href={site.portalUrl}
+          target="_blank"
+          rel="noreferrer"
+          onClick={() => track("client_portal_click", { source: "contact_success" })}
+          className="btn btn-secondary mt-5"
+        >
+          Open the Client Portal
+        </a>
       </div>
     );
   }

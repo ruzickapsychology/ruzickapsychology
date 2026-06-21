@@ -22,6 +22,9 @@ const ptSerif = PT_Serif({
 export const metadata: Metadata = {
   metadataBase,
   ...pageMetadata({ path: "/" }),
+  verification: process.env.GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
 export default function RootLayout({

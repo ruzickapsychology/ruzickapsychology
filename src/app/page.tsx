@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Section } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
-import { ButtonLink } from "@/components/ui/button";
+import { CtaLink } from "@/components/analytics";
 import { site } from "@/content/site";
 import { home } from "@/content/home";
 
@@ -13,9 +13,14 @@ export default function Home() {
           <p className="mx-auto max-w-2xl text-lg leading-relaxed">
             {site.tagline}
           </p>
-          <ButtonLink href="/contact" variant="primary" className="mt-8">
+          <CtaLink
+            href="/contact"
+            event="consultation_cta_click"
+            variant="primary"
+            className="mt-8"
+          >
             Request a Consultation
-          </ButtonLink>
+          </CtaLink>
         </Container>
       </Section>
 
@@ -66,9 +71,14 @@ export default function Home() {
         <Container size="md" className="text-center">
           <h2>{home.cta.heading}</h2>
           <p className="mx-auto mt-5 max-w-xl leading-relaxed">{home.cta.body}</p>
-          <ButtonLink href="/contact" variant="secondary" className="mt-8">
+          <CtaLink
+            href="/contact"
+            event="consultation_cta_click"
+            variant="secondary"
+            className="mt-8"
+          >
             Request a Consultation
-          </ButtonLink>
+          </CtaLink>
         </Container>
       </Section>
     </div>
