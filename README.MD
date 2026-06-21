@@ -18,6 +18,25 @@ Open [http://localhost:3000](http://localhost:3000).
 - `npm run start` — serve the production build
 - `npm run lint` — run ESLint
 
+## Project structure
+
+```
+src/
+  app/              routes (home, about, contact, blog) + sitemap.ts, robots.ts, opengraph-image.tsx
+  components/
+    ui/             primitives: Section, Container, Button — compose pages from these
+    header.tsx, footer.tsx
+  content/          all site copy, separated from code
+    site.ts         name, email, nav, portal URL, area served
+    home.ts, about.ts
+    blog/*.md        blog posts as markdown with frontmatter
+  lib/
+    blog.ts         reads + renders the markdown posts
+    seo.ts          metadata helper + Psychologist JSON-LD
+```
+
+**Editing copy** lives in `src/content/` — no JSX needed. **New blog post**: drop a `.md` file in `src/content/blog/` with `title`, `date`, `excerpt` frontmatter.
+
 ## Contact form
 
 The contact form posts to a server action (`src/app/contact/actions.ts`) that emails inquiries via [Resend](https://resend.com). Set these env vars (see `.env.example`) — locally in `.env.local`, and in Vercel project settings for production:

@@ -9,6 +9,11 @@ export async function submitInquiry(
   _prev: InquiryState,
   formData: FormData,
 ): Promise<InquiryState> {
+  // Honeypot: bots fill hidden fields; humans don't.
+  if (String(formData.get("company") ?? "").trim()) {
+    return { status: "success", message: "Thank you — your message has been sent." };
+  }
+
   const data = {
     firstName: String(formData.get("firstName") ?? "").trim(),
     lastName: String(formData.get("lastName") ?? "").trim(),

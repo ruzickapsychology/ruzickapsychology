@@ -18,6 +18,10 @@ export function ContactForm() {
 
   return (
     <form action={action} className="mt-10 space-y-6">
+      <div aria-hidden className="absolute left-[-9999px]">
+        <label htmlFor="company">Company</label>
+        <input id="company" name="company" tabIndex={-1} autoComplete="off" />
+      </div>
       <div className="grid gap-6 sm:grid-cols-2">
         <Field label="First Name" name="firstName" required />
         <Field label="Last Name" name="lastName" />

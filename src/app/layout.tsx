@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Marcellus, PT_Serif } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { metadataBase, pageMetadata, psychologistJsonLd } from "@/lib/seo";
 
 const marcellus = Marcellus({
   variable: "--font-marcellus",
@@ -18,9 +20,8 @@ const ptSerif = PT_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Ruzicka Psychology PLLC",
-  description:
-    "Evidence-based psychotherapy tailored to your unique story. Specialized support for couples seeking connection, and women navigating maternal mental health and postpartum anxiety.",
+  metadataBase,
+  ...pageMetadata({ path: "/" }),
 };
 
 export default function RootLayout({
@@ -34,9 +35,16 @@ export default function RootLayout({
       className={`${marcellus.variable} ${ptSerif.variable} antialiased`}
     >
       <body className="flex min-h-screen flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(psychologistJsonLd()).replace(/</g, "\\u003c"),
+          }}
+        />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

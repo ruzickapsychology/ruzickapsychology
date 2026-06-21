@@ -1,15 +1,7 @@
 import Link from "next/link";
+import { site } from "@/content/site";
 
-const navLinks = [
-  { label: "About", href: "/about" },
-  { label: "Specialties", href: "/#services" },
-  {
-    label: "Client Portal",
-    href: "https://christina-ruzicka.clientsecure.me",
-    external: true,
-  },
-  { label: "Contact", href: "/contact" },
-];
+const navLinks = site.nav;
 
 function NavLink({
   label,

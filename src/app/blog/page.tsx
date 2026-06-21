@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { posts } from "@/lib/posts";
+import { Container } from "@/components/ui/container";
+import { pageMetadata } from "@/lib/seo";
+import { getAllPostMeta } from "@/lib/blog";
 
-export const metadata: Metadata = {
-  title: "Blog — Ruzicka Psychology PLLC",
+export const metadata: Metadata = pageMetadata({
+  title: "Blog",
   description: "Reflections from the practice.",
-};
+  path: "/blog",
+});
 
 export default function Blog() {
+  const posts = getAllPostMeta();
   return (
-    <div className="mx-auto max-w-3xl px-6 py-20">
+    <Container size="md" className="py-20">
       <h1>Blog</h1>
       <div className="mt-12 space-y-10">
         {posts.map((post) => (
@@ -32,6 +36,6 @@ export default function Blog() {
           </article>
         ))}
       </div>
-    </div>
+    </Container>
   );
 }

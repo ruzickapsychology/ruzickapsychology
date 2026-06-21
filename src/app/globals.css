@@ -86,3 +86,18 @@ h4 {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.prose {
+  line-height: 1.7;
+}
+.prose p {
+  margin-bottom: 1.25rem;
+}
+.prose a {
+  color: var(--color-rose-dark);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose h2 {
+  margin: 2rem 0 1rem;
+}

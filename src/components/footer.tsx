@@ -1,19 +1,21 @@
+import { Container } from "@/components/ui/container";
+import { site } from "@/content/site";
+
 export function Footer() {
   return (
     <footer className="border-t border-greige">
-      <div className="mx-auto flex max-w-5xl flex-col gap-1 px-6 py-10 text-center">
-        <p className="font-heading text-lg">Ruzicka Psychology PLLC</p>
+      <Container className="flex flex-col gap-1 py-10 text-center">
+        <p className="font-heading text-lg">{site.legalName}</p>
         <a
-          href="mailto:christina@ruzickapsychology.com"
+          href={`mailto:${site.email}`}
           className="text-sm text-rose-dark transition hover:text-ink"
         >
-          christina@ruzickapsychology.com
+          {site.email}
         </a>
         <p className="mt-3 text-xs text-ink/60">
-          © {new Date().getFullYear()} Ruzicka Psychology PLLC. All rights
-          reserved.
+          © {new Date().getFullYear()} {site.legalName}. All rights reserved.
         </p>
-      </div>
+      </Container>
     </footer>
   );
 }
