@@ -1,5 +1,24 @@
 "use server";
 
+// ── Contact form delivery: SETUP REQUIRED ──────────────────────────────────
+// This form sends inquiries through Web3Forms (free, no DNS/domain setup).
+// Until WEB3FORMS_ACCESS_KEY is set, the form shows a "please email directly"
+// message and does NOT send — nothing breaks, it just won't deliver.
+//
+// To turn it on:
+//   1. Go to https://web3forms.com, enter the email that should receive
+//      inquiries (e.g. christina@ruzickapsychology.com). They email you a key.
+//   2. Set WEB3FORMS_ACCESS_KEY:
+//        - Local dev: add it to a .env.local file at the repo root
+//        - Production: Vercel → Project → Settings → Environment Variables
+//   3. Redeploy (or restart `npm run dev`). Submissions then land in that inbox.
+//
+// The access key is safe to expose — it only routes mail to the pre-registered
+// address. We keep it in an env var to stay out of git, not because it's secret.
+// Note: real booking/intake also flows through the SimplePractice "Client
+// Portal" link in the nav, which works regardless of this form.
+// ───────────────────────────────────────────────────────────────────────────
+
 export type InquiryState = {
   status: "idle" | "success" | "error";
   message?: string;
