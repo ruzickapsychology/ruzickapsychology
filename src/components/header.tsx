@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { TrackedExternalLink } from "@/components/analytics";
+import { Container } from "@/components/ui/container";
 import { site } from "@/content/site";
 
 const navLinks = site.nav;
@@ -32,7 +33,7 @@ function NavLink({
 export function Header() {
   return (
     <header className="border-b border-muted">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-6">
+      <Container className="flex items-center justify-between py-6">
         <Link href="/" className="font-heading text-xl tracking-wide">
           Ruzicka Psychology
         </Link>
@@ -53,7 +54,7 @@ export function Header() {
             ))}
           </nav>
         </details>
-      </div>
+      </Container>
     </header>
   );
 }

@@ -46,6 +46,26 @@ Markup never references a color name. It uses role utilities (`bg-surface`,
 `muted`, `feature`, `contrast`). Changing the values above re-skins every page with
 no JSX edits.
 
+## Layout & responsive system
+
+Every page is built from two primitives, so spacing and width are consistent and
+never hand-tuned per page:
+
+- **`Section`** owns vertical rhythm + background `tone`. Use the `size` prop, never
+  inline `py-*`: `compact` (`py-12 sm:py-16`), `default` (`py-16 sm:py-20`),
+  `spacious` (`py-20 sm:py-28 md:py-32`). All sizes scale down on mobile.
+- **`Container`** owns max-width + gutter: `sm`/`md`/`lg` (`max-w-2xl/3xl/5xl`) with a
+  responsive `px-6 sm:px-8` gutter. The `Header` uses `Container size="lg"` too, so the
+  global content width lives in one place.
+
+**Pattern:** `<Section tone size><Container size>…</Container></Section>`. Content pages
+(about, contact, blog) follow this exactly — no page sets its own padding.
+
+**Breakpoint rule:** mobile-first, single column by default. **Multi-column content
+grids collapse at `md`** (`md:grid-cols-2`, `md:grid-cols-3`). Typography is fluid via
+`clamp()` (no per-breakpoint font sizes needed). Content caps at `max-w-5xl` and centers
+on wide screens.
+
 ## Our adapted system (implemented in `globals.css`)
 
 Our old palette was already plum/cream/rose — close. The new direction **warms and
@@ -112,7 +132,9 @@ To finish before merging to `main`:
       Cormorant-style face if we want it on-brand.
 - [ ] **Imagery** — the look wants 1–2 soft, real photographs (office / Dr. Ruzicka).
       Use real photos; do **not** AI-generate her likeness.
-- [ ] **Responsive pass** — check hero clamp, triad band, and 2-col grids at 375px.
+- [x] **Responsive system** — `Section` size scale + responsive gutter; all content
+      pages use `Section`/`Container`; grids collapse at `md`. (Visual spot-check at
+      375px still worth doing in-browser before merge.)
 - [ ] **Accessibility** — verify rose-dark/blue contrast on their backgrounds (AA);
       respect `prefers-reduced-motion` if any motion is added later.
 

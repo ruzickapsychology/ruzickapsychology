@@ -8,7 +8,7 @@ import { home } from "@/content/home";
 export default function Home() {
   return (
     <div>
-      <Section tone="default" className="py-28 sm:py-36">
+      <Section tone="default" size="spacious">
         <Container size="md" className="text-center">
           <p className="eyebrow">Therapy in Rochester, NY</p>
           <h1 className="mt-5">
@@ -30,7 +30,7 @@ export default function Home() {
         </Container>
       </Section>
 
-      <Section tone="feature" className="py-16">
+      <Section tone="feature" size="compact">
         <Container className="text-center">
           <p className="display-statement text-3xl sm:text-4xl md:text-5xl">
             Feel heard. Feel steady. Feel like yourself again.
@@ -44,7 +44,7 @@ export default function Home() {
             <p className="eyebrow">Specialties</p>
             <h2 className="mt-3">Support across the arc of your story</h2>
           </div>
-          <div className="mt-14 grid gap-x-12 gap-y-12 sm:grid-cols-2">
+          <div className="mt-14 grid gap-x-12 gap-y-12 md:grid-cols-2">
             {home.services.map((s, i) => (
               <div key={s.title} className="border-t border-muted pt-6">
                 <p className="font-accent text-sm italic text-accent">
@@ -107,7 +107,7 @@ export default function Home() {
         </Container>
       </Section>
 
-      <Section tone="contrast" className="py-28">
+      <Section tone="contrast" size="spacious">
         <Container size="md" className="text-center">
           <h2 className="display-statement">{home.cta.heading}</h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed">

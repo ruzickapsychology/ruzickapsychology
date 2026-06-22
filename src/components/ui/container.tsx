@@ -13,7 +13,7 @@ export function Container({
 }: { size?: keyof typeof widths } & ComponentProps<"div">) {
   return (
     <div
-      className={`mx-auto w-full px-6 ${widths[size]} ${className}`.trim()}
+      className={`mx-auto w-full px-6 sm:px-8 ${widths[size]} ${className}`.trim()}
       {...props}
     />
   );
