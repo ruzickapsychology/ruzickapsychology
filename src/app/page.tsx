@@ -8,7 +8,7 @@ import { home } from "@/content/home";
 export default function Home() {
   return (
     <div>
-      <Section tone="offwhite" className="py-28 sm:py-36">
+      <Section tone="default" className="py-28 sm:py-36">
         <Container size="md" className="text-center">
           <p className="eyebrow">Therapy in Rochester, NY</p>
           <h1 className="mt-5">
@@ -30,7 +30,7 @@ export default function Home() {
         </Container>
       </Section>
 
-      <Section tone="blue" className="py-16">
+      <Section tone="feature" className="py-16">
         <Container className="text-center">
           <p className="display-statement text-3xl sm:text-4xl md:text-5xl">
             Feel heard. Feel steady. Feel like yourself again.
@@ -46,8 +46,8 @@ export default function Home() {
           </div>
           <div className="mt-14 grid gap-x-12 gap-y-12 sm:grid-cols-2">
             {home.services.map((s, i) => (
-              <div key={s.title} className="border-t border-greige pt-6">
-                <p className="font-accent text-sm italic text-rose-dark">
+              <div key={s.title} className="border-t border-muted pt-6">
+                <p className="font-accent text-sm italic text-accent">
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <h3 className="mt-2">{s.title}</h3>
@@ -58,7 +58,7 @@ export default function Home() {
         </Container>
       </Section>
 
-      <Section tone="cream">
+      <Section tone="raised">
         <Container className="grid gap-10 md:grid-cols-[1fr_1.3fr] md:items-center">
           <div>
             <p className="eyebrow">The practice</p>
@@ -68,7 +68,7 @@ export default function Home() {
             <p className="text-lg leading-relaxed">{home.about.body}</p>
             <Link
               href="/about"
-              className="mt-6 inline-block font-semibold uppercase tracking-widest text-rose-dark underline-offset-4 transition hover:text-ink hover:underline"
+              className="mt-6 inline-block font-semibold uppercase tracking-widest text-accent underline-offset-4 transition hover:text-fg hover:underline"
               style={{ fontSize: "0.8rem" }}
             >
               Inside the Practice →
@@ -77,20 +77,20 @@ export default function Home() {
         </Container>
       </Section>
 
-      <Section tone="offwhite">
+      <Section tone="default">
         <Container size="md" className="text-center">
           <p className="display-statement text-2xl leading-snug sm:text-3xl md:text-4xl">
             &ldquo;Therapy is a profound investment of your time, vulnerability, and
             resources&mdash;and it is one I respect deeply. My work is relational,
             warm, and active. I want to be connected to your world.&rdquo;
           </p>
-          <p className="mt-7 font-accent italic text-rose-dark">
+          <p className="mt-7 font-accent italic text-accent">
             &mdash; {site.practitioner}
           </p>
         </Container>
       </Section>
 
-      <Section tone="blue">
+      <Section tone="feature">
         <Container>
           <div className="text-center">
             <p className="eyebrow">Getting started</p>
@@ -99,7 +99,7 @@ export default function Home() {
           <div className="mt-14 grid gap-10 md:grid-cols-3">
             {home.steps.map((step) => (
               <div key={step.label}>
-                <h4 className="text-rose-dark">{step.label}</h4>
+                <h4 className="text-accent">{step.label}</h4>
                 <p className="mt-3 leading-relaxed">{step.body}</p>
               </div>
             ))}
@@ -107,7 +107,7 @@ export default function Home() {
         </Container>
       </Section>
 
-      <Section tone="ink" className="py-28">
+      <Section tone="contrast" className="py-28">
         <Container size="md" className="text-center">
           <h2 className="display-statement">{home.cta.heading}</h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed">

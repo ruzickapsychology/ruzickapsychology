@@ -29,22 +29,39 @@ extracted design system, our adapted system, and the checklist to finish porting
 | Sans font | Sailec Regular | licensed — not usable |
 | Accent font | Lora (italic) | free (Google) — reused |
 
+## Rebrand surface (the theme contract)
+
+The whole site is themed through **semantic roles**, not color names, so trying a
+new direction is fast and self-contained. To rebrand, edit only:
+
+1. **`src/app/globals.css`** — the `@theme` block (the marked "theme contract"):
+   the role palette (`--color-bg/-fg/-surface/-muted/-accent/-accent-soft/-feature`),
+   the three font families, and `--radius-btn`.
+2. **`src/app/layout.tsx`** — the three `next/font/google` imports if the fonts change.
+3. **`src/lib/theme.ts`** — mirror of the role palette for the OG image (edge runtime
+   can't read CSS vars). Keep it in sync with `globals.css`.
+
+Markup never references a color name. It uses role utilities (`bg-surface`,
+`text-accent`, `border-muted`, `text-fg`) and `Section` tones (`default`, `raised`,
+`muted`, `feature`, `contrast`). Changing the values above re-skins every page with
+no JSX edits.
+
 ## Our adapted system (implemented in `globals.css`)
 
 Our old palette was already plum/cream/rose — close. The new direction **warms and
 deepens** it and adds the calming dusty blue as a true secondary.
 
-**Colors** (`@theme` tokens, usable as `bg-*`/`text-*`):
+**Colors** (semantic `@theme` roles, usable as `bg-*`/`text-*`/`border-*`):
 
-| Token | Hex | Use |
+| Role | Current hex | Use |
 |---|---|---|
-| `ink` | `#3c2128` | text, dark bands, primary button |
-| `cream` | `#e9e2db` | warm section background |
-| `offwhite` | `#f9f7f5` | default page background |
-| `greige` | `#dbd4cd` | hairline borders |
-| `rose` | `#ce9ba3` | secondary button, soft fills |
-| `rose-dark` | `#884650` | links, eyebrows, emphasis |
-| `blue` | `#b6c5d3` | calming secondary bands (`bg-blue/30`) |
+| `fg` | `#3c2128` | text; dark `contrast` bands (`bg-fg text-bg`); primary button |
+| `bg` | `#f9f7f5` | default page background |
+| `surface` | `#e9e2db` | raised / alternating sections (`raised` tone) |
+| `muted` | `#dbd4cd` | hairline borders, subtle fills |
+| `accent` | `#884650` | links, eyebrows, emphasis |
+| `accent-soft` | `#ce9ba3` | secondary button, soft fills |
+| `feature` | `#b6c5d3` | calming feature band (`feature` tone) |
 
 **Type** — the key change. Licensed Moulin/Sailec are replaced with free Google
 equivalents that capture the same feel:

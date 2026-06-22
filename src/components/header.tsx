@@ -13,7 +13,7 @@ function NavLink({
   href: string;
   external?: boolean;
 }) {
-  const className = "transition hover:text-rose-dark";
+  const className = "transition hover:text-accent";
   return external ? (
     <TrackedExternalLink
       href={href}
@@ -31,7 +31,7 @@ function NavLink({
 
 export function Header() {
   return (
-    <header className="border-b border-greige">
+    <header className="border-b border-muted">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-6">
         <Link href="/" className="font-heading text-xl tracking-wide">
           Ruzicka Psychology
@@ -47,7 +47,7 @@ export function Header() {
           <summary className="flex cursor-pointer list-none items-center text-sm tracking-wide [&::-webkit-details-marker]:hidden">
             Menu
           </summary>
-          <nav className="absolute right-0 z-10 mt-3 flex w-44 flex-col gap-3 rounded-xl border border-greige bg-cream p-5 text-sm tracking-wide shadow-lg">
+          <nav className="absolute right-0 z-10 mt-3 flex w-44 flex-col gap-3 rounded-xl border border-muted bg-surface p-5 text-sm tracking-wide shadow-lg">
             {navLinks.map((link) => (
               <NavLink key={link.label} {...link} />
             ))}

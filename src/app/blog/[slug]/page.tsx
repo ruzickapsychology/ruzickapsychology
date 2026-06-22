@@ -38,7 +38,7 @@ export default async function BlogPost(props: PageProps<"/blog/[slug]">) {
       </article>
       <Link
         href="/blog"
-        className="mt-12 inline-block text-rose-dark underline-offset-4 transition hover:text-ink hover:underline"
+        className="mt-12 inline-block text-accent underline-offset-4 transition hover:text-fg hover:underline"
       >
         ← Back to Blog
       </Link>

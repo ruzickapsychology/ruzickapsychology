@@ -21,7 +21,7 @@ export default function About() {
         ))}
       </div>
 
-      <div className="mt-12 rounded-2xl bg-greige/50 p-8">
+      <div className="mt-12 rounded-2xl bg-muted/50 p-8">
         <h2>Education &amp; Training</h2>
         <ul className="mt-6 space-y-3">
           {about.credentials.map((c) => (

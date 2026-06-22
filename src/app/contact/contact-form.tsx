@@ -16,7 +16,7 @@ export function ContactForm() {
 
   if (state.status === "success") {
     return (
-      <div className="mt-10 rounded-2xl bg-greige/50 p-8">
+      <div className="mt-10 rounded-2xl bg-muted/50 p-8">
         <h2>Thank you for reaching out.</h2>
         <p className="mt-4 leading-relaxed">
           Your message has been received. I&apos;ll personally review it and
@@ -61,12 +61,12 @@ export function ContactForm() {
           name="message"
           rows={5}
           required
-          className="mt-2 w-full rounded-lg border border-greige bg-white/60 px-4 py-3 outline-none focus:border-rose-dark"
+          className="mt-2 w-full rounded-lg border border-muted bg-white/60 px-4 py-3 outline-none focus:border-accent"
         />
       </div>
 
       {state.status === "error" && (
-        <p className="text-sm text-rose-dark">{state.message}</p>
+        <p className="text-sm text-accent">{state.message}</p>
       )}
 
       <button type="submit" disabled={pending} className="btn btn-primary">
@@ -97,7 +97,7 @@ function Field({
         name={name}
         type={type}
         required={required}
-        className="mt-2 w-full rounded-lg border border-greige bg-white/60 px-4 py-3 outline-none focus:border-rose-dark"
+        className="mt-2 w-full rounded-lg border border-muted bg-white/60 px-4 py-3 outline-none focus:border-accent"
       />
     </div>
   );

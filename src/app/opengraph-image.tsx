@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/content/site";
+import { theme } from "@/lib/theme";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -15,15 +16,15 @@ export default function OgImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "100px",
-          backgroundColor: "#f3eee9",
-          color: "#2e1f28",
+          backgroundColor: theme.bg,
+          color: theme.fg,
           fontFamily: "Georgia, serif",
         }}
       >
         <div style={{ fontSize: 84, letterSpacing: "-0.02em" }}>
           {site.name}
         </div>
-        <div style={{ fontSize: 32, marginTop: 24, color: "#a8838f" }}>
+        <div style={{ fontSize: 32, marginTop: 24, color: theme.accent }}>
           Evidence-based psychotherapy · Rochester, NY
         </div>
       </div>

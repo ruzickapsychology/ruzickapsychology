@@ -1,22 +1,31 @@
 @import "tailwindcss";
 
+/* ============================================================
+   THEME CONTRACT — to rebrand, edit only this block (and the
+   three font families in layout.tsx). Markup references roles
+   (bg-surface, text-accent, tone="feature"…), never color names,
+   so a new direction means new values here and nothing else.
+   ============================================================ */
 @theme {
-  --color-ink: #3c2128;
-  --color-cream: #e9e2db;
-  --color-offwhite: #f9f7f5;
-  --color-greige: #dbd4cd;
-  --color-rose: #ce9ba3;
-  --color-rose-dark: #884650;
-  --color-blue: #b6c5d3;
+  --color-bg: #f9f7f5; /* page background */
+  --color-fg: #3c2128; /* body text + dark "contrast" bands */
+  --color-surface: #e9e2db; /* raised / alternating sections */
+  --color-muted: #dbd4cd; /* hairline borders, subtle fills */
+  --color-accent: #884650; /* links, eyebrows, emphasis */
+  --color-accent-soft: #ce9ba3; /* soft accent fills, secondary button */
+  --color-feature: #b6c5d3; /* calming feature band */
 
   --font-heading: var(--font-cormorant);
   --font-body: var(--font-mulish);
   --font-accent: var(--font-lora);
+
+  --radius-btn: 9999px;
 }
+/* ===================== end theme contract ==================== */
 
 body {
-  background-color: var(--color-offwhite);
-  color: var(--color-ink);
+  background-color: var(--color-bg);
+  color: var(--color-fg);
   font-family: var(--font-body), system-ui, sans-serif;
   font-size: 17px;
   line-height: 1.65;
@@ -52,16 +61,16 @@ h4 {
   letter-spacing: 0.22em;
 }
 
-/* Lora-italic eyebrow above section headings — the reference's signature feminine accent */
+/* Italic-accent eyebrow above section headings */
 .eyebrow {
   font-family: var(--font-accent), Georgia, serif;
   font-style: italic;
   font-size: 1.05rem;
   letter-spacing: 0.01em;
-  color: var(--color-rose-dark);
+  color: var(--color-accent);
 }
 
-/* Large emotional statement set in the display serif (hero / closing bands) */
+/* Large emotional statement set in the display face (hero / closing bands) */
 .display-statement {
   font-family: var(--font-heading), Georgia, serif;
   font-weight: 300;
@@ -71,7 +80,7 @@ h4 {
 
 .btn {
   display: inline-block;
-  border-radius: 9999px;
+  border-radius: var(--radius-btn);
   padding: 0.9rem 2.1rem;
   font-size: 0.9rem;
   font-weight: 600;
@@ -82,29 +91,29 @@ h4 {
 }
 
 .btn-primary {
-  background-color: var(--color-ink);
-  color: var(--color-offwhite);
+  background-color: var(--color-fg);
+  color: var(--color-bg);
 }
 .btn-primary:hover {
-  background-color: #532e38;
+  background-color: color-mix(in srgb, var(--color-fg) 85%, #000);
 }
 
 .btn-secondary {
-  background-color: var(--color-rose);
-  color: var(--color-ink);
+  background-color: var(--color-accent-soft);
+  color: var(--color-fg);
 }
 .btn-secondary:hover {
-  background-color: var(--color-rose-dark);
-  color: var(--color-offwhite);
+  background-color: var(--color-accent);
+  color: var(--color-bg);
 }
 
 .btn-outline {
-  border: 1px solid var(--color-ink);
-  color: var(--color-ink);
+  border: 1px solid var(--color-fg);
+  color: var(--color-fg);
 }
 .btn-outline:hover {
-  background-color: var(--color-ink);
-  color: var(--color-offwhite);
+  background-color: var(--color-fg);
+  color: var(--color-bg);
 }
 
 .btn:disabled {
@@ -119,7 +128,7 @@ h4 {
   margin-bottom: 1.25rem;
 }
 .prose a {
-  color: var(--color-rose-dark);
+  color: var(--color-accent);
   text-decoration: underline;
   text-underline-offset: 2px;
 }

@@ -1,15 +1,15 @@
 import type { ComponentProps } from "react";
 
 const tones = {
-  cream: "bg-cream",
-  offwhite: "",
-  greige: "bg-greige/50",
-  blue: "bg-blue/30",
-  ink: "bg-ink text-cream",
+  default: "",
+  raised: "bg-surface",
+  muted: "bg-muted/50",
+  feature: "bg-feature/30",
+  contrast: "bg-fg text-bg",
 } as const;
 
 export function Section({
-  tone = "cream",
+  tone = "raised",
   className = "",
   ...props
 }: { tone?: keyof typeof tones } & ComponentProps<"section">) {

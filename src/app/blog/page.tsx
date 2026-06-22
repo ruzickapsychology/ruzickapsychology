@@ -21,7 +21,7 @@ export default function Blog() {
             <h2>
               <Link
                 href={`/blog/${post.slug}`}
-                className="transition hover:text-rose-dark"
+                className="transition hover:text-accent"
               >
                 {post.title}
               </Link>
@@ -29,7 +29,7 @@ export default function Blog() {
             <p className="mt-2 leading-relaxed">{post.excerpt}</p>
             <Link
               href={`/blog/${post.slug}`}
-              className="mt-3 inline-block text-rose-dark underline-offset-4 transition hover:text-ink hover:underline"
+              className="mt-3 inline-block text-accent underline-offset-4 transition hover:text-fg hover:underline"
             >
               Read More →
             </Link>
