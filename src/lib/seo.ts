@@ -39,8 +39,9 @@ export function psychologistJsonLd() {
     areaServed: site.areaServed,
     availableService: [
       { "@type": "MedicalTherapy", name: "Individual Therapy" },
-      { "@type": "MedicalTherapy", name: "Couples Therapy" },
-      { "@type": "MedicalTherapy", name: "Maternal Mental Health" },
+      { "@type": "MedicalTherapy", name: "Couples Counseling (Imago Relationship Therapy)" },
+      { "@type": "MedicalTherapy", name: "Perinatal & Postpartum Support" },
+      { "@type": "MedicalTherapy", name: "Group Therapy" },
     ],
   };
 }

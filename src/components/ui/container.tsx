@@ -4,6 +4,7 @@ const widths = {
   sm: "max-w-2xl",
   md: "max-w-3xl",
   lg: "max-w-5xl",
+  xl: "max-w-[1200px]",
 } as const;
 
 export function Container({
@@ -13,7 +14,7 @@ export function Container({
 }: { size?: keyof typeof widths } & ComponentProps<"div">) {
   return (
     <div
-      className={`mx-auto w-full px-6 sm:px-8 ${widths[size]} ${className}`.trim()}
+      className={`mx-auto w-full px-6 sm:px-10 ${widths[size]} ${className}`.trim()}
       {...props}
     />
   );

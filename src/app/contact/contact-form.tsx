@@ -7,6 +7,9 @@ import { site } from "@/content/site";
 
 const initialState: InquiryState = { status: "idle" };
 
+const fieldClass =
+  "w-full rounded-[14px] border border-fg/20 bg-white/55 px-5 py-4 text-[15px] text-fg outline-none transition-colors placeholder:text-accent/50 focus:border-accent";
+
 export function ContactForm() {
   const [state, action, pending] = useActionState(submitInquiry, initialState);
 
@@ -16,8 +19,8 @@ export function ContactForm() {
 
   if (state.status === "success") {
     return (
-      <div className="mt-10 rounded-2xl bg-muted/50 p-8">
-        <h2>Thank you for reaching out.</h2>
+      <div className="rounded-[24px] border border-muted bg-surface p-10">
+        <h2 className="text-[28px]">Thank you for reaching out.</h2>
         <p className="mt-4 leading-relaxed">
           Your message has been received. I&apos;ll personally review it and
           respond within 1–2 business days to find a time for your free,
@@ -32,7 +35,7 @@ export function ContactForm() {
           target="_blank"
           rel="noreferrer"
           onClick={() => track("client_portal_click", { source: "contact_success" })}
-          className="btn btn-secondary mt-5"
+          className="btn btn-secondary mt-6"
         >
           Open the Client Portal
         </a>
@@ -41,64 +44,52 @@ export function ContactForm() {
   }
 
   return (
-    <form action={action} className="mt-10 space-y-6">
+    <form action={action} className="flex flex-col gap-4">
       <div aria-hidden className="absolute left-[-9999px]">
         <label htmlFor="company">Company</label>
         <input id="company" name="company" tabIndex={-1} autoComplete="off" />
       </div>
-      <div className="grid gap-6 sm:grid-cols-2">
-        <Field label="First Name" name="firstName" required />
-        <Field label="Last Name" name="lastName" />
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <input name="firstName" required placeholder="First Name*" className={fieldClass} />
+        <input name="lastName" placeholder="Last Name*" className={fieldClass} />
       </div>
-      <Field label="Email" name="email" type="email" required />
-      <Field label="Phone" name="phone" type="tel" />
-      <div>
-        <label htmlFor="message" className="block text-sm tracking-wide">
-          How can I help?
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          rows={5}
-          required
-          className="mt-2 w-full rounded-lg border border-muted bg-white/60 px-4 py-3 outline-none focus:border-accent"
-        />
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="Email Address*"
+        className={fieldClass}
+      />
+      <input
+        name="therapyType"
+        placeholder="What type of therapy are you interested in?"
+        className={fieldClass}
+      />
+      <input
+        name="format"
+        placeholder="Would you prefer in-person or virtual therapy?"
+        className={fieldClass}
+      />
+      <div className="grid gap-4 sm:grid-cols-2">
+        <input name="city" placeholder="What city are you based in?" className={fieldClass} />
+        <input type="tel" name="phone" placeholder="Phone number" className={fieldClass} />
       </div>
+      <textarea
+        name="message"
+        rows={6}
+        required
+        placeholder="Tell me a little about what brings you to therapy.*"
+        className={`${fieldClass} resize-y`}
+      />
 
       {state.status === "error" && (
         <p className="text-sm text-accent">{state.message}</p>
       )}
 
-      <button type="submit" disabled={pending} className="btn btn-primary">
-        {pending ? "Sending…" : "Submit Inquiry"}
+      <button type="submit" disabled={pending} className="btn btn-primary mt-1.5 self-start">
+        {pending ? "Sending…" : "Submit →"}
       </button>
     </form>
-  );
-}
-
-function Field({
-  label,
-  name,
-  type = "text",
-  required = false,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  required?: boolean;
-}) {
-  return (
-    <div>
-      <label htmlFor={name} className="block text-sm tracking-wide">
-        {label}
-      </label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        required={required}
-        className="mt-2 w-full rounded-lg border border-muted bg-white/60 px-4 py-3 outline-none focus:border-accent"
-      />
-    </div>
   );
 }

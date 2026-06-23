@@ -4,11 +4,13 @@
  * `globals.css` — together they are the rebrand surface.
  */
 export const theme = {
-  bg: "#f9f7f5",
-  fg: "#3c2128",
-  surface: "#e9e2db",
-  muted: "#dbd4cd",
-  accent: "#884650",
-  accentSoft: "#ce9ba3",
-  feature: "#b6c5d3",
+  bg: "#eae6dd",
+  fg: "#3a232a",
+  body: "#514a4c",
+  surface: "#fbf8f1",
+  muted: "#e7ddcd",
+  accent: "#8c4651",
+  accentSoft: "#e3c7cb",
+  feature: "#efe2d6",
+  light: "#f1eeeb",
 } as const;

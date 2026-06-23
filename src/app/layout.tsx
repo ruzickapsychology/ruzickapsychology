@@ -1,28 +1,28 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Mulish, Lora } from "next/font/google";
+import { Libre_Baskerville, Manrope, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { metadataBase, pageMetadata, psychologistJsonLd } from "@/lib/seo";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const baskerville = Libre_Baskerville({
+  variable: "--font-baskerville",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
 });
 
-const mulish = Mulish({
-  variable: "--font-mulish",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["500", "600"],
 });
 
-const lora = Lora({
-  variable: "--font-lora",
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
   subsets: ["latin"],
   weight: ["400", "500"],
-  style: ["italic"],
 });
 
 export const metadata: Metadata = {
@@ -41,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${mulish.variable} ${lora.variable} antialiased`}
+      className={`${baskerville.variable} ${manrope.variable} ${plexMono.variable} antialiased`}
     >
       <body className="flex min-h-screen flex-col">
         <script

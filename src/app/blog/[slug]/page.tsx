@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Section } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
 import { pageMetadata } from "@/lib/seo";
 import { getAllPostMeta, getPost } from "@/lib/blog";
@@ -29,7 +28,7 @@ export default async function BlogPost(props: PageProps<"/blog/[slug]">) {
   if (!post) notFound();
 
   return (
-    <Section tone="default">
+    <div className="rp-fade pb-24 pt-32">
       <Container size="md">
         <article>
           <h1>{post.title}</h1>
@@ -40,11 +39,11 @@ export default async function BlogPost(props: PageProps<"/blog/[slug]">) {
         </article>
         <Link
           href="/blog"
-          className="mt-12 inline-block text-accent underline-offset-4 transition hover:text-fg hover:underline"
+          className="mono-label mt-12 inline-block text-[12.5px] normal-case tracking-[0.06em] text-accent transition-colors hover:text-fg"
         >
           ← Back to Blog
         </Link>
       </Container>
-    </Section>
+    </div>
   );
 }

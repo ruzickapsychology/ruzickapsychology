@@ -38,6 +38,9 @@ export async function submitInquiry(
     lastName: String(formData.get("lastName") ?? "").trim(),
     email: String(formData.get("email") ?? "").trim(),
     phone: String(formData.get("phone") ?? "").trim(),
+    therapyType: String(formData.get("therapyType") ?? "").trim(),
+    format: String(formData.get("format") ?? "").trim(),
+    city: String(formData.get("city") ?? "").trim(),
     message: String(formData.get("message") ?? "").trim(),
   };
 
@@ -72,7 +75,13 @@ export async function submitInquiry(
       name: `${data.firstName} ${data.lastName}`.trim(),
       email: data.email,
       phone: data.phone || "—",
-      message: data.message,
+      message: [
+        data.message,
+        "",
+        `Interested in: ${data.therapyType || "—"}`,
+        `Format: ${data.format || "—"}`,
+        `City: ${data.city || "—"}`,
+      ].join("\n"),
     }),
   });
 

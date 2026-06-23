@@ -3,7 +3,7 @@ import { site } from "@/content/site";
 import { getAllPostMeta } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/about", "/contact", "/blog"].map((path) => ({
+  const routes = ["", "/about", "/specialties", "/pricing", "/faq", "/contact", "/blog"].map((path) => ({
     url: `${site.url}${path}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,

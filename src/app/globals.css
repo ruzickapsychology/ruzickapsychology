@@ -7,131 +7,258 @@
    so a new direction means new values here and nothing else.
    ============================================================ */
 @theme {
-  --color-bg: #f9f7f5; /* page background */
-  --color-fg: #3c2128; /* body text + dark "contrast" bands */
-  --color-surface: #e9e2db; /* raised / alternating sections */
-  --color-muted: #dbd4cd; /* hairline borders, subtle fills */
-  --color-accent: #884650; /* links, eyebrows, emphasis */
-  --color-accent-soft: #ce9ba3; /* soft accent fills, secondary button */
-  --color-feature: #b6c5d3; /* calming feature band */
+  --color-bg: #eae6dd; /* warm sand page background (paper texture overlaid) */
+  --color-fg: #3a232a; /* aubergine ink — headings + dark bands */
+  --color-body: #514a4c; /* body copy (softer than fg) */
+  --color-surface: #fbf8f1; /* cards / raised panels */
+  --color-muted: #e7ddcd; /* hairline borders, card edges */
+  --color-accent: #8c4651; /* deep rose — links, eyebrows, emphasis */
+  --color-accent-soft: #e3c7cb; /* soft rose — selection, subtle fills */
+  --color-feature: #efe2d6; /* warm feature band */
+  --color-light: #f1eeeb; /* type on dark / image bands */
 
-  --font-heading: var(--font-cormorant);
-  --font-body: var(--font-mulish);
-  --font-accent: var(--font-lora);
+  --font-heading: var(--font-baskerville);
+  --font-body: var(--font-baskerville);
+  --font-sans: var(--font-manrope);
+  --font-mono: var(--font-plex-mono);
 
   --radius-btn: 9999px;
 }
 /* ===================== end theme contract ==================== */
 
-body {
-  background-color: var(--color-bg);
-  color: var(--color-fg);
-  font-family: var(--font-body), system-ui, sans-serif;
-  font-size: 17px;
-  line-height: 1.65;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    background-image: url("/images/bg-texture.jpg");
+    background-size: 760px;
+    background-repeat: repeat;
+    color: var(--color-body);
+    font-family: var(--font-body), Georgia, serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-accent-soft);
+    color: var(--color-fg);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading), Georgia, serif;
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--color-fg);
+  }
+
+  h1 {
+    font-size: clamp(2.6rem, 7vw, 66px);
+  }
+  h2 {
+    font-size: clamp(2rem, 5.5vw, 44px);
+  }
+  h3 {
+    font-size: clamp(1.4rem, 3vw, 27px);
+  }
 }
 
-h1,
-h2,
-h3 {
-  font-family: var(--font-heading), Georgia, serif;
-  font-weight: 300;
-  line-height: 1.05;
-  letter-spacing: -0.01em;
+@layer components {
+  /* Manrope eyebrow — small uppercase label above headings */
+  .eyebrow {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  /* IBM Plex Mono label — nav, step numbers, footer captions */
+  .mono-label {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-weight: 500;
+    font-size: 12.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: var(--radius-btn);
+    padding: 1rem 2.4rem;
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: background-color 0.25s ease, color 0.25s ease;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background-color: var(--color-fg);
+    color: var(--color-light);
+  }
+  .btn-primary:hover {
+    background-color: #52333b;
+  }
+  .btn-secondary {
+    background-color: var(--color-surface);
+    color: var(--color-fg);
+    border: 1px solid var(--color-muted);
+  }
+  .btn-secondary:hover {
+    background-color: var(--color-feature);
+  }
+  .btn-outline {
+    border: 1px solid var(--color-fg);
+    color: var(--color-fg);
+  }
+  .btn-outline:hover {
+    background-color: var(--color-fg);
+    color: var(--color-light);
+  }
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Translucent card surface (specialties / location) */
+  .card {
+    background-color: color-mix(in srgb, var(--color-surface) 70%, transparent);
+    border: 1px solid var(--color-muted);
+    border-radius: 24px;
+  }
+
+  .prose {
+    line-height: 1.75;
+  }
+  .prose p {
+    margin-bottom: 1.25rem;
+  }
+  .prose a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose h2 {
+    margin: 2rem 0 1rem;
+  }
 }
 
-h1 {
-  font-size: clamp(2.75rem, 8vw, 76px);
+@keyframes rp-fade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes rp-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(9px);
+  }
+}
+@keyframes rp-spin {
+  to {
+    transform: rotate(-360deg);
+  }
 }
 
-h2 {
-  font-size: clamp(2.25rem, 6vw, 54px);
+.rp-fade {
+  animation: rp-fade 0.5s ease both;
+}
+.rp-bob {
+  animation: rp-bob 1.9s ease-in-out infinite;
+}
+.rp-spin {
+  animation: rp-spin 26s linear infinite;
+  transform-origin: center;
 }
 
-h3 {
-  font-size: clamp(1.5rem, 4vw, 34px);
+@media (prefers-reduced-motion: reduce) {
+  .rp-fade,
+  .rp-bob,
+  .rp-spin {
+    animation: none;
+  }
 }
 
-h4 {
-  font-family: var(--font-body), system-ui, sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 1.4;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
+/* Quadrant icon hover animations — gated on the quadrant cell (.rp-q),
+   so the same glyphs stay static everywhere else. Subtle, looping. */
+/* Individual — a ball bounce with gravity (accelerate down, decelerate up) */
+@keyframes rp-bounce {
+  0% { transform: translateY(-7px); animation-timing-function: ease-in; }
+  50% { transform: translateY(0); animation-timing-function: ease-out; }
+  100% { transform: translateY(-7px); }
+}
+/* Couples — a living heartbeat (lub-dub), halves stay joined */
+@keyframes rp-heartbeat {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.12); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.07); }
+  60%, 100% { transform: scale(1); }
+}
+/* Perinatal — mother & child part and rejoin along their connecting line */
+@keyframes rp-mother {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-1.7px, -1.7px); }
+}
+@keyframes rp-child {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(1.7px, 1.7px); }
+}
+/* Group — petals separate & rejoin while the whole mark slowly spins */
+@keyframes rp-petal {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2.4px); }
+}
+@keyframes rp-quatspin {
+  to { transform: rotate(360deg); }
 }
 
-/* Italic-accent eyebrow above section headings */
-.eyebrow {
-  font-family: var(--font-accent), Georgia, serif;
-  font-style: italic;
-  font-size: 1.05rem;
-  letter-spacing: 0.01em;
-  color: var(--color-accent);
+.anim-heartbeat,
+.anim-spin-group {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.rp-q:hover .anim-bounce {
+  animation: rp-bounce 1.1s infinite;
+}
+.rp-q:hover .anim-heartbeat {
+  animation: rp-heartbeat 1.4s ease-in-out infinite;
+}
+.rp-q:hover .anim-cuddle-drop {
+  animation: rp-mother 1.9s ease-in-out infinite;
+}
+.rp-q:hover .anim-cuddle-circle {
+  animation: rp-child 1.9s ease-in-out infinite;
+}
+.rp-q:hover .anim-spin-group {
+  animation: rp-quatspin 4s linear infinite;
+}
+.rp-q:hover .anim-petal {
+  animation: rp-petal 1.7s ease-in-out infinite;
 }
 
-/* Large emotional statement set in the display face (hero / closing bands) */
-.display-statement {
-  font-family: var(--font-heading), Georgia, serif;
-  font-weight: 300;
-  line-height: 1.08;
-  letter-spacing: -0.01em;
-}
-
-.btn {
-  display: inline-block;
-  border-radius: var(--radius-btn);
-  padding: 0.9rem 2.1rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.btn-primary {
-  background-color: var(--color-fg);
-  color: var(--color-bg);
-}
-.btn-primary:hover {
-  background-color: color-mix(in srgb, var(--color-fg) 85%, #000);
-}
-
-.btn-secondary {
-  background-color: var(--color-accent-soft);
-  color: var(--color-fg);
-}
-.btn-secondary:hover {
-  background-color: var(--color-accent);
-  color: var(--color-bg);
-}
-
-.btn-outline {
-  border: 1px solid var(--color-fg);
-  color: var(--color-fg);
-}
-.btn-outline:hover {
-  background-color: var(--color-fg);
-  color: var(--color-bg);
-}
-
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.prose {
-  line-height: 1.75;
-}
-.prose p {
-  margin-bottom: 1.25rem;
-}
-.prose a {
-  color: var(--color-accent);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.prose h2 {
-  margin: 2rem 0 1rem;
+@media (prefers-reduced-motion: reduce) {
+  .rp-q:hover [class^="anim-"] {
+    animation: none;
+  }
 }

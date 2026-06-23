@@ -1,56 +1,95 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { TrackedExternalLink } from "@/components/analytics";
+import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/container";
 import { site } from "@/content/site";
 
-const navLinks = site.nav;
-
-function NavLink({
-  label,
-  href,
-  external,
-}: {
-  label: string;
-  href: string;
-  external?: boolean;
-}) {
-  const className = "transition hover:text-accent";
-  return external ? (
-    <TrackedExternalLink
-      href={href}
-      event="client_portal_click"
-      className={className}
-    >
-      {label}
-    </TrackedExternalLink>
-  ) : (
-    <Link href={href} className={className}>
-      {label}
-    </Link>
-  );
-}
+const TRANSPARENT_PAGES = ["/", "/contact"];
 
 export function Header() {
+  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const sentinel = document.getElementById("hero-sentinel");
+      // No hero on this page → nav is solid from the top.
+      const past = sentinel
+        ? sentinel.getBoundingClientRect().top <= 64
+        : true;
+      setScrolled(past);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [pathname]);
+
+  const canBeTransparent = TRANSPARENT_PAGES.includes(pathname);
+  const transparent = canBeTransparent && !scrolled;
+  const light = transparent && pathname === "/";
+
+  const wordmark = light ? "text-light" : "text-fg";
+  const link = light
+    ? "text-light/90 hover:text-light"
+    : "text-body hover:text-accent";
+
   return (
-    <header className="border-b border-muted">
-      <Container className="flex items-center justify-between py-6">
-        <Link href="/" className="font-heading text-xl tracking-wide">
-          Ruzicka Psychology
+    <header
+      className="fixed inset-x-0 top-0 z-50 transition-[background-color] duration-500"
+      style={
+        transparent
+          ? { backgroundColor: "transparent" }
+          : {
+              backgroundColor: "var(--color-bg)",
+              backgroundImage: "url(/images/bg-texture.jpg)",
+              backgroundSize: "760px",
+            }
+      }
+    >
+      <Container
+        size="xl"
+        className="flex items-center justify-between gap-6 py-4"
+      >
+        <Link
+          href="/"
+          className={`font-heading text-xl tracking-tight transition-colors duration-300 ${wordmark}`}
+        >
+          {site.name}
         </Link>
 
-        <nav className="hidden items-center gap-7 text-sm tracking-wide sm:flex">
-          {navLinks.map((link) => (
-            <NavLink key={link.label} {...link} />
+        <nav className="hidden items-center gap-8 sm:flex">
+          {site.nav.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className={`mono-label text-[12.5px] transition-colors duration-300 ${link}`}
+            >
+              {item.label}
+            </Link>
           ))}
         </nav>
 
         <details className="group relative sm:hidden">
-          <summary className="flex cursor-pointer list-none items-center text-sm tracking-wide [&::-webkit-details-marker]:hidden">
+          <summary
+            className={`mono-label cursor-pointer list-none text-[12.5px] [&::-webkit-details-marker]:hidden ${wordmark}`}
+          >
             Menu
           </summary>
-          <nav className="absolute right-0 z-10 mt-3 flex w-44 flex-col gap-3 rounded-xl border border-muted bg-surface p-5 text-sm tracking-wide shadow-lg">
-            {navLinks.map((link) => (
-              <NavLink key={link.label} {...link} />
+          <nav className="absolute right-0 z-10 mt-3 flex w-52 flex-col gap-4 rounded-xl border border-muted bg-surface p-5 shadow-lg">
+            {site.nav.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="mono-label text-[12.5px] text-body transition-colors hover:text-accent"
+              >
+                {item.label}
+              </Link>
             ))}
           </nav>
         </details>

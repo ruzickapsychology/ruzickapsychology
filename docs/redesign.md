@@ -1,4 +1,37 @@
-# Redesign: modern-feminine direction
+# Redesign
+
+## Current direction — "Authentic holistic healing" (branch `redesign/claude-design`)
+
+Imported from the Claude Design comp `Ruzicka Psychology.dc.html`. This is the
+live direction; the "modern-feminine" notes below are kept for history.
+
+**Palette** (in `@theme` / `theme.ts`): bg `#eae6dd` (warm sand + paper texture),
+fg `#3a232a` (aubergine ink), body `#514a4c`, surface `#fbf8f1`, muted `#e7ddcd`,
+accent `#8c4651` (deep rose), accent-soft `#e3c7cb`, feature `#efe2d6`, light `#f1eeeb`.
+
+**Fonts** (`layout.tsx`): Libre Baskerville (headings + body), Manrope (`.eyebrow`),
+IBM Plex Mono (`.mono-label`, nav, buttons).
+
+**Routes**: adds `/specialties` and `/pricing`; Home/About/Contact rebuilt; Blog restyled.
+The header (`components/header.tsx`) is a fixed nav that is transparent over the hero on
+`/` (light text) and `/contact` (dark text) and goes solid on scroll — pages opt in by
+rendering `<div id="hero-sentinel" />` after their hero. Images live in `public/images/`
+(downscaled/optimized from the comp).
+
+**Deliberate deviations from the comp:**
+- The comp's About page had a **client testimonial**. APA discourages soliciting
+  testimonials from clients (see CLAUDE.md ethics), so it's replaced by a first-person
+  philosophy pull-quote (`about.philosophy`) in the same visual band.
+- Portraits (`portrait*.jpg`) are AI placeholders — **swap for real photos** before launch.
+
+**Placeholder data to confirm before launch** (carried from the comp, flagged in source):
+pricing `$225` / `$275` (`content/pricing.ts`), phone `(646) 123-1599` and street
+address `123 Office Drive, Suite 4` (`content/site.ts`). The contact "Map" is a static
+placeholder (no live map embed). Real email/portal are correct.
+
+---
+
+# Redesign: modern-feminine direction (previous demo)
 
 A demo branch exploring a cleaner, warmer, more emotion-led direction, benchmarked
 against [manhattanmoderntherapy.com](https://manhattanmoderntherapy.com/). The goal
