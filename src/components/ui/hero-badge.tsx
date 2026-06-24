@@ -7,11 +7,13 @@ export function RotatingFlowerBadge({
   pathId,
   flowerColor = "rgb(241 238 235 / 0.8)",
   flowerClassName = "hero-flower-emboss",
+  textColor = "var(--color-light)",
 }: {
   messages: readonly [string, string];
   pathId: string;
   flowerColor?: string;
   flowerClassName?: string;
+  textColor?: string;
 }) {
   return (
     <>
@@ -32,7 +34,7 @@ export function RotatingFlowerBadge({
         {messages.map((message, i) => (
           <text
             key={message}
-            fill="var(--color-light)"
+            fill={textColor}
             fontFamily="var(--font-sans), system-ui, sans-serif"
             fontSize="12"
             fontWeight="600"

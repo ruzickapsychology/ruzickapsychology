@@ -52,6 +52,7 @@ export function Footer() {
               pathId="rp-footer-badge-path"
               flowerColor="rgb(241 238 235 / 0.18)"
               flowerClassName="footer-flower-emboss"
+              textColor="#685B5F"
             />
           </Link>
         </div>
@@ -65,8 +66,6 @@ export function Footer() {
           </div>
           <div>
             {site.email}
-            <br />
-            {site.phone}
             <br />© {new Date().getFullYear()} {site.legalName}
           </div>
         </div>
