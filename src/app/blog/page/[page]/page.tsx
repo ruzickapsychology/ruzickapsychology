@@ -6,8 +6,9 @@ import { pageMetadata } from "@/lib/seo";
 
 export const dynamicParams = false;
 
-export function generateStaticParams() {
-  return Array.from({ length: getBlogPageCount() - 1 }, (_, i) => ({
+export async function generateStaticParams() {
+  const totalPages = await getBlogPageCount();
+  return Array.from({ length: totalPages - 1 }, (_, i) => ({
     page: String(i + 2),
   }));
 }
@@ -26,7 +27,7 @@ export async function generateMetadata(
 export default async function BlogPage(props: PageProps<"/blog/page/[page]">) {
   const { page } = await props.params;
   const currentPage = Number(page);
-  const totalPages = getBlogPageCount();
+  const totalPages = await getBlogPageCount();
 
   if (!Number.isInteger(currentPage) || currentPage < 2 || currentPage > totalPages) {
     notFound();
@@ -34,7 +35,7 @@ export default async function BlogPage(props: PageProps<"/blog/page/[page]">) {
 
   return (
     <BlogIndex
-      posts={getPostMetaPage(currentPage)}
+      posts={await getPostMetaPage(currentPage)}
       page={currentPage}
       totalPages={totalPages}
     />

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/container";
+import { PortableContent } from "@/components/ui/portable-content";
 import { pageMetadata } from "@/lib/seo";
 import {
   formatPostDate,
@@ -10,8 +11,8 @@ import {
   getPost,
 } from "@/lib/blog";
 
-export function generateStaticParams() {
-  return getAllPostMeta().map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  return (await getAllPostMeta()).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata(
@@ -31,7 +32,7 @@ export default async function BlogPost(props: PageProps<"/blog/[slug]">) {
   const { slug } = await props.params;
   const post = await getPost(slug);
   if (!post) notFound();
-  const olderPost = getOlderPostMeta(slug);
+  const olderPost = await getOlderPostMeta(slug);
 
   return (
     <div className="rp-fade pb-24 pt-32">
@@ -47,10 +48,7 @@ export default async function BlogPost(props: PageProps<"/blog/[slug]">) {
             {formatPostDate(post.date)} · {post.readTime}
           </p>
           <h1 className="heading-section">{post.title}</h1>
-          <div
-            className="prose mt-10"
-            dangerouslySetInnerHTML={{ __html: post.html }}
-          />
+          <PortableContent value={post.body} className="prose mt-10" />
         </article>
         <nav className="mt-12 flex flex-col gap-5 border-t border-muted pt-8 sm:flex-row sm:items-center sm:justify-between">
           <Link

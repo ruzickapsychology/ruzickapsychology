@@ -9,12 +9,12 @@ export const metadata: Metadata = pageMetadata({
   path: "/blog",
 });
 
-export default function Blog() {
+export default async function Blog() {
   return (
     <BlogIndex
-      posts={getPostMetaPage(1)}
+      posts={await getPostMetaPage(1)}
       page={1}
-      totalPages={getBlogPageCount()}
+      totalPages={await getBlogPageCount()}
     />
   );
 }

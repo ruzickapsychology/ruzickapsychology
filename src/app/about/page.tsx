@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
+import { PortableContent } from "@/components/ui/portable-content";
 import { pageMetadata } from "@/lib/seo";
-import { about } from "@/content/about";
+import { backgroundImage, overlayBackgroundImage } from "@/lib/cms-images";
+import { getAboutPage } from "@/lib/cms";
 
 export const metadata: Metadata = pageMetadata({
   title: "About",
@@ -10,7 +12,10 @@ export const metadata: Metadata = pageMetadata({
   path: "/about",
 });
 
-export default function About() {
+export default async function About() {
+  const about = await getAboutPage();
+  if (!about) return null;
+
   return (
     <div className="rp-fade pt-16">
       {/* bio */}
@@ -23,7 +28,7 @@ export default function About() {
             <div
               className="aspect-square w-full overflow-hidden rounded-full bg-cover bg-center"
               style={{
-                backgroundImage: "url(/images/portrait-large.jpg)",
+                backgroundImage: backgroundImage(about.portraitImage),
                 backgroundPosition: "center 20%",
               }}
             />
@@ -33,71 +38,91 @@ export default function About() {
             <h1 className="heading-section mt-3.5">
               {about.heading}
             </h1>
-            <div className="prose mt-7">
-              {about.intro.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
+            <PortableContent value={about.intro} className="prose mt-7" />
 
-            <div className="mt-11 border-b border-muted">
-              <Credentials group={about.education} />
-              <Credentials group={about.training} license={about.training.license} />
-            </div>
+            {about.credentialGroups?.length ? (
+              <div className="mt-11 border-b border-muted">
+                {about.credentialGroups.map((group) => (
+                  <Credentials key={group.heading} group={group} license={group.license} />
+                ))}
+              </div>
+            ) : null}
           </div>
         </Container>
       </section>
 
       {/* therapy space */}
-      <section className="bg-feature/35 py-24 sm:py-32">
-        <Container size="xl">
-          <div className="mx-auto max-w-[680px] text-center">
-            <p className="eyebrow">{about.space.eyebrow}</p>
-            <h2 className="heading-item mt-4">{about.space.heading}</h2>
-            <p className="body-2 mx-auto mt-4 max-w-[480px]">
-              {about.space.body}
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-5 md:grid-cols-2 md:gap-7">
-            <div className="flex aspect-[4/3] items-center justify-center border border-muted bg-surface/45 p-8 text-center">
-              <div>
-                <p className="mono-label text-accent">Exterior Photo</p>
-                <p className="body-3 mt-4 max-w-[260px] text-body/75">
-                  Placeholder for the building exterior.
-                </p>
-              </div>
+      {about.space ? (
+        <section className="bg-feature/35 py-24 sm:py-32">
+          <Container size="xl">
+            <div className="mx-auto max-w-[680px] text-center">
+              <p className="eyebrow">{about.space.eyebrow}</p>
+              <h2 className="heading-item mt-4">{about.space.heading}</h2>
+              <p className="body-2 mx-auto mt-4 max-w-[480px]">
+                {about.space.body}
+              </p>
             </div>
-            <div
-              className="aspect-[4/3] border border-muted bg-cover bg-center"
-              style={{ backgroundImage: "url(/images/therapy-room.jpg)" }}
-              role="img"
-              aria-label="Therapy office seating area"
-            />
-          </div>
-        </Container>
-      </section>
+
+            <div className="mt-12 grid gap-5 md:grid-cols-2 md:gap-7">
+              <div className="aspect-[4/3] border border-muted bg-surface/45">
+                {about.space.exteriorImage?.asset?.url ? (
+                  <div
+                    className="h-full w-full bg-cover bg-center"
+                    style={{
+                      backgroundImage: backgroundImage(about.space.exteriorImage),
+                    }}
+                    role="img"
+                    aria-label={about.space.exteriorImage.alt ?? "Office exterior"}
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center p-8 text-center">
+                    <div>
+                      <p className="mono-label text-accent">Exterior Photo</p>
+                      <p className="body-3 mt-4 max-w-[260px] text-body/75">
+                        Placeholder for the building exterior.
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div
+                className="aspect-[4/3] border border-muted bg-cover bg-center"
+                style={{
+                  backgroundImage: backgroundImage(about.space.interiorImage),
+                }}
+                role="img"
+                aria-label={about.space.interiorImage?.alt ?? "Therapy office seating area"}
+              />
+            </div>
+          </Container>
+        </section>
+      ) : null}
 
       {/* philosophy band (replaces client testimonial — see content note) */}
-      <section
-        id="about-quote-band"
-        className="bg-cover bg-center px-6 py-16 sm:py-20"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgb(7 24 25 / 0.2), rgb(7 24 25 / 0.2)), url(/images/bouquet.jpg)",
-        }}
-      >
-        <div className="mx-auto max-w-[1120px] px-8 py-12 text-center sm:px-12 sm:py-14">
-          <p className="mb-6 font-sans text-[13px] font-semibold uppercase tracking-[0.24em] text-light/90">
-            {about.philosophy.eyebrow}
-          </p>
-          <p className="heading-module mx-auto max-w-[680px] leading-snug text-light">
-            “{about.philosophy.quote}”
-          </p>
-          <p className="mono-label mt-7 normal-case tracking-[0.08em] text-light/75">
-            —{about.philosophy.attribution}
-          </p>
-        </div>
-      </section>
+      {about.philosophy ? (
+        <section
+          id="about-quote-band"
+          className="bg-cover bg-center px-6 py-16 sm:py-20"
+          style={{
+            backgroundImage: overlayBackgroundImage(
+              about.philosophy.backgroundImage,
+              "linear-gradient(rgb(7 24 25 / 0.2), rgb(7 24 25 / 0.2))",
+            ),
+          }}
+        >
+          <div className="mx-auto max-w-[1120px] px-8 py-12 text-center sm:px-12 sm:py-14">
+            <p className="mb-6 font-sans text-[13px] font-semibold uppercase tracking-[0.24em] text-light/90">
+              {about.philosophy.eyebrow}
+            </p>
+            <p className="heading-module mx-auto max-w-[680px] leading-snug text-light">
+              “{about.philosophy.quote}”
+            </p>
+            <p className="mono-label mt-7 normal-case tracking-[0.08em] text-light/75">
+              —{about.philosophy.attribution}
+            </p>
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }

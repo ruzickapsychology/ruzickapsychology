@@ -3,16 +3,21 @@ import { Container } from "@/components/ui/container";
 import { HeroBadge } from "@/components/ui/hero-badge";
 import { SpecialtyGlyph } from "@/components/ui/icons";
 import { CtaLink } from "@/components/analytics";
-import { home } from "@/content/home";
-import { specialties } from "@/content/specialties";
+import { backgroundImage } from "@/lib/cms-images";
+import { getHomePage } from "@/lib/cms";
 
-export default function Home() {
+export default async function Home() {
+  const home = await getHomePage();
+  if (!home) return null;
+
   return (
     <div className="rp-fade">
       {/* hero */}
       <section
         className="relative flex min-h-[760px] items-center justify-center overflow-hidden bg-cover bg-center px-6 text-center md:min-h-[840px]"
-        style={{ backgroundImage: "url(/images/hero.jpg)" }}
+        style={{
+          backgroundImage: backgroundImage(home.hero.backgroundImage),
+        }}
       >
         <div className="relative top-4 max-w-[900px] py-16">
           <HeroBadge />
@@ -48,7 +53,7 @@ export default function Home() {
             <h2 className="mt-4">{home.specialties.heading}</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2">
-            {specialties.items.map((s, i) => (
+            {home.specialties.items.map((s, i) => (
               <div
                 key={s.title}
                 className={`rp-q px-2 py-10 sm:px-10 sm:py-14 ${
@@ -85,7 +90,9 @@ export default function Home() {
           <div className="mx-auto w-full max-w-[300px] rounded-full border border-muted p-2">
             <div
               className="aspect-square w-full overflow-hidden rounded-full bg-cover bg-center"
-              style={{ backgroundImage: "url(/images/portrait.jpg)" }}
+              style={{
+                backgroundImage: backgroundImage(home.about.portraitImage),
+              }}
             />
           </div>
           <div>
@@ -107,7 +114,9 @@ export default function Home() {
       {/* CTA band */}
       <section
         className="bg-cover bg-center px-6 py-24 sm:py-28"
-        style={{ backgroundImage: "url(/images/cta-floral.jpg)" }}
+        style={{
+          backgroundImage: backgroundImage(home.cta.backgroundImage),
+        }}
       >
         <div className="mx-auto max-w-[1120px] rounded-none border border-muted bg-feature/90 px-8 py-20 text-center sm:px-12">
           <h2>{home.cta.heading}</h2>

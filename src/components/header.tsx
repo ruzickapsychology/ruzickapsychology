@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/container";
-import { site } from "@/content/site";
+import type { SiteSettings } from "@/lib/cms";
+import { MAIN_NAV } from "@/lib/site-defaults";
 
 const TRANSPARENT_PAGES = ["/", "/contact"];
 
-export function Header() {
+export function Header({ siteSettings }: { siteSettings?: SiteSettings | null }) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [overQuoteBand, setOverQuoteBand] = useState(false);
@@ -70,11 +71,11 @@ export function Header() {
           href="/"
           className={`font-heading text-[18px] tracking-tight transition-colors duration-300 ${wordmark}`}
         >
-          {site.name}
+          {siteSettings?.name}
         </Link>
 
         <nav className="hidden items-center gap-8 sm:flex">
-          {site.nav.map((item) => {
+          {MAIN_NAV.map((item) => {
             const href = item.href as string;
             const active =
               pathname === href || pathname.startsWith(`${href}/`);
@@ -103,7 +104,7 @@ export function Header() {
             Menu
           </summary>
           <nav className="absolute right-0 z-10 mt-3 flex w-52 flex-col gap-4 rounded-xl border border-muted bg-surface p-5 shadow-lg">
-            {site.nav.map((item) => {
+            {MAIN_NAV.map((item) => {
               const href = item.href as string;
               const active =
                 pathname === href || pathname.startsWith(`${href}/`);

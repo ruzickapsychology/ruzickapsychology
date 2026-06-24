@@ -1,18 +1,23 @@
 import type { Metadata } from "next";
-import { site } from "@/content/site";
+import type { SiteSettings } from "@/lib/cms";
+import {
+  SITE_DEFAULT_DESCRIPTION,
+  SITE_LEGAL_NAME,
+  SITE_URL,
+} from "@/lib/site-defaults";
 
-export const metadataBase = new URL(site.url);
+export const metadataBase = new URL(SITE_URL);
 
 export function pageMetadata({
   title,
-  description = site.tagline,
+  description = SITE_DEFAULT_DESCRIPTION,
   path = "/",
 }: {
   title?: string;
   description?: string;
   path?: string;
 }): Metadata {
-  const fullTitle = title ? `${title} — ${site.legalName}` : site.legalName;
+  const fullTitle = title ? `${title} — ${SITE_LEGAL_NAME}` : SITE_LEGAL_NAME;
   return {
     title: fullTitle,
     description,
@@ -21,22 +26,22 @@ export function pageMetadata({
       title: fullTitle,
       description,
       url: path,
-      siteName: site.legalName,
+      siteName: SITE_LEGAL_NAME,
       type: "website",
     },
   };
 }
 
-export function psychologistJsonLd() {
+export function psychologistJsonLd(settings: SiteSettings) {
   return {
     "@context": "https://schema.org",
     "@type": "Psychologist",
-    name: site.legalName,
-    founder: site.practitioner,
-    email: site.email,
-    url: site.url,
+    name: settings.legalName,
+    founder: settings.practitioner,
+    email: settings.email,
+    url: settings.url,
     medicalSpecialty: "Psychiatric",
-    areaServed: site.areaServed,
+    areaServed: settings.areaServed,
     availableService: [
       { "@type": "MedicalTherapy", name: "Individual Therapy" },
       { "@type": "MedicalTherapy", name: "Couples Counseling (Imago Relationship Therapy)" },

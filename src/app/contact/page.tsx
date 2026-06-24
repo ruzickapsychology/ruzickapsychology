@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
 import { pageMetadata } from "@/lib/seo";
-import { site } from "@/content/site";
-import { contact } from "@/content/contact";
+import { backgroundImage } from "@/lib/cms-images";
+import { getContactPage, getSiteSettings } from "@/lib/cms";
 import { ContactForm } from "./contact-form";
 
 export const metadata: Metadata = pageMetadata({
@@ -12,12 +12,17 @@ export const metadata: Metadata = pageMetadata({
   path: "/contact",
 });
 
-export default function Contact() {
+export default async function Contact() {
+  const [contact, site] = await Promise.all([getContactPage(), getSiteSettings()]);
+  if (!contact || !site) return null;
+
   return (
     <div className="rp-fade">
       <section
         className="image-grain flex min-h-[760px] items-center bg-cover bg-center px-6 py-36 sm:py-44 md:min-h-[840px]"
-        style={{ backgroundImage: "url(/images/contact-roses.jpg)" }}
+        style={{
+          backgroundImage: backgroundImage(contact.headerBackgroundImage),
+        }}
       >
         <Container
           size="xl"
@@ -48,6 +53,7 @@ export default function Contact() {
       <div id="hero-sentinel" />
 
       {/* what to expect */}
+      {contact.expect ? (
       <section className="bg-feature/35 py-28 sm:py-36">
         <Container size="xl">
           <div className="mb-14 text-center">
@@ -55,7 +61,7 @@ export default function Contact() {
             <h2 className="mt-4">{contact.expect.heading}</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4">
-            {contact.expect.steps.map((step, i) => (
+            {contact.expect.steps?.map((step, i) => (
               <div
                 key={step.n}
                 className={`p-8 ${
@@ -78,6 +84,7 @@ export default function Contact() {
           </div>
         </Container>
       </section>
+      ) : null}
 
       {/* location + hours */}
       <section className="py-24 sm:py-28">

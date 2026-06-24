@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/analytics";
 import { pageMetadata } from "@/lib/seo";
-import { faq } from "@/content/faq";
+import { backgroundImage } from "@/lib/cms-images";
+import { getFAQPage } from "@/lib/cms";
 
 export const metadata: Metadata = pageMetadata({
   title: "FAQ",
@@ -11,17 +12,19 @@ export const metadata: Metadata = pageMetadata({
   path: "/faq",
 });
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faq.items.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a.join(" ") },
-  })),
-};
+export default async function FAQ() {
+  const faq = await getFAQPage();
+  if (!faq) return null;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.items?.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a.join(" ") },
+    })) ?? [],
+  };
 
-export default function FAQ() {
   return (
     <div className="rp-fade">
       <script
@@ -37,7 +40,7 @@ export default function FAQ() {
         </div>
 
         <div className="mt-14">
-          {faq.items.map((item) => (
+          {faq.items?.map((item) => (
             <details
               key={item.q}
               className="group border-t border-muted last:border-b last:border-muted"
@@ -71,25 +74,29 @@ export default function FAQ() {
         </div>
       </Container>
 
-      <section
-        className="bg-cover bg-center px-6 py-24 sm:py-28"
-        style={{ backgroundImage: "url(/images/cta-floral.jpg)" }}
-      >
-        <div className="mx-auto max-w-[1120px] rounded-none border border-muted bg-feature/90 px-8 py-20 text-center sm:px-12">
-          <h2 className="heading-module">Still have a question?</h2>
-          <p className="body-1 mx-auto mt-4 max-w-[420px]">
-            Start with a complimentary 15 minute call. No pressure, no commitment.
-          </p>
-          <CtaLink
-            href="/contact"
-            event="consultation_cta_click"
-            variant="primary"
-            className="mt-8"
-          >
-            Book a consultation
-          </CtaLink>
-        </div>
-      </section>
+      {faq.cta ? (
+        <section
+          className="bg-cover bg-center px-6 py-24 sm:py-28"
+          style={{
+            backgroundImage: backgroundImage(faq.cta.backgroundImage),
+          }}
+        >
+          <div className="mx-auto max-w-[1120px] rounded-none border border-muted bg-feature/90 px-8 py-20 text-center sm:px-12">
+            <h2 className="heading-module">{faq.cta.heading}</h2>
+            <p className="body-1 mx-auto mt-4 max-w-[420px]">
+              {faq.cta.body}
+            </p>
+            <CtaLink
+              href="/contact"
+              event="consultation_cta_click"
+              variant="primary"
+              className="mt-8"
+            >
+              {faq.cta.cta}
+            </CtaLink>
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }

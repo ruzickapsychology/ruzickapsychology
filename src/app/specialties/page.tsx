@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
 import { SpecialtyGlyph } from "@/components/ui/icons";
+import { PortableContent } from "@/components/ui/portable-content";
 import { pageMetadata } from "@/lib/seo";
-import { specialties } from "@/content/specialties";
+import { backgroundImage } from "@/lib/cms-images";
+import { getSpecialtiesPage } from "@/lib/cms";
 
 export const metadata: Metadata = pageMetadata({
   title: "Specialties",
@@ -11,7 +13,10 @@ export const metadata: Metadata = pageMetadata({
   path: "/specialties",
 });
 
-export default function Specialties() {
+export default async function Specialties() {
+  const specialties = await getSpecialtiesPage();
+  if (!specialties) return null;
+
   return (
     <div className="rp-fade pt-16">
       <section className="py-20">
@@ -46,22 +51,25 @@ export default function Specialties() {
       </section>
 
       {/* modality band */}
-      <section
-        className="bg-cover bg-center px-6 py-16 sm:py-20"
-        style={{ backgroundImage: "url(/images/imago-bg.jpg)" }}
-      >
-        <div className="mx-auto max-w-[1120px] px-8 py-12 text-center sm:px-12 sm:py-14">
-          <p className="eyebrow">{specialties.modality.eyebrow}</p>
-          <h2 className="heading-module mx-auto mt-4 max-w-[640px]">
-            {specialties.modality.heading}
-          </h2>
-          <div className="body-2 mx-auto mt-6 max-w-[640px] space-y-4">
-            {specialties.modality.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+      {specialties.modality ? (
+        <section
+          className="bg-cover bg-center px-6 py-16 sm:py-20"
+          style={{
+            backgroundImage: backgroundImage(specialties.modality.backgroundImage),
+          }}
+        >
+          <div className="mx-auto max-w-[1120px] px-8 py-12 text-center sm:px-12 sm:py-14">
+            <p className="eyebrow">{specialties.modality.eyebrow}</p>
+            <h2 className="heading-module mx-auto mt-4 max-w-[640px]">
+              {specialties.modality.heading}
+            </h2>
+            <PortableContent
+              value={specialties.modality.body}
+              className="body-2 mx-auto mt-6 max-w-[640px] space-y-4"
+            />
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
     </div>
   );
 }

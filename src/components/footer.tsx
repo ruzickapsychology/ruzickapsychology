@@ -3,18 +3,10 @@ import { Container } from "@/components/ui/container";
 import { RotatingFlowerBadge } from "@/components/ui/hero-badge";
 import { ArrowUpRight } from "@/components/ui/icons";
 import { TrackedExternalLink } from "@/components/analytics";
-import { site } from "@/content/site";
+import type { SiteSettings } from "@/lib/cms";
+import { FOOTER_NAV } from "@/lib/site-defaults";
 
-const links = [
-  { label: "About", href: "/about" },
-  { label: "Specialties", href: "/specialties" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Blog", href: "/blog" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Contact", href: "/contact" },
-];
-
-export function Footer() {
+export function Footer({ siteSettings }: { siteSettings?: SiteSettings | null }) {
   return (
     <footer className="footer-grain text-light/80">
       <Container
@@ -22,7 +14,7 @@ export function Footer() {
         className="grid items-start gap-10 py-16 md:grid-cols-[1fr_1.4fr_1fr]"
       >
         <nav className="flex flex-col gap-2.5">
-          {links.map((l) => (
+          {FOOTER_NAV.map((l) => (
             <Link
               key={l.label}
               href={l.href}
@@ -31,43 +23,51 @@ export function Footer() {
               {l.label}
             </Link>
           ))}
-          <TrackedExternalLink
-            href={site.portalUrl}
-            event="client_portal_click"
-            className="mono-label inline-flex items-center gap-1.5 tracking-normal normal-case text-light/80 transition-colors hover:text-accent-soft"
-          >
-            Client Portal
-            <ArrowUpRight />
-          </TrackedExternalLink>
+          {siteSettings?.portalUrl ? (
+            <TrackedExternalLink
+              href={siteSettings.portalUrl}
+              event="client_portal_click"
+              className="mono-label inline-flex items-center gap-1.5 tracking-normal normal-case text-light/80 transition-colors hover:text-accent-soft"
+            >
+              Client Portal
+              <ArrowUpRight />
+            </TrackedExternalLink>
+          ) : null}
         </nav>
 
         <div className="flex items-center justify-center self-center">
-          <Link
-            href="/"
-            aria-label={`${site.name} — home`}
-            className="relative block h-[190px] w-[190px]"
-          >
-            <RotatingFlowerBadge
-              messages={[site.name.toUpperCase(), "ROCHESTER, NEW YORK"]}
-              pathId="rp-footer-badge-path"
-              flowerColor="rgb(241 238 235 / 0.18)"
-              flowerClassName="footer-flower-emboss"
-              textColor="#685B5F"
-            />
-          </Link>
+          {siteSettings?.name ? (
+            <Link
+              href="/"
+              aria-label={`${siteSettings.name} — home`}
+              className="relative block h-[190px] w-[190px]"
+            >
+              <RotatingFlowerBadge
+                messages={[siteSettings.name.toUpperCase(), "ROCHESTER, NEW YORK"]}
+                pathId="rp-footer-badge-path"
+                flowerColor="rgb(241 238 235 / 0.18)"
+                flowerClassName="footer-flower-emboss"
+                textColor="#685B5F"
+              />
+            </Link>
+          ) : null}
         </div>
 
         <div className="mono-label flex flex-col justify-center gap-4 self-stretch text-right tracking-normal normal-case text-light/55">
-          <div>
-            {site.address.line1}
-            <br />
-            {site.address.line2.replace("NY", "New York")}
-            <div className="mt-3">{site.address.note}</div>
-          </div>
-          <div>
-            {site.email}
-            <br />© {new Date().getFullYear()} {site.legalName}
-          </div>
+          {siteSettings ? (
+            <>
+              <div>
+                {siteSettings.address.line1}
+                <br />
+                {siteSettings.address.line2.replace("NY", "New York")}
+                <div className="mt-3">{siteSettings.address.note}</div>
+              </div>
+              <div>
+                {siteSettings.email}
+                <br />© {new Date().getFullYear()} {siteSettings.legalName}
+              </div>
+            </>
+          ) : null}
         </div>
       </Container>
     </footer>

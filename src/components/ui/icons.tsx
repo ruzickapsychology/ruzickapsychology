@@ -1,4 +1,4 @@
-import type { SpecialtyIcon } from "@/content/specialties";
+import type { SpecialtyIcon } from "@/lib/cms";
 
 function Icon({ size = 32, children }: { size?: number; children: React.ReactNode }) {
   return (

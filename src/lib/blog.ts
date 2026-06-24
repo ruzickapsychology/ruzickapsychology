@@ -1,10 +1,6 @@
-import fs from "node:fs";
-import path from "node:path";
-import matter from "gray-matter";
-import { remark } from "remark";
-import html from "remark-html";
+import type { RichText } from "@/lib/cms";
+import { getSanityPost, getSanityPosts, plainTextFromPortableText } from "@/lib/cms";
 
-const BLOG_DIR = path.join(process.cwd(), "src/content/blog");
 export const BLOG_PAGE_SIZE = 10;
 
 export type PostMeta = {
@@ -15,16 +11,7 @@ export type PostMeta = {
   readTime: string;
 };
 
-export type Post = PostMeta & { html: string };
-
-function readFile(slug: string) {
-  return matter(fs.readFileSync(path.join(BLOG_DIR, `${slug}.md`), "utf8"));
-}
-
-function normalizeDate(date: unknown) {
-  if (date instanceof Date) return date.toISOString().slice(0, 10);
-  return String(date);
-}
+export type Post = PostMeta & { body: RichText };
 
 function readingTime(content: string) {
   const plainText = content
@@ -45,52 +32,56 @@ export function formatPostDate(date: string) {
   }).format(new Date(date));
 }
 
-export function getAllPostMeta(): PostMeta[] {
-  return fs
-    .readdirSync(BLOG_DIR)
-    .filter((f) => f.endsWith(".md"))
-    .map((f) => {
-      const slug = f.replace(/\.md$/, "");
-      const { data, content } = readFile(slug);
-      const meta = data as Omit<PostMeta, "slug" | "readTime">;
-      return {
-        slug,
-        ...meta,
-        date: normalizeDate(meta.date),
-        readTime: readingTime(content),
-      };
-    })
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
+function normalizeSanityDate(date: string) {
+  return new Date(date).toISOString().slice(0, 10);
 }
 
-export function getBlogPageCount() {
-  return Math.max(1, Math.ceil(getAllPostMeta().length / BLOG_PAGE_SIZE));
+function sanityPostMeta(post: {
+  slug: string;
+  title: string;
+  publishedAt: string;
+  excerpt: string;
+  body: RichText;
+}): PostMeta {
+  return {
+    slug: post.slug,
+    title: post.title,
+    date: normalizeSanityDate(post.publishedAt),
+    excerpt: post.excerpt,
+    readTime: readingTime(plainTextFromPortableText(post.body)),
+  };
 }
 
-export function getPostMetaPage(page: number) {
-  const posts = getAllPostMeta();
+export async function getAllPostMeta(): Promise<PostMeta[]> {
+  const sanityPosts = await getSanityPosts();
+  return sanityPosts?.map(sanityPostMeta) ?? [];
+}
+
+export async function getBlogPageCount() {
+  return Math.max(1, Math.ceil((await getAllPostMeta()).length / BLOG_PAGE_SIZE));
+}
+
+export async function getPostMetaPage(page: number) {
+  const posts = await getAllPostMeta();
   const start = (page - 1) * BLOG_PAGE_SIZE;
   return posts.slice(start, start + BLOG_PAGE_SIZE);
 }
 
-export function getOlderPostMeta(slug: string) {
-  const posts = getAllPostMeta();
+export async function getOlderPostMeta(slug: string) {
+  const posts = await getAllPostMeta();
   const currentIndex = posts.findIndex((post) => post.slug === slug);
   if (currentIndex === -1) return null;
   return posts[currentIndex + 1] ?? null;
 }
 
 export async function getPost(slug: string): Promise<Post | null> {
-  const file = path.join(BLOG_DIR, `${slug}.md`);
-  if (!fs.existsSync(file)) return null;
-  const { data, content } = readFile(slug);
-  const processed = await remark().use(html).process(content);
-  const meta = data as Omit<PostMeta, "slug" | "readTime">;
-  return {
-    slug,
-    ...meta,
-    date: normalizeDate(meta.date),
-    readTime: readingTime(content),
-    html: processed.toString(),
-  };
+  const sanityPost = await getSanityPost(slug);
+  if (sanityPost) {
+    return {
+      ...sanityPostMeta(sanityPost),
+      body: sanityPost.body,
+    };
+  }
+
+  return null;
 }

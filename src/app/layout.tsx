@@ -5,6 +5,7 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { metadataBase, pageMetadata, psychologistJsonLd } from "@/lib/seo";
+import { getSiteSettings } from "@/lib/cms";
 
 const baskerville = Libre_Baskerville({
   variable: "--font-baskerville",
@@ -33,26 +34,30 @@ export const metadata: Metadata = {
     : undefined,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const siteSettings = await getSiteSettings();
+
   return (
     <html
       lang="en"
       className={`${baskerville.variable} ${manrope.variable} ${plexMono.variable} antialiased`}
     >
       <body className="flex min-h-screen flex-col">
+        {siteSettings ? (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(psychologistJsonLd()).replace(/</g, "\\u003c"),
+            __html: JSON.stringify(psychologistJsonLd(siteSettings)).replace(/</g, "\\u003c"),
           }}
         />
-        <Header />
+        ) : null}
+        <Header siteSettings={siteSettings} />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <Footer siteSettings={siteSettings} />
         <Analytics />
       </body>
     </html>
