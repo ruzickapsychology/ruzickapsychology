@@ -22,16 +22,20 @@ export const specialty = defineType({
     }),
     defineField({
       name: 'summary',
-      title: 'Summary',
+      title: 'Short summary',
+      description:
+        'Used for compact specialty cards on the Home page and as the opening summary on the Specialties page.',
       type: 'text',
       rows: 4,
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'details',
-      title: 'Detail paragraphs',
+      title: 'Detailed page copy',
+      description:
+        'Longer paragraphs used only on the Specialties page. Add as much detail as this page needs over time.',
       type: 'array',
-      of: [defineArrayMember({type: 'text', rows: 3})],
+      of: [defineArrayMember({type: 'text', rows: 5})],
     }),
     defineField({
       name: 'order',

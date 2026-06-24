@@ -14,7 +14,7 @@ import {specialties} from '../src/content/specialties'
 
 const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2026-06-24'
 const client = getCliClient({apiVersion}).withConfig({useCdn: false})
-const dryRun = process.argv.includes('--dry-run')
+const dryRun = process.env.SANITY_DRY_RUN === '1' || process.argv.includes('--dry-run')
 
 const root = process.cwd()
 const blogDir = path.join(root, 'src/content/blog')
@@ -43,6 +43,10 @@ function slugify(value: string) {
     .replace(/&/g, 'and')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '')
+}
+
+function keyFor(prefix: string, value: string | number) {
+  return `${prefix}-${slugify(String(value))}`
 }
 
 function textBlock(text: string, key: string) {
@@ -89,8 +93,8 @@ async function uploadImage(relativePath: string, alt: string) {
   }
 }
 
-function ref(_ref: string) {
-  return {_type: 'reference', _ref}
+function ref(_ref: string, _key = keyFor('ref', _ref)) {
+  return {_key, _type: 'reference', _ref}
 }
 
 async function buildDocuments(): Promise<SeedDocument[]> {
@@ -145,7 +149,7 @@ async function buildDocuments(): Promise<SeedDocument[]> {
       specialtiesSection: {
         eyebrow: home.specialties.eyebrow,
         heading: home.specialties.heading,
-        specialties: specialtyIds.map(ref),
+        specialties: specialtyIds.map((id) => ref(id, keyFor('specialty', id))),
       },
       aboutPreview: {
         eyebrow: home.about.eyebrow,
@@ -169,10 +173,21 @@ async function buildDocuments(): Promise<SeedDocument[]> {
       portraitImage: images.portrait,
       intro: paragraphsToPortableText(about.intro, 'about-intro'),
       credentialGroups: [
-        about.education,
         {
+          _key: keyFor('credential-group', about.education.heading),
+          heading: about.education.heading,
+          items: about.education.items.map((item, index) => ({
+            _key: keyFor('credential-item', `${index}-${item.title}`),
+            ...item,
+          })),
+        },
+        {
+          _key: keyFor('credential-group', about.training.heading),
           heading: about.training.heading,
-          items: about.training.items,
+          items: about.training.items.map((item, index) => ({
+            _key: keyFor('credential-item', `${index}-${item.title}`),
+            ...item,
+          })),
           license: about.training.license,
         },
       ],
@@ -193,7 +208,7 @@ async function buildDocuments(): Promise<SeedDocument[]> {
         heading: specialties.heading,
         intro: specialties.intro,
       },
-      specialties: specialtyIds.map(ref),
+      specialties: specialtyIds.map((id) => ref(id, keyFor('specialty', id))),
       modality: {
         eyebrow: specialties.modality.eyebrow,
         heading: specialties.modality.heading,
@@ -209,7 +224,14 @@ async function buildDocuments(): Promise<SeedDocument[]> {
         heading: pricing.heading,
         intro: pricing.intro,
       },
-      fees: pricing.fees,
+      fees: {
+        heading: pricing.fees.heading,
+        items: pricing.fees.items.map((item, index) => ({
+          _key: keyFor('fee-item', `${index}-${item.label}`),
+          ...item,
+        })),
+        note: pricing.fees.note,
+      },
       insurance: {
         heading: pricing.insurance.heading,
         body: paragraphsToPortableText(pricing.insurance.body, 'pricing-insurance'),
@@ -234,6 +256,7 @@ async function buildDocuments(): Promise<SeedDocument[]> {
         eyebrow: contact.expect.eyebrow,
         heading: contact.expect.heading,
         steps: contact.expect.steps.map((step) => ({
+          _key: keyFor('process-step', `${step.n}-${step.title}`),
           number: step.n,
           title: step.title,
           body: step.body,
@@ -246,6 +269,7 @@ async function buildDocuments(): Promise<SeedDocument[]> {
       heading: faq.heading,
       intro: faq.intro,
       items: faq.items.map((item) => ({
+        _key: keyFor('faq-item', item.q),
         question: item.q,
         answer: item.a,
       })),

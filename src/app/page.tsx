@@ -66,7 +66,7 @@ export default async function Home() {
                   <SpecialtyGlyph icon={s.icon} size={38} />
                 </div>
                 <h3 className="mb-3.5">{s.title}</h3>
-                <p className="body-2 max-w-md">{s.body}</p>
+                <p className="body-2 max-w-md">{s.summary}</p>
               </div>
             ))}
           </div>

@@ -42,8 +42,14 @@ export default async function Specialties() {
                   <SpecialtyGlyph icon={s.icon} />
                 </div>
                 <h3 className="mb-3.5">{s.title}</h3>
-                <p className="body-2">{s.body}</p>
-                <p className="body-3 mt-4 text-body/75">{s.details[0]}</p>
+                <p className="body-2">{s.summary}</p>
+                {s.details.length ? (
+                  <div className="body-3 mt-4 space-y-3 text-body/75">
+                    {s.details.map((detail, detailIndex) => (
+                      <p key={`${s.slug}-detail-${detailIndex}`}>{detail}</p>
+                    ))}
+                  </div>
+                ) : null}
               </div>
             ))}
           </div>

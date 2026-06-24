@@ -26,7 +26,7 @@ export type SpecialtyContent = {
   title: string
   slug: string
   icon: SpecialtyIcon
-  body: string
+  summary: string
   details: string[]
 }
 
@@ -342,7 +342,7 @@ function normalizeSpecialty(item: RawSpecialty): SpecialtyContent | null {
     title: item.title,
     slug,
     icon: specialtyIconBySlug[slug] ?? 'circle',
-    body: item.summary,
+    summary: item.summary,
     details: item.details?.filter(Boolean) ?? [],
   }
 }
