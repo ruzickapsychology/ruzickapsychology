@@ -11,7 +11,7 @@
   --color-fg: #3a232a; /* aubergine ink — headings + dark bands */
   --color-body: #514a4c; /* body copy (softer than fg) */
   --color-surface: #fbf8f1; /* cards / raised panels */
-  --color-muted: #e7ddcd; /* hairline borders, card edges */
+  --color-muted: rgb(241 238 235 / 0.9); /* hairline borders, card edges */
   --color-accent: #8c4651; /* deep rose — links, eyebrows, emphasis */
   --color-accent-soft: #e3c7cb; /* soft rose — selection, subtle fills */
   --color-feature: #efe2d6; /* warm feature band */
@@ -21,16 +21,11 @@
   --font-body: var(--font-baskerville);
   --font-sans: var(--font-manrope);
   --font-mono: var(--font-plex-mono);
-
   --radius-btn: 9999px;
 }
 /* ===================== end theme contract ==================== */
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
     background-color: var(--color-bg);
     background-image: url("/images/bg-texture.jpg");
@@ -38,7 +33,7 @@
     background-repeat: repeat;
     color: var(--color-body);
     font-family: var(--font-body), Georgia, serif;
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
@@ -65,16 +60,43 @@
     font-size: clamp(2rem, 5.5vw, 44px);
   }
   h3 {
-    font-size: clamp(1.4rem, 3vw, 27px);
+    font-size: clamp(1.25rem, 3vw, 24px);
   }
 }
 
 @layer components {
+  .heading-display,
+  .heading-section,
+  .heading-module,
+  .heading-item {
+    font-family: var(--font-heading), Georgia, serif;
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--color-fg);
+  }
+
+  .heading-display {
+    font-size: clamp(2.6rem, 7vw, 66px);
+  }
+
+  .heading-section {
+    font-size: clamp(2rem, 5.5vw, 44px);
+  }
+
+  .heading-module {
+    font-size: clamp(1.75rem, 4vw, 38px);
+  }
+
+  .heading-item {
+    font-size: clamp(1.25rem, 3vw, 24px);
+  }
+
   /* Manrope eyebrow — small uppercase label above headings */
   .eyebrow {
     font-family: var(--font-sans), system-ui, sans-serif;
     font-weight: 600;
-    font-size: 12.5px;
+    font-size: 13px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--color-accent);
@@ -84,9 +106,24 @@
   .mono-label {
     font-family: var(--font-mono), ui-monospace, monospace;
     font-weight: 500;
-    font-size: 12.5px;
+    font-size: 13px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
+  }
+
+  .body-1 {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .body-2 {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .body-3 {
+    font-size: 14px;
+    line-height: 1.6;
   }
 
   .btn {
@@ -139,6 +176,199 @@
     border-radius: 24px;
   }
 
+  .footer-grain {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-fg);
+    isolation: isolate;
+  }
+
+  .footer-grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: url("/images/bg-texture.jpg");
+    background-repeat: repeat;
+    background-size: 980px;
+    opacity: 0.16;
+    mix-blend-mode: soft-light;
+  }
+
+  .footer-flower-emboss {
+    filter:
+      drop-shadow(2px 2px 0 rgb(18 46 58 / 0.5))
+      drop-shadow(4px 5px 5px rgb(18 46 58 / 0.24))
+      drop-shadow(-2px -2px 0 rgb(241 238 235 / 0.24))
+      drop-shadow(-4px -4px 5px rgb(241 238 235 / 0.12));
+  }
+
+  .hero-flower-emboss {
+    filter:
+      drop-shadow(1.5px 1.5px 0 rgb(18 46 58 / 0.36))
+      drop-shadow(3px 4px 4px rgb(18 46 58 / 0.2))
+      drop-shadow(-1.5px -1.5px 0 rgb(241 238 235 / 0.28))
+      drop-shadow(-3px -3px 4px rgb(241 238 235 / 0.12));
+  }
+
+  .contact-form-active {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    transition:
+      opacity 0.38s ease,
+      transform 0.38s ease,
+      filter 0.38s ease;
+  }
+
+  .contact-form-active--submitting {
+    pointer-events: none;
+    opacity: 0.18;
+    transform: translateY(-6px);
+    filter: blur(2px);
+  }
+
+  .submission-bloom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+    animation: contact-success-panel-in 0.58s ease both;
+  }
+
+  .submission-bloom > * {
+    transform: translateY(-24px);
+  }
+
+  .submission-bloom__flower {
+    width: min(100%, 300px);
+    aspect-ratio: 397.332 / 500;
+    margin-inline: auto;
+  }
+
+  .submission-bloom__art {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .success-toast {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    z-index: 60;
+    display: flex;
+    width: min(calc(100vw - 32px), 480px);
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 0.9rem 1rem 0.9rem 1.2rem;
+    box-shadow: 0 14px 36px rgb(37 31 18 / 0.18);
+    transform: translateX(-50%);
+    transition:
+      background-color 0.5s ease,
+      border-color 0.5s ease,
+      color 0.5s ease;
+    animation: success-toast-lifecycle 10s ease both;
+  }
+
+  .success-toast--initial {
+    border-color: rgb(241 238 235 / 0.16);
+    background: rgb(37 31 18 / 0.25);
+    color: var(--color-light);
+  }
+
+  .success-toast--initial .mono-label,
+  .success-toast--initial .success-toast__close {
+    color: var(--color-light);
+  }
+
+  .success-toast--scrolled {
+    border-color: rgb(58 35 42 / 0.08);
+    background: rgb(217 211 198 / 0.8);
+    color: var(--color-fg);
+  }
+
+  .success-toast--scrolled .mono-label,
+  .success-toast--scrolled .success-toast__close {
+    color: var(--color-accent);
+  }
+
+  .success-toast__content {
+    padding-left: 16px;
+  }
+
+  .success-toast__detail {
+    white-space: nowrap;
+  }
+
+  .success-toast__close {
+    display: inline-flex;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1;
+    opacity: 0.74;
+    transition:
+      color 0.5s ease,
+      opacity 0.2s ease;
+  }
+
+  .success-toast__close:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 639px) {
+    .success-toast {
+      width: min(calc(100vw - 32px), 340px);
+    }
+
+    .success-toast__detail {
+      display: none;
+    }
+  }
+
+  .image-grain {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .image-grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("/images/bg-texture.jpg");
+    background-repeat: repeat;
+    background-size: 1900px;
+    opacity: 0.76;
+    mix-blend-mode: soft-light;
+  }
+
+  .image-grain > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .rp-q {
+    transition: background-color 0.25s ease;
+  }
+
+  .rp-q:hover {
+    background-color: rgb(241 238 235 / 0.24);
+  }
+
   .prose {
     line-height: 1.75;
   }
@@ -179,6 +409,31 @@
     transform: rotate(-360deg);
   }
 }
+@keyframes contact-success-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes success-toast-lifecycle {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+  10%,
+  84% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+}
 
 .rp-fade {
   animation: rp-fade 0.5s ease both;
@@ -194,71 +449,160 @@
 @media (prefers-reduced-motion: reduce) {
   .rp-fade,
   .rp-bob,
-  .rp-spin {
+  .rp-spin,
+  .submission-bloom,
+  .success-toast {
     animation: none;
+  }
+
+  .contact-form-active {
+    transition: none;
+  }
+
+  .contact-form-active--submitting {
+    filter: none;
+    opacity: 0.45;
+    transform: none;
   }
 }
 
 /* Quadrant icon hover animations — gated on the quadrant cell (.rp-q),
    so the same glyphs stay static everywhere else. Subtle, looping. */
-/* Individual — a ball bounce with gravity (accelerate down, decelerate up) */
-@keyframes rp-bounce {
-  0% { transform: translateY(-7px); animation-timing-function: ease-in; }
-  50% { transform: translateY(0); animation-timing-function: ease-out; }
-  100% { transform: translateY(-7px); }
+/* Individual — a center fill emerges and fills the whole ring */
+@keyframes rp-individual-ring {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  55% {
+    transform: scale(1.03);
+  }
 }
-/* Couples — a living heartbeat (lub-dub), halves stay joined */
-@keyframes rp-heartbeat {
-  0% { transform: scale(1); }
-  15% { transform: scale(1.12); }
-  30% { transform: scale(1); }
-  45% { transform: scale(1.07); }
-  60%, 100% { transform: scale(1); }
+@keyframes rp-individual-fill {
+  0%,
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  16% {
+    transform: scale(0.16);
+    opacity: 0.86;
+  }
+  58%,
+  74% {
+    transform: scale(1);
+    opacity: 0.86;
+  }
+  88% {
+    transform: scale(1.08);
+    opacity: 0;
+  }
 }
-/* Perinatal — mother & child part and rejoin along their connecting line */
+/* Couples — copied from the MOV: dots merge horizontally, travel vertically, then return */
+@keyframes rp-couple-left {
+  0%, 100% { transform: translate(-6.8px, 0); }
+  10% { transform: translate(-2px, 0); animation-timing-function: cubic-bezier(0.2, 0.9, 0.18, 1); }
+  21% { transform: translate(0, -6.8px); animation-timing-function: cubic-bezier(0.42, 0, 0.3, 1); }
+  32% { transform: translate(0, -2px); animation-timing-function: cubic-bezier(0.2, 0.9, 0.18, 1); }
+  43% { transform: translate(0, 6.8px); animation-timing-function: cubic-bezier(0.42, 0, 0.3, 1); }
+  56% { transform: translate(6.8px, 0); animation-timing-function: cubic-bezier(0.2, 0.9, 0.18, 1); }
+  70% { transform: translate(2px, 0); animation-timing-function: cubic-bezier(0.42, 0, 0.3, 1); }
+  84% { transform: translate(-6.8px, 0); }
+}
+@keyframes rp-couple-right {
+  0%, 100% { transform: translate(6.8px, 0); }
+  10% { transform: translate(2px, 0); animation-timing-function: cubic-bezier(0.2, 0.9, 0.18, 1); }
+  21% { transform: translate(0, 6.8px); animation-timing-function: cubic-bezier(0.42, 0, 0.3, 1); }
+  32% { transform: translate(0, 2px); animation-timing-function: cubic-bezier(0.2, 0.9, 0.18, 1); }
+  43% { transform: translate(0, -6.8px); animation-timing-function: cubic-bezier(0.42, 0, 0.3, 1); }
+  56% { transform: translate(-6.8px, 0); animation-timing-function: cubic-bezier(0.2, 0.9, 0.18, 1); }
+  70% { transform: translate(-2px, 0); animation-timing-function: cubic-bezier(0.42, 0, 0.3, 1); }
+  84% { transform: translate(6.8px, 0); }
+}
+@keyframes rp-couple-bridge-x {
+  0%, 5%, 17%, 50%, 63%, 75%, 100% { opacity: 0; transform: scaleX(0.6); }
+  8%, 12%, 58%, 69% { opacity: 1; transform: scaleX(1); }
+}
+@keyframes rp-couple-bridge-y {
+  0%, 27%, 39%, 100% { opacity: 0; transform: scaleY(0.6); }
+  31%, 35% { opacity: 1; transform: scaleY(1); }
+}
+/* Perinatal — teardrop rocks in place while the dot gently rises and settles */
 @keyframes rp-mother {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-1.7px, -1.7px); }
+  0% { transform: rotate(0deg); animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+  42% { transform: rotate(10deg); animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+  58% { transform: rotate(7deg); animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+  100% { transform: rotate(0deg); }
 }
 @keyframes rp-child {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(1.7px, 1.7px); }
+  0% { transform: translateY(0); animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+  42% { transform: translateY(-5px); animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+  58% { transform: translateY(-3px); animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+  100% { transform: translateY(0); }
 }
-/* Group — petals separate & rejoin while the whole mark slowly spins */
+/* Group — petals separate and rejoin while the mark loops continuously */
 @keyframes rp-petal {
-  0%, 100% { transform: translateY(0); }
+  0%,
+  100% { transform: translateY(0); }
   50% { transform: translateY(-2.4px); }
 }
 @keyframes rp-quatspin {
   to { transform: rotate(360deg); }
 }
 
-.anim-heartbeat,
-.anim-spin-group {
+.anim-individual-ring,
+.anim-individual-fill,
+.anim-couple-left,
+.anim-couple-right,
+.anim-couple-bridge-x,
+.anim-couple-bridge-y,
+.anim-cuddle-drop,
+.anim-cuddle-circle,
+.anim-spin-group,
+.anim-petal {
   transform-box: fill-box;
   transform-origin: center;
 }
-.rp-q:hover .anim-bounce {
-  animation: rp-bounce 1.1s infinite;
+.anim-individual-fill,
+.anim-couple-bridge-x,
+.anim-couple-bridge-y {
+  opacity: 0;
+  transform: scale(0);
 }
-.rp-q:hover .anim-heartbeat {
-  animation: rp-heartbeat 1.4s ease-in-out infinite;
+.rp-q:is(:hover, :focus-within) .anim-individual-ring {
+  animation: rp-individual-ring 1.55s cubic-bezier(0.42, 0, 0.3, 1) infinite;
 }
-.rp-q:hover .anim-cuddle-drop {
-  animation: rp-mother 1.9s ease-in-out infinite;
+.rp-q:is(:hover, :focus-within) .anim-individual-fill {
+  animation: rp-individual-fill 1.55s cubic-bezier(0.42, 0, 0.3, 1) infinite;
 }
-.rp-q:hover .anim-cuddle-circle {
-  animation: rp-child 1.9s ease-in-out infinite;
+.rp-q:is(:hover, :focus-within) .anim-couple-left {
+  animation: rp-couple-left 3.7s cubic-bezier(0.42, 0, 0.3, 1) infinite;
 }
-.rp-q:hover .anim-spin-group {
-  animation: rp-quatspin 4s linear infinite;
+.rp-q:is(:hover, :focus-within) .anim-couple-right {
+  animation: rp-couple-right 3.7s cubic-bezier(0.42, 0, 0.3, 1) infinite;
 }
-.rp-q:hover .anim-petal {
-  animation: rp-petal 1.7s ease-in-out infinite;
+.rp-q:is(:hover, :focus-within) .anim-couple-bridge-x {
+  animation: rp-couple-bridge-x 3.7s cubic-bezier(0.42, 0, 0.3, 1) infinite;
+}
+.rp-q:is(:hover, :focus-within) .anim-couple-bridge-y {
+  animation: rp-couple-bridge-y 3.7s cubic-bezier(0.42, 0, 0.3, 1) infinite;
+}
+.rp-q:is(:hover, :focus-within) .anim-cuddle-drop {
+  animation: rp-mother 2.1s ease-in-out infinite;
+}
+.rp-q:is(:hover, :focus-within) .anim-cuddle-circle {
+  animation: rp-child 2.1s ease-in-out infinite;
+}
+.rp-q:is(:hover, :focus-within) .anim-spin-group {
+  animation: rp-quatspin 4.8s linear infinite;
+}
+.rp-q:is(:hover, :focus-within) .anim-petal {
+  animation: rp-petal 1.6s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rp-q:hover [class^="anim-"] {
+  .rp-q:is(:hover, :focus-within) [class^="anim-"] {
     animation: none;
   }
 }

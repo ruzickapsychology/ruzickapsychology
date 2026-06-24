@@ -1,15 +1,15 @@
 export const pricing = {
-  eyebrow: "Pricing",
-  heading: "Investment",
+  eyebrow: "Investment",
+  heading: "Pricing",
   intro:
-    "Clear, honest fees and the space to ask questions. Good therapy is an investment in the rest of your life.",
+    "Therapy is a meaningful investment in your relationships and your future. We'll make sure you understand the process and costs upfront.",
   // PLACEHOLDER fees (from design mock) — confirm real values before launch.
   fees: {
     heading: "Session Fees",
     items: [
       { label: "Individual Therapy", detail: "50 minutes", price: "$225" },
       { label: "Couples / Imago Therapy", detail: "60 minutes", price: "$275" },
-      { label: "Consultation Call", detail: "15 minutes", price: "Complimentary" },
+      { label: "Consultation Call", detail: "15 minutes", price: "Free" },
     ],
     note: "Payment by card at the time of session. Detailed monthly superbills provided on request.",
   },
@@ -23,7 +23,7 @@ export const pricing = {
   },
   cta: {
     heading: "Have a question about fit or fees?",
-    body: "Start with a free fifteen-minute call. No pressure, no commitment.",
-    cta: "Schedule a consultation",
+    body: "Start with a complimentary 15 minute call. No pressure, no commitment.",
+    cta: "Book a consultation",
   },
 } as const;

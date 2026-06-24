@@ -23,29 +23,27 @@ const faqJsonLd = {
 
 export default function FAQ() {
   return (
-    <div className="rp-fade pb-28 pt-32">
+    <div className="rp-fade">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <Container size="md">
+      <Container size="md" className="pb-24 pt-32 sm:pb-28">
         <div className="text-center">
-          <p className="eyebrow">{faq.eyebrow}</p>
-          <h1 className="mt-4">{faq.heading}</h1>
-          <p className="mx-auto mt-5 max-w-[520px] leading-relaxed">{faq.intro}</p>
+          <h1>{faq.heading}</h1>
+          <p className="body-2 mx-auto mt-5 max-w-[520px]">{faq.intro}</p>
         </div>
 
         <div className="mt-14">
-          {faq.items.map((item, i) => (
+          {faq.items.map((item) => (
             <details
               key={item.q}
-              className="group border-t border-muted last:border-b"
-              open={i === 0}
+              className="group border-t border-muted last:border-b last:border-muted"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
-                <span className="font-heading text-[clamp(1.25rem,3vw,24px)] text-fg">
+                <span className="heading-item">
                   {item.q}
                 </span>
                 <span className="shrink-0 text-accent transition-transform duration-300 group-open:rotate-45">
@@ -63,7 +61,7 @@ export default function FAQ() {
                   </svg>
                 </span>
               </summary>
-              <div className="space-y-4 pb-7 pr-10 leading-relaxed">
+              <div className="body-2 space-y-4 pb-7 pr-10">
                 {item.a.map((p, j) => (
                   <p key={j}>{p}</p>
                 ))}
@@ -71,11 +69,16 @@ export default function FAQ() {
             </details>
           ))}
         </div>
+      </Container>
 
-        <div className="mt-16 rounded-[32px] border border-muted bg-feature px-8 py-16 text-center">
-          <h2 className="text-[clamp(1.6rem,4vw,36px)]">Still have a question?</h2>
-          <p className="mx-auto mt-4 max-w-[420px] leading-relaxed">
-            Reach out for a free fifteen-minute consultation—no pressure, no commitment.
+      <section
+        className="bg-cover bg-center px-6 py-24 sm:py-28"
+        style={{ backgroundImage: "url(/images/cta-floral.jpg)" }}
+      >
+        <div className="mx-auto max-w-[1120px] rounded-none border border-muted bg-feature/90 px-8 py-20 text-center sm:px-12">
+          <h2 className="heading-module">Still have a question?</h2>
+          <p className="body-1 mx-auto mt-4 max-w-[420px]">
+            Start with a complimentary 15 minute call. No pressure, no commitment.
           </p>
           <CtaLink
             href="/contact"
@@ -83,10 +86,10 @@ export default function FAQ() {
             variant="primary"
             className="mt-8"
           >
-            Schedule a consultation
+            Book a consultation
           </CtaLink>
         </div>
-      </Container>
+      </section>
     </div>
   );
 }

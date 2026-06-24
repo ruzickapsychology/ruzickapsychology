@@ -1,14 +1,14 @@
 export const home = {
   hero: {
-    badge: "Accepting new patients · In person or virtual",
+    badge: "Accepting New Patients · In Person or Virtual",
     kicker: "Dr. Christina Ruzicka",
-    heading: "Authentic holistic healing",
-    body: "Evidence-based psychotherapy in Rochester, NY, tailored to your unique story. Available in person and virtually.",
-    cta: "Schedule a consultation",
+    heading: "Rooted in Compassion. Guided Toward Growth.",
+    body: "Helping individuals, couples, and families grow through life's seasons using evidence-based psychotherapy in Rochester, New York.",
+    cta: "Book a consultation",
   },
   specialties: {
     eyebrow: "Therapeutic Specialties",
-    heading: "Ways we can work together",
+    heading: "Ways We Can Work Together",
   },
   about: {
     eyebrow: "About",
@@ -17,9 +17,9 @@ export const home = {
     cta: "Learn more →",
   },
   cta: {
-    eyebrow: "Begin",
+    eyebrow: "Let's Begin",
     heading: "Ready to take the first step?",
-    body: "Reach out to schedule a free fifteen-minute phone consultation to determine if we're a fit.",
+    body: "Schedule a complimentary 15 minute consultation to determine if we're a fit.",
     cta: "Let's go",
   },
 } as const;

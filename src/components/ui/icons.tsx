@@ -1,8 +1,5 @@
 import type { SpecialtyIcon } from "@/content/specialties";
 
-const petal =
-  "M0 0 Q -5.3 -7.44 -5.3 -12 A 5.3 5.3 0 1 1 5.3 -12 Q 5.3 -7.44 0 0 Z";
-
 function Icon({ size = 32, children }: { size?: number; children: React.ReactNode }) {
   return (
     <svg
@@ -33,15 +30,42 @@ export function SpecialtyGlyph({
     case "circle":
       return (
         <Icon size={size}>
-          <circle className="anim-bounce" cx="16" cy="16" r="9" />
+          <circle
+            className="anim-individual-ring"
+            cx="16"
+            cy="16"
+            r="8.5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.2"
+          />
+          <circle className="anim-individual-fill" cx="16" cy="16" r="8.5" />
         </Icon>
       );
     case "leaves":
       return (
         <Icon size={size}>
-          <g className="anim-heartbeat">
-            <path d={petal} transform="translate(16 20.5) rotate(-32)" />
-            <path d={petal} transform="translate(16 20.5) rotate(32)" />
+          <rect
+            className="anim-couple-bridge-x"
+            x="10"
+            y="10.4"
+            width="12"
+            height="11.2"
+            rx="5.6"
+          />
+          <rect
+            className="anim-couple-bridge-y"
+            x="10.4"
+            y="10"
+            width="11.2"
+            height="12"
+            rx="5.6"
+          />
+          <g className="anim-couple-left">
+            <circle cx="16" cy="16" r="5.6" />
+          </g>
+          <g className="anim-couple-right">
+            <circle cx="16" cy="16" r="5.6" />
           </g>
         </Icon>
       );
@@ -95,6 +119,26 @@ export function ArrowDown({ className }: { className?: string }) {
     >
       <path d="M12 5v13" />
       <path d="M6 12l6 6 6-6" />
+    </svg>
+  );
+}
+
+export function ArrowRight({ size = 22 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      style={{ display: "block" }}
+      aria-hidden
+    >
+      <path d="M5 12h14" />
+      <path d="M13 6l6 6-6 6" />
     </svg>
   );
 }

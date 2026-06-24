@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
-import { FlowerMark } from "@/components/ui/logo";
+import { RotatingFlowerBadge } from "@/components/ui/hero-badge";
 import { ArrowUpRight } from "@/components/ui/icons";
 import { TrackedExternalLink } from "@/components/analytics";
 import { site } from "@/content/site";
@@ -16,7 +16,7 @@ const links = [
 
 export function Footer() {
   return (
-    <footer className="bg-fg text-light/80">
+    <footer className="footer-grain text-light/80">
       <Container
         size="xl"
         className="grid items-start gap-10 py-16 md:grid-cols-[1fr_1.4fr_1fr]"
@@ -26,7 +26,7 @@ export function Footer() {
             <Link
               key={l.label}
               href={l.href}
-              className="mono-label text-[13px] tracking-normal normal-case text-light/80 transition-colors hover:text-accent-soft"
+              className="mono-label tracking-normal normal-case text-light/80 transition-colors hover:text-accent-soft"
             >
               {l.label}
             </Link>
@@ -34,7 +34,7 @@ export function Footer() {
           <TrackedExternalLink
             href={site.portalUrl}
             event="client_portal_click"
-            className="mono-label inline-flex items-center gap-1.5 text-[13px] tracking-normal normal-case text-light/80 transition-colors hover:text-accent-soft"
+            className="mono-label inline-flex items-center gap-1.5 tracking-normal normal-case text-light/80 transition-colors hover:text-accent-soft"
           >
             Client Portal
             <ArrowUpRight />
@@ -42,25 +42,31 @@ export function Footer() {
         </nav>
 
         <div className="flex items-center justify-center self-center">
-          <Link href="/" aria-label={`${site.name} — home`}>
-            <FlowerMark width={58} height={67} color="var(--color-light)" />
+          <Link
+            href="/"
+            aria-label={`${site.name} — home`}
+            className="relative block h-[190px] w-[190px]"
+          >
+            <RotatingFlowerBadge
+              messages={[site.name.toUpperCase(), "ROCHESTER, NEW YORK"]}
+              pathId="rp-footer-badge-path"
+              flowerColor="rgb(241 238 235 / 0.18)"
+              flowerClassName="footer-flower-emboss"
+            />
           </Link>
         </div>
 
-        <div className="flex flex-col gap-4 text-right font-mono text-[12.5px] leading-relaxed text-light/55">
+        <div className="mono-label flex flex-col justify-center gap-4 self-stretch text-right tracking-normal normal-case text-light/55">
           <div>
             {site.address.line1}
             <br />
-            {site.address.line2}
+            {site.address.line2.replace("NY", "New York")}
             <div className="mt-3">{site.address.note}</div>
           </div>
           <div>
-            <a
-              href={`mailto:${site.email}`}
-              className="transition-colors hover:text-accent-soft"
-            >
-              {site.email}
-            </a>
+            {site.email}
+            <br />
+            {site.phone}
             <br />© {new Date().getFullYear()} {site.legalName}
           </div>
         </div>

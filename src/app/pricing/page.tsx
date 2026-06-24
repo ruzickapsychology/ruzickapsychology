@@ -19,40 +19,39 @@ export default function Pricing() {
           <div className="mb-15 text-center">
             <p className="eyebrow">{pricing.eyebrow}</p>
             <h1 className="mt-4">{pricing.heading}</h1>
-            <p className="mx-auto mt-4.5 max-w-[520px] leading-relaxed">
+            <p className="body-2 mx-auto mt-4.5 max-w-[520px]">
               {pricing.intro}
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid md:grid-cols-2">
             {/* fees */}
-            <div className="rounded-[28px] border border-muted bg-surface p-12">
-              <h3 className="mb-7 text-[28px]">{pricing.fees.heading}</h3>
-              {pricing.fees.items.map((item) => (
-                <div
-                  key={item.label}
-                  className="flex items-baseline justify-between gap-4 border-t border-muted py-4"
-                >
-                  <div>
-                    <div className="text-[17px] text-fg">{item.label}</div>
-                    <div className="text-sm text-body/70">{item.detail}</div>
+            <div className="border-b border-muted px-2 py-10 md:border-b-0 md:border-r md:border-muted md:py-14 md:pl-10 md:pr-16">
+              <h3 className="heading-item mb-7">{pricing.fees.heading}</h3>
+              <div className="space-y-5">
+                {pricing.fees.items.map((item) => (
+                  <div key={item.label} className="flex items-baseline justify-between gap-4">
+                    <div>
+                      <div className="body-2 text-fg">{item.label}</div>
+                      <div className="body-3 text-body/70">{item.detail}</div>
+                    </div>
+                    <div className="heading-item text-accent">
+                      {item.price}
+                    </div>
                   </div>
-                  <div className="font-heading text-[22px] text-accent">
-                    {item.price}
-                  </div>
-                </div>
-              ))}
-              <p className="mt-6 text-sm leading-relaxed text-body/70">
+                ))}
+              </div>
+              <p className="body-3 mt-6 text-body/70">
                 {pricing.fees.note}
               </p>
             </div>
 
             {/* insurance */}
-            <div className="rounded-[28px] bg-fg p-12 text-light/85">
-              <h3 className="mb-6 text-[28px] text-light">
+            <div className="px-2 py-10 md:py-14 md:pl-16 md:pr-10">
+              <h3 className="heading-item mb-6">
                 {pricing.insurance.heading}
               </h3>
-              <div className="space-y-5 leading-relaxed">
+              <div className="body-2 space-y-5">
                 {pricing.insurance.body.map((p, i) => (
                   <p key={i}>{p}</p>
                 ))}
@@ -63,23 +62,24 @@ export default function Pricing() {
       </section>
 
       {/* CTA */}
-      <section className="pb-28">
-        <Container size="lg">
-          <div className="rounded-[32px] border border-muted bg-feature px-8 py-18 text-center sm:py-20">
-            <h2 className="text-[clamp(1.8rem,4vw,40px)]">{pricing.cta.heading}</h2>
-            <p className="mx-auto mt-4 max-w-[420px] leading-relaxed">
-              {pricing.cta.body}
-            </p>
-            <CtaLink
-              href="/contact"
-              event="consultation_cta_click"
-              variant="primary"
-              className="mt-8"
-            >
-              {pricing.cta.cta}
-            </CtaLink>
-          </div>
-        </Container>
+      <section
+        className="bg-cover bg-center px-6 py-24 sm:py-28"
+        style={{ backgroundImage: "url(/images/cta-floral.jpg)" }}
+      >
+        <div className="mx-auto max-w-[1120px] rounded-none border border-muted bg-feature/90 px-8 py-20 text-center sm:px-12">
+          <h2 className="heading-module">{pricing.cta.heading}</h2>
+          <p className="body-1 mx-auto mt-4 max-w-[420px]">
+            {pricing.cta.body}
+          </p>
+          <CtaLink
+            href="/contact"
+            event="consultation_cta_click"
+            variant="primary"
+            className="mt-8"
+          >
+            {pricing.cta.cta}
+          </CtaLink>
+        </div>
       </section>
     </div>
   );

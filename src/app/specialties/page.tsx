@@ -19,15 +19,26 @@ export default function Specialties() {
           <div className="mb-15 text-center">
             <p className="eyebrow">{specialties.eyebrow}</p>
             <h1 className="mt-4">{specialties.heading}</h1>
+            <p className="body-2 mx-auto mt-4.5 max-w-[520px]">
+              {specialties.intro}
+            </p>
           </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {specialties.items.map((s) => (
-              <div key={s.title} className="card p-11">
-                <div className="mb-5 text-accent">
+          <div className="grid grid-cols-1 md:grid-cols-2">
+            {specialties.items.map((s, i) => (
+              <div
+                key={s.title}
+                className={`rp-q px-2 py-10 md:px-10 md:py-14 ${
+                  i < 2 ? "border-b border-muted" : ""
+                } ${i % 2 === 0 ? "md:border-r md:border-muted" : ""} ${
+                  i === 2 ? "border-b md:border-b-0" : ""
+                } border-muted`}
+              >
+                <div className="mb-5 text-[#C79DA4]">
                   <SpecialtyGlyph icon={s.icon} />
                 </div>
                 <h3 className="mb-3.5">{s.title}</h3>
-                <p className="leading-relaxed">{s.body}</p>
+                <p className="body-2">{s.body}</p>
+                <p className="body-3 mt-4 text-body/75">{s.details[0]}</p>
               </div>
             ))}
           </div>
@@ -36,15 +47,15 @@ export default function Specialties() {
 
       {/* modality band */}
       <section
-        className="bg-cover bg-center px-6 py-24 sm:py-28"
+        className="bg-cover bg-center px-6 py-16 sm:py-20"
         style={{ backgroundImage: "url(/images/imago-bg.jpg)" }}
       >
-        <div className="mx-auto max-w-[1120px] rounded-[32px] border border-light/35 bg-surface/20 px-8 py-20 text-center shadow-[0_24px_60px_rgba(58,35,40,0.18)] backdrop-blur-[2px] sm:px-12">
+        <div className="mx-auto max-w-[1120px] px-8 py-12 text-center sm:px-12 sm:py-14">
           <p className="eyebrow">{specialties.modality.eyebrow}</p>
-          <h2 className="mx-auto mt-4 max-w-[640px] text-[clamp(1.8rem,4vw,38px)]">
+          <h2 className="heading-module mx-auto mt-4 max-w-[640px]">
             {specialties.modality.heading}
           </h2>
-          <div className="mx-auto mt-6 max-w-[640px] space-y-4 text-[17px] leading-relaxed">
+          <div className="body-2 mx-auto mt-6 max-w-[640px] space-y-4">
             {specialties.modality.body.map((p, i) => (
               <p key={i}>{p}</p>
             ))}

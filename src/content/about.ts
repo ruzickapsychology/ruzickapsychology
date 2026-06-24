@@ -39,38 +39,17 @@ export const about = {
     ],
     license: "Licensed Clinical Psychologist — New York",
   },
-  expect: {
-    eyebrow: "What to expect",
-    heading: "Starting is the hardest part",
-    steps: [
-      {
-        n: "01",
-        title: "Contact",
-        body: "Reach out through the contact form to schedule a time for us to connect on the phone.",
-      },
-      {
-        n: "02",
-        title: "Consult",
-        body: "Fifteen unhurried minutes to talk through what's bringing you in and whether we're a fit.",
-      },
-      {
-        n: "03",
-        title: "Begin",
-        body: "Recurring sessions, in person or virtual, customized for the season you're in right now.",
-      },
-      {
-        n: "04",
-        title: "Evolution",
-        body: "With time, the ground under you firms up and you start living your best life.",
-      },
-    ],
+  space: {
+    eyebrow: "The Therapy Space",
+    heading: "Located in Downtown Rochester",
+    body: "Virtual appointments are also offered for clients throughout New York.",
   },
-  // Replaces the mock's client testimonial: APA discourages soliciting
-  // testimonials from clients, so we use a first-person philosophy quote
-  // in the same visual band. See CLAUDE.md (ethics) and docs/redesign.md.
+  // Placeholder copy for previewing a future testimonial layout.
+  // Do not represent this as a real client quote.
   philosophy: {
-    eyebrow: "In my words",
+    eyebrow: "Kind Words",
     quote:
-      "Conflict is not failure—it is a blueprint. My work is to slow down the moments where you get stuck, calm the nervous system, and help you build a shared language for being truly heard.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    attribution: "Client quote placeholder",
   },
 } as const;

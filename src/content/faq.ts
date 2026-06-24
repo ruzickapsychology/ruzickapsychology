@@ -1,8 +1,8 @@
 export const faq = {
-  eyebrow: "FAQ",
-  heading: "Questions, answered",
+  eyebrow: "Your Questions, Answered",
+  heading: "FAQ",
   intro:
-    "A few of the things people often wonder before reaching out. If your question isn't here, you're always welcome to ask.",
+    "A few things people often wonder before reaching out. If your question is not here, you are welcome to ask.",
   items: [
     {
       q: "What do you help with?",

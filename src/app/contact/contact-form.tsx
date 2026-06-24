@@ -1,95 +1,320 @@
 "use client";
 
-import { useActionState, useEffect } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { track } from "@vercel/analytics";
-import { submitInquiry, type InquiryState } from "./actions";
-import { site } from "@/content/site";
+
+type InquiryState = {
+  status: "idle" | "success" | "error";
+  message?: string;
+};
 
 const initialState: InquiryState = { status: "idle" };
+const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+const showAnimationTest = true;
+const successTransitionMs = 420;
 
 const fieldClass =
-  "w-full rounded-[14px] border border-fg/20 bg-white/55 px-5 py-4 text-[15px] text-fg outline-none transition-colors placeholder:text-accent/50 focus:border-accent";
+  "body-3 w-full rounded-none border-0 bg-[#251F12]/65 px-4 py-2.5 leading-snug text-[#F1EEEB] outline-none transition-colors placeholder:text-[#F1EEEB]/50 focus:bg-[#251F12]/75";
+
+function wait(ms: number) {
+  return new Promise((resolve) => window.setTimeout(resolve, ms));
+}
 
 export function ContactForm() {
-  const [state, action, pending] = useActionState(submitInquiry, initialState);
+  const [state, setState] = useState<InquiryState>(initialState);
+  const [pending, setPending] = useState(false);
+  const [animationRun, setAnimationRun] = useState(0);
+  const [showToast, setShowToast] = useState(false);
+  const [toastScrolled, setToastScrolled] = useState(false);
 
   useEffect(() => {
     if (state.status === "success") track("inquiry_submitted");
   }, [state.status]);
 
-  if (state.status === "success") {
-    return (
-      <div className="rounded-[24px] border border-muted bg-surface p-10">
-        <h2 className="text-[28px]">Thank you for reaching out.</h2>
-        <p className="mt-4 leading-relaxed">
-          Your message has been received. I&apos;ll personally review it and
-          respond within 1–2 business days to find a time for your free,
-          15-minute introductory call.
-        </p>
-        <p className="mt-4 leading-relaxed">
-          If you&apos;d like to get started sooner, you&apos;re welcome to
-          request an appointment directly through the secure client portal:
-        </p>
-        <a
-          href={site.portalUrl}
-          target="_blank"
-          rel="noreferrer"
-          onClick={() => track("client_portal_click", { source: "contact_success" })}
-          className="btn btn-secondary mt-6"
-        >
-          Open the Client Portal
-        </a>
-      </div>
-    );
+  useEffect(() => {
+    if (!showToast) return;
+
+    const timeout = window.setTimeout(() => setShowToast(false), 10000);
+
+    return () => window.clearTimeout(timeout);
+  }, [showToast]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const sentinel = document.getElementById("hero-sentinel");
+      setToastScrolled(
+        sentinel ? sentinel.getBoundingClientRect().top <= 64 : true,
+      );
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    if (String(formData.get("company") ?? "").trim()) {
+      setPending(true);
+      await wait(successTransitionMs);
+      setAnimationRun((run) => run + 1);
+      setState({ status: "success" });
+      setShowToast(true);
+      setPending(false);
+      return;
+    }
+
+    const firstName = String(formData.get("firstName") ?? "").trim();
+    const lastName = String(formData.get("lastName") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
+
+    if (!firstName || !email || !message) {
+      setState({
+        status: "error",
+        message: "Please share your name, email, and a short message.",
+      });
+      return;
+    }
+
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      setState({ status: "error", message: "Please enter a valid email address." });
+      return;
+    }
+
+    if (!accessKey) {
+      setState({
+        status: "error",
+        message:
+          "The form isn't fully configured yet. Please email directly.",
+      });
+      return;
+    }
+
+    setPending(true);
+    const transitionStartedAt = window.performance.now();
+
+    try {
+      const payload = {
+        access_key: accessKey,
+        subject: `New consultation inquiry - ${firstName} ${lastName}`,
+        from_name: "Ruzicka Psychology Website",
+        name: `${firstName} ${lastName}`.trim(),
+        email,
+        phone: String(formData.get("phone") ?? "").trim() || "-",
+        message: [
+          message,
+          "",
+          `Interested in: ${String(formData.get("therapyType") ?? "").trim() || "-"}`,
+          `Format: ${String(formData.get("format") ?? "").trim() || "-"}`,
+          `City: ${String(formData.get("city") ?? "").trim() || "-"}`,
+        ].join("\n"),
+      };
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+      const result = await res.json().catch(() => null);
+
+      if (!res.ok || !result?.success) {
+        throw new Error(result?.message ?? "Web3Forms submission failed");
+      }
+
+      const elapsed = window.performance.now() - transitionStartedAt;
+      if (elapsed < successTransitionMs) {
+        await wait(successTransitionMs - elapsed);
+      }
+
+      setAnimationRun((run) => run + 1);
+      setState({
+        status: "success",
+      });
+      setShowToast(true);
+      form.reset();
+    } catch (error) {
+      console.error("[contact] Web3Forms client error:", error);
+      setState({
+        status: "error",
+        message:
+          "Something went wrong sending your message. Please try again, or email directly.",
+      });
+    } finally {
+      setPending(false);
+    }
   }
 
   return (
-    <form action={action} className="flex flex-col gap-4">
-      <div aria-hidden className="absolute left-[-9999px]">
-        <label htmlFor="company">Company</label>
-        <input id="company" name="company" tabIndex={-1} autoComplete="off" />
-      </div>
-
-      <div className="grid gap-4 sm:grid-cols-2">
-        <input name="firstName" required placeholder="First Name*" className={fieldClass} />
-        <input name="lastName" placeholder="Last Name*" className={fieldClass} />
-      </div>
-      <input
-        type="email"
-        name="email"
-        required
-        placeholder="Email Address*"
-        className={fieldClass}
-      />
-      <input
-        name="therapyType"
-        placeholder="What type of therapy are you interested in?"
-        className={fieldClass}
-      />
-      <input
-        name="format"
-        placeholder="Would you prefer in-person or virtual therapy?"
-        className={fieldClass}
-      />
-      <div className="grid gap-4 sm:grid-cols-2">
-        <input name="city" placeholder="What city are you based in?" className={fieldClass} />
-        <input type="tel" name="phone" placeholder="Phone number" className={fieldClass} />
-      </div>
-      <textarea
-        name="message"
-        rows={6}
-        required
-        placeholder="Tell me a little about what brings you to therapy.*"
-        className={`${fieldClass} resize-y`}
-      />
-
-      {state.status === "error" && (
-        <p className="text-sm text-accent">{state.message}</p>
+    <>
+      {showToast && (
+        <SuccessToastPortal
+          onDismiss={() => setShowToast(false)}
+          scrolled={toastScrolled}
+        />
       )}
 
-      <button type="submit" disabled={pending} className="btn btn-primary mt-1.5 self-start">
-        {pending ? "Sending…" : "Submit →"}
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <div aria-hidden className="absolute left-[-9999px]">
+          <label htmlFor="company">Company</label>
+          <input id="company" name="company" tabIndex={-1} autoComplete="off" />
+        </div>
+
+        {state.status === "success" ? (
+          <SubmissionBloom animationRun={animationRun} />
+        ) : (
+          <div
+            className={`contact-form-active flex flex-col gap-4 ${
+              pending ? "contact-form-active--submitting" : ""
+            }`}
+          >
+            <div className="flex flex-col gap-4">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <input name="firstName" required placeholder="First name*" className={fieldClass} />
+                <input name="lastName" placeholder="Last name*" className={fieldClass} />
+              </div>
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="Email address*"
+                className={fieldClass}
+              />
+              <input
+                name="therapyType"
+                placeholder="What type of therapy are you interested in?"
+                className={fieldClass}
+              />
+              <input
+                name="format"
+                placeholder="Would you prefer in-person or virtual therapy?"
+                className={fieldClass}
+              />
+              <div className="grid gap-4 sm:grid-cols-2">
+                <input name="city" placeholder="What city are you based in?" className={fieldClass} />
+                <input type="tel" name="phone" placeholder="Phone number" className={fieldClass} />
+              </div>
+              <textarea
+                name="message"
+                rows={6}
+                required
+                placeholder="Tell me a little about what brings you to therapy.*"
+                className={`${fieldClass} resize-y`}
+              />
+            </div>
+
+            {state.status === "error" && (
+              <p className="body-3 text-[#F1EEEB]">{state.message}</p>
+            )}
+
+            <button
+              type="submit"
+              disabled={pending}
+              className="btn btn-primary mt-1.5 self-start"
+            >
+              {pending ? "Sending…" : "Submit →"}
+            </button>
+            {showAnimationTest && (
+              <button
+                type="button"
+                disabled={pending}
+                className="mono-label self-start border-b border-[#F1EEEB]/80 pb-1 text-[#F1EEEB] transition-colors hover:text-[#E5DED9] disabled:opacity-60"
+                onClick={async () => {
+                  setPending(true);
+                  await wait(successTransitionMs);
+                  setAnimationRun((run) => run + 1);
+                  setState({ status: "success" });
+                  setShowToast(true);
+                  setPending(false);
+                }}
+              >
+                Preview success animation →
+              </button>
+            )}
+          </div>
+        )}
+      </form>
+    </>
+  );
+}
+
+function SuccessToastPortal({
+  onDismiss,
+  scrolled,
+}: {
+  onDismiss: () => void;
+  scrolled: boolean;
+}) {
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
+    <SuccessToast onDismiss={onDismiss} scrolled={scrolled} />,
+    document.body,
+  );
+}
+
+function SuccessToast({
+  onDismiss,
+  scrolled,
+}: {
+  onDismiss: () => void;
+  scrolled: boolean;
+}) {
+  return (
+    <div
+      className={`success-toast ${scrolled ? "success-toast--scrolled" : "success-toast--initial"}`}
+      role="status"
+      aria-live="polite"
+    >
+      <div className="success-toast__content">
+        <p className="mono-label">Message Received</p>
+        <p className="success-toast__detail body-3 mt-1">
+          Expect a reply within 2 business days
+        </p>
+      </div>
+      <button
+        type="button"
+        className="success-toast__close"
+        onClick={onDismiss}
+        aria-label="Dismiss message"
+      >
+        ×
       </button>
-    </form>
+    </div>
+  );
+}
+
+function SubmissionBloom({ animationRun }: { animationRun: number }) {
+  return (
+    <div
+      className="submission-bloom min-h-[412px] w-full bg-[#251F12]/65 px-6 py-4 text-[#F1EEEB]"
+      aria-hidden
+    >
+      <div
+        className="submission-bloom__flower"
+        key={animationRun}
+        aria-hidden
+      >
+        <object
+          data={`/images/submission-flower.svg?v=${animationRun}`}
+          type="image/svg+xml"
+          className="submission-bloom__art"
+          tabIndex={-1}
+        />
+      </div>
+    </div>
   );
 }
