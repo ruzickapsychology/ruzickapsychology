@@ -2,7 +2,7 @@ export const site = {
   name: "Ruzicka Psychology",
   legalName: "Ruzicka Psychology PLLC",
   practitioner: "Dr. Christina Ruzicka, Psy.D.",
-  email: "christina@ruzickapsychology.com",
+  email: "Christina@ruzickapsychology.com",
   // PLACEHOLDER (from design mock) — confirm real value before launch.
   phone: "(646) 123-1599",
   address: {
