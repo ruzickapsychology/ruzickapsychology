@@ -11,7 +11,6 @@ type InquiryState = {
 
 const initialState: InquiryState = { status: "idle" };
 const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
-const showAnimationTest = true;
 const successTransitionMs = 420;
 
 const fieldClass =
@@ -174,46 +173,53 @@ export function ContactForm() {
         </div>
 
         {state.status === "success" ? (
-          <SubmissionBloom animationRun={animationRun} />
+          <>
+            <div className="contact-form-fields-shell">
+              <SubmissionBloom animationRun={animationRun} />
+            </div>
+            <div className="contact-form-action-spacer" aria-hidden />
+          </>
         ) : (
-          <div
-            className={`contact-form-active flex flex-col gap-4 ${
-              pending ? "contact-form-active--submitting" : ""
-            }`}
-          >
-            <div className="flex flex-col gap-4">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <input name="firstName" required placeholder="First name*" className={fieldClass} />
-                <input name="lastName" placeholder="Last name*" className={fieldClass} />
+          <>
+            <div
+              className={`contact-form-fields-shell contact-form-active ${
+                pending ? "contact-form-active--submitting" : ""
+              }`}
+            >
+              <div className="flex flex-col gap-4">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <input name="firstName" required placeholder="First name*" className={fieldClass} />
+                  <input name="lastName" placeholder="Last name*" className={fieldClass} />
+                </div>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="Email address*"
+                  className={fieldClass}
+                />
+                <input
+                  name="therapyType"
+                  placeholder="What type of therapy are you interested in?"
+                  className={fieldClass}
+                />
+                <input
+                  name="format"
+                  placeholder="Would you prefer in-person or virtual therapy?"
+                  className={fieldClass}
+                />
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <input name="city" placeholder="What city are you based in?" className={fieldClass} />
+                  <input type="tel" name="phone" placeholder="Phone number" className={fieldClass} />
+                </div>
+                <textarea
+                  name="message"
+                  rows={6}
+                  required
+                  placeholder="Tell me a little about what brings you to therapy.*"
+                  className={`${fieldClass} resize-y`}
+                />
               </div>
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="Email address*"
-                className={fieldClass}
-              />
-              <input
-                name="therapyType"
-                placeholder="What type of therapy are you interested in?"
-                className={fieldClass}
-              />
-              <input
-                name="format"
-                placeholder="Would you prefer in-person or virtual therapy?"
-                className={fieldClass}
-              />
-              <div className="grid gap-4 sm:grid-cols-2">
-                <input name="city" placeholder="What city are you based in?" className={fieldClass} />
-                <input type="tel" name="phone" placeholder="Phone number" className={fieldClass} />
-              </div>
-              <textarea
-                name="message"
-                rows={6}
-                required
-                placeholder="Tell me a little about what brings you to therapy.*"
-                className={`${fieldClass} resize-y`}
-              />
             </div>
 
             {state.status === "error" && (
@@ -227,24 +233,7 @@ export function ContactForm() {
             >
               {pending ? "Sending…" : "Submit →"}
             </button>
-            {showAnimationTest && (
-              <button
-                type="button"
-                disabled={pending}
-                className="mono-label self-start border-b border-[#F1EEEB]/80 pb-1 text-[#F1EEEB] transition-colors hover:text-[#E5DED9] disabled:opacity-60"
-                onClick={async () => {
-                  setPending(true);
-                  await wait(successTransitionMs);
-                  setAnimationRun((run) => run + 1);
-                  setState({ status: "success" });
-                  setShowToast(true);
-                  setPending(false);
-                }}
-              >
-                Preview success animation →
-              </button>
-            )}
-          </div>
+          </>
         )}
       </form>
     </>
@@ -300,7 +289,7 @@ function SuccessToast({
 function SubmissionBloom({ animationRun }: { animationRun: number }) {
   return (
     <div
-      className="submission-bloom min-h-[412px] w-full bg-[#251F12]/65 px-6 py-4 text-[#F1EEEB]"
+      className="submission-bloom h-full w-full bg-[#251F12]/65 px-6 py-4 text-[#F1EEEB]"
       aria-hidden
     >
       <div

@@ -20,8 +20,8 @@ export default async function Pricing() {
   return (
     <div className="rp-fade pt-16">
       <section className="py-20">
-        <Container size="lg">
-          <div className="mb-15 text-center">
+        <Container size="xl" className="site-grid">
+          <div className="grid-center-sm mb-15 text-center">
             <p className="eyebrow">{pricing.eyebrow}</p>
             <h1 className="mt-4">{pricing.heading}</h1>
             <p className="body-2 mx-auto mt-4.5 max-w-[520px]">
@@ -29,7 +29,7 @@ export default async function Pricing() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2">
+          <div className="grid-card-2 grid-center-lg">
             {/* fees */}
             {pricing.fees ? (
               <div className="border-b border-muted px-2 py-10 md:border-b-0 md:border-r md:border-muted md:py-14 md:pl-10 md:pr-16">
@@ -72,25 +72,27 @@ export default async function Pricing() {
       {/* CTA */}
       {pricing.cta ? (
         <section
-          className="bg-cover bg-center px-6 py-24 sm:py-28"
+          className="bg-cover bg-center py-24 sm:py-28"
           style={{
             backgroundImage: backgroundImage(pricing.cta.backgroundImage),
           }}
         >
-          <div className="mx-auto max-w-[1120px] rounded-none border border-muted bg-feature/90 px-8 py-20 text-center sm:px-12">
-            <h2 className="heading-module">{pricing.cta.heading}</h2>
-            <p className="body-1 mx-auto mt-4 max-w-[420px]">
-              {pricing.cta.body}
-            </p>
-            <CtaLink
-              href="/contact"
-              event="consultation_cta_click"
-              variant="primary"
-              className="mt-8"
-            >
-              {pricing.cta.cta}
-            </CtaLink>
-          </div>
+          <Container size="xl" className="site-grid">
+            <div className="grid-center-xl rounded-none border border-muted bg-feature/90 px-8 py-20 text-center sm:px-12">
+              <h2 className="heading-module">{pricing.cta.heading}</h2>
+              <p className="body-1 mx-auto mt-4 max-w-[420px]">
+                {pricing.cta.body}
+              </p>
+              <CtaLink
+                href="/contact"
+                event="consultation_cta_click"
+                variant="primary"
+                className="mt-8"
+              >
+                {pricing.cta.cta}
+              </CtaLink>
+            </div>
+          </Container>
         </section>
       ) : null}
     </div>

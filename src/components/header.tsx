@@ -1,27 +1,40 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/container";
+import { ArrowUpRight } from "@/components/ui/icons";
 import type { SiteSettings } from "@/lib/cms";
 import { MAIN_NAV } from "@/lib/site-defaults";
 
 const TRANSPARENT_PAGES = ["/", "/contact"];
 
+function normalizePathname(pathname: string) {
+  return pathname === "/" ? pathname : pathname.replace(/\/$/, "");
+}
+
 export function Header({ siteSettings }: { siteSettings?: SiteSettings | null }) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [overQuoteBand, setOverQuoteBand] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false);
 
   useEffect(() => {
+    const routeCanBeTransparent = TRANSPARENT_PAGES.includes(
+      normalizePathname(pathname),
+    );
+
     const onScroll = () => {
       const sentinel = document.getElementById("hero-sentinel");
       const quoteBand = document.getElementById("about-quote-band");
-      // No hero on this page → nav is solid from the top.
+      // No hero on ordinary pages means solid from the top. On transparent
+      // pages, async content can render the sentinel after the header mounts.
       const past = sentinel
         ? sentinel.getBoundingClientRect().top <= 64
-        : true;
+        : !routeCanBeTransparent;
       const quoteRect = quoteBand?.getBoundingClientRect();
 
       setScrolled(past);
@@ -30,42 +43,72 @@ export function Header({ siteSettings }: { siteSettings?: SiteSettings | null })
       );
     };
     onScroll();
+    const raf = window.requestAnimationFrame(onScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
+      window.cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
   }, [pathname]);
 
-  const canBeTransparent = TRANSPARENT_PAGES.includes(pathname);
+  useEffect(() => {
+    document.body.style.overflow = menuVisible ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuVisible]);
+
+  useEffect(() => {
+    if (menuOpen || !menuVisible) return;
+
+    const timeout = window.setTimeout(() => {
+      setMenuVisible(false);
+    }, 560);
+
+    return () => window.clearTimeout(timeout);
+  }, [menuOpen, menuVisible]);
+
+  const normalizedPathname = normalizePathname(pathname);
+  const canBeTransparent = TRANSPARENT_PAGES.includes(normalizedPathname);
   const transparent = canBeTransparent && !scrolled;
   const light = transparent || overQuoteBand;
+  const navBackground: CSSProperties = transparent
+    ? {
+        backgroundColor:
+          normalizedPathname === "/contact"
+            ? "rgb(37 31 18 / 0.25)"
+            : "rgb(18 46 58 / 0.3)",
+      }
+    : overQuoteBand
+      ? { backgroundColor: "rgb(7 24 25 / 0.3)" }
+      : { backgroundColor: "rgb(217 211 198 / 0.8)" };
 
   const wordmark = light ? "text-light" : "text-fg";
   const link = light
     ? "text-light/90 hover:text-light"
     : "text-body hover:text-accent";
+  const mobilePrimaryLinks = MAIN_NAV;
+  const mobileUtilityLinks = [
+    { label: "Blog", href: "/blog" },
+    { label: "FAQ", href: "/faq" },
+  ];
+  const openMobileMenu = () => {
+    setMenuVisible(true);
+    window.requestAnimationFrame(() => setMenuOpen(true));
+  };
+  const closeMobileMenu = () => setMenuOpen(false);
 
   return (
     <header
       className="fixed inset-x-0 top-0 z-50 transition-[background-color] duration-500"
-      style={
-        transparent
-          ? {
-              backgroundColor:
-                pathname === "/contact"
-                  ? "rgb(37 31 18 / 0.25)"
-                  : "rgb(18 46 58 / 0.3)",
-            }
-          : overQuoteBand
-            ? { backgroundColor: "rgb(7 24 25 / 0.3)" }
-          : { backgroundColor: "rgb(217 211 198 / 0.8)" }
-      }
+      style={navBackground}
     >
       <Container
         size="xl"
-        className="flex items-center justify-between gap-6 py-4"
+        className="relative z-20 flex items-center justify-between gap-6 py-4"
       >
         <Link
           href="/"
@@ -97,36 +140,122 @@ export function Header({ siteSettings }: { siteSettings?: SiteSettings | null })
           })}
         </nav>
 
-        <details className="group relative sm:hidden">
-          <summary
-            className={`mono-label cursor-pointer list-none [&::-webkit-details-marker]:hidden ${wordmark}`}
-          >
-            Menu
-          </summary>
-          <nav className="absolute right-0 z-10 mt-3 flex w-52 flex-col gap-4 rounded-xl border border-muted bg-surface p-5 shadow-lg">
-            {MAIN_NAV.map((item) => {
-              const href = item.href as string;
-              const active =
-                pathname === href || pathname.startsWith(`${href}/`);
-
-              return (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  aria-current={active ? "page" : undefined}
-                  className={`mono-label border-b pb-1 transition-colors ${
-                    active
-                      ? "border-accent text-accent"
-                      : "border-transparent text-body hover:text-accent"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
-        </details>
+        <button
+          type="button"
+          aria-label={menuVisible ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
+          className={`mono-label inline-flex h-6 min-w-12 items-center justify-end sm:hidden ${wordmark}`}
+          onClick={menuVisible ? closeMobileMenu : openMobileMenu}
+        >
+          {menuVisible ? (
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              aria-hidden
+            >
+              <path d="M12 5v14M5 12h14" transform="rotate(45 12 12)" />
+            </svg>
+          ) : (
+            "Menu"
+          )}
+        </button>
       </Container>
+
+      {menuVisible ? (
+        <div
+          id="mobile-navigation"
+          className={`mobile-menu-panel fixed inset-0 z-10 overflow-y-auto backdrop-blur-2xl sm:hidden ${
+            menuOpen ? "mobile-menu-panel--open" : "mobile-menu-panel--closing"
+          }`}
+          style={navBackground}
+        >
+          <Container size="xl" className="flex min-h-dvh flex-col justify-center py-28">
+            <nav
+              aria-label="Mobile primary navigation"
+              className="flex flex-col items-start gap-5"
+            >
+              {mobilePrimaryLinks.map((item) => {
+                const href = item.href as string;
+                const active =
+                  pathname === href || pathname.startsWith(`${href}/`);
+
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    onClick={closeMobileMenu}
+                    className={`mobile-menu-item heading-module transition-colors ${
+                      light
+                        ? active
+                          ? "text-light"
+                          : "text-light/85 hover:text-light"
+                        : active
+                          ? "text-accent"
+                          : "text-fg hover:text-accent"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            <nav
+              aria-label="Mobile secondary navigation"
+              className={`mobile-menu-secondary mt-12 flex flex-col items-start gap-4 border-t pt-8 ${
+                light ? "border-light/30" : "border-fg/20"
+              }`}
+            >
+              {mobileUtilityLinks.map((item) => {
+                const active =
+                  pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    onClick={closeMobileMenu}
+                    className={`mobile-menu-item mono-label tracking-[0.08em] transition-colors ${
+                      light
+                        ? active
+                          ? "text-light"
+                          : "text-light/75 hover:text-light"
+                        : active
+                          ? "text-accent"
+                          : "text-body hover:text-accent"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+
+              {siteSettings?.portalUrl ? (
+                <a
+                  href={siteSettings.portalUrl}
+                  onClick={closeMobileMenu}
+                  className={`mobile-menu-item mono-label inline-flex items-center gap-1.5 tracking-[0.08em] transition-colors ${
+                    light ? "text-light/75 hover:text-light" : "text-body hover:text-accent"
+                  }`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Client Portal
+                  <ArrowUpRight />
+                </a>
+              ) : null}
+            </nav>
+          </Container>
+        </div>
+      ) : null}
     </header>
   );
 }

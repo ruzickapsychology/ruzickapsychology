@@ -62,7 +62,7 @@ export function RotatingFlowerBadge({
 /** Rotating circular badge with the flower mark centered, over the hero. */
 export function HeroBadge() {
   return (
-    <div className="pointer-events-none absolute -left-8 top-[-91px] hidden h-[190px] w-[190px] sm:block">
+    <div className="hero-badge pointer-events-none absolute left-2 top-[-91px] hidden h-[190px] w-[190px] sm:block">
       <RotatingFlowerBadge messages={RING_MESSAGES} pathId="rp-hero-badge-path" />
     </div>
   );

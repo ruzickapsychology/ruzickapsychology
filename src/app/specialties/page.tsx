@@ -20,15 +20,15 @@ export default async function Specialties() {
   return (
     <div className="rp-fade pt-16">
       <section className="py-20">
-        <Container size="xl">
-          <div className="mb-15 text-center">
+        <Container size="xl" className="site-grid">
+          <div className="grid-center-md mb-15 text-center">
             <p className="eyebrow">{specialties.eyebrow}</p>
             <h1 className="mt-4">{specialties.heading}</h1>
             <p className="body-2 mx-auto mt-4.5 max-w-[520px]">
               {specialties.intro}
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="grid-card-2 grid-full">
             {specialties.items.map((s, i) => (
               <div
                 key={s.title}
@@ -59,21 +59,23 @@ export default async function Specialties() {
       {/* modality band */}
       {specialties.modality ? (
         <section
-          className="bg-cover bg-center px-6 py-16 sm:py-20"
+          className="bg-cover bg-center py-16 sm:py-20"
           style={{
             backgroundImage: backgroundImage(specialties.modality.backgroundImage),
           }}
         >
-          <div className="mx-auto max-w-[1120px] px-8 py-12 text-center sm:px-12 sm:py-14">
-            <p className="eyebrow">{specialties.modality.eyebrow}</p>
-            <h2 className="heading-module mx-auto mt-4 max-w-[640px]">
-              {specialties.modality.heading}
-            </h2>
-            <PortableContent
-              value={specialties.modality.body}
-              className="body-2 mx-auto mt-6 max-w-[640px] space-y-4"
-            />
-          </div>
+          <Container size="xl" className="site-grid">
+            <div className="grid-center-xl px-8 py-12 text-left sm:px-12 sm:py-14">
+              <p className="eyebrow">{specialties.modality.eyebrow}</p>
+              <h2 className="heading-module mt-4 max-w-[640px]">
+                {specialties.modality.heading}
+              </h2>
+              <PortableContent
+                value={specialties.modality.body}
+                className="body-2 mt-6 max-w-[640px] space-y-4"
+              />
+            </div>
+          </Container>
         </section>
       ) : null}
     </div>

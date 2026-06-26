@@ -76,25 +76,27 @@ export default async function FAQ() {
 
       {faq.cta ? (
         <section
-          className="bg-cover bg-center px-6 py-24 sm:py-28"
+          className="bg-cover bg-center py-24 sm:py-28"
           style={{
             backgroundImage: backgroundImage(faq.cta.backgroundImage),
           }}
         >
-          <div className="mx-auto max-w-[1120px] rounded-none border border-muted bg-feature/90 px-8 py-20 text-center sm:px-12">
-            <h2 className="heading-module">{faq.cta.heading}</h2>
-            <p className="body-1 mx-auto mt-4 max-w-[420px]">
-              {faq.cta.body}
-            </p>
-            <CtaLink
-              href="/contact"
-              event="consultation_cta_click"
-              variant="primary"
-              className="mt-8"
-            >
-              {faq.cta.cta}
-            </CtaLink>
-          </div>
+          <Container size="xl" className="site-grid">
+            <div className="grid-center-xl rounded-none border border-muted bg-feature/90 px-8 py-20 text-center sm:px-12">
+              <h2 className="heading-module">{faq.cta.heading}</h2>
+              <p className="body-1 mx-auto mt-4 max-w-[420px]">
+                {faq.cta.body}
+              </p>
+              <CtaLink
+                href="/contact"
+                event="consultation_cta_click"
+                variant="primary"
+                className="mt-8"
+              >
+                {faq.cta.cta}
+              </CtaLink>
+            </div>
+          </Container>
         </section>
       ) : null}
     </div>

@@ -22,9 +22,9 @@ export default async function About() {
       <section className="py-16 sm:py-20">
         <Container
           size="xl"
-          className="grid items-start gap-12 md:grid-cols-[445px_1fr] md:gap-16"
+          className="site-grid items-start"
         >
-          <div className="mx-auto w-full max-w-[360px] rounded-full border border-muted p-2 md:sticky md:top-24">
+          <div className="grid-split-media mx-auto w-full max-w-[360px] rounded-full border border-muted p-2 md:sticky md:top-24 lg:justify-self-center">
             <div
               className="aspect-square w-full overflow-hidden rounded-full bg-cover bg-center"
               style={{
@@ -33,7 +33,7 @@ export default async function About() {
               }}
             />
           </div>
-          <div>
+          <div className="grid-split-copy">
             <p className="eyebrow">{about.credentials}</p>
             <h1 className="heading-section mt-3.5">
               {about.heading}
@@ -54,8 +54,8 @@ export default async function About() {
       {/* therapy space */}
       {about.space ? (
         <section className="bg-feature/35 py-24 sm:py-32">
-          <Container size="xl">
-            <div className="mx-auto max-w-[680px] text-center">
+          <Container size="xl" className="site-grid">
+            <div className="grid-center-md text-center">
               <p className="eyebrow">{about.space.eyebrow}</p>
               <h2 className="heading-item mt-4">{about.space.heading}</h2>
               <p className="body-2 mx-auto mt-4 max-w-[480px]">
@@ -63,7 +63,7 @@ export default async function About() {
               </p>
             </div>
 
-            <div className="mt-12 grid gap-5 md:grid-cols-2 md:gap-7">
+            <div className="grid-card-2 grid-full mt-12 gap-5 md:gap-7">
               <div className="aspect-[4/3] border border-muted bg-surface/45">
                 {about.space.exteriorImage?.asset?.url ? (
                   <div
@@ -102,7 +102,7 @@ export default async function About() {
       {about.philosophy ? (
         <section
           id="about-quote-band"
-          className="bg-cover bg-center px-6 py-16 sm:py-20"
+          className="bg-cover bg-center py-16 sm:py-20"
           style={{
             backgroundImage: overlayBackgroundImage(
               about.philosophy.backgroundImage,
@@ -110,17 +110,19 @@ export default async function About() {
             ),
           }}
         >
-          <div className="mx-auto max-w-[1120px] px-8 py-12 text-center sm:px-12 sm:py-14">
-            <p className="mb-6 font-sans text-[13px] font-semibold uppercase tracking-[0.24em] text-light/90">
-              {about.philosophy.eyebrow}
-            </p>
-            <p className="heading-module mx-auto max-w-[680px] leading-snug text-light">
-              “{about.philosophy.quote}”
-            </p>
-            <p className="mono-label mt-7 normal-case tracking-[0.08em] text-light/75">
-              —{about.philosophy.attribution}
-            </p>
-          </div>
+          <Container size="xl" className="site-grid">
+            <div className="grid-center-xl px-8 py-12 text-center sm:px-12 sm:py-14">
+              <p className="mb-6 font-sans text-[13px] font-semibold uppercase tracking-[0.24em] text-light/90">
+                {about.philosophy.eyebrow}
+              </p>
+              <p className="heading-module mx-auto max-w-[680px] leading-snug text-light">
+                “{about.philosophy.quote}”
+              </p>
+              <p className="mono-label mt-7 normal-case tracking-[0.08em] text-light/75">
+                —{about.philosophy.attribution}
+              </p>
+            </div>
+          </Container>
         </section>
       ) : null}
     </div>

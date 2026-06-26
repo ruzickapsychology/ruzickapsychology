@@ -19,16 +19,16 @@ export default async function Contact() {
   return (
     <div className="rp-fade">
       <section
-        className="image-grain flex min-h-[760px] items-center bg-cover bg-center px-6 py-36 sm:py-44 md:min-h-[840px]"
+        className="contact-header-wash image-grain flex min-h-[760px] items-center bg-cover bg-center py-36 sm:py-44 md:min-h-[840px]"
         style={{
           backgroundImage: backgroundImage(contact.headerBackgroundImage),
         }}
       >
         <Container
           size="xl"
-          className="grid items-start gap-12 md:grid-cols-[1fr_1.15fr] md:gap-16 lg:gap-[72px]"
+          className="site-grid items-start"
         >
-          <div className="text-[#F1EEEB] md:sticky md:top-28">
+          <div className="grid-split-half text-[#F1EEEB] md:sticky md:top-28">
             <p className="eyebrow text-[#F1EEEB]">{contact.eyebrow}</p>
             <h1 className="mt-4 text-[#F1EEEB]">{contact.heading}</h1>
             <p className="body-1 mt-6 max-w-[460px] text-[#E5DED9]">
@@ -47,7 +47,9 @@ export default async function Contact() {
             </div>
           </div>
 
-          <ContactForm />
+          <div className="grid-split-half-alt">
+            <ContactForm />
+          </div>
         </Container>
       </section>
       <div id="hero-sentinel" />
@@ -55,12 +57,12 @@ export default async function Contact() {
       {/* what to expect */}
       {contact.expect ? (
       <section className="bg-feature/35 py-28 sm:py-36">
-        <Container size="xl">
-          <div className="mb-14 text-center">
+        <Container size="xl" className="site-grid">
+          <div className="grid-center-md mb-14 text-center">
             <p className="eyebrow">{contact.expect.eyebrow}</p>
             <h2 className="mt-4">{contact.expect.heading}</h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid-card-4 grid-full">
             {contact.expect.steps?.map((step, i) => (
               <div
                 key={step.n}
@@ -90,9 +92,9 @@ export default async function Contact() {
       <section className="py-24 sm:py-28">
         <Container
           size="xl"
-          className="grid md:grid-cols-2"
+          className="site-grid"
         >
-          <div className="grid md:border-r md:border-muted">
+          <div className="grid-split-half grid md:border-r md:border-muted">
             <div className="py-10 pr-8 md:py-14 md:pr-12">
               <div className="mono-label mb-3.5 text-accent">
                 Location
@@ -118,7 +120,7 @@ export default async function Contact() {
               </p>
             </div>
           </div>
-          <div className="relative min-h-[420px] overflow-hidden bg-feature">
+          <div className="grid-split-half-alt relative min-h-[420px] overflow-hidden bg-feature">
             <iframe
               title={`Map to ${site.name}, ${site.address.line1}`}
               src={`https://maps.google.com/maps?q=${encodeURIComponent(

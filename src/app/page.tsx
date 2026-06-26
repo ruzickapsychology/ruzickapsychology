@@ -14,26 +14,28 @@ export default async function Home() {
     <div className="rp-fade">
       {/* hero */}
       <section
-        className="relative flex min-h-[760px] items-center justify-center overflow-hidden bg-cover bg-center px-6 text-center md:min-h-[840px]"
+        className="relative flex min-h-[760px] items-center justify-center overflow-hidden bg-cover bg-center text-center md:min-h-[840px]"
         style={{
           backgroundImage: backgroundImage(home.hero.backgroundImage),
         }}
       >
-        <div className="relative top-4 max-w-[900px] py-16">
-          <HeroBadge />
-          <div className="mt-[39px]">
-            <p className="mb-5 font-sans text-[13px] font-semibold uppercase tracking-[0.24em] text-light">
-              {home.hero.kicker}
-            </p>
-            <h1 className="mb-6 text-light">{home.hero.heading}</h1>
-            <p className="body-1 mx-auto mb-9 max-w-[680px] text-light">
-              {home.hero.body}
-            </p>
-            <CtaLink href="/contact" event="consultation_cta_click" variant="primary">
-              {home.hero.cta}
-            </CtaLink>
+        <Container size="xl" className="site-grid">
+          <div className="grid-center-lg relative top-4 py-16">
+            <HeroBadge />
+            <div className="mt-[39px]">
+              <p className="mb-5 font-sans text-[13px] font-semibold uppercase tracking-[0.24em] text-light">
+                {home.hero.kicker}
+              </p>
+              <h1 className="mb-6 text-light">{home.hero.heading}</h1>
+              <p className="body-1 mx-auto mb-9 max-w-[680px] text-light">
+                {home.hero.body}
+              </p>
+              <CtaLink href="/contact" event="consultation_cta_click" variant="primary">
+                {home.hero.cta}
+              </CtaLink>
+            </div>
           </div>
-        </div>
+        </Container>
         <div className="pointer-events-none absolute inset-x-0 bottom-8 text-center text-light">
           <span
             className="mono-label rp-bob inline-block text-[13px] leading-none [filter:drop-shadow(0_1px_3px_rgba(58,35,40,0.35))]"
@@ -47,12 +49,12 @@ export default async function Home() {
 
       {/* specialties — quadrant layout */}
       <section className="py-24 sm:py-28">
-        <Container size="xl">
-          <div className="mb-14 text-center">
+        <Container size="xl" className="site-grid">
+          <div className="grid-center-md mb-14 text-center">
             <p className="eyebrow">{home.specialties.eyebrow}</p>
             <h2 className="mt-4">{home.specialties.heading}</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2">
+          <div className="grid-card-2 grid-full">
             {home.specialties.items.map((s, i) => (
               <div
                 key={s.title}
@@ -70,7 +72,7 @@ export default async function Home() {
               </div>
             ))}
           </div>
-          <div className="mt-10 text-center">
+          <div className="grid-center-md mt-10 text-center">
             <Link
               href="/specialties"
               className="mono-label inline-block border-b border-accent pb-1 tracking-[0.06em] normal-case text-accent transition-colors hover:text-fg"
@@ -85,9 +87,9 @@ export default async function Home() {
       <section className="bg-feature/35 py-24 sm:py-28">
         <Container
           size="xl"
-          className="grid items-center gap-12 md:grid-cols-[360px_1fr] md:gap-16"
+          className="site-grid items-center"
         >
-          <div className="mx-auto w-full max-w-[300px] rounded-full border border-muted p-2">
+          <div className="grid-split-media mx-auto w-full max-w-[300px] rounded-full border border-muted p-2 lg:justify-self-center">
             <div
               className="aspect-square w-full overflow-hidden rounded-full bg-cover bg-center"
               style={{
@@ -95,10 +97,10 @@ export default async function Home() {
               }}
             />
           </div>
-          <div>
+          <div className="home-about-copy grid-split-copy text-center md:text-left">
             <p className="eyebrow">{home.about.eyebrow}</p>
             <h2 className="mt-4">{home.about.heading}</h2>
-            <p className="body-1 mt-6 max-w-[540px]">
+            <p className="body-1 mx-auto mt-6 max-w-[540px] md:mx-0">
               {home.about.body}
             </p>
             <Link
@@ -113,25 +115,27 @@ export default async function Home() {
 
       {/* CTA band */}
       <section
-        className="bg-cover bg-center px-6 py-24 sm:py-28"
+        className="bg-cover bg-center py-24 sm:py-28"
         style={{
           backgroundImage: backgroundImage(home.cta.backgroundImage),
         }}
       >
-        <div className="mx-auto max-w-[1120px] rounded-none border border-muted bg-feature/90 px-8 py-20 text-center sm:px-12">
-          <h2>{home.cta.heading}</h2>
-          <p className="body-1 mx-auto mt-4.5 max-w-[430px]">
-            {home.cta.body}
-          </p>
-          <CtaLink
-            href="/contact"
-            event="consultation_cta_click"
-            variant="primary"
-            className="mt-8"
-          >
-            {home.cta.cta}
-          </CtaLink>
-        </div>
+        <Container size="xl" className="site-grid">
+          <div className="grid-center-xl rounded-none border border-muted bg-feature/90 px-8 py-20 text-center sm:px-12">
+            <h2>{home.cta.heading}</h2>
+            <p className="body-1 mx-auto mt-4.5 max-w-[430px]">
+              {home.cta.body}
+            </p>
+            <CtaLink
+              href="/contact"
+              event="consultation_cta_click"
+              variant="primary"
+              className="mt-8"
+            >
+              {home.cta.cta}
+            </CtaLink>
+          </div>
+        </Container>
       </section>
     </div>
   );
