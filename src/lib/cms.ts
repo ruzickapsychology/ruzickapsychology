@@ -154,7 +154,13 @@ type RawPost = {
 }
 
 const imageFields = /* groq */ `
-  asset->{url},
+  asset->{
+    _id,
+    url,
+    metadata {
+      dimensions {width, height}
+    }
+  },
   alt
 `
 
@@ -332,7 +338,20 @@ const specialtyIconBySlug: Record<string, SpecialtyIcon> = {
   'individual-therapy': 'circle',
   'couples-counseling': 'leaves',
   'perinatal-postpartum-support': 'bud',
+  'perinatal-and-postpartum-support': 'bud',
   'group-therapy': 'quatrefoil',
+}
+
+function getSpecialtyIcon(slug: string, title: string): SpecialtyIcon {
+  const slugMatch = specialtyIconBySlug[slug]
+  if (slugMatch) return slugMatch
+
+  const normalizedTitle = title.toLowerCase()
+  if (normalizedTitle.includes('perinatal') || normalizedTitle.includes('postpartum')) {
+    return 'bud'
+  }
+
+  return 'circle'
 }
 
 function normalizeSpecialty(item: RawSpecialty): SpecialtyContent | null {
@@ -341,7 +360,7 @@ function normalizeSpecialty(item: RawSpecialty): SpecialtyContent | null {
   return {
     title: item.title,
     slug,
-    icon: specialtyIconBySlug[slug] ?? 'circle',
+    icon: getSpecialtyIcon(slug, item.title),
     summary: item.summary,
     details: item.details?.filter(Boolean) ?? [],
   }

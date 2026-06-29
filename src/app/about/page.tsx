@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { BackgroundImageLayer } from "@/components/ui/background-image-layer";
 import { Container } from "@/components/ui/container";
 import { PortableContent } from "@/components/ui/portable-content";
+import { Section } from "@/components/ui/section";
 import { pageMetadata } from "@/lib/seo";
-import { backgroundImage, overlayBackgroundImage } from "@/lib/cms-images";
+import { backgroundImage } from "@/lib/cms-images";
 import { getAboutPage } from "@/lib/cms";
 
 export const metadata: Metadata = pageMetadata({
@@ -19,7 +21,7 @@ export default async function About() {
   return (
     <div className="rp-fade pt-16">
       {/* bio */}
-      <section className="py-16 sm:py-20">
+      <Section size="default">
         <Container
           size="xl"
           className="site-grid items-start"
@@ -49,11 +51,11 @@ export default async function About() {
             ) : null}
           </div>
         </Container>
-      </section>
+      </Section>
 
       {/* therapy space */}
       {about.space ? (
-        <section className="bg-feature/35 py-24 sm:py-32">
+        <Section size="spacious" className="bg-feature/35">
           <Container size="xl" className="site-grid">
             <div className="grid-center-md text-center">
               <p className="eyebrow">{about.space.eyebrow}</p>
@@ -66,14 +68,12 @@ export default async function About() {
             <div className="grid-card-2 grid-full mt-12 gap-5 md:gap-7">
               <div className="aspect-[4/3] border border-muted bg-surface/45">
                 {about.space.exteriorImage?.asset?.url ? (
-                  <div
-                    className="h-full w-full bg-cover bg-center"
-                    style={{
-                      backgroundImage: backgroundImage(about.space.exteriorImage),
-                    }}
-                    role="img"
-                    aria-label={about.space.exteriorImage.alt ?? "Office exterior"}
-                  />
+                  <div className="relative h-full w-full overflow-hidden">
+                    <BackgroundImageLayer
+                      image={about.space.exteriorImage}
+                      alt={about.space.exteriorImage.alt ?? "Office exterior"}
+                    />
+                  </div>
                 ) : (
                   <div className="flex h-full items-center justify-center p-8 text-center">
                     <div>
@@ -85,32 +85,27 @@ export default async function About() {
                   </div>
                 )}
               </div>
-              <div
-                className="aspect-[4/3] border border-muted bg-cover bg-center"
-                style={{
-                  backgroundImage: backgroundImage(about.space.interiorImage),
-                }}
-                role="img"
-                aria-label={about.space.interiorImage?.alt ?? "Therapy office seating area"}
-              />
+              <div className="relative aspect-[4/3] overflow-hidden border border-muted bg-surface/45">
+                <BackgroundImageLayer
+                  image={about.space.interiorImage}
+                  alt={about.space.interiorImage?.alt ?? "Therapy office seating area"}
+                />
+              </div>
             </div>
           </Container>
-        </section>
+        </Section>
       ) : null}
 
       {/* philosophy band (replaces client testimonial — see content note) */}
       {about.philosophy ? (
-        <section
+        <Section
+          size="default"
           id="about-quote-band"
-          className="bg-cover bg-center py-16 sm:py-20"
-          style={{
-            backgroundImage: overlayBackgroundImage(
-              about.philosophy.backgroundImage,
-              "linear-gradient(rgb(7 24 25 / 0.2), rgb(7 24 25 / 0.2))",
-            ),
-          }}
+          className="relative overflow-hidden bg-fg"
         >
-          <Container size="xl" className="site-grid">
+          <BackgroundImageLayer image={about.philosophy.backgroundImage} />
+          <div className="absolute inset-0 z-0 bg-[#071819]/20" aria-hidden />
+          <Container size="xl" className="site-grid relative z-10">
             <div className="grid-center-xl px-8 py-12 text-center sm:px-12 sm:py-14">
               <p className="mb-6 font-sans text-[13px] font-semibold uppercase tracking-[0.24em] text-light/90">
                 {about.philosophy.eyebrow}
@@ -123,7 +118,7 @@ export default async function About() {
               </p>
             </div>
           </Container>
-        </section>
+        </Section>
       ) : null}
     </div>
   );

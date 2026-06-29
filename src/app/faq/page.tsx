@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { BackgroundImageLayer } from "@/components/ui/background-image-layer";
 import { Container } from "@/components/ui/container";
+import { Section } from "@/components/ui/section";
 import { CtaLink } from "@/components/analytics";
 import { pageMetadata } from "@/lib/seo";
-import { backgroundImage } from "@/lib/cms-images";
 import { getFAQPage } from "@/lib/cms";
 
 export const metadata: Metadata = pageMetadata({
@@ -33,55 +34,56 @@ export default async function FAQ() {
           __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <Container size="md" className="pb-24 pt-32 sm:pb-28">
-        <div className="text-center">
-          <h1>{faq.heading}</h1>
-          <p className="body-2 mx-auto mt-5 max-w-[520px]">{faq.intro}</p>
-        </div>
+      <Section size="page">
+        <Container size="md">
+          <div className="text-center">
+            <h1>{faq.heading}</h1>
+            <p className="body-2 mx-auto mt-5 max-w-[520px]">{faq.intro}</p>
+          </div>
 
-        <div className="mt-14">
-          {faq.items?.map((item) => (
-            <details
-              key={item.q}
-              className="group border-t border-muted last:border-b last:border-muted"
-            >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
-                <span className="heading-item">
-                  {item.q}
-                </span>
-                <span className="shrink-0 text-accent transition-transform duration-300 group-open:rotate-45">
-                  <svg
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    aria-hidden
-                  >
-                    <path d="M12 5v14M5 12h14" />
-                  </svg>
-                </span>
-              </summary>
-              <div className="body-2 space-y-4 pb-7 pr-10">
-                {item.a.map((p, j) => (
-                  <p key={j}>{p}</p>
-                ))}
-              </div>
-            </details>
-          ))}
-        </div>
-      </Container>
+          <div className="mt-14">
+            {faq.items?.map((item) => (
+              <details
+                key={item.q}
+                className="group border-t border-muted last:border-b last:border-muted"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
+                  <span className="heading-item">
+                    {item.q}
+                  </span>
+                  <span className="shrink-0 text-accent transition-transform duration-300 group-open:rotate-45">
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      aria-hidden
+                    >
+                      <path d="M12 5v14M5 12h14" />
+                    </svg>
+                  </span>
+                </summary>
+                <div className="body-2 space-y-4 pb-7 pr-10">
+                  {item.a.map((p, j) => (
+                    <p key={j}>{p}</p>
+                  ))}
+                </div>
+              </details>
+            ))}
+          </div>
+        </Container>
+      </Section>
 
       {faq.cta ? (
-        <section
-          className="bg-cover bg-center py-24 sm:py-28"
-          style={{
-            backgroundImage: backgroundImage(faq.cta.backgroundImage),
-          }}
+        <Section
+          size="spacious"
+          className="relative overflow-hidden bg-feature/35"
         >
-          <Container size="xl" className="site-grid">
+          <BackgroundImageLayer image={faq.cta.backgroundImage} />
+          <Container size="xl" className="site-grid relative z-10">
             <div className="grid-center-xl rounded-none border border-muted bg-feature/90 px-8 py-20 text-center sm:px-12">
               <h2 className="heading-module">{faq.cta.heading}</h2>
               <p className="body-1 mx-auto mt-4 max-w-[420px]">
@@ -97,7 +99,7 @@ export default async function FAQ() {
               </CtaLink>
             </div>
           </Container>
-        </section>
+        </Section>
       ) : null}
     </div>
   );

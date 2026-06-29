@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
+import { Section } from "@/components/ui/section";
 import { pageMetadata } from "@/lib/seo";
 import { backgroundImage } from "@/lib/cms-images";
 import { getContactPage, getSiteSettings } from "@/lib/cms";
@@ -56,7 +57,7 @@ export default async function Contact() {
 
       {/* what to expect */}
       {contact.expect ? (
-      <section className="bg-feature/35 py-28 sm:py-36">
+      <Section size="spacious" className="bg-feature/35">
         <Container size="xl" className="site-grid">
           <div className="grid-center-md mb-14 text-center">
             <p className="eyebrow">{contact.expect.eyebrow}</p>
@@ -85,11 +86,11 @@ export default async function Contact() {
             ))}
           </div>
         </Container>
-      </section>
+      </Section>
       ) : null}
 
       {/* location + hours */}
-      <section className="py-24 sm:py-28">
+      <Section size="spacious">
         <Container
           size="xl"
           className="site-grid"
@@ -136,7 +137,7 @@ export default async function Contact() {
             />
           </div>
         </Container>
-      </section>
+      </Section>
     </div>
   );
 }

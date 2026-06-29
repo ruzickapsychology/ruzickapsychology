@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/container";
 import { PortableContent } from "@/components/ui/portable-content";
+import { Section } from "@/components/ui/section";
 import { pageMetadata } from "@/lib/seo";
 import {
   formatPostDate,
@@ -35,8 +36,9 @@ export default async function BlogPost(props: PageProps<"/blog/[slug]">) {
   const olderPost = await getOlderPostMeta(slug);
 
   return (
-    <div className="rp-fade pb-24 pt-32">
-      <Container size="md">
+    <div className="rp-fade">
+      <Section size="page">
+        <Container size="md">
         <Link
           href="/blog"
           className="mono-label mb-10 inline-block border-b border-accent pb-1 normal-case tracking-[0.06em] text-accent transition-colors hover:text-fg"
@@ -66,7 +68,8 @@ export default async function BlogPost(props: PageProps<"/blog/[slug]">) {
             </Link>
           )}
         </nav>
-      </Container>
+        </Container>
+      </Section>
     </div>
   );
 }

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { BackgroundImageLayer } from "@/components/ui/background-image-layer";
 import { Container } from "@/components/ui/container";
 import { SpecialtyGlyph } from "@/components/ui/icons";
 import { PortableContent } from "@/components/ui/portable-content";
+import { Section } from "@/components/ui/section";
 import { pageMetadata } from "@/lib/seo";
-import { backgroundImage } from "@/lib/cms-images";
 import { getSpecialtiesPage } from "@/lib/cms";
 
 export const metadata: Metadata = pageMetadata({
@@ -19,7 +20,7 @@ export default async function Specialties() {
 
   return (
     <div className="rp-fade pt-16">
-      <section className="py-20">
+      <Section size="spacious">
         <Container size="xl" className="site-grid">
           <div className="grid-center-md mb-15 text-center">
             <p className="eyebrow">{specialties.eyebrow}</p>
@@ -54,17 +55,16 @@ export default async function Specialties() {
             ))}
           </div>
         </Container>
-      </section>
+      </Section>
 
       {/* modality band */}
       {specialties.modality ? (
-        <section
-          className="bg-cover bg-center py-16 sm:py-20"
-          style={{
-            backgroundImage: backgroundImage(specialties.modality.backgroundImage),
-          }}
+        <Section
+          size="default"
+          className="relative overflow-hidden bg-feature/35"
         >
-          <Container size="xl" className="site-grid">
+          <BackgroundImageLayer image={specialties.modality.backgroundImage} />
+          <Container size="xl" className="site-grid relative z-10">
             <div className="grid-center-xl px-8 py-12 text-left sm:px-12 sm:py-14">
               <p className="eyebrow">{specialties.modality.eyebrow}</p>
               <h2 className="heading-module mt-4 max-w-[640px]">
@@ -76,7 +76,7 @@ export default async function Specialties() {
               />
             </div>
           </Container>
-        </section>
+        </Section>
       ) : null}
     </div>
   );

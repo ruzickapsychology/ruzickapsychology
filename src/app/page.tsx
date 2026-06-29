@@ -1,25 +1,39 @@
 import Link from "next/link";
+import Image from "next/image";
+import { BackgroundImageLayer } from "@/components/ui/background-image-layer";
 import { Container } from "@/components/ui/container";
 import { HeroBadge } from "@/components/ui/hero-badge";
 import { SpecialtyGlyph } from "@/components/ui/icons";
+import { Section } from "@/components/ui/section";
 import { CtaLink } from "@/components/analytics";
-import { backgroundImage } from "@/lib/cms-images";
+import { imageSrc } from "@/lib/cms-images";
 import { getHomePage } from "@/lib/cms";
 
 export default async function Home() {
   const home = await getHomePage();
   if (!home) return null;
+  const heroImageSrc = imageSrc(home.hero.backgroundImage);
 
   return (
     <div className="rp-fade">
       {/* hero */}
       <section
         className="relative flex min-h-[760px] items-center justify-center overflow-hidden bg-cover bg-center text-center md:min-h-[840px]"
-        style={{
-          backgroundImage: backgroundImage(home.hero.backgroundImage),
-        }}
       >
-        <Container size="xl" className="site-grid">
+        {heroImageSrc ? (
+          <Image
+            alt={home.hero.backgroundImage?.alt ?? ""}
+            className="absolute inset-0 z-0 object-cover"
+            decoding="async"
+            fetchPriority="high"
+            fill
+            loading="eager"
+            quality={72}
+            sizes="100vw"
+            src={heroImageSrc}
+          />
+        ) : null}
+        <Container size="xl" className="site-grid relative z-10">
           <div className="grid-center-lg relative top-4 py-16">
             <HeroBadge />
             <div className="mt-[39px]">
@@ -36,7 +50,7 @@ export default async function Home() {
             </div>
           </div>
         </Container>
-        <div className="pointer-events-none absolute inset-x-0 bottom-8 text-center text-light">
+        <div className="pointer-events-none absolute inset-x-0 bottom-8 z-10 text-center text-light">
           <span
             className="mono-label rp-bob inline-block text-[13px] leading-none [filter:drop-shadow(0_1px_3px_rgba(58,35,40,0.35))]"
             aria-hidden
@@ -48,7 +62,7 @@ export default async function Home() {
       <div id="hero-sentinel" />
 
       {/* specialties — quadrant layout */}
-      <section className="py-24 sm:py-28">
+      <Section size="spacious">
         <Container size="xl" className="site-grid">
           <div className="grid-center-md mb-14 text-center">
             <p className="eyebrow">{home.specialties.eyebrow}</p>
@@ -81,21 +95,21 @@ export default async function Home() {
             </Link>
           </div>
         </Container>
-      </section>
+      </Section>
 
       {/* about preview */}
-      <section className="bg-feature/35 py-24 sm:py-28">
+      <Section size="spacious" className="bg-feature/35">
         <Container
           size="xl"
           className="site-grid items-center"
         >
           <div className="grid-split-media mx-auto w-full max-w-[300px] rounded-full border border-muted p-2 lg:justify-self-center">
-            <div
-              className="aspect-square w-full overflow-hidden rounded-full bg-cover bg-center"
-              style={{
-                backgroundImage: backgroundImage(home.about.portraitImage),
-              }}
-            />
+            <div className="relative aspect-square w-full overflow-hidden rounded-full">
+              <BackgroundImageLayer
+                image={home.about.portraitImage}
+                alt={home.about.portraitImage?.alt ?? "Dr. Christina Ruzicka"}
+              />
+            </div>
           </div>
           <div className="home-about-copy grid-split-copy text-center md:text-left">
             <p className="eyebrow">{home.about.eyebrow}</p>
@@ -111,16 +125,15 @@ export default async function Home() {
             </Link>
           </div>
         </Container>
-      </section>
+      </Section>
 
       {/* CTA band */}
-      <section
-        className="bg-cover bg-center py-24 sm:py-28"
-        style={{
-          backgroundImage: backgroundImage(home.cta.backgroundImage),
-        }}
+      <Section
+        size="spacious"
+        className="relative overflow-hidden bg-feature/35"
       >
-        <Container size="xl" className="site-grid">
+        <BackgroundImageLayer image={home.cta.backgroundImage} />
+        <Container size="xl" className="site-grid relative z-10">
           <div className="grid-center-xl rounded-none border border-muted bg-feature/90 px-8 py-20 text-center sm:px-12">
             <h2>{home.cta.heading}</h2>
             <p className="body-1 mx-auto mt-4.5 max-w-[430px]">
@@ -136,7 +149,7 @@ export default async function Home() {
             </CtaLink>
           </div>
         </Container>
-      </section>
+      </Section>
     </div>
   );
 }

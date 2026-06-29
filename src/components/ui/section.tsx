@@ -11,11 +11,12 @@ const tones = {
 const sizes = {
   compact: "py-12 sm:py-16",
   default: "py-16 sm:py-20",
+  page: "pb-20 pt-28 sm:pb-24 sm:pt-32",
   spacious: "py-20 sm:py-28 md:py-32",
 } as const;
 
 export function Section({
-  tone = "raised",
+  tone = "default",
   size = "default",
   className = "",
   ...props

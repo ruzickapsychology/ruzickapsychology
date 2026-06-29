@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { BackgroundImageLayer } from "@/components/ui/background-image-layer";
 import { Container } from "@/components/ui/container";
+import { Section } from "@/components/ui/section";
 import { CtaLink } from "@/components/analytics";
 import { PortableContent } from "@/components/ui/portable-content";
 import { pageMetadata } from "@/lib/seo";
-import { backgroundImage } from "@/lib/cms-images";
 import { getPricingPage } from "@/lib/cms";
 
 export const metadata: Metadata = pageMetadata({
@@ -19,7 +20,7 @@ export default async function Pricing() {
 
   return (
     <div className="rp-fade pt-16">
-      <section className="py-20">
+      <Section size="spacious">
         <Container size="xl" className="site-grid">
           <div className="grid-center-sm mb-15 text-center">
             <p className="eyebrow">{pricing.eyebrow}</p>
@@ -67,17 +68,16 @@ export default async function Pricing() {
             ) : null}
           </div>
         </Container>
-      </section>
+      </Section>
 
       {/* CTA */}
       {pricing.cta ? (
-        <section
-          className="bg-cover bg-center py-24 sm:py-28"
-          style={{
-            backgroundImage: backgroundImage(pricing.cta.backgroundImage),
-          }}
+        <Section
+          size="spacious"
+          className="relative overflow-hidden bg-feature/35"
         >
-          <Container size="xl" className="site-grid">
+          <BackgroundImageLayer image={pricing.cta.backgroundImage} />
+          <Container size="xl" className="site-grid relative z-10">
             <div className="grid-center-xl rounded-none border border-muted bg-feature/90 px-8 py-20 text-center sm:px-12">
               <h2 className="heading-module">{pricing.cta.heading}</h2>
               <p className="body-1 mx-auto mt-4 max-w-[420px]">
@@ -93,7 +93,7 @@ export default async function Pricing() {
               </CtaLink>
             </div>
           </Container>
-        </section>
+        </Section>
       ) : null}
     </div>
   );

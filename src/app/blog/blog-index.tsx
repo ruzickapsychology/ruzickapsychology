@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
+import { Section } from "@/components/ui/section";
 import { formatPostDate, type PostMeta } from "@/lib/blog";
 
 function pageHref(page: number) {
@@ -16,8 +17,9 @@ export function BlogIndex({
   totalPages: number;
 }) {
   return (
-    <div className="rp-fade pb-24 pt-32">
-      <Container size="md">
+    <div className="rp-fade">
+      <Section size="page">
+        <Container size="md">
         <div className="text-center">
           <h1>Blog</h1>
         </div>
@@ -71,7 +73,8 @@ export function BlogIndex({
             ))}
           </nav>
         )}
-      </Container>
+        </Container>
+      </Section>
     </div>
   );
 }
