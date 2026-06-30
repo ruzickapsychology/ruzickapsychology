@@ -51,7 +51,7 @@ Tracked events:
 - `client_portal_click` - Client Portal links.
 - `inquiry_submitted` - successful contact form delivery.
 
-Use `src/components/analytics.tsx` for tracked links. Keep event names stable unless analytics reporting is intentionally reset.
+Use `src/components/cta-link/index.tsx` for tracked internal CTAs and `src/components/tracked-external-link/index.tsx` for tracked external links. Keep event names stable unless analytics reporting is intentionally reset.
 
 ## Success And Error States
 

@@ -8,7 +8,7 @@ Use this checklist when extracting or cloning this repo into a new high-quality 
 - Create a Vercel project.
 - Create a Sanity project and dataset.
 - Configure `.env.local` and Vercel env vars from `.env.example`.
-- Confirm `npm run dev`, `/studio`, and `npm run verify` work.
+- Confirm `npm run dev`, `/studio`, and `npm run verify:ci` work.
 
 ## 2. Generalize Client-Specific Content
 
@@ -71,6 +71,6 @@ Before handing the starter to future agents:
 - Keep `AGENTS.md` concise and current.
 - Keep README focused on human onboarding.
 - Keep docs split by topic.
-- Run `npm run verify`.
+- Run `npm run verify:ci`.
 - Spot-check desktop, tablet, and mobile.
 - Confirm no stale client-specific ethics or copy remains unless intentionally part of the template.

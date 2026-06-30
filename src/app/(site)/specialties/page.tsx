@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BackgroundImageLayer } from "@/components/ui/background-image-layer";
 import { Container } from "@/components/ui/container";
-import { SpecialtyGlyph } from "@/components/ui/icons";
+import { SpecialtyGlyph } from "@/components/ui/specialty-glyph";
 import { PortableContent } from "@/components/ui/portable-content";
 import { Section } from "@/components/ui/section";
 import { pageMetadata } from "@/lib/seo";

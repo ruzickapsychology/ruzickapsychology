@@ -4,9 +4,9 @@ import { BackgroundImageLayer } from "@/components/ui/background-image-layer";
 import { Container } from "@/components/ui/container";
 import { HeroBadge } from "@/components/ui/hero-badge";
 import { HeaderSentinel } from "@/components/ui/header-sentinel";
-import { SpecialtyGlyph } from "@/components/ui/icons";
+import { SpecialtyGlyph } from "@/components/ui/specialty-glyph";
 import { Section } from "@/components/ui/section";
-import { CtaLink } from "@/components/analytics";
+import { CtaLink } from "@/components/cta-link";
 import { imageBlurData, imageSrc } from "@/lib/cms-images";
 import { getHomePage } from "@/lib/cms";
 

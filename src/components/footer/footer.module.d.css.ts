@@ -1,0 +1,20 @@
+declare const styles: {
+  readonly badge: string;
+  readonly badgeLink: string;
+  readonly grid: string;
+  readonly info: string;
+  readonly link: string;
+  readonly linkAbout: string;
+  readonly linkBlog: string;
+  readonly linkContact: string;
+  readonly linkFaq: string;
+  readonly linkPortal: string;
+  readonly linkPricing: string;
+  readonly linkSpecialties: string;
+  readonly links: string;
+  readonly note: string;
+  readonly portalIcon: string;
+  readonly portalInner: string;
+  readonly root: string;
+};
+export = styles;

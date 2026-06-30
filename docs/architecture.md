@@ -58,14 +58,14 @@ For a reusable starter template, a standalone Studio can be considered for new p
 
 ## Header And Footer
 
-`src/components/header.tsx` owns:
+`src/components/header/index.tsx` owns:
 
 - Desktop navigation.
 - Mobile full-screen navigation.
 - Initial vs scrolled nav treatment.
 - Client Portal external link tracking.
 
-`src/components/footer.tsx` owns:
+`src/components/footer/index.tsx` owns:
 
 - Footer link layout.
 - Practice facts from `siteSettings`.

@@ -12,17 +12,22 @@ npm run dev
 
 Open http://localhost:3000.
 
-Next.js 16 requires Node.js 20.9 or newer.
+Use Node.js 22 and npm 10, matching `package.json`, `.node-version`, and CI.
 
 ## Scripts
 
 - `npm run dev` - start the dev server
+- `npm run verify:quick` - fast edit loop: component structure, lint, typecheck, and unit tests
+- `npm run verify` - full code handoff: generators, generated-file drift check, formatting, lint, typecheck, content validation, tests, and build
+- `npm run verify:ci` - local equivalent of GitHub CI, including Playwright browser install and e2e checks
+- `npm run verify:release` - CI tier plus Lighthouse CI
 - `npm run build` - production build and static route generation
 - `npm run start` - serve the production build
 - `npm run lint` - run ESLint
 - `npm run typecheck` - generate Next route types and run TypeScript
 - `npm run typegen` - extract the Sanity schema and generate Sanity types
 - `npm run css-types` - generate TypeScript declarations for CSS Modules
+- `npm run check:generated` - fail if generated Sanity or CSS Module declaration files are stale
 - `npm run test` - run unit tests
 - `npm run test:e2e` - run Playwright accessibility and smoke tests
 - `npm run lhci` - run Lighthouse CI against a local production server
@@ -123,14 +128,13 @@ After changing Vercel env vars, redeploy.
 Before pushing important changes:
 
 ```bash
-npm run css-types
-npm run format:check
-npm run lint
-npm run typecheck
-npm run typegen
-npm run sanity:validate-content
-npm run test
-npm run build
+npm run verify:ci
+```
+
+Before launch or performance-sensitive handoffs:
+
+```bash
+npm run verify:release
 ```
 
 For CMS or launch changes, also spot-check:

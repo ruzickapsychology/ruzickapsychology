@@ -2,13 +2,13 @@
   "hooks": {
     "PostToolUse": [
       {
-        "matcher": "^apply_patch$",
+        "matcher": "^(apply_patch|Edit|Write|MultiEdit)$",
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$(git rev-parse --show-toplevel)/.codex/hooks/format-after-apply-patch.mjs\"",
+            "command": "node \"$(git rev-parse --show-toplevel)/scripts/format-hook-files.mjs\"",
             "timeout": 120,
-            "statusMessage": "Formatting patched files"
+            "statusMessage": "Formatting and linting edited files"
           }
         ]
       }

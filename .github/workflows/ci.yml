@@ -20,13 +20,4 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run css-types
-      - run: npm run format:check
-      - run: npm run lint
-      - run: npm run typecheck
-      - run: npm run typegen
-      - run: npm run sanity:validate-content
-      - run: npm run test
-      - run: npm run build
-      - run: npx playwright install --with-deps chromium
-      - run: npm run test:e2e
+      - run: npm run verify:ci

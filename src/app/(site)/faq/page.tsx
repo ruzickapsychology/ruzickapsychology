@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BackgroundImageLayer } from "@/components/ui/background-image-layer";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
-import { CtaLink } from "@/components/analytics";
+import { CtaLink } from "@/components/cta-link";
 import { pageMetadata } from "@/lib/seo";
 import { getFAQPage } from "@/lib/cms";
 

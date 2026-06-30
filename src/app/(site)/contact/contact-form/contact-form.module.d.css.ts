@@ -1,0 +1,27 @@
+declare const styles: {
+  readonly actionSpacer: string;
+  readonly bloom: string;
+  readonly bloomArt: string;
+  readonly bloomFlower: string;
+  readonly contactSuccessPanelIn: string;
+  readonly error: string;
+  readonly field: string;
+  readonly fieldGrid: string;
+  readonly fieldsShell: string;
+  readonly fieldsStack: string;
+  readonly form: string;
+  readonly formActive: string;
+  readonly formSubmitting: string;
+  readonly honeypot: string;
+  readonly submit: string;
+  readonly successToastLifecycle: string;
+  readonly textarea: string;
+  readonly toast: string;
+  readonly toastClose: string;
+  readonly toastContent: string;
+  readonly toastDetail: string;
+  readonly toastInitial: string;
+  readonly toastLabel: string;
+  readonly toastScrolled: string;
+};
+export = styles;

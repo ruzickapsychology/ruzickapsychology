@@ -55,13 +55,11 @@ Everything below the first viewport should be lazy by default. `BackgroundImageL
 
 Local Lighthouse can be noisy. For production confidence:
 
-1. Run `npm run build`.
-2. Run `npm run start`.
-3. Test local desktop and mobile layouts.
-4. Run `npm run lhci` for a repeatable local mobile Lighthouse check.
-5. Deploy to Vercel.
-6. Re-run PageSpeed Insights against the production URL.
-7. Re-run once if the first result is unusually slow, because cold CDN and lab variance can distort a single run.
+1. Run `npm run verify:release` for the full code, Playwright, and Lighthouse path.
+2. Test local desktop and mobile layouts.
+3. Deploy to Vercel.
+4. Re-run PageSpeed Insights against the production URL.
+5. Re-run once if the first result is unusually slow, because cold CDN and lab variance can distort a single run.
 
 Prioritize real impact:
 
