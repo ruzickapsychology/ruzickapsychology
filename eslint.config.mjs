@@ -5,10 +5,23 @@ import nextTs from "eslint-config-next/typescript";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
+  {
+    files: ["**/*.{ts,tsx}"],
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+      },
+    },
+    rules: {
+      "@typescript-eslint/consistent-type-imports": "warn",
+      "@typescript-eslint/no-floating-promises": "warn",
+    },
+  },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:
     ".next/**",
+    ".generated/**",
     "out/**",
     "build/**",
     "next-env.d.ts",

@@ -3,6 +3,7 @@ export const contact = {
   heading: "Let's Work Together",
   intro:
     "I am currently accepting new clients for in-person and virtual appointments. I'll be in touch within two business days after receiving your inquiry.",
+  formNote: "Please do not include sensitive information.",
   expect: {
     eyebrow: "The Process",
     heading: "What to Expect",

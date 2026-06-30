@@ -6,10 +6,12 @@ declare const styles: {
   readonly activePrimaryLight: string;
   readonly activeUtilityDark: string;
   readonly activeUtilityLight: string;
+  readonly contactOverlay: string;
   readonly darkLink: string;
   readonly darkText: string;
   readonly desktopLink: string;
   readonly desktopNav: string;
+  readonly homeOverlay: string;
   readonly inner: string;
   readonly item: string;
   readonly lightLink: string;
@@ -27,10 +29,12 @@ declare const styles: {
   readonly primaryItem: string;
   readonly primaryLight: string;
   readonly primaryNav: string;
+  readonly quoteOverlay: string;
   readonly root: string;
   readonly secondary: string;
   readonly secondaryDark: string;
   readonly secondaryLight: string;
+  readonly solidOverlay: string;
   readonly utilityDark: string;
   readonly utilityItem: string;
   readonly utilityLight: string;

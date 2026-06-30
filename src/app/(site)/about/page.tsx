@@ -1,10 +1,20 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { BackgroundImageLayer } from "@/components/ui/background-image-layer";
+import { CircularPortrait } from "@/components/ui/circular-portrait";
 import { Container } from "@/components/ui/container";
+import {
+  DisclosureItem,
+  DisclosureList,
+} from "@/components/ui/disclosure-list";
+import { PageShell } from "@/components/ui/page-shell";
 import { PortableContent } from "@/components/ui/portable-content";
 import { Section } from "@/components/ui/section";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { imageSrc } from "@/lib/cms-images";
 import { pageMetadata } from "@/lib/seo";
 import { getAboutPage } from "@/lib/cms";
+import styles from "./styles.module.css";
 
 export const metadata: Metadata = pageMetadata({
   title: "About",
@@ -15,30 +25,27 @@ export const metadata: Metadata = pageMetadata({
 
 export default async function About() {
   const about = await getAboutPage();
-  if (!about) return null;
+  if (!about) notFound();
 
   return (
-    <div className="rp-fade pt-16">
+    <PageShell fixedHeaderOffset>
       {/* bio */}
       <Section size="default">
-        <Container size="xl" className="site-grid items-start">
-          <div className="grid-split-media border-muted mx-auto w-full max-w-[360px] rounded-full border p-2 md:sticky md:top-24 lg:justify-self-center">
-            <div className="relative aspect-square w-full overflow-hidden rounded-full">
-              <BackgroundImageLayer
-                image={about.portraitImage}
-                alt={about.portraitImage?.alt ?? "Dr. Christina Ruzicka"}
-                objectPosition="center 20%"
-                sizes="(min-width: 1024px) 360px, 85vw"
-              />
-            </div>
-          </div>
-          <div className="grid-split-copy">
-            <p className="eyebrow">{about.credentials}</p>
-            <h1 className="heading-section mt-3.5">{about.heading}</h1>
-            <PortableContent value={about.intro} className="prose mt-7" />
+        <Container size="xl" className={styles.bioGrid}>
+          <CircularPortrait
+            image={about.portraitImage}
+            alt={about.portraitImage?.alt ?? "Dr. Christina Ruzicka"}
+            imageSizes="(min-width: 1024px) 360px, 85vw"
+            sticky
+            className={styles.bioPortrait}
+          />
+          <div className={styles.bioCopy}>
+            <p className={styles.eyebrow}>{about.credentials}</p>
+            <h1 className={styles.bioHeading}>{about.heading}</h1>
+            <PortableContent value={about.intro} className={styles.intro} />
 
             {about.credentialGroups?.length ? (
-              <div className="border-muted mt-11 border-b">
+              <DisclosureList className={styles.credentialsList}>
                 {about.credentialGroups.map((group) => (
                   <Credentials
                     key={group._key ?? group.heading}
@@ -46,7 +53,7 @@ export default async function About() {
                     license={group.license}
                   />
                 ))}
-              </div>
+              </DisclosureList>
             ) : null}
           </div>
         </Container>
@@ -54,38 +61,39 @@ export default async function About() {
 
       {/* therapy space */}
       {about.space ? (
-        <Section size="spacious" className="bg-feature/35">
-          <Container size="xl" className="site-grid">
-            <div className="grid-center-md text-center">
-              <p className="eyebrow">{about.space.eyebrow}</p>
-              <h2 className="heading-item mt-4">{about.space.heading}</h2>
-              <p className="body-2 mx-auto mt-4 max-w-[480px]">
-                {about.space.body}
-              </p>
-            </div>
+        <Section size="spacious" className={styles.featureSection}>
+          <Container size="xl" className={styles.sectionGrid}>
+            <SectionHeading
+              eyebrow={about.space.eyebrow}
+              heading={about.space.heading}
+              intro={about.space.body}
+              headingAs="h2"
+              headingClassName={styles.spaceHeading}
+              className={styles.sectionIntro}
+            />
 
-            <div className="grid-card-2 grid-full mt-12 gap-5 md:gap-7">
-              <div className="border-muted bg-surface/45 aspect-[4/3] border">
-                {about.space.exteriorImage?.asset?.url ? (
-                  <div className="relative h-full w-full overflow-hidden">
+            <div className={styles.spaceGrid}>
+              <div className={styles.spaceImageShell}>
+                {imageSrc(about.space.exteriorImage) ? (
+                  <div className={styles.spaceImageFrame}>
                     <BackgroundImageLayer
                       image={about.space.exteriorImage}
-                      alt={about.space.exteriorImage.alt ?? "Office exterior"}
+                      alt={about.space.exteriorImage?.alt ?? "Office exterior"}
                       sizes="(min-width: 1024px) 50vw, 100vw"
                     />
                   </div>
                 ) : (
-                  <div className="flex h-full items-center justify-center p-8 text-center">
+                  <div className={styles.placeholder}>
                     <div>
-                      <p className="mono-label text-accent">Exterior Photo</p>
-                      <p className="body-3 text-body/75 mt-4 max-w-[260px]">
+                      <p className={styles.placeholderLabel}>Exterior Photo</p>
+                      <p className={styles.placeholderBody}>
                         Placeholder for the building exterior.
                       </p>
                     </div>
                   </div>
                 )}
               </div>
-              <div className="border-muted bg-surface/45 relative aspect-[4/3] overflow-hidden border">
+              <div className={styles.interiorImageShell}>
                 <BackgroundImageLayer
                   image={about.space.interiorImage}
                   alt={
@@ -105,32 +113,25 @@ export default async function About() {
         <Section
           size="default"
           id="about-quote-band"
-          className="bg-fg relative overflow-hidden"
+          className={styles.quoteSection}
         >
           <BackgroundImageLayer
             image={about.philosophy.backgroundImage}
             sizes="100vw"
           />
-          <div
-            className="bg-quote-overlay/20 absolute inset-0 z-0"
-            aria-hidden
-          />
-          <Container size="xl" className="site-grid relative z-10">
-            <div className="grid-center-xl px-8 py-12 text-center sm:px-12 sm:py-14">
-              <p className="text-light/90 mb-6 font-sans text-[13px] font-semibold tracking-[0.24em] uppercase">
-                {about.philosophy.eyebrow}
-              </p>
-              <p className="heading-module text-light mx-auto max-w-[680px] leading-snug">
-                “{about.philosophy.quote}”
-              </p>
-              <p className="mono-label text-light/75 mt-7 tracking-[0.08em] normal-case">
+          <div className={styles.quoteOverlay} aria-hidden />
+          <Container size="xl" className={styles.quoteGrid}>
+            <div className={styles.quoteContent}>
+              <p className={styles.quoteKicker}>{about.philosophy.eyebrow}</p>
+              <p className={styles.quoteText}>“{about.philosophy.quote}”</p>
+              <p className={styles.quoteAttribution}>
                 —{about.philosophy.attribution}
               </p>
             </div>
           </Container>
         </Section>
       ) : null}
-    </div>
+    </PageShell>
   );
 }
 
@@ -145,36 +146,20 @@ function Credentials({
   license?: string;
 }) {
   return (
-    <details className="group border-muted border-t">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
-        <span className="body-1 font-heading text-fg leading-tight">
-          {group.heading}
-        </span>
-        <span className="text-accent shrink-0 transition-transform duration-300 group-open:rotate-45">
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            aria-hidden
-          >
-            <path d="M12 5v14M5 12h14" />
-          </svg>
-        </span>
-      </summary>
-      <div className="pr-10 pb-7">
-        {group.items.map((item) => (
-          <p key={item._key ?? item.title} className="body-3 mb-4">
-            <strong className="text-fg font-bold">{item.title}</strong>
-            <br />
-            {item.detail}
-          </p>
-        ))}
-        {license && <p className="body-3 text-body/70 mt-1">{license}</p>}
-      </div>
-    </details>
+    <DisclosureItem
+      title={group.heading}
+      titleClassName={styles.credentialHeading}
+      bodyClassName={styles.credentialBody}
+      bodySpacing={false}
+    >
+      {group.items.map((item) => (
+        <p key={item._key ?? item.title} className={styles.credentialItem}>
+          <strong className={styles.credentialTitle}>{item.title}</strong>
+          <br />
+          {item.detail}
+        </p>
+      ))}
+      {license && <p className={styles.license}>{license}</p>}
+    </DisclosureItem>
   );
 }

@@ -1,3 +1,5 @@
+import styles from "./styles.module.css";
+
 export function ArrowUpRight({ size = 12 }: { size?: number }) {
   return (
     <svg
@@ -9,7 +11,7 @@ export function ArrowUpRight({ size = 12 }: { size?: number }) {
       strokeWidth="2.4"
       strokeLinecap="round"
       strokeLinejoin="round"
-      style={{ display: "block" }}
+      className={styles.icon}
       aria-hidden
     >
       <path d="M7 17L17 7" />

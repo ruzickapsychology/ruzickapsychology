@@ -1,11 +1,13 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import type { FormEvent } from "react";
 import { createPortal } from "react-dom";
 import { track } from "@vercel/analytics";
 import { buttonClasses } from "@/components/ui/button";
+import { FormField } from "@/components/ui/form-field";
 import { HEADER_SENTINEL_ID } from "@/components/ui/header-sentinel";
-import styles from "./contact-form.module.css";
+import styles from "./styles.module.css";
 
 type InquiryState = {
   status: "idle" | "success" | "error";
@@ -15,12 +17,17 @@ type InquiryState = {
 const initialState: InquiryState = { status: "idle" };
 const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 const successTransitionMs = 420;
+const safetyNoteId = "contact-form-safety-note";
 
 function wait(ms: number) {
   return new Promise((resolve) => window.setTimeout(resolve, ms));
 }
 
-export function ContactForm() {
+function classNames(...classes: Array<string | false | null | undefined>) {
+  return classes.filter(Boolean).join(" ");
+}
+
+export function ContactForm({ note }: { note?: string }) {
   const [state, setState] = useState<InquiryState>(initialState);
   const [pending, setPending] = useState(false);
   const [animationRun, setAnimationRun] = useState(0);
@@ -63,7 +70,9 @@ export function ContactForm() {
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    if (String(formData.get("company") ?? "").trim()) {
+    const botcheck = formData.get("botcheck");
+
+    if (String(formData.get("company") ?? "").trim() || botcheck) {
       setPending(true);
       await wait(successTransitionMs);
       setPending(false);
@@ -107,6 +116,7 @@ export function ContactForm() {
         access_key: accessKey,
         subject: `New consultation inquiry - ${firstName} ${lastName}`,
         from_name: "Ruzicka Psychology Website",
+        botcheck: false,
         name: `${firstName} ${lastName}`.trim(),
         email,
         phone: String(formData.get("phone") ?? "").trim() || "-",
@@ -169,6 +179,14 @@ export function ContactForm() {
         <div aria-hidden className={styles.honeypot}>
           <label htmlFor="company">Company</label>
           <input id="company" name="company" tabIndex={-1} autoComplete="off" />
+          <label htmlFor="botcheck">Do not check this box</label>
+          <input
+            id="botcheck"
+            type="checkbox"
+            name="botcheck"
+            tabIndex={-1}
+            autoComplete="off"
+          />
         </div>
 
         {state.status === "success" ? (
@@ -181,62 +199,87 @@ export function ContactForm() {
         ) : (
           <>
             <div
-              className={`${styles.fieldsShell} ${styles.formActive} ${
-                pending ? styles.formSubmitting : ""
-              }`}
+              className={classNames(
+                styles.fieldsShell,
+                styles.formActive,
+                pending && styles.formSubmitting,
+              )}
             >
               <div className={styles.fieldsStack}>
                 <div className={styles.fieldGrid}>
-                  <input
+                  <FormField
+                    id="contact-first-name"
                     name="firstName"
                     required
+                    label="First name"
                     placeholder="First name*"
                     className={styles.field}
                   />
-                  <input
+                  <FormField
+                    id="contact-last-name"
                     name="lastName"
+                    label="Last name"
                     placeholder="Last name"
                     className={styles.field}
                   />
                 </div>
-                <input
+                <FormField
+                  id="contact-email"
                   type="email"
                   name="email"
                   required
+                  label="Email address"
                   placeholder="Email address*"
                   className={styles.field}
                 />
-                <input
+                <FormField
+                  id="contact-therapy-type"
                   name="therapyType"
+                  label="Therapy interest"
                   placeholder="What type of therapy are you interested in?"
                   className={styles.field}
                 />
-                <input
+                <FormField
+                  id="contact-format"
                   name="format"
+                  label="Preferred appointment format"
                   placeholder="Would you prefer in-person or virtual therapy?"
                   className={styles.field}
                 />
                 <div className={styles.fieldGrid}>
-                  <input
+                  <FormField
+                    id="contact-city"
                     name="city"
+                    label="City"
                     placeholder="What city are you based in?"
                     className={styles.field}
                   />
-                  <input
+                  <FormField
+                    id="contact-phone"
                     type="tel"
                     name="phone"
+                    label="Phone number"
                     placeholder="Phone number"
                     className={styles.field}
                   />
                 </div>
-                <textarea
+                <FormField
+                  id="contact-message"
                   name="message"
                   rows={6}
                   required
-                  placeholder="Tell me a little about what brings you to therapy.*"
-                  className={`${styles.field} ${styles.textarea}`}
+                  label="Scheduling or general question"
+                  aria-describedby={note ? safetyNoteId : undefined}
+                  placeholder="Share a scheduling question or general note.*"
+                  className={classNames(styles.field, styles.textarea)}
+                  multiline
                 />
               </div>
+              {note ? (
+                <p id={safetyNoteId} className={styles.privacyNote}>
+                  {note}
+                </p>
+              ) : null}
             </div>
 
             {state.status === "error" && (
@@ -246,7 +289,10 @@ export function ContactForm() {
             <button
               type="submit"
               disabled={pending}
-              className={buttonClasses("primary", styles.submit)}
+              className={buttonClasses(
+                "primary",
+                classNames(styles.submit, styles.submitFocus),
+              )}
             >
               {pending ? "Sending…" : "Submit →"}
             </button>
@@ -281,9 +327,10 @@ function SuccessToast({
 }) {
   return (
     <div
-      className={`${styles.toast} ${
-        scrolled ? styles.toastScrolled : styles.toastInitial
-      }`}
+      className={classNames(
+        styles.toast,
+        scrolled ? styles.toastScrolled : styles.toastInitial,
+      )}
       role="status"
       aria-live="polite"
     >

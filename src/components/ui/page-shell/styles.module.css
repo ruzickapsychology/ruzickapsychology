@@ -1,0 +1,7 @@
+.root {
+  composes: rp-fade from global;
+}
+
+.fixedHeaderOffset {
+  padding-top: 4rem;
+}

@@ -1,4 +1,4 @@
-import { defineQuery } from "next-sanity";
+import { defineQuery, type QueryParams } from "next-sanity";
 import type { PortableTextBlock } from "@portabletext/react";
 
 import { client } from "@/sanity/lib/client";
@@ -125,6 +125,7 @@ export type ContactPageContent = {
   eyebrow?: string;
   heading: string;
   intro?: string;
+  formNote?: string;
   headerBackgroundImage?: SanityImageValue;
   expect?: {
     eyebrow?: string;
@@ -165,6 +166,7 @@ type RawPost = {
   publishedAt: string;
   excerpt: string;
   body: RichText;
+  bodyText?: Array<string | null>;
 };
 
 export type RawPostMeta = {
@@ -173,7 +175,7 @@ export type RawPostMeta = {
   slug: string;
   publishedAt: string;
   excerpt: string;
-  body?: RichText;
+  bodyText?: Array<string | null>;
 };
 
 const siteSettingsQuery = defineQuery(/* groq */ `
@@ -226,11 +228,12 @@ const homePageQuery = defineQuery(/* groq */ `
     specialtiesSection{
       eyebrow,
       heading,
-      specialties[]->{
-        title,
-        "slug": slug.current,
-        summary,
-        details
+      specialties[]{
+        _key,
+        "title": @->title,
+        "slug": @->slug.current,
+        "summary": @->summary,
+        "details": @->details
       }
     },
     aboutPreview{
@@ -352,11 +355,12 @@ const aboutPageQuery = defineQuery(/* groq */ `
 const specialtiesPageQuery = defineQuery(/* groq */ `
   *[_type == "specialtiesPage" && _id == "specialtiesPage"][0]{
     header,
-    specialties[]->{
-      title,
-      "slug": slug.current,
-      summary,
-      details
+    specialties[]{
+      _key,
+      "title": @->title,
+      "slug": @->slug.current,
+      "summary": @->summary,
+      "details": @->details
     },
     modality{
       eyebrow,
@@ -411,6 +415,7 @@ const pricingPageQuery = defineQuery(/* groq */ `
 const contactPageQuery = defineQuery(/* groq */ `
   *[_type == "contactPage" && _id == "contactPage"][0]{
     header,
+    formNote,
     headerBackgroundImage{
       asset->{
         _id,
@@ -454,17 +459,6 @@ const faqPageQuery = defineQuery(/* groq */ `
   }
 `);
 
-export const blogPostsQuery = defineQuery(/* groq */ `
-  *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
-    _updatedAt,
-    title,
-    "slug": slug.current,
-    publishedAt,
-    excerpt,
-    body
-  }
-`);
-
 export const blogPostQuery = defineQuery(/* groq */ `
   *[_type == "post" && slug.current == $slug][0] {
     _updatedAt,
@@ -472,7 +466,8 @@ export const blogPostQuery = defineQuery(/* groq */ `
     "slug": slug.current,
     publishedAt,
     excerpt,
-    body
+    body,
+    "bodyText": body[].children[].text
   }
 `);
 
@@ -483,7 +478,7 @@ export const blogPostMetaQuery = defineQuery(/* groq */ `
     "slug": slug.current,
     publishedAt,
     excerpt,
-    body
+    "bodyText": body[].children[].text
   }
 `);
 
@@ -506,10 +501,7 @@ export const sitemapEntriesQuery = defineQuery(/* groq */ `
   }
 `);
 
-async function fetchCms<T>(
-  query: string,
-  params: Record<string, unknown> = {},
-) {
+async function fetchCms<T>(query: string, params: QueryParams = {}) {
   try {
     const data = await client.fetch<T | null>(query, params, {
       next: { revalidate: 60 },
@@ -521,10 +513,7 @@ async function fetchCms<T>(
   }
 }
 
-async function fetchCmsStrict<T>(
-  query: string,
-  params: Record<string, unknown> = {},
-) {
+async function fetchCmsStrict<T>(query: string, params: QueryParams = {}) {
   return client.fetch<T>(query, params, {
     next: { revalidate: 60 },
   });
@@ -710,6 +699,7 @@ export async function getPricingPage(): Promise<PricingPageContent | null> {
 export async function getContactPage(): Promise<ContactPageContent | null> {
   const doc = await fetchCms<{
     header?: { eyebrow?: string; heading?: string; intro?: string };
+    formNote?: string;
     headerBackgroundImage?: SanityImageValue;
     process?: {
       eyebrow?: string;
@@ -729,6 +719,7 @@ export async function getContactPage(): Promise<ContactPageContent | null> {
     eyebrow: doc.header.eyebrow,
     heading: doc.header.heading,
     intro: doc.header.intro,
+    formNote: doc.formNote,
     headerBackgroundImage: doc.headerBackgroundImage,
     expect: doc.process
       ? {
@@ -779,10 +770,6 @@ export async function getFAQPage(): Promise<FAQPageContent | null> {
   };
 }
 
-export async function getSanityPosts() {
-  return fetchCms<RawPost[]>(blogPostsQuery);
-}
-
 export async function getSanityPostMeta() {
   return fetchCms<RawPostMeta[]>(blogPostMetaQuery);
 }
@@ -811,13 +798,4 @@ export async function getSitemapEntries() {
 
 export async function getSanityPost(slug: string) {
   return fetchCms<RawPost>(blogPostQuery, { slug });
-}
-
-export function plainTextFromPortableText(blocks: RichText) {
-  return blocks
-    .flatMap((block) => block.children ?? [])
-    .map((child) =>
-      "text" in child && typeof child.text === "string" ? child.text : "",
-    )
-    .join(" ");
 }

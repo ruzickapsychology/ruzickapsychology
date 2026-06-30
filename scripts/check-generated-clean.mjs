@@ -3,7 +3,7 @@ import { execFileSync } from "node:child_process";
 const GENERATED_PATTERNS = [
   "sanity.types.ts",
   "schema.json",
-  "src/**/*.module.d.css.ts",
+  ".generated/css-types/**/*.module.d.css.ts",
 ];
 
 function git(args) {

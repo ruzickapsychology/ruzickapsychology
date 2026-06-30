@@ -2,14 +2,19 @@
 
 ## Contact Form
 
-The contact form is `src/app/(site)/contact/contact-form.tsx`.
+The contact form is `src/app/(site)/contact/contact-form/index.tsx`.
 
 It is a client component that:
 
 - Validates required fields in the browser.
-- Uses a honeypot field named `company`.
+- Uses a local honeypot field named `company` and the Web3Forms reserved
+  `botcheck` checkbox honeypot.
 - Submits directly to `https://api.web3forms.com/submit`.
 - Uses `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`.
+- Labels every form control for assistive technology and shows keyboard focus
+  styles on fields and submit/dismiss controls.
+- Reminds visitors to keep messages brief, avoid sensitive clinical details,
+  and use emergency services for immediate help.
 - Shows inline errors for validation or delivery failures.
 - Shows a success flower state and toast after submission.
 - Tracks `inquiry_submitted` with Vercel Analytics only after a successful human submission.
@@ -37,7 +42,8 @@ Current fields:
 - City.
 - Phone.
 - Message.
-- Hidden honeypot.
+- Hidden `company` honeypot.
+- Hidden `botcheck` checkbox honeypot reserved by Web3Forms.
 
 If fields change, update the payload mapping and keep the email message readable.
 

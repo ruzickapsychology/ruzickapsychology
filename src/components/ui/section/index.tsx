@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import styles from "./section.module.css";
+import styles from "./styles.module.css";
 
 const tones = {
   default: styles.toneDefault,
@@ -16,6 +16,10 @@ const sizes = {
   spacious: styles.spacious,
 } as const;
 
+function classNames(...classes: Array<string | false | null | undefined>) {
+  return classes.filter(Boolean).join(" ");
+}
+
 export function Section({
   tone = "default",
   size = "default",
@@ -27,7 +31,7 @@ export function Section({
 } & ComponentProps<"section">) {
   return (
     <section
-      className={`${styles.root} ${sizes[size]} ${tones[tone]} ${className}`.trim()}
+      className={classNames(styles.root, sizes[size], tones[tone], className)}
       {...props}
     />
   );

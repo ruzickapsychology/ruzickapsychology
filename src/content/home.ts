@@ -14,7 +14,7 @@ export const home = {
     eyebrow: "About",
     heading: "Dr. Christina Ruzicka",
     body: "As a clinical psychologist, I adapt evidence-based methods to your unique story. I help couples move from friction to deeper connection with Imago Relationship Therapy, and support women through perinatal and postpartum mental health.",
-    cta: "Learn more →",
+    cta: "Learn more",
   },
   cta: {
     eyebrow: "Let's Begin",

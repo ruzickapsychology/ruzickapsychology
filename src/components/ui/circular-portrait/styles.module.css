@@ -1,0 +1,39 @@
+.shell {
+  width: 100%;
+  margin-inline: auto;
+  border: 1px solid var(--color-muted);
+  border-radius: 9999px;
+  padding: 0.5rem;
+}
+
+.sm {
+  max-width: 300px;
+}
+
+.md {
+  max-width: 360px;
+}
+
+.sticky {
+  position: sticky;
+  top: var(--portrait-sticky-top, 6rem);
+}
+
+.stickyMd {
+  position: static;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 1;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 9999px;
+}
+
+@media (min-width: 768px) {
+  .stickyMd {
+    position: sticky;
+    top: var(--portrait-sticky-top, 6rem);
+  }
+}

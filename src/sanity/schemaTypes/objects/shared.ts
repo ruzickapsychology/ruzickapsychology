@@ -13,7 +13,9 @@ export const imageWithAlt = defineType({
       title: "Alternative text",
       type: "string",
       validation: (rule) =>
-        rule.warning("Alt text helps describe the image for accessibility."),
+        rule
+          .required()
+          .error("Alt text is required for published site images."),
     }),
   ],
 });

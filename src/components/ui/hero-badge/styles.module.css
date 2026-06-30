@@ -1,5 +1,7 @@
 .spin {
   display: block;
+  overflow: visible;
+  filter: drop-shadow(0 1px 4px rgb(58 35 40 / 0.4));
   animation: rp-spin 26s linear infinite;
   transform-origin: center;
 }

@@ -53,7 +53,9 @@ Before launch:
 2. Submit a test inquiry from production.
 3. Confirm the email arrives.
 4. Confirm the success toast and flower state display.
-5. Confirm the fallback error is readable if delivery fails.
+5. Confirm the privacy/minimization and emergency note appears near submit.
+6. Confirm the `botcheck` honeypot remains hidden and normal submissions still work.
+7. Confirm the fallback error is readable if delivery fails.
 
 ## 5. Google Business Profile
 

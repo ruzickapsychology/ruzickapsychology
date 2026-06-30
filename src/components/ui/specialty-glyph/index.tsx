@@ -1,6 +1,6 @@
 import type { SpecialtyIcon } from "@/lib/cms";
 
-import styles from "./specialty-glyph.module.css";
+import styles from "./styles.module.css";
 
 function Icon({
   size = 32,
@@ -15,7 +15,7 @@ function Icon({
       height={size}
       viewBox="0 0 32 32"
       fill="currentColor"
-      style={{ display: "block", overflow: "visible" }}
+      className={styles.icon}
       aria-hidden
     >
       {children}

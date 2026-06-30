@@ -1,4 +1,4 @@
-import styles from "./button.module.css";
+import styles from "./styles.module.css";
 
 type Variant = "primary" | "secondary" | "outline";
 

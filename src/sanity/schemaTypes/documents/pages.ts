@@ -232,11 +232,23 @@ export const contactPage = defineType({
   type: "document",
   icon: DocumentIcon,
   fields: [
-    defineField({ name: "header", title: "Header", type: "pageHeader" }),
+    defineField({
+      name: "header",
+      title: "Header",
+      type: "pageHeader",
+      validation: (rule) => rule.required(),
+    }),
     defineField({
       name: "headerBackgroundImage",
       title: "Header background image",
       type: "imageWithAlt",
+    }),
+    defineField({
+      name: "formNote",
+      title: "Contact form note",
+      description: "Short helper text shown below the message field.",
+      type: "text",
+      rows: 2,
     }),
     defineField({
       name: "process",

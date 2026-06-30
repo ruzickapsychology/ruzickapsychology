@@ -53,6 +53,7 @@ export const siteSettings = defineType({
       name: "portalUrl",
       title: "Client portal URL",
       type: "url",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "url",

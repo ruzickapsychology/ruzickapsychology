@@ -509,7 +509,7 @@
           "value": {
             "type": "string"
           },
-          "optional": true
+          "optional": false
         }
       }
     }
@@ -592,13 +592,20 @@
           "type": "inline",
           "name": "pageHeader"
         },
-        "optional": true
+        "optional": false
       },
       "headerBackgroundImage": {
         "type": "objectAttribute",
         "value": {
           "type": "inline",
           "name": "imageWithAlt"
+        },
+        "optional": true
+      },
+      "formNote": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
         },
         "optional": true
       },
@@ -1458,7 +1465,7 @@
         "value": {
           "type": "string"
         },
-        "optional": true
+        "optional": false
       },
       "url": {
         "type": "objectAttribute",

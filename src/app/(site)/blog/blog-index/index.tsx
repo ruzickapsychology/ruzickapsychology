@@ -2,7 +2,11 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { formatPostDate, type PostMeta } from "@/lib/blog";
-import styles from "./blog-index.module.css";
+import styles from "./styles.module.css";
+
+function classNames(...classes: Array<string | false | null | undefined>) {
+  return classes.filter(Boolean).join(" ");
+}
 
 function pageHref(page: number) {
   return page === 1 ? "/blog" : (`/blog/page/${page}` as const);
@@ -55,9 +59,10 @@ export function BlogIndex({
                   key={n}
                   href={pageHref(n)}
                   aria-current={n === page ? "page" : undefined}
-                  className={`${styles.paginationLink} ${
-                    n === page ? styles.paginationLinkActive : ""
-                  }`}
+                  className={classNames(
+                    styles.paginationLink,
+                    n === page && styles.paginationLinkActive,
+                  )}
                 >
                   {n}
                 </Link>

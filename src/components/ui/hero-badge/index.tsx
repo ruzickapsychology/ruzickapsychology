@@ -1,5 +1,5 @@
 import { FlowerMark } from "@/components/ui/flower-mark";
-import styles from "./hero-badge.module.css";
+import styles from "./styles.module.css";
 
 const RING_MESSAGES = [
   "ACCEPTING NEW PATIENTS",
@@ -28,10 +28,6 @@ export function RotatingFlowerBadge({
         height="190"
         viewBox="0 0 190 190"
         className={styles.spin}
-        style={{
-          filter: "drop-shadow(0 1px 4px rgba(58,35,40,0.4))",
-          overflow: "visible",
-        }}
         aria-hidden
       >
         <defs>

@@ -97,7 +97,7 @@ export type ImageWithAlt = {
   media?: unknown;
   hotspot?: SanityImageHotspot;
   crop?: SanityImageCrop;
-  alt?: string;
+  alt: string;
 };
 
 export type Cta = {
@@ -113,8 +113,9 @@ export type ContactPage = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  header?: PageHeader;
+  header: PageHeader;
   headerBackgroundImage?: ImageWithAlt;
+  formNote?: string;
   process?: {
     eyebrow?: string;
     heading?: string;
@@ -270,7 +271,7 @@ export type SiteSettings = {
   phone?: string;
   address: Address;
   hours: Array<string>;
-  portalUrl?: string;
+  portalUrl: string;
   url?: string;
   tagline?: string;
   areaServed?: Array<string>;
@@ -480,7 +481,7 @@ export type SiteSettingsQueryResult = {
   phone: string | null;
   address: Address;
   hours: Array<string>;
-  portalUrl: string | null;
+  portalUrl: string;
   url: string | null;
   tagline: string | null;
   areaServed: Array<string> | null;
@@ -499,7 +500,7 @@ export type SpecialtiesQueryResult = Array<{
 
 // Source: src/lib/cms.ts
 // Variable: homePageQuery
-// Query: *[_type == "homePage" && _id == "homePage"][0]{    hero{      kicker,      heading,      body,      ctaLabel,      backgroundImage{        asset->{          _id,          url,          metadata {            dimensions {width, height},            lqip          }        },        alt,        crop,        hotspot      }    },    specialtiesSection{      eyebrow,      heading,      specialties[]->{        title,        "slug": slug.current,        summary,        details      }    },    aboutPreview{      eyebrow,      heading,      body,      ctaLabel,      portraitImage{        asset->{          _id,          url,          metadata {            dimensions {width, height},            lqip          }        },        alt,        crop,        hotspot      }    },    ctaSection{      heading,      body,      ctaLabel,      backgroundImage{        asset->{          _id,          url,          metadata {            dimensions {width, height},            lqip          }        },        alt,        crop,        hotspot      }    }  }
+// Query: *[_type == "homePage" && _id == "homePage"][0]{    hero{      kicker,      heading,      body,      ctaLabel,      backgroundImage{        asset->{          _id,          url,          metadata {            dimensions {width, height},            lqip          }        },        alt,        crop,        hotspot      }    },    specialtiesSection{      eyebrow,      heading,      specialties[]{        _key,        "title": @->title,        "slug": @->slug.current,        "summary": @->summary,        "details": @->details      }    },    aboutPreview{      eyebrow,      heading,      body,      ctaLabel,      portraitImage{        asset->{          _id,          url,          metadata {            dimensions {width, height},            lqip          }        },        alt,        crop,        hotspot      }    },    ctaSection{      heading,      body,      ctaLabel,      backgroundImage{        asset->{          _id,          url,          metadata {            dimensions {width, height},            lqip          }        },        alt,        crop,        hotspot      }    }  }
 export type HomePageQueryResult = {
   hero: {
     kicker: string | null;
@@ -518,7 +519,7 @@ export type HomePageQueryResult = {
           lqip: string | null;
         } | null;
       } | null;
-      alt: string | null;
+      alt: string;
       crop: SanityImageCrop | null;
       hotspot: SanityImageHotspot | null;
     } | null;
@@ -527,6 +528,7 @@ export type HomePageQueryResult = {
     eyebrow: string | null;
     heading: string | null;
     specialties: Array<{
+      _key: string;
       title: string;
       slug: string;
       summary: string;
@@ -550,7 +552,7 @@ export type HomePageQueryResult = {
           lqip: string | null;
         } | null;
       } | null;
-      alt: string | null;
+      alt: string;
       crop: SanityImageCrop | null;
       hotspot: SanityImageHotspot | null;
     } | null;
@@ -571,7 +573,7 @@ export type HomePageQueryResult = {
           lqip: string | null;
         } | null;
       } | null;
-      alt: string | null;
+      alt: string;
       crop: SanityImageCrop | null;
       hotspot: SanityImageHotspot | null;
     } | null;
@@ -596,7 +598,7 @@ export type AboutPageQueryResult = {
         lqip: string | null;
       } | null;
     } | null;
-    alt: string | null;
+    alt: string;
     crop: SanityImageCrop | null;
     hotspot: SanityImageHotspot | null;
   } | null;
@@ -627,7 +629,7 @@ export type AboutPageQueryResult = {
           lqip: string | null;
         } | null;
       } | null;
-      alt: string | null;
+      alt: string;
       crop: SanityImageCrop | null;
       hotspot: SanityImageHotspot | null;
     } | null;
@@ -643,7 +645,7 @@ export type AboutPageQueryResult = {
           lqip: string | null;
         } | null;
       } | null;
-      alt: string | null;
+      alt: string;
       crop: SanityImageCrop | null;
       hotspot: SanityImageHotspot | null;
     } | null;
@@ -664,7 +666,7 @@ export type AboutPageQueryResult = {
           lqip: string | null;
         } | null;
       } | null;
-      alt: string | null;
+      alt: string;
       crop: SanityImageCrop | null;
       hotspot: SanityImageHotspot | null;
     } | null;
@@ -673,10 +675,11 @@ export type AboutPageQueryResult = {
 
 // Source: src/lib/cms.ts
 // Variable: specialtiesPageQuery
-// Query: *[_type == "specialtiesPage" && _id == "specialtiesPage"][0]{    header,    specialties[]->{      title,      "slug": slug.current,      summary,      details    },    modality{      eyebrow,      heading,      body,      backgroundImage{        asset->{          _id,          url,          metadata {            dimensions {width, height},            lqip          }        },        alt,        crop,        hotspot      }    }  }
+// Query: *[_type == "specialtiesPage" && _id == "specialtiesPage"][0]{    header,    specialties[]{      _key,      "title": @->title,      "slug": @->slug.current,      "summary": @->summary,      "details": @->details    },    modality{      eyebrow,      heading,      body,      backgroundImage{        asset->{          _id,          url,          metadata {            dimensions {width, height},            lqip          }        },        alt,        crop,        hotspot      }    }  }
 export type SpecialtiesPageQueryResult = {
   header: PageHeader | null;
   specialties: Array<{
+    _key: string;
     title: string;
     slug: string;
     summary: string;
@@ -698,7 +701,7 @@ export type SpecialtiesPageQueryResult = {
           lqip: string | null;
         } | null;
       } | null;
-      alt: string | null;
+      alt: string;
       crop: SanityImageCrop | null;
       hotspot: SanityImageHotspot | null;
     } | null;
@@ -737,7 +740,7 @@ export type PricingPageQueryResult = {
         lqip: string | null;
       } | null;
     } | null;
-    alt: string | null;
+    alt: string;
     crop: SanityImageCrop | null;
     hotspot: SanityImageHotspot | null;
   } | null;
@@ -745,9 +748,10 @@ export type PricingPageQueryResult = {
 
 // Source: src/lib/cms.ts
 // Variable: contactPageQuery
-// Query: *[_type == "contactPage" && _id == "contactPage"][0]{    header,    headerBackgroundImage{      asset->{        _id,        url,        metadata {          dimensions {width, height},            lqip        }      },      alt,      crop,      hotspot    },    process{      eyebrow,      heading,      steps[]{_key, number, title, body}    }  }
+// Query: *[_type == "contactPage" && _id == "contactPage"][0]{    header,    formNote,    headerBackgroundImage{      asset->{        _id,        url,        metadata {          dimensions {width, height},            lqip        }      },      alt,      crop,      hotspot    },    process{      eyebrow,      heading,      steps[]{_key, number, title, body}    }  }
 export type ContactPageQueryResult = {
-  header: PageHeader | null;
+  header: PageHeader;
+  formNote: string | null;
   headerBackgroundImage: {
     asset: {
       _id: string;
@@ -760,7 +764,7 @@ export type ContactPageQueryResult = {
         lqip: string | null;
       } | null;
     } | null;
-    alt: string | null;
+    alt: string;
     crop: SanityImageCrop | null;
     hotspot: SanityImageHotspot | null;
   } | null;
@@ -800,27 +804,15 @@ export type FaqPageQueryResult = {
         lqip: string | null;
       } | null;
     } | null;
-    alt: string | null;
+    alt: string;
     crop: SanityImageCrop | null;
     hotspot: SanityImageHotspot | null;
   } | null;
 } | null;
 
 // Source: src/lib/cms.ts
-// Variable: blogPostsQuery
-// Query: *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {    _updatedAt,    title,    "slug": slug.current,    publishedAt,    excerpt,    body  }
-export type BlogPostsQueryResult = Array<{
-  _updatedAt: string;
-  title: string;
-  slug: string;
-  publishedAt: string;
-  excerpt: string;
-  body: SimplePortableText;
-}>;
-
-// Source: src/lib/cms.ts
 // Variable: blogPostQuery
-// Query: *[_type == "post" && slug.current == $slug][0] {    _updatedAt,    title,    "slug": slug.current,    publishedAt,    excerpt,    body  }
+// Query: *[_type == "post" && slug.current == $slug][0] {    _updatedAt,    title,    "slug": slug.current,    publishedAt,    excerpt,    body,    "bodyText": body[].children[].text  }
 export type BlogPostQueryResult = {
   _updatedAt: string;
   title: string;
@@ -828,18 +820,19 @@ export type BlogPostQueryResult = {
   publishedAt: string;
   excerpt: string;
   body: SimplePortableText;
+  bodyText: Array<string | null>;
 } | null;
 
 // Source: src/lib/cms.ts
 // Variable: blogPostMetaQuery
-// Query: *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {    _updatedAt,    title,    "slug": slug.current,    publishedAt,    excerpt,    body  }
+// Query: *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {    _updatedAt,    title,    "slug": slug.current,    publishedAt,    excerpt,    "bodyText": body[].children[].text  }
 export type BlogPostMetaQueryResult = Array<{
   _updatedAt: string;
   title: string;
   slug: string;
   publishedAt: string;
   excerpt: string;
-  body: SimplePortableText;
+  bodyText: Array<string | null>;
 }>;
 
 // Source: src/lib/cms.ts
@@ -869,15 +862,14 @@ declare module "@sanity/client" {
   interface SanityQueries {
     '\n  *[_type == "siteSettings" && _id == "siteSettings"][0]{\n    name,\n    legalName,\n    practitioner,\n    email,\n    phone,\n    address,\n    hours,\n    portalUrl,\n    url,\n    tagline,\n    areaServed\n  }\n': SiteSettingsQueryResult;
     '\n  *[_type == "specialty" && active != false] | order(order asc, title asc) {\n    "_key": _id,\n    title,\n    "slug": slug.current,\n    summary,\n    details\n  }\n': SpecialtiesQueryResult;
-    '\n  *[_type == "homePage" && _id == "homePage"][0]{\n    hero{\n      kicker,\n      heading,\n      body,\n      ctaLabel,\n      backgroundImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      }\n    },\n    specialtiesSection{\n      eyebrow,\n      heading,\n      specialties[]->{\n        title,\n        "slug": slug.current,\n        summary,\n        details\n      }\n    },\n    aboutPreview{\n      eyebrow,\n      heading,\n      body,\n      ctaLabel,\n      portraitImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      }\n    },\n    ctaSection{\n      heading,\n      body,\n      ctaLabel,\n      backgroundImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      }\n    }\n  }\n': HomePageQueryResult;
+    '\n  *[_type == "homePage" && _id == "homePage"][0]{\n    hero{\n      kicker,\n      heading,\n      body,\n      ctaLabel,\n      backgroundImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      }\n    },\n    specialtiesSection{\n      eyebrow,\n      heading,\n      specialties[]{\n        _key,\n        "title": @->title,\n        "slug": @->slug.current,\n        "summary": @->summary,\n        "details": @->details\n      }\n    },\n    aboutPreview{\n      eyebrow,\n      heading,\n      body,\n      ctaLabel,\n      portraitImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      }\n    },\n    ctaSection{\n      heading,\n      body,\n      ctaLabel,\n      backgroundImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      }\n    }\n  }\n': HomePageQueryResult;
     '\n  *[_type == "aboutPage" && _id == "aboutPage"][0]{\n    credentials,\n    heading,\n    portraitImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {width, height},\n            lqip\n        }\n      },\n      alt,\n      crop,\n      hotspot\n    },\n    intro,\n    credentialGroups[]{\n      _key,\n      heading,\n      items[]{_key, title, detail},\n      license\n    },\n    space{\n      eyebrow,\n      heading,\n      body,\n      exteriorImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      },\n      interiorImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      }\n    },\n    philosophy{\n      eyebrow,\n      quote,\n      attribution,\n      backgroundImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      }\n    }\n  }\n': AboutPageQueryResult;
-    '\n  *[_type == "specialtiesPage" && _id == "specialtiesPage"][0]{\n    header,\n    specialties[]->{\n      title,\n      "slug": slug.current,\n      summary,\n      details\n    },\n    modality{\n      eyebrow,\n      heading,\n      body,\n      backgroundImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      }\n    }\n  }\n': SpecialtiesPageQueryResult;
+    '\n  *[_type == "specialtiesPage" && _id == "specialtiesPage"][0]{\n    header,\n    specialties[]{\n      _key,\n      "title": @->title,\n      "slug": @->slug.current,\n      "summary": @->summary,\n      "details": @->details\n    },\n    modality{\n      eyebrow,\n      heading,\n      body,\n      backgroundImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      }\n    }\n  }\n': SpecialtiesPageQueryResult;
     '\n  *[_type == "pricingPage" && _id == "pricingPage"][0]{\n    header,\n    fees{\n      heading,\n      items[]{_key, label, detail, price},\n      note\n    },\n    insurance{\n      heading,\n      body\n    },\n    cta,\n    ctaBackgroundImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {width, height},\n            lqip\n        }\n      },\n      alt,\n      crop,\n      hotspot\n    }\n  }\n': PricingPageQueryResult;
-    '\n  *[_type == "contactPage" && _id == "contactPage"][0]{\n    header,\n    headerBackgroundImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {width, height},\n            lqip\n        }\n      },\n      alt,\n      crop,\n      hotspot\n    },\n    process{\n      eyebrow,\n      heading,\n      steps[]{_key, number, title, body}\n    }\n  }\n': ContactPageQueryResult;
+    '\n  *[_type == "contactPage" && _id == "contactPage"][0]{\n    header,\n    formNote,\n    headerBackgroundImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {width, height},\n            lqip\n        }\n      },\n      alt,\n      crop,\n      hotspot\n    },\n    process{\n      eyebrow,\n      heading,\n      steps[]{_key, number, title, body}\n    }\n  }\n': ContactPageQueryResult;
     '\n  *[_type == "faqPage" && _id == "faqPage"][0]{\n    heading,\n    intro,\n    items[]{_key, question, answer},\n    cta,\n    ctaBackgroundImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {width, height},\n            lqip\n        }\n      },\n      alt,\n      crop,\n      hotspot\n    }\n  }\n': FaqPageQueryResult;
-    '\n  *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {\n    _updatedAt,\n    title,\n    "slug": slug.current,\n    publishedAt,\n    excerpt,\n    body\n  }\n':
-      BlogPostsQueryResult | BlogPostMetaQueryResult;
-    '\n  *[_type == "post" && slug.current == $slug][0] {\n    _updatedAt,\n    title,\n    "slug": slug.current,\n    publishedAt,\n    excerpt,\n    body\n  }\n': BlogPostQueryResult;
+    '\n  *[_type == "post" && slug.current == $slug][0] {\n    _updatedAt,\n    title,\n    "slug": slug.current,\n    publishedAt,\n    excerpt,\n    body,\n    "bodyText": body[].children[].text\n  }\n': BlogPostQueryResult;
+    '\n  *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {\n    _updatedAt,\n    title,\n    "slug": slug.current,\n    publishedAt,\n    excerpt,\n    "bodyText": body[].children[].text\n  }\n': BlogPostMetaQueryResult;
     '\n  *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {\n    "slug": slug.current\n  }\n': BlogPostSlugsQueryResult;
     '\n  {\n    "pages": *[_id in ["homePage", "aboutPage", "specialtiesPage", "pricingPage", "contactPage", "faqPage"]]{\n      _id,\n      _updatedAt\n    },\n    "posts": *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {\n      _updatedAt,\n      "slug": slug.current\n    }\n  }\n': SitemapEntriesQueryResult;
   }

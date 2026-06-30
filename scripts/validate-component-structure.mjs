@@ -45,8 +45,11 @@ function walk(dir) {
 
 function isSourceComponentFile(path) {
   if (!/\.(ts|tsx)$/.test(path)) return false;
-  if (path.endsWith(".module.d.css.ts")) return false;
   return true;
+}
+
+function isCssModuleFile(path) {
+  return /\.module\.css$/.test(path);
 }
 
 const errors = [];
@@ -91,6 +94,20 @@ function validateSourceRoot(root, { allowRouteConventions = false } = {}) {
 
 validateSourceRoot(componentRoot);
 validateSourceRoot(appRoot, { allowRouteConventions: true });
+
+for (const root of [componentRoot, appRoot]) {
+  if (!existsSync(root)) continue;
+
+  for (const file of walk(root).filter(isCssModuleFile)) {
+    const filename = file.split("/").at(-1);
+
+    if (filename !== "styles.module.css") {
+      errors.push(
+        `${relative(process.cwd(), file)} should be named styles.module.css.`,
+      );
+    }
+  }
+}
 
 if (errors.length) {
   console.error("Component structure check failed:");

@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import styles from "./container.module.css";
+import styles from "./styles.module.css";
 
 const widths = {
   sm: styles.sm,
@@ -8,6 +8,10 @@ const widths = {
   xl: styles.xl,
 } as const;
 
+function classNames(...classes: Array<string | false | null | undefined>) {
+  return classes.filter(Boolean).join(" ");
+}
+
 export function Container({
   size = "lg",
   className = "",
@@ -15,7 +19,7 @@ export function Container({
 }: { size?: keyof typeof widths } & ComponentProps<"div">) {
   return (
     <div
-      className={`${styles.root} ${widths[size]} ${className}`.trim()}
+      className={classNames(styles.root, widths[size], className)}
       {...props}
     />
   );

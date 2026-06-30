@@ -1,0 +1,215 @@
+.shell {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1 1 auto;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  min-height: 760px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+}
+
+.heroImage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  object-fit: cover;
+}
+
+.heroContainer {
+  composes: site-grid from global;
+  position: relative;
+  z-index: 10;
+}
+
+.heroContent {
+  position: relative;
+  top: 1rem;
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 100%;
+  max-width: 900px;
+  padding-block: 4rem;
+}
+
+.heroText {
+  margin-top: 39px;
+}
+
+.heroKicker {
+  margin-bottom: 1.25rem;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-light);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.heroHeading {
+  margin-bottom: 1.5rem;
+  color: var(--color-light);
+  line-height: 1.22;
+}
+
+.heroBody {
+  max-width: 680px;
+  margin-inline: auto;
+  margin-bottom: 2.25rem;
+  color: var(--color-light);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.scrollCue {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 2rem;
+  z-index: 10;
+  pointer-events: none;
+  color: var(--color-light);
+  text-align: center;
+}
+
+.scrollGlyph {
+  display: inline-block;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  filter: drop-shadow(0 1px 3px rgb(58 35 40 / 0.35));
+  animation: rp-bob 1.9s ease-in-out infinite;
+}
+
+.sectionGrid {
+  composes: site-grid from global;
+}
+
+.sectionIntro {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+.specialtyItem {
+  composes: rp-q from global;
+  padding: 2.5rem 0.5rem;
+}
+
+.specialtyIcon {
+  margin-bottom: 1.5rem;
+  color: var(--color-icon);
+}
+
+.specialtyTitle {
+  margin-bottom: 0.875rem;
+}
+
+.specialtySummary {
+  max-width: 28rem;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.centeredAction {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 100%;
+  max-width: 680px;
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.featureSection {
+  background-color: rgb(239 226 214 / 0.35);
+}
+
+.aboutGrid {
+  composes: site-grid from global;
+  align-items: center;
+}
+
+.aboutPortrait {
+  grid-column: 1 / -1;
+}
+
+.aboutCopy {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+.aboutHeading {
+  margin-top: 1rem;
+}
+
+.aboutBody {
+  max-width: 540px;
+  margin: 1.5rem auto 0;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.aboutLink {
+  margin-top: 1.75rem;
+}
+
+.ctaBody {
+  max-width: 430px;
+  margin: 1.125rem auto 0;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+@media (min-width: 640px) {
+  .specialtyItem {
+    padding: 3.5rem 2.5rem;
+  }
+
+  .heroHeading {
+    line-height: 1.08;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    min-height: 840px;
+  }
+
+  .aboutCopy {
+    text-align: left;
+  }
+
+  .aboutBody {
+    margin-inline: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .aboutPortrait {
+    grid-column: 1 / span 4;
+    justify-self: center;
+  }
+
+  .aboutCopy {
+    grid-column: 6 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .scrollGlyph {
+    animation: none;
+  }
+}

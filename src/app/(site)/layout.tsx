@@ -2,6 +2,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { getSiteSettings } from "@/lib/cms";
 import { psychologistJsonLd } from "@/lib/seo";
+import styles from "./styles.module.css";
 
 export default async function SiteLayout({
   children,
@@ -11,7 +12,7 @@ export default async function SiteLayout({
   const siteSettings = await getSiteSettings();
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className={styles.shell}>
       {siteSettings ? (
         <script
           type="application/ld+json"
@@ -24,7 +25,7 @@ export default async function SiteLayout({
         />
       ) : null}
       <Header siteSettings={siteSettings} />
-      <main className="flex-1">{children}</main>
+      <main className={styles.main}>{children}</main>
       <Footer siteSettings={siteSettings} />
     </div>
   );

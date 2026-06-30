@@ -4,7 +4,6 @@ import {
   getSanityPostMeta,
   getSanityPostMetaStrict,
   getSanityPostSlugsStrict,
-  plainTextFromPortableText,
 } from "@/lib/cms";
 
 export const BLOG_PAGE_SIZE = 10;
@@ -29,6 +28,10 @@ function readingTime(content: string) {
   return `${minutes} min read`;
 }
 
+function readingTimeFromText(parts: readonly (string | null)[] | undefined) {
+  return readingTime(parts?.join(" ") ?? "");
+}
+
 export function formatPostDate(date: string) {
   return new Intl.DateTimeFormat("en", {
     month: "long",
@@ -47,14 +50,14 @@ function sanityPostMeta(post: {
   title: string;
   publishedAt: string;
   excerpt: string;
-  body?: RichText;
+  bodyText?: Array<string | null>;
 }): PostMeta {
   return {
     slug: post.slug,
     title: post.title,
     date: normalizeSanityDate(post.publishedAt),
     excerpt: post.excerpt,
-    readTime: readingTime(plainTextFromPortableText(post.body ?? [])),
+    readTime: readingTimeFromText(post.bodyText),
   };
 }
 

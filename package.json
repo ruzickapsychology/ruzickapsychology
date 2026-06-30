@@ -16,7 +16,7 @@
     "typecheck": "next typegen && tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "css-types": "tcm src --pattern \"**/*.module.css\" --allowArbitraryExtensions && prettier --write \"src/**/*.module.d.css.ts\"",
+    "css-types": "tcm src --pattern \"**/*.module.css\" --allowArbitraryExtensions --outDir .generated/css-types && prettier --write \".generated/css-types/**/*.module.d.css.ts\"",
     "check:generated": "node scripts/check-generated-clean.mjs",
     "components:validate": "node scripts/validate-component-structure.mjs",
     "typegen": "sanity schema extract --enforce-required-fields && sanity typegen generate",
@@ -36,6 +36,7 @@
   "dependencies": {
     "@portabletext/react": "^6.2.0",
     "@sanity/icons": "^3.7.4",
+    "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^5.31.1",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
@@ -44,8 +45,7 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "sanity": "^5.31.1",
-    "schema-dts": "^2.0.0",
-    "styled-components": "^6.4.3"
+    "schema-dts": "^2.0.0"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",

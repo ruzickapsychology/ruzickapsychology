@@ -1,12 +1,20 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { BackgroundImageLayer } from "@/components/ui/background-image-layer";
 import { Container } from "@/components/ui/container";
+import { DividerGrid } from "@/components/ui/divider-grid";
 import { HeaderSentinel } from "@/components/ui/header-sentinel";
+import { PageShell } from "@/components/ui/page-shell";
 import { Section } from "@/components/ui/section";
+import { SectionHeading } from "@/components/ui/section-heading";
 import { pageMetadata } from "@/lib/seo";
 import { getContactPage, getSiteSettings } from "@/lib/cms";
 import { ContactForm } from "./contact-form";
-import styles from "./contact-page.module.css";
+import styles from "./styles.module.css";
+
+function classNames(...classes: Array<string | false | null | undefined>) {
+  return classes.filter(Boolean).join(" ");
+}
 
 export const metadata: Metadata = pageMetadata({
   title: "Contact",
@@ -20,31 +28,30 @@ export default async function Contact() {
     getContactPage(),
     getSiteSettings(),
   ]);
-  if (!contact || !site) return null;
+  if (!contact || !site) notFound();
 
   return (
-    <div className="rp-fade">
+    <PageShell>
       <section
-        className={`${styles.headerWash} ${styles.imageGrain} relative flex min-h-[760px] items-center overflow-hidden py-36 sm:py-44 md:min-h-[840px]`}
+        className={classNames(
+          styles.header,
+          styles.headerWash,
+          styles.imageGrain,
+        )}
       >
         <BackgroundImageLayer
           image={contact.headerBackgroundImage}
           alt={contact.headerBackgroundImage?.alt ?? ""}
           eager
         />
-        <Container size="xl" className="site-grid items-start">
-          <div className="grid-split-half text-light md:sticky md:top-28">
-            <p className="eyebrow text-light">{contact.eyebrow}</p>
-            <h1 className="text-light mt-4">{contact.heading}</h1>
-            <p className="body-1 text-cream mt-6 max-w-[460px]">
-              {contact.intro}
-            </p>
-            <div className="body-2 text-cream mt-7 space-y-1.5">
+        <Container size="xl" className={styles.headerGrid}>
+          <div className={styles.headerCopy}>
+            <p className={styles.eyebrow}>{contact.eyebrow}</p>
+            <h1 className={styles.headerHeading}>{contact.heading}</h1>
+            <p className={styles.headerIntro}>{contact.intro}</p>
+            <div className={styles.contactMethods}>
               <div>
-                <a
-                  href={`mailto:${site.email}`}
-                  className="hover:text-accent-soft transition-colors"
-                >
+                <a href={`mailto:${site.email}`} className={styles.contactLink}>
                   {site.email}
                 </a>
               </div>
@@ -52,8 +59,8 @@ export default async function Contact() {
             </div>
           </div>
 
-          <div className="grid-split-half-alt">
-            <ContactForm />
+          <div className={styles.formColumn}>
+            <ContactForm note={contact.formNote} />
           </div>
         </Container>
       </section>
@@ -61,54 +68,44 @@ export default async function Contact() {
 
       {/* what to expect */}
       {contact.expect ? (
-        <Section size="spacious" className="bg-feature/35">
-          <Container size="xl" className="site-grid">
-            <div className="grid-center-md mb-14 text-center">
-              <p className="eyebrow">{contact.expect.eyebrow}</p>
-              <h2 className="mt-4">{contact.expect.heading}</h2>
-            </div>
-            <div className="grid-card-4 grid-full">
-              {contact.expect.steps?.map((step, i) => (
-                <div
-                  key={step._key ?? step.n}
-                  className={`p-8 ${
-                    i < 3 ? "border-muted border-b" : ""
-                  } ${i >= 2 ? "sm:border-b-0" : ""} ${
-                    i < 2 ? "lg:border-b-0" : ""
-                  } ${i % 2 === 0 ? "sm:border-muted sm:border-r" : ""} ${
-                    i === 1 ? "lg:border-muted lg:border-r" : ""
-                  } border-muted`}
-                >
-                  <div className="mono-label text-accent mb-4">{step.n}</div>
-                  <h3 className="font-heading text-fg mb-3 text-[22px] leading-tight whitespace-nowrap">
-                    {step.title}
-                  </h3>
-                  <p className="body-3">{step.body}</p>
+        <Section size="spacious" className={styles.featureSection}>
+          <Container size="xl" className={styles.sectionGrid}>
+            <SectionHeading
+              eyebrow={contact.expect.eyebrow}
+              heading={contact.expect.heading}
+              className={styles.sectionIntro}
+            />
+            <DividerGrid columns={4} itemClassName={styles.stepItem}>
+              {contact.expect.steps?.map((step) => (
+                <div key={step._key ?? step.n}>
+                  <div className={styles.stepNumber}>{step.n}</div>
+                  <h3 className={styles.stepTitle}>{step.title}</h3>
+                  <p className={styles.stepBody}>{step.body}</p>
                 </div>
               ))}
-            </div>
+            </DividerGrid>
           </Container>
         </Section>
       ) : null}
 
       {/* location + hours */}
       <Section size="spacious">
-        <Container size="xl" className="site-grid">
-          <div className="grid-split-half md:border-muted grid md:border-r">
-            <div className="py-10 pr-8 md:py-14 md:pr-12">
-              <div className="mono-label text-accent mb-3.5">Location</div>
-              <p className="body-2 text-fg">
+        <Container size="xl" className={styles.sectionGrid}>
+          <div className={styles.detailsGrid}>
+            <div className={styles.detailsPanel}>
+              <div className={styles.detailLabel}>Location</div>
+              <p className={styles.detailText}>
                 {site.address.line1}
                 <br />
                 {site.address.line2}
                 <br />
-                <span className="text-body/70">{site.address.note}</span>
+                <span className={styles.detailNote}>{site.address.note}</span>
               </p>
             </div>
-            <div aria-hidden className="border-muted border-t md:mr-12" />
-            <div className="py-10 pr-8 md:py-14 md:pr-12">
-              <div className="mono-label text-accent mb-3.5">Hours</div>
-              <p className="body-2 text-fg">
+            <div aria-hidden className={styles.detailDivider} />
+            <div className={styles.detailsPanel}>
+              <div className={styles.detailLabel}>Hours</div>
+              <p className={styles.detailText}>
                 {site.hours.map((h) => (
                   <span key={h}>
                     {h}
@@ -118,23 +115,20 @@ export default async function Contact() {
               </p>
             </div>
           </div>
-          <div className="grid-split-half-alt bg-feature relative min-h-[420px] overflow-hidden">
+          <div className={styles.mapShell}>
             <iframe
               title={`Map to ${site.name}, ${site.address.line1}`}
               src={`https://maps.google.com/maps?q=${encodeURIComponent(
                 `${site.address.line1}, ${site.address.line2}`,
               )}&z=14&output=embed`}
-              className="h-full min-h-[420px] w-full border-0 brightness-[1.04] contrast-[0.98] saturate-[0.55] sepia-[0.08]"
+              className={styles.map}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-            <div
-              aria-hidden
-              className="bg-feature/12 pointer-events-none absolute inset-0 mix-blend-multiply"
-            />
+            <div aria-hidden className={styles.mapOverlay} />
           </div>
         </Container>
       </Section>
-    </div>
+    </PageShell>
   );
 }

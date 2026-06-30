@@ -1,17 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { CSSProperties } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { track } from "@vercel/analytics";
 import { Container } from "@/components/ui/container";
 import { HEADER_SENTINEL_ID } from "@/components/ui/header-sentinel";
 import { ArrowUpRight } from "@/components/ui/arrow-up-right";
 import type { SiteSettings } from "@/lib/cms";
 import { MAIN_NAV } from "@/lib/site-defaults";
-import styles from "./header.module.css";
+import styles from "./styles.module.css";
 
 const TRANSPARENT_PAGES = ["/", "/contact"];
+
+function classNames(...classes: Array<string | false | null | undefined>) {
+  return classes.filter(Boolean).join(" ");
+}
 
 function normalizePathname(pathname: string) {
   return pathname === "/" ? pathname : pathname.replace(/\/$/, "");
@@ -81,16 +85,13 @@ export function Header({
   const canBeTransparent = TRANSPARENT_PAGES.includes(normalizedPathname);
   const transparent = canBeTransparent && !scrolled;
   const light = transparent || overQuoteBand;
-  const navBackground: CSSProperties = transparent
-    ? {
-        backgroundColor:
-          normalizedPathname === "/contact"
-            ? "var(--color-nav-contact-overlay)"
-            : "var(--color-nav-home-overlay)",
-      }
+  const navBackground = transparent
+    ? normalizedPathname === "/contact"
+      ? styles.contactOverlay
+      : styles.homeOverlay
     : overQuoteBand
-      ? { backgroundColor: "var(--color-nav-quote-overlay)" }
-      : { backgroundColor: "var(--color-nav-solid-overlay)" };
+      ? styles.quoteOverlay
+      : styles.solidOverlay;
 
   const wordmark = light ? styles.lightText : styles.darkText;
   const mobilePrimaryLinks = MAIN_NAV;
@@ -105,9 +106,9 @@ export function Header({
   const closeMobileMenu = () => setMenuOpen(false);
 
   return (
-    <header className={styles.root} style={navBackground}>
+    <header className={classNames(styles.root, navBackground)}>
       <Container size="xl" className={styles.inner}>
-        <Link href="/" className={`${styles.wordmark} ${wordmark}`}>
+        <Link href="/" className={classNames(styles.wordmark, wordmark)}>
           {siteSettings?.name}
         </Link>
 
@@ -128,7 +129,11 @@ export function Header({
                 key={item.label}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`${styles.desktopLink} ${active ? styles.activeLink : ""} ${stateClass}`}
+                className={classNames(
+                  styles.desktopLink,
+                  active && styles.activeLink,
+                  stateClass,
+                )}
               >
                 {item.label}
               </Link>
@@ -141,7 +146,7 @@ export function Header({
           aria-label={menuVisible ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"
-          className={`${styles.menuButton} ${wordmark}`}
+          className={classNames(styles.menuButton, wordmark)}
           onClick={menuVisible ? closeMobileMenu : openMobileMenu}
         >
           {menuVisible ? (
@@ -166,10 +171,11 @@ export function Header({
       {menuVisible ? (
         <div
           id="mobile-navigation"
-          className={`${styles.panel} ${
-            menuOpen ? styles.panelOpen : styles.panelClosing
-          }`}
-          style={navBackground}
+          className={classNames(
+            styles.panel,
+            navBackground,
+            menuOpen ? styles.panelOpen : styles.panelClosing,
+          )}
         >
           <Container size="xl" className={styles.mobileContainer}>
             <nav
@@ -194,7 +200,11 @@ export function Header({
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     onClick={closeMobileMenu}
-                    className={`${styles.item} ${styles.primaryItem} ${itemClass}`}
+                    className={classNames(
+                      styles.item,
+                      styles.primaryItem,
+                      itemClass,
+                    )}
                   >
                     {item.label}
                   </Link>
@@ -204,7 +214,10 @@ export function Header({
 
             <nav
               aria-label="Mobile secondary navigation"
-              className={`${styles.secondary} ${light ? styles.secondaryLight : styles.secondaryDark}`}
+              className={classNames(
+                styles.secondary,
+                light ? styles.secondaryLight : styles.secondaryDark,
+              )}
             >
               {mobileUtilityLinks.map((item) => {
                 const active =
@@ -224,7 +237,11 @@ export function Header({
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     onClick={closeMobileMenu}
-                    className={`${styles.item} ${styles.utilityItem} ${itemClass}`}
+                    className={classNames(
+                      styles.item,
+                      styles.utilityItem,
+                      itemClass,
+                    )}
                   >
                     {item.label}
                   </Link>
@@ -234,10 +251,15 @@ export function Header({
               {siteSettings?.portalUrl ? (
                 <a
                   href={siteSettings.portalUrl}
-                  onClick={closeMobileMenu}
-                  className={`${styles.item} ${styles.utilityItem} ${
-                    light ? styles.utilityLight : styles.utilityDark
-                  }`}
+                  onClick={() => {
+                    track("client_portal_click");
+                    closeMobileMenu();
+                  }}
+                  className={classNames(
+                    styles.item,
+                    styles.utilityItem,
+                    light ? styles.utilityLight : styles.utilityDark,
+                  )}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

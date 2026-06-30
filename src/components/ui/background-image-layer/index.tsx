@@ -4,22 +4,24 @@ import {
   imageSrc,
   type SanityImageValue,
 } from "@/lib/cms-images";
-import styles from "./background-image-layer.module.css";
+import styles from "./styles.module.css";
+
+function classNames(...classes: Array<string | false | null | undefined>) {
+  return classes.filter(Boolean).join(" ");
+}
 
 export function BackgroundImageLayer({
   image,
   alt = "",
   className = "",
   eager = false,
-  objectPosition,
-  quality = 72,
+  quality = 75,
   sizes = "100vw",
 }: {
   image: SanityImageValue;
   alt?: string;
   className?: string;
   eager?: boolean;
-  objectPosition?: string;
   quality?: number;
   sizes?: string;
 }) {
@@ -30,7 +32,7 @@ export function BackgroundImageLayer({
   return (
     <Image
       alt={alt}
-      className={`${styles.image} ${className}`.trim()}
+      className={classNames(styles.image, className)}
       decoding="async"
       fetchPriority={eager ? "high" : undefined}
       fill
@@ -40,7 +42,6 @@ export function BackgroundImageLayer({
       quality={quality}
       sizes={sizes}
       src={src}
-      style={objectPosition ? { objectPosition } : undefined}
     />
   );
 }

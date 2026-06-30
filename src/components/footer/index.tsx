@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/container";
 import { RotatingFlowerBadge } from "@/components/ui/hero-badge";
 import type { SiteSettings } from "@/lib/cms";
 import { FOOTER_NAV } from "@/lib/site-defaults";
-import styles from "./footer.module.css";
+import styles from "./styles.module.css";
 
 const MOBILE_FOOTER_LINK_PLACEMENT: Record<string, string> = {
   "/about": styles.linkAbout,
@@ -15,6 +15,10 @@ const MOBILE_FOOTER_LINK_PLACEMENT: Record<string, string> = {
   "/blog": styles.linkBlog,
   "/faq": styles.linkFaq,
 };
+
+function classNames(...classes: Array<string | false | null | undefined>) {
+  return classes.filter(Boolean).join(" ");
+}
 
 export function Footer({
   siteSettings,
@@ -29,7 +33,10 @@ export function Footer({
             <Link
               key={l.label}
               href={l.href}
-              className={`${styles.link} ${MOBILE_FOOTER_LINK_PLACEMENT[l.href] ?? ""}`}
+              className={classNames(
+                styles.link,
+                MOBILE_FOOTER_LINK_PLACEMENT[l.href],
+              )}
             >
               {l.label}
             </Link>
@@ -38,7 +45,7 @@ export function Footer({
             <TrackedExternalLink
               href={siteSettings.portalUrl}
               event="client_portal_click"
-              className={`${styles.link} ${styles.linkPortal}`}
+              className={classNames(styles.link, styles.linkPortal)}
             >
               <span className={styles.portalInner}>
                 Client Portal

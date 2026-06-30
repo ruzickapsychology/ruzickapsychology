@@ -6,6 +6,22 @@
   transition: background-color 500ms ease;
 }
 
+.homeOverlay {
+  background-color: var(--color-nav-home-overlay);
+}
+
+.contactOverlay {
+  background-color: var(--color-nav-contact-overlay);
+}
+
+.quoteOverlay {
+  background-color: var(--color-nav-quote-overlay);
+}
+
+.solidOverlay {
+  background-color: var(--color-nav-solid-overlay);
+}
+
 .inner {
   position: relative;
   z-index: 20;

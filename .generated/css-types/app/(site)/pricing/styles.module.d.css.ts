@@ -1,0 +1,20 @@
+declare const styles: {
+  readonly feeDetail: string;
+  readonly feeLabel: string;
+  readonly feeNote: string;
+  readonly feePrice: string;
+  readonly feeRow: string;
+  readonly feesHeading: string;
+  readonly feesList: string;
+  readonly feesPanel: string;
+  readonly headerCenter: string;
+  readonly headerContainer: string;
+  readonly headerIntro: string;
+  readonly insuranceBody: string;
+  readonly insuranceHeading: string;
+  readonly insurancePanel: string;
+  readonly pageFade: string;
+  readonly pricingCard: string;
+  readonly root: string;
+};
+export = styles;

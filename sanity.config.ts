@@ -23,6 +23,17 @@ const singletonTypes = new Set([
   "faqPage",
 ]);
 
+const studioPlugins = [
+  structureTool({ structure }),
+  ...(process.env.NODE_ENV === "production"
+    ? []
+    : [
+        // Vision is for querying with GROQ from inside the Studio.
+        // Keep it out of production unless an authoring need explicitly changes.
+        visionTool({ defaultApiVersion: apiVersion }),
+      ]),
+];
+
 export default defineConfig({
   basePath: "/studio",
   projectId,
@@ -33,10 +44,5 @@ export default defineConfig({
     newDocumentOptions: (prev) =>
       prev.filter((template) => !singletonTypes.has(template.templateId)),
   },
-  plugins: [
-    structureTool({ structure }),
-    // Vision is for querying with GROQ from inside the Studio
-    // https://www.sanity.io/docs/the-vision-plugin
-    visionTool({ defaultApiVersion: apiVersion }),
-  ],
+  plugins: studioPlugins,
 });

@@ -287,6 +287,7 @@ async function buildDocuments(): Promise<SeedDocument[]> {
         intro: contact.intro,
       },
       headerBackgroundImage: images.contactRoses,
+      formNote: contact.formNote,
       process: {
         eyebrow: contact.expect.eyebrow,
         heading: contact.expect.heading,

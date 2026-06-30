@@ -13,7 +13,9 @@ declare const styles: {
   readonly formActive: string;
   readonly formSubmitting: string;
   readonly honeypot: string;
+  readonly privacyNote: string;
   readonly submit: string;
+  readonly submitFocus: string;
   readonly successToastLifecycle: string;
   readonly textarea: string;
   readonly toast: string;

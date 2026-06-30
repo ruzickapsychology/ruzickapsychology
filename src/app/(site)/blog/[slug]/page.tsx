@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import type { Metadata, Route } from "next";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/container";
 import { PortableContent } from "@/components/ui/portable-content";
 import { Section } from "@/components/ui/section";
+import { TextLink } from "@/components/ui/text-link";
 import { pageMetadata } from "@/lib/seo";
 import {
   formatPostDate,
@@ -11,6 +11,7 @@ import {
   getPost,
   getPostSlugsForBuild,
 } from "@/lib/blog";
+import styles from "./styles.module.css";
 
 export async function generateStaticParams() {
   return (await getPostSlugsForBuild()).map((slug) => ({ slug }));
@@ -36,39 +37,30 @@ export default async function BlogPost(props: PageProps<"/blog/[slug]">) {
   const olderPost = await getOlderPostMeta(slug);
 
   return (
-    <div className="rp-fade">
+    <div className={styles.root}>
       <Section size="page">
         <Container size="md">
-          <Link
-            href="/blog"
-            className="mono-label border-accent text-accent hover:text-fg mb-10 inline-block border-b pb-1 tracking-[0.06em] normal-case transition-colors"
-          >
-            ← Back to Blog
-          </Link>
+          <TextLink href="/blog" direction="back" className={styles.backLink}>
+            Back to Blog
+          </TextLink>
           <article>
-            <p className="mono-label text-body/65 mb-8 tracking-[0.08em] normal-case">
+            <p className={styles.meta}>
               {formatPostDate(post.date)} · {post.readTime}
             </p>
-            <h1 className="heading-section">{post.title}</h1>
-            <PortableContent value={post.body} className="prose mt-10" />
+            <h1 className={styles.title}>{post.title}</h1>
+            <PortableContent value={post.body} className={styles.body} />
           </article>
-          <nav
-            aria-label="Blog post navigation"
-            className="border-muted mt-12 flex flex-col gap-5 border-t pt-8 sm:flex-row sm:items-center sm:justify-between"
-          >
-            <Link
-              href="/blog"
-              className="mono-label border-accent text-accent hover:text-fg inline-block border-b pb-1 tracking-[0.06em] normal-case transition-colors"
-            >
-              ← Back to Blog
-            </Link>
+          <nav aria-label="Blog post navigation" className={styles.postNav}>
+            <TextLink href="/blog" direction="back">
+              Back to Blog
+            </TextLink>
             {olderPost && (
-              <Link
-                href={`/blog/${olderPost.slug}`}
-                className="mono-label border-accent text-accent hover:text-fg inline-block max-w-[320px] border-b pb-1 tracking-[0.06em] normal-case transition-colors sm:text-right"
+              <TextLink
+                href={`/blog/${olderPost.slug}` as Route}
+                className={styles.olderLink}
               >
-                {olderPost.title} →
-              </Link>
+                {olderPost.title}
+              </TextLink>
             )}
           </nav>
         </Container>
