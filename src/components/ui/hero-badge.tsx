@@ -1,18 +1,24 @@
 import { FlowerMark } from "@/components/ui/logo";
+import styles from "./hero-badge.module.css";
 
-const RING_MESSAGES = ["ACCEPTING NEW PATIENTS", "IN PERSON OR VIRTUAL"] as const;
+const RING_MESSAGES = [
+  "ACCEPTING NEW PATIENTS",
+  "IN PERSON OR VIRTUAL",
+] as const;
+
+type FlowerClassName = "heroFlowerEmboss" | "footerFlowerEmboss";
 
 export function RotatingFlowerBadge({
   messages,
   pathId,
   flowerColor = "rgb(241 238 235 / 0.8)",
-  flowerClassName = "hero-flower-emboss",
+  flowerClassName = "heroFlowerEmboss",
   textColor = "var(--color-light)",
 }: {
   messages: readonly [string, string];
   pathId: string;
   flowerColor?: string;
-  flowerClassName?: string;
+  flowerClassName?: FlowerClassName;
   textColor?: string;
 }) {
   return (
@@ -21,8 +27,11 @@ export function RotatingFlowerBadge({
         width="190"
         height="190"
         viewBox="0 0 190 190"
-        className="rp-spin block"
-        style={{ filter: "drop-shadow(0 1px 4px rgba(58,35,40,0.4))", overflow: "visible" }}
+        className={`${styles.spin} block`}
+        style={{
+          filter: "drop-shadow(0 1px 4px rgba(58,35,40,0.4))",
+          overflow: "visible",
+        }}
         aria-hidden
       >
         <defs>
@@ -52,7 +61,7 @@ export function RotatingFlowerBadge({
           width={60}
           height={70}
           color={flowerColor}
-          className={flowerClassName}
+          className={styles[flowerClassName]}
         />
       </div>
     </>
@@ -62,8 +71,11 @@ export function RotatingFlowerBadge({
 /** Rotating circular badge with the flower mark centered, over the hero. */
 export function HeroBadge() {
   return (
-    <div className="hero-badge pointer-events-none absolute left-2 top-[-91px] hidden h-[190px] w-[190px] sm:block">
-      <RotatingFlowerBadge messages={RING_MESSAGES} pathId="rp-hero-badge-path" />
+    <div className={styles.heroBadge}>
+      <RotatingFlowerBadge
+        messages={RING_MESSAGES}
+        pathId="rp-hero-badge-path"
+      />
     </div>
   );
 }

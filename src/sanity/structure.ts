@@ -1,16 +1,16 @@
-import type {StructureResolver} from 'sanity/structure'
+import type { StructureResolver } from "sanity/structure";
 
 const singletonTypes = new Set([
-  'siteSettings',
-  'homePage',
-  'aboutPage',
-  'specialtiesPage',
-  'pricingPage',
-  'contactPage',
-  'faqPage',
-  'specialty',
-  'post',
-])
+  "siteSettings",
+  "homePage",
+  "aboutPage",
+  "specialtiesPage",
+  "pricingPage",
+  "contactPage",
+  "faqPage",
+  "specialty",
+  "post",
+]);
 
 function singletonListItem(
   S: Parameters<StructureResolver>[0],
@@ -20,33 +20,33 @@ function singletonListItem(
   return S.listItem()
     .title(title)
     .id(id)
-    .child(S.document().schemaType(id).documentId(id).title(title))
+    .child(S.document().schemaType(id).documentId(id).title(title));
 }
 
 export const structure: StructureResolver = (S) =>
   S.list()
-    .title('Content')
+    .title("Content")
     .items([
-      singletonListItem(S, 'siteSettings', 'Practice Settings'),
+      singletonListItem(S, "siteSettings", "Practice Settings"),
       S.divider(),
       S.listItem()
-        .title('Pages')
+        .title("Pages")
         .child(
           S.list()
-            .title('Pages')
+            .title("Pages")
             .items([
-              singletonListItem(S, 'homePage', 'Home Page'),
-              singletonListItem(S, 'aboutPage', 'About Dr. Ruzicka'),
-              singletonListItem(S, 'specialtiesPage', 'Specialties Page'),
-              singletonListItem(S, 'pricingPage', 'Pricing & Insurance'),
-              singletonListItem(S, 'contactPage', 'Contact Page'),
-              singletonListItem(S, 'faqPage', 'FAQ Page'),
+              singletonListItem(S, "homePage", "Home Page"),
+              singletonListItem(S, "aboutPage", "About Dr. Ruzicka"),
+              singletonListItem(S, "specialtiesPage", "Specialties Page"),
+              singletonListItem(S, "pricingPage", "Pricing & Insurance"),
+              singletonListItem(S, "contactPage", "Contact Page"),
+              singletonListItem(S, "faqPage", "FAQ Page"),
             ]),
         ),
       S.divider(),
-      S.documentTypeListItem('specialty').title('Therapy Specialties'),
-      S.documentTypeListItem('post').title('Blog Posts'),
+      S.documentTypeListItem("specialty").title("Therapy Specialties"),
+      S.documentTypeListItem("post").title("Blog Posts"),
       ...S.documentTypeListItems().filter(
-        (item) => !singletonTypes.has(item.getId() ?? ''),
+        (item) => !singletonTypes.has(item.getId() ?? ""),
       ),
-    ])
+    ]);

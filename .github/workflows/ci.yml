@@ -8,6 +8,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SANITY_PROJECT_ID: vq39ihmt
+      NEXT_PUBLIC_SANITY_DATASET: production
+      NEXT_PUBLIC_SANITY_API_VERSION: "2026-06-24"
+      NEXT_PUBLIC_SITE_URL: https://www.ruzickapsychology.com
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -15,5 +20,13 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npm run css-types
+      - run: npm run format:check
       - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run typegen
+      - run: npm run sanity:validate-content
+      - run: npm run test
       - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e

@@ -1,5 +1,11 @@
-import type { RichText } from "@/lib/cms";
-import { getSanityPost, getSanityPosts, plainTextFromPortableText } from "@/lib/cms";
+import type { RawPostMeta, RichText } from "@/lib/cms";
+import {
+  getSanityPost,
+  getSanityPostMeta,
+  getSanityPostMetaStrict,
+  getSanityPostSlugsStrict,
+  plainTextFromPortableText,
+} from "@/lib/cms";
 
 export const BLOG_PAGE_SIZE = 10;
 
@@ -41,24 +47,45 @@ function sanityPostMeta(post: {
   title: string;
   publishedAt: string;
   excerpt: string;
-  body: RichText;
+  body?: RichText;
 }): PostMeta {
   return {
     slug: post.slug,
     title: post.title,
     date: normalizeSanityDate(post.publishedAt),
     excerpt: post.excerpt,
-    readTime: readingTime(plainTextFromPortableText(post.body)),
+    readTime: readingTime(plainTextFromPortableText(post.body ?? [])),
   };
 }
 
+function normalizePostMetaList(posts: RawPostMeta[] | null | undefined) {
+  return posts?.map(sanityPostMeta) ?? [];
+}
+
 export async function getAllPostMeta(): Promise<PostMeta[]> {
-  const sanityPosts = await getSanityPosts();
-  return sanityPosts?.map(sanityPostMeta) ?? [];
+  return normalizePostMetaList(await getSanityPostMeta());
+}
+
+export async function getAllPostMetaStrict(): Promise<PostMeta[]> {
+  return normalizePostMetaList(await getSanityPostMetaStrict());
+}
+
+export async function getPostSlugsForBuild() {
+  return (await getSanityPostSlugsStrict()).map((post) => post.slug);
+}
+
+export async function getBlogPageCountForBuild() {
+  return Math.max(
+    1,
+    Math.ceil((await getAllPostMetaStrict()).length / BLOG_PAGE_SIZE),
+  );
 }
 
 export async function getBlogPageCount() {
-  return Math.max(1, Math.ceil((await getAllPostMeta()).length / BLOG_PAGE_SIZE));
+  return Math.max(
+    1,
+    Math.ceil((await getAllPostMeta()).length / BLOG_PAGE_SIZE),
+  );
 }
 
 export async function getPostMetaPage(page: number) {

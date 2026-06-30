@@ -1,102 +1,150 @@
 <!-- BEGIN:nextjs-agent-rules -->
+
 # This is NOT the Next.js you know
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+This version has breaking changes - APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
 
 # Agent Guide
 
-This file provides repository guidance for coding agents working in this project, including Codex, Claude Code, and other agentic tools. Keep project-specific instructions here so each agent can use the same source of truth.
+Canonical instructions for Codex, Claude Code, and other coding agents working in this repo.
 
 ## Commands
 
 - `npm run dev` - start the dev server at http://localhost:3000
+- `npm run verify:quick` - run the normal edit verification path: lint, typecheck, and unit tests
+- `npm run verify` - run the full handoff path: CSS module types, formatting check, lint, typecheck, Sanity type/content checks, unit tests, and build
 - `npm run build` - create a production build; this also type-checks and generates static routes
-- `npm run lint` - run ESLint
+- `npm run typecheck` - run Next route type generation and TypeScript
+- `npm run typegen` - generate Sanity schema/query types
+- `npm run test` - run unit tests
+- `npm run test:e2e` - run Playwright smoke/accessibility checks
+- `npm run lhci` - run Lighthouse CI against a local production server
+- `npm run sanity:validate-content` - validate required CMS content and image alt text
 - `npm run start` - serve the production build after `npm run build`
+- `SANITY_DRY_RUN=1 npm run sanity:seed` - preview the Sanity seed operation
+- `npm run sanity:repair-keys` - repair missing Sanity array `_key` values after API-created content
 
-There is no test suite. Use `npm run lint` and `npm run build` to verify changes.
+Use `npm run verify:quick` for normal code and content edits. Use `npm run verify` before larger or riskier handoffs. Run `npm run build` directly when you need to inspect static generation, route output, or production-only behavior. Next.js 16 requires Node.js 20.9 or newer.
 
-Next.js 16 requires Node.js 20.9 or newer.
+## Agent Automation
+
+- Codex has a repo-local post-`apply_patch` hook in `.codex/hooks.json` that formats patched files and regenerates CSS Module declarations when needed. Repo-local Codex hooks may need to be reviewed and trusted with `/hooks`.
+- Husky and lint-staged run formatting, ESLint fixes, and CSS Module declaration generation for staged files on commit.
+- Treat hooks as guardrails. Still run the appropriate verification command before handing off meaningful changes.
+
+## When To Read More
+
+| Change area                                                      | Read first                                             |
+| ---------------------------------------------------------------- | ------------------------------------------------------ |
+| Visual layout, spacing, typography, buttons, responsive behavior | `docs/design-system.md`                                |
+| Sanity schemas, GROQ, seed data, content validation              | `docs/cms.md`                                          |
+| Images, loading behavior, Lighthouse, Core Web Vitals            | `docs/performance.md`                                  |
+| Contact form, analytics events, conversion tracking              | `docs/forms-analytics.md`                              |
+| Environment variables, deployment, launch checks                 | `docs/launch.md`                                       |
+| Extracting this into a reusable starter                          | `docs/template-customization.md`                       |
+| Next.js APIs, routing, config, metadata, typed routes            | Relevant local guide in `node_modules/next/dist/docs/` |
 
 ## What This Is
 
-This is a marketing site for a solo therapy practice: Dr. Christina Ruzicka in Rochester, NY. It is a static Next.js App Router site intended for Vercel. There is no database and no auth. Booking and intake happen off-site through a SimplePractice Client Portal link, and the contact form emails inquiries.
+This is a static marketing site for a solo therapy practice: Dr. Christina Ruzicka in Rochester, New York. It uses Next.js App Router, Tailwind CSS v4, Sanity Studio, Vercel Analytics, and Web3Forms. Booking and intake happen off-site through the SimplePractice Client Portal link.
 
-## Architecture
+## Runtime Content
 
-### Copy Is Data
+Sanity is the runtime source of truth. Pages fetch normalized content through `src/lib/cms.ts`.
 
-All site text lives in `src/content/`, including `site.ts`, `home.ts`, `about.ts`, and other typed `as const` content files. Pages import this content and render it. Editing wording usually means editing `src/content/*`, not page components.
+`src/content/*` and `src/content/blog/*.md` are seed fixtures only. They exist so `scripts/seed-sanity.ts` can recreate the initial Sanity documents with deterministic IDs. Do not add runtime fallbacks to these files, and do not duplicate CMS copy in JSX.
 
-`src/content/site.ts` is the canonical source for the practice name, email, navigation, portal URL, and `areaServed`.
+If Sanity data is missing, a page may render nothing rather than falling back to stale local content. Fix the content or seed data instead of adding redundancy.
 
-### Theme Contract
+## Layout And Design
 
-Markup should use semantic role utilities such as `bg-surface`, `text-accent`, `border-muted`, `text-fg`, and `bg-feature`, not brand color names.
-
-Theme roles are defined in the `@theme` block of `src/app/globals.css`. This project uses Tailwind CSS v4, so there is no `tailwind.config.js`; `@theme` tokens generate the utilities.
-
-For a site reskin, keep these files in sync:
-
-- `src/app/globals.css` - Tailwind `@theme` tokens
-- `src/app/layout.tsx` - `next/font/google` imports
-- `src/lib/theme.ts` - JavaScript mirror of the palette used by the edge-runtime OG image, which cannot read CSS variables
-
-See `docs/redesign.md` for design notes.
-
-### Layout System
-
-Compose pages from the primitives in `src/components/ui/`:
-
-- `Section` controls `tone` and responsive vertical `size`
-- `Container` controls max width and responsive gutters
-
-The canonical page shape is:
+Use the reusable primitives in `src/components/ui/`:
 
 ```tsx
-<Section tone="..." size="...">
-  <Container size="...">...</Container>
+<Section tone="default" size="spacious">
+  <Container size="xl" className="site-grid">
+    ...
+  </Container>
 </Section>
 ```
 
-Pages should not set their own section padding. Vertical rhythm comes from `Section size` (`compact`, `default`, or `spacious`), which scales down on mobile. Avoid inline `py-*` on pages. Multi-column grids should collapse at `md`. Typography is fluid via `clamp()` rules for `h1` through `h3` in `globals.css`, so avoid per-breakpoint heading font sizes.
+- `Section` owns vertical spacing and background tone. Avoid page-specific `py-*` when a `Section` size can express the rhythm.
+- `Container` owns gutters and max width. Keep important content aligned to the shared grid.
+- `globals.css` owns theme tokens, typography, grid helpers, shared hover states, and cross-page content utilities.
+- Component selectors, local keyframes, and component state transitions belong in colocated CSS Modules, such as `header.module.css` or `contact-form.module.css`. Type declarations are generated by automation and checked during verification.
+- Prefer `buttonClasses()` in `src/components/ui/button.tsx` for reusable button and link components. Existing global button classes are acceptable in narrow local markup such as form submit buttons, but do not invent new button styles outside the shared button system.
+- Use semantic utilities such as `text-accent`, `text-light`, `text-icon`, `bg-feature`, `bg-contact-overlay`, and `border-muted`.
+- Do not add new hard-coded brand hex values in components unless there is a clear reason and the value is promoted to a theme token afterward.
+- Multi-column layouts should collapse cleanly at `md` unless a component has its own documented breakpoint behavior.
+- Respect `prefers-reduced-motion` for any new animation.
 
-### SEO
+See `docs/design-system.md` for recipes and visual rules.
 
-SEO is centralized in `src/lib/seo.ts`. Every route should export `metadata` built by:
+## Images And Performance
 
-```ts
-pageMetadata({ title, description, path })
-```
+- Use `next/image` for meaningful images and above-the-fold hero imagery.
+- Use `BackgroundImageLayer` for below-the-fold Sanity images that need cover behavior but should still benefit from responsive loading and lazy loading.
+- Avoid CSS `background-image` for large or meaningful images. CSS backgrounds are acceptable for tiny decorative textures and controlled overlays.
+- Always provide useful Sanity image alt text unless the image is purely decorative.
+- Sanity-hosted images are optimized by `src/lib/next-image-loader.ts`; do not bypass it with raw oversized URLs.
 
-That helper sets canonical URLs, OpenGraph data, and the title suffix. `site.url`, from `NEXT_PUBLIC_SITE_URL`, drives canonicals, `sitemap.ts`, `robots.ts`, and the OG image. The root layout injects `psychologistJsonLd()` structured data.
+See `docs/performance.md`.
 
-When adding a page, export `metadata` through `pageMetadata`.
+## CMS
 
-### Blog
+- Sanity config lives in `sanity.config.ts`; schema lives in `src/sanity/schemaTypes/`.
+- Singleton document IDs are `siteSettings`, `homePage`, `aboutPage`, `specialtiesPage`, `pricingPage`, `contactPage`, and `faqPage`.
+- Repeatable content currently includes `specialty` and `post`.
+- Seed logic lives in `scripts/seed-sanity.ts`; array-key repair lives in `scripts/repair-sanity-array-keys.ts`.
+- Singletons are replaced by the seed script. Repeatable documents use `createIfNotExists` unless `SANITY_SEED_OVERWRITE_REPEATABLES=1` is set.
+- Use `defineType`, `defineField`, and `defineArrayMember` for schema work.
+- Keep `defineQuery` calls static and parseable by Sanity TypeGen; do not build query strings with template interpolation.
+- Model editor-friendly content fields, not page-builder presentation knobs, unless the project explicitly changes direction.
 
-The blog is file-based markdown. Add posts in `src/content/blog/` with `title`, `date`, and `excerpt` frontmatter.
+See `docs/cms.md`.
 
-`src/lib/blog.ts` reads markdown with `gray-matter` and renders HTML with `remark`. `/blog/[slug]` is statically generated through `generateStaticParams`.
+## SEO And Analytics
 
-### Contact Form
+- SEO metadata is code-owned in `src/lib/seo.ts`.
+- Every route should export metadata with `pageMetadata({ title, description, path })`.
+- Structured data is injected from `src/app/(site)/layout.tsx` using `psychologistJsonLd()`, so `/studio` does not inherit marketing chrome or CMS fetches.
+- Vercel Analytics events live near their interaction surfaces in `src/components/analytics.tsx` and `src/app/(site)/contact/contact-form.tsx`.
 
-`src/app/contact/contact-form.tsx` is a client component using `useActionState`. It posts to the `submitInquiry` server action in `src/app/contact/actions.ts`, which delivers inquiries through Web3Forms.
+## Contact Form
 
-Without `WEB3FORMS_ACCESS_KEY`, the form shows a "please email directly" message and does not send. This is intentional, not a bug.
+The contact form is a client component in `src/app/(site)/contact/contact-form.tsx`. It submits directly to Web3Forms with `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`, validates required fields, includes a honeypot, tracks successful human submissions, and shows client-side success/error states.
+
+Do not reintroduce a server action unless the product goal changes. The current direct Web3Forms path keeps the site static and simple.
 
 ## Environment Variables
 
-Set local environment variables in `.env.local` and production variables in Vercel.
+Set local variables in `.env.local` and production variables in Vercel. Keep `.env.example` in sync.
 
-- `NEXT_PUBLIC_SITE_URL` - canonical base URL. Defaults to the production domain. Keep this pointed at the real domain even on preview deploys so canonicals and sitemap stay correct.
-- `WEB3FORMS_ACCESS_KEY` - enables contact-form delivery.
-- `GOOGLE_SITE_VERIFICATION` - Search Console token rendered as a site-wide verification meta tag.
+- `NEXT_PUBLIC_SANITY_PROJECT_ID`
+- `NEXT_PUBLIC_SANITY_DATASET`
+- `NEXT_PUBLIC_SANITY_API_VERSION`
+- `NEXT_PUBLIC_SITE_URL`
+- `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`
+- `GOOGLE_SITE_VERIFICATION`
 
-## Conventions And Constraints
+## Ethics And Client-Specific Constraints
 
-- Branching: demo and redesign work should happen on branches, such as `redesign/modern-feminine`. Do not commit to `main` or `master` unless explicitly asked.
-- Ethics: this is a licensed psychologist's website. Do not add client testimonials. Do not AI-generate Dr. Ruzicka's likeness; use real photos only.
-- The homepage uses a first-person philosophy pull quote in place of testimonials by design. See `docs/redesign.md`.
-- `docs/launch.md` is the go-live runbook for DNS cutover, Vercel environment variables, Search Console, and Google Business Profile.
+Ruzicka-specific:
+
+- Do not add client testimonials without explicit legal/ethical review.
+- Do not AI-generate Dr. Ruzicka's likeness. Use real photos only.
+- Keep clinical claims conservative and evidence-aligned.
+
+Template guidance:
+
+- For regulated or licensed-service websites, treat testimonials, before/after claims, medical claims, and lead-capture copy as requiring client/legal review.
+- Keep SEO code-owned unless the content model explicitly needs editor-managed SEO.
+
+## Do Not
+
+- Do not edit generated Sanity content by hand in the dataset when a seed or migration script should own the change.
+- Do not add duplicate content constants in JSX.
+- Do not use large CSS background images for content images.
+- Do not create one-off spacing systems on individual pages.
+- Do not remove accessibility labels, focus states, alt text, or reduced-motion handling while restyling.

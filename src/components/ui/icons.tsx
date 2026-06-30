@@ -1,6 +1,12 @@
 import type { SpecialtyIcon } from "@/lib/cms";
 
-function Icon({ size = 32, children }: { size?: number; children: React.ReactNode }) {
+function Icon({
+  size = 32,
+  children,
+}: {
+  size?: number;
+  children: React.ReactNode;
+}) {
   return (
     <svg
       width={size}
@@ -101,46 +107,6 @@ export function SpecialtyGlyph({
       );
     }
   }
-}
-
-export function ArrowDown({ className }: { className?: string }) {
-  return (
-    <svg
-      width="26"
-      height="26"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.4"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden
-    >
-      <path d="M12 5v13" />
-      <path d="M6 12l6 6 6-6" />
-    </svg>
-  );
-}
-
-export function ArrowRight({ size = 22 }: { size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      style={{ display: "block" }}
-      aria-hidden
-    >
-      <path d="M5 12h14" />
-      <path d="M13 6l6 6-6 6" />
-    </svg>
-  );
 }
 
 export function ArrowUpRight({ size = 12 }: { size?: number }) {

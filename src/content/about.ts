@@ -44,12 +44,10 @@ export const about = {
     heading: "Located in Downtown Rochester",
     body: "Virtual appointments are also offered for clients throughout New York.",
   },
-  // Placeholder copy for previewing a future testimonial layout.
-  // Do not represent this as a real client quote.
   philosophy: {
-    eyebrow: "Kind Words",
+    eyebrow: "A Note on Care",
     quote:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    attribution: "Client quote placeholder",
+      "Therapy can be a steady place to slow down, understand what is asking for attention, and move toward change with care.",
+    attribution: "Dr. Christina Ruzicka",
   },
 } as const;

@@ -5,9 +5,11 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/container";
+import { HEADER_SENTINEL_ID } from "@/components/ui/header-sentinel";
 import { ArrowUpRight } from "@/components/ui/icons";
 import type { SiteSettings } from "@/lib/cms";
 import { MAIN_NAV } from "@/lib/site-defaults";
+import styles from "./header.module.css";
 
 const TRANSPARENT_PAGES = ["/", "/contact"];
 
@@ -15,7 +17,11 @@ function normalizePathname(pathname: string) {
   return pathname === "/" ? pathname : pathname.replace(/\/$/, "");
 }
 
-export function Header({ siteSettings }: { siteSettings?: SiteSettings | null }) {
+export function Header({
+  siteSettings,
+}: {
+  siteSettings?: SiteSettings | null;
+}) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [overQuoteBand, setOverQuoteBand] = useState(false);
@@ -28,7 +34,7 @@ export function Header({ siteSettings }: { siteSettings?: SiteSettings | null })
     );
 
     const onScroll = () => {
-      const sentinel = document.getElementById("hero-sentinel");
+      const sentinel = document.getElementById(HEADER_SENTINEL_ID);
       const quoteBand = document.getElementById("about-quote-band");
       // No hero on ordinary pages means solid from the top. On transparent
       // pages, async content can render the sentinel after the header mounts.
@@ -79,12 +85,12 @@ export function Header({ siteSettings }: { siteSettings?: SiteSettings | null })
     ? {
         backgroundColor:
           normalizedPathname === "/contact"
-            ? "rgb(37 31 18 / 0.25)"
-            : "rgb(18 46 58 / 0.3)",
+            ? "var(--color-nav-contact-overlay)"
+            : "var(--color-nav-home-overlay)",
       }
     : overQuoteBand
-      ? { backgroundColor: "rgb(7 24 25 / 0.3)" }
-      : { backgroundColor: "rgb(217 211 198 / 0.8)" };
+      ? { backgroundColor: "var(--color-nav-quote-overlay)" }
+      : { backgroundColor: "var(--color-nav-solid-overlay)" };
 
   const wordmark = light ? "text-light" : "text-fg";
   const link = light
@@ -94,7 +100,7 @@ export function Header({ siteSettings }: { siteSettings?: SiteSettings | null })
   const mobileUtilityLinks = [
     { label: "Blog", href: "/blog" },
     { label: "FAQ", href: "/faq" },
-  ];
+  ] as const;
   const openMobileMenu = () => {
     setMenuVisible(true);
     window.requestAnimationFrame(() => setMenuOpen(true));
@@ -117,18 +123,20 @@ export function Header({ siteSettings }: { siteSettings?: SiteSettings | null })
           {siteSettings?.name}
         </Link>
 
-        <nav className="hidden items-center gap-8 sm:flex">
+        <nav
+          aria-label="Primary navigation"
+          className="hidden items-center gap-8 sm:flex"
+        >
           {MAIN_NAV.map((item) => {
             const href = item.href as string;
-            const active =
-              pathname === href || pathname.startsWith(`${href}/`);
+            const active = pathname === href || pathname.startsWith(`${href}/`);
 
             return (
               <Link
                 key={item.label}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`mono-label relative transition-colors duration-300 after:absolute after:left-0 after:-bottom-1.5 after:h-px after:bg-current after:transition-transform after:duration-300 ${
+                className={`mono-label relative transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:bg-current after:transition-transform after:duration-300 ${
                   active
                     ? `after:w-full after:scale-x-100 ${light ? "text-light" : "text-accent"}`
                     : `after:w-full after:scale-x-0 hover:after:scale-x-100 ${link}`
@@ -170,12 +178,15 @@ export function Header({ siteSettings }: { siteSettings?: SiteSettings | null })
       {menuVisible ? (
         <div
           id="mobile-navigation"
-          className={`mobile-menu-panel fixed inset-0 z-10 overflow-y-auto backdrop-blur-2xl sm:hidden ${
-            menuOpen ? "mobile-menu-panel--open" : "mobile-menu-panel--closing"
+          className={`${styles.panel} fixed inset-0 z-10 overflow-y-auto backdrop-blur-2xl sm:hidden ${
+            menuOpen ? styles.panelOpen : styles.panelClosing
           }`}
           style={navBackground}
         >
-          <Container size="xl" className="flex min-h-dvh flex-col justify-center py-28">
+          <Container
+            size="xl"
+            className="flex min-h-dvh flex-col justify-center py-28"
+          >
             <nav
               aria-label="Mobile primary navigation"
               className="flex flex-col items-start gap-5"
@@ -191,7 +202,7 @@ export function Header({ siteSettings }: { siteSettings?: SiteSettings | null })
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     onClick={closeMobileMenu}
-                    className={`mobile-menu-item heading-module transition-colors ${
+                    className={`${styles.item} heading-module transition-colors ${
                       light
                         ? active
                           ? "text-light"
@@ -209,13 +220,14 @@ export function Header({ siteSettings }: { siteSettings?: SiteSettings | null })
 
             <nav
               aria-label="Mobile secondary navigation"
-              className={`mobile-menu-secondary mt-12 flex flex-col items-start gap-4 border-t pt-8 ${
+              className={`${styles.secondary} mt-12 flex flex-col items-start gap-4 border-t pt-8 ${
                 light ? "border-light/30" : "border-fg/20"
               }`}
             >
               {mobileUtilityLinks.map((item) => {
                 const active =
-                  pathname === item.href || pathname.startsWith(`${item.href}/`);
+                  pathname === item.href ||
+                  pathname.startsWith(`${item.href}/`);
 
                 return (
                   <Link
@@ -223,7 +235,7 @@ export function Header({ siteSettings }: { siteSettings?: SiteSettings | null })
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     onClick={closeMobileMenu}
-                    className={`mobile-menu-item mono-label tracking-[0.08em] transition-colors ${
+                    className={`${styles.item} mono-label tracking-[0.08em] transition-colors ${
                       light
                         ? active
                           ? "text-light"
@@ -242,11 +254,13 @@ export function Header({ siteSettings }: { siteSettings?: SiteSettings | null })
                 <a
                   href={siteSettings.portalUrl}
                   onClick={closeMobileMenu}
-                  className={`mobile-menu-item mono-label inline-flex items-center gap-1.5 tracking-[0.08em] transition-colors ${
-                    light ? "text-light/75 hover:text-light" : "text-body hover:text-accent"
+                  className={`${styles.item} mono-label inline-flex items-center gap-1.5 tracking-[0.08em] transition-colors ${
+                    light
+                      ? "text-light/75 hover:text-light"
+                      : "text-body hover:text-accent"
                   }`}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                 >
                   Client Portal
                   <ArrowUpRight />

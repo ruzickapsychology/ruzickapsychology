@@ -1,5 +1,9 @@
 import Image from "next/image";
-import { imageSrc, type SanityImageValue } from "@/lib/cms-images";
+import {
+  imageBlurData,
+  imageSrc,
+  type SanityImageValue,
+} from "@/lib/cms-images";
 
 export function BackgroundImageLayer({
   image,
@@ -19,16 +23,19 @@ export function BackgroundImageLayer({
   sizes?: string;
 }) {
   const src = imageSrc(image);
+  const blurDataURL = imageBlurData(image);
   if (!src) return null;
 
   return (
     <Image
       alt={alt}
-      className={`absolute inset-0 z-0 object-cover ${className}`.trim()}
+      className={`pointer-events-none absolute inset-0 z-0 object-cover ${className}`.trim()}
       decoding="async"
       fetchPriority={eager ? "high" : undefined}
       fill
       loading={eager ? "eager" : "lazy"}
+      placeholder={blurDataURL ? "blur" : "empty"}
+      blurDataURL={blurDataURL}
       quality={quality}
       sizes={sizes}
       src={src}

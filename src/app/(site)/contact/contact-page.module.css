@@ -1,0 +1,33 @@
+.imageGrain {
+  position: relative;
+  isolation: isolate;
+}
+
+.imageGrain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("/images/bg-texture.jpg");
+  background-repeat: repeat;
+  background-size: 1900px;
+  opacity: 0.76;
+  mix-blend-mode: soft-light;
+}
+
+.imageGrain > :not(img) {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 1023px) {
+  .headerWash::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-color: var(--color-contact-responsive-wash);
+  }
+}

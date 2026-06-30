@@ -1,9 +1,16 @@
-import {type SchemaTypeDefinition} from 'sanity'
+import { type SchemaTypeDefinition } from "sanity";
 
-import {aboutPage, contactPage, faqPage, homePage, pricingPage, specialtiesPage} from './documents/pages'
-import {post} from './documents/post'
-import {siteSettings} from './documents/siteSettings'
-import {specialty} from './documents/specialty'
+import {
+  aboutPage,
+  contactPage,
+  faqPage,
+  homePage,
+  pricingPage,
+  specialtiesPage,
+} from "./documents/pages";
+import { post } from "./documents/post";
+import { siteSettings } from "./documents/siteSettings";
+import { specialty } from "./documents/specialty";
 import {
   credentialGroup,
   credentialItem,
@@ -12,10 +19,16 @@ import {
   processStep,
   quoteSection,
   therapySpaceSection,
-} from './objects/pageObjects'
-import {address, cta, imageWithAlt, pageHeader, simplePortableText} from './objects/shared'
+} from "./objects/pageObjects";
+import {
+  address,
+  cta,
+  imageWithAlt,
+  pageHeader,
+  simplePortableText,
+} from "./objects/shared";
 
-export const schema: {types: SchemaTypeDefinition[]} = {
+export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     address,
     cta,
@@ -39,4 +52,4 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     specialty,
     post,
   ],
-}
+};

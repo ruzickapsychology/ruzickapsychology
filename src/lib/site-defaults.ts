@@ -1,5 +1,6 @@
-export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.ruzickapsychology.com";
+import { publicEnv } from "@/lib/env";
+
+export const SITE_URL = publicEnv.siteUrl;
 
 export const SITE_LEGAL_NAME = "Ruzicka Psychology PLLC";
 

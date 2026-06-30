@@ -15,20 +15,17 @@ export const contact = {
       {
         n: "02",
         title: "Initial Consultation",
-        body:
-          "We'll schedule a brief phone call to discuss your needs, answer questions, and determine whether we're a good fit.",
+        body: "We'll schedule a brief phone call to discuss your needs, answer questions, and determine whether we're a good fit.",
       },
       {
         n: "03",
         title: "Begin Therapy",
-        body:
-          "If it feels right, we'll schedule your first session and begin working together at a pace that feels manageable.",
+        body: "If it feels right, we'll schedule your first session and begin working together at a pace that feels manageable.",
       },
       {
         n: "04",
         title: "Ongoing Support",
-        body:
-          "Therapy becomes a dedicated space to explore challenges, build insight, and create meaningful change over time.",
+        body: "Therapy becomes a dedicated space to explore challenges, build insight, and create meaningful change over time.",
       },
     ],
   },

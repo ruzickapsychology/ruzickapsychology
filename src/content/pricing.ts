@@ -3,7 +3,6 @@ export const pricing = {
   heading: "Pricing",
   intro:
     "Therapy is a meaningful investment in your relationships and your future. We'll make sure you understand the process and costs upfront.",
-  // PLACEHOLDER fees (from design mock) — confirm real values before launch.
   fees: {
     heading: "Session Fees",
     items: [

@@ -1,51 +1,154 @@
 # Ruzicka Psychology
 
-Marketing site for a therapy practice, built with [Next.js](https://nextjs.org) (App Router), TypeScript, and Tailwind CSS.
+Static marketing site for Dr. Christina Ruzicka's therapy practice in Rochester, New York. Built with Next.js App Router, TypeScript, Tailwind CSS v4, Sanity Studio, Vercel Analytics, and Web3Forms.
 
-## Development
+## Quick Start
 
 ```bash
 npm install
+cp .env.example .env.local
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open http://localhost:3000.
+
+Next.js 16 requires Node.js 20.9 or newer.
 
 ## Scripts
 
-- `npm run dev` — start the dev server
-- `npm run build` — production build
-- `npm run start` — serve the production build
-- `npm run lint` — run ESLint
+- `npm run dev` - start the dev server
+- `npm run build` - production build and static route generation
+- `npm run start` - serve the production build
+- `npm run lint` - run ESLint
+- `npm run typecheck` - generate Next route types and run TypeScript
+- `npm run typegen` - extract the Sanity schema and generate Sanity types
+- `npm run css-types` - generate TypeScript declarations for CSS Modules
+- `npm run test` - run unit tests
+- `npm run test:e2e` - run Playwright accessibility and smoke tests
+- `npm run lhci` - run Lighthouse CI against a local production server
+- `npm run sanity:validate-content` - validate required Sanity content and image alt text
+- `SANITY_DRY_RUN=1 npm run sanity:seed` - preview the seed operation
+- `npm run sanity:seed` - upload seed fixtures to the configured Sanity dataset
+- `npm run sanity:repair-keys` - add missing `_key` values to Sanity arrays created without keys
 
-## Project structure
+## Environment Variables
 
+Set these in `.env.local` for local development and in Vercel for production:
+
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID=vq39ihmt
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_API_VERSION=2026-06-24
+NEXT_PUBLIC_SITE_URL=https://www.ruzickapsychology.com
+NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=
+GOOGLE_SITE_VERIFICATION=
 ```
+
+`NEXT_PUBLIC_SITE_URL` drives canonicals, OpenGraph, sitemap, and robots output. Keep it pointed at the production domain unless you intentionally want preview-specific SEO output.
+
+`NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` is a public Web3Forms access key. The form submits directly from the browser, so this value is expected to be public.
+
+## Project Shape
+
+```text
 src/
-  app/              routes (home, about, contact, blog) + sitemap.ts, robots.ts, opengraph-image.tsx
-  components/
-    ui/             primitives: Section, Container, Button — compose pages from these
-    header.tsx, footer.tsx
-  content/          all site copy, separated from code
-    site.ts         name, email, nav, portal URL, area served
-    home.ts, about.ts
-    blog/*.md        blog posts as markdown with frontmatter
-  lib/
-    blog.ts         reads + renders the markdown posts
-    seo.ts          metadata helper + Psychologist JSON-LD
+  app/                 App Router pages, route groups, metadata, sitemap, robots, Studio route
+  components/          Header, footer, analytics links, reusable UI primitives
+  content/             deterministic seed fixtures only
+  lib/                 CMS queries, image helpers, SEO, blog normalization
+  sanity/              Sanity schema, Studio structure, env helpers
+scripts/
+  seed-sanity.ts       idempotent Sanity seed from src/content fixtures
+  validate-sanity-content.ts
+  repair-sanity-array-keys.ts
+docs/
+  architecture.md
+  cms.md
+  design-system.md
+  forms-analytics.md
+  performance.md
+  template-customization.md
 ```
 
-**Editing copy** lives in `src/content/` — no JSX needed. **New blog post**: drop a `.md` file in `src/content/blog/` with `title`, `date`, `excerpt` frontmatter.
+Runtime content comes from Sanity, not from `src/content`. The fixture files in `src/content/*` and `src/content/blog/*.md` exist so the seed script can recreate the initial CMS content.
 
-## Contact form
+## Sanity Setup
 
-The contact form posts to a server action (`src/app/contact/actions.ts`) that delivers inquiries via [Web3Forms](https://web3forms.com) (free, no DNS setup).
+1. Create or choose a Sanity project and dataset.
+2. Put the project ID, dataset, and API version in `.env.local`.
+3. Run `npm run dev` and open http://localhost:3000/studio.
+4. Log in to Sanity if prompted.
+5. Seed initial content:
 
-1. Go to [web3forms.com](https://web3forms.com), enter the email that should receive inquiries (e.g. `christina@ruzickapsychology.com`), and they email you an **access key**.
-2. Set `WEB3FORMS_ACCESS_KEY` (see `.env.example`) — locally in `.env.local`, and in Vercel project settings for production.
+```bash
+SANITY_DRY_RUN=1 npm run sanity:seed
+npm run sanity:seed
+```
 
-Without the key, the form shows a "please email directly" message instead of sending. Real intake/scheduling still flows through the SimplePractice **Client Portal** linked in the nav.
+The seed script uses deterministic IDs. Singletons are replaced on each run. Repeatable documents such as specialties and posts use `createIfNotExists` by default so local seed fixtures do not overwrite production editorial changes.
 
-## Deploying
+To intentionally reset repeatable documents from fixtures, run:
 
-Deploy on [Vercel](https://vercel.com) — connect this GitHub repo and it builds on every push. No config needed for a standard Next.js app.
+```bash
+SANITY_SEED_OVERWRITE_REPEATABLES=1 npm run sanity:seed
+```
+
+If Studio shows "Missing keys" for an array field, run:
+
+```bash
+npm run sanity:repair-keys
+```
+
+## Contact Form
+
+The contact form lives in `src/app/(site)/contact/contact-form.tsx`. It submits directly to Web3Forms, includes basic validation and a honeypot, shows success/error UI, and tracks `inquiry_submitted` with Vercel Analytics.
+
+To enable delivery, create a Web3Forms access key for the recipient inbox and set `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`.
+
+## Deploy
+
+Deploy to Vercel from GitHub. Required production environment variables:
+
+- `NEXT_PUBLIC_SANITY_PROJECT_ID`
+- `NEXT_PUBLIC_SANITY_DATASET`
+- `NEXT_PUBLIC_SANITY_API_VERSION`
+- `NEXT_PUBLIC_SITE_URL`
+- `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`
+- `GOOGLE_SITE_VERIFICATION` if Search Console verification is needed
+
+After changing Vercel env vars, redeploy.
+
+## Verification
+
+Before pushing important changes:
+
+```bash
+npm run css-types
+npm run format:check
+npm run lint
+npm run typecheck
+npm run typegen
+npm run sanity:validate-content
+npm run test
+npm run build
+```
+
+For CMS or launch changes, also spot-check:
+
+- `/`
+- `/about`
+- `/specialties`
+- `/pricing`
+- `/contact`
+- `/faq`
+- `/blog`
+- one `/blog/[slug]`
+- `/studio`
+
+## Troubleshooting
+
+- Build fails with missing Sanity env vars: add the `NEXT_PUBLIC_SANITY_*` variables in Vercel and redeploy.
+- `/studio` 404s on Vercel: confirm the latest deployment built successfully and the Sanity public env vars exist in that environment.
+- Pages render blank: the required Sanity singleton is missing or unreachable. Seed the dataset or inspect the query in Studio Vision.
+- Contact form does not send: confirm `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` is set in the browser environment and that Web3Forms accepts the key.
+- Lighthouse flags image delivery: check `docs/performance.md` before changing image code.

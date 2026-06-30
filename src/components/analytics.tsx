@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link, { type LinkProps } from "next/link";
 import { track } from "@vercel/analytics";
 import { buttonClasses } from "@/components/ui/button";
 
@@ -13,7 +13,7 @@ export function CtaLink({
   className,
   children,
 }: {
-  href: string;
+  href: LinkProps<string>["href"];
   event: string;
   variant?: Variant;
   className?: string;
@@ -45,7 +45,7 @@ export function TrackedExternalLink({
     <a
       href={href}
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
       className={className}
       onClick={() => track(event)}
     >
