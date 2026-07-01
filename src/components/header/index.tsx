@@ -17,8 +17,9 @@ function classNames(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(" ");
 }
 
-function normalizePathname(pathname: string) {
-  return pathname === "/" ? pathname : pathname.replace(/\/$/, "");
+function normalizePathname(pathname: string | null | undefined) {
+  if (!pathname || pathname === "/") return "/";
+  return pathname.replace(/\/$/, "");
 }
 
 function isTransparentPage(pathname: string) {
