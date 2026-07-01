@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import { createPortal } from "react-dom";
+import Image from "next/image";
 import { track } from "@vercel/analytics";
 import { buttonClasses } from "@/components/ui/button";
 import { FormField } from "@/components/ui/form-field";
@@ -356,11 +357,13 @@ function SubmissionBloom({ animationRun }: { animationRun: number }) {
   return (
     <div className={styles.bloom} aria-hidden>
       <div className={styles.bloomFlower} key={animationRun} aria-hidden>
-        <object
-          data={`/images/submission-flower.svg?v=${animationRun}`}
-          type="image/svg+xml"
+        <Image
+          src={`/images/submission-flower.svg?v=${animationRun}`}
+          alt=""
           className={styles.bloomArt}
-          tabIndex={-1}
+          width={397}
+          height={500}
+          unoptimized
         />
       </div>
     </div>

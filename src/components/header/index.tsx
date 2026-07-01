@@ -21,21 +21,32 @@ function normalizePathname(pathname: string) {
   return pathname === "/" ? pathname : pathname.replace(/\/$/, "");
 }
 
+function isTransparentPage(pathname: string) {
+  return TRANSPARENT_PAGES.includes(normalizePathname(pathname));
+}
+
+function getInitialScrolled() {
+  if (typeof window === "undefined") return false;
+
+  const pathname = normalizePathname(window.location.pathname);
+  if (!isTransparentPage(pathname)) return true;
+
+  return window.scrollY > 64;
+}
+
 export function Header({
   siteSettings,
 }: {
   siteSettings?: SiteSettings | null;
 }) {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(getInitialScrolled);
   const [overQuoteBand, setOverQuoteBand] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
 
   useEffect(() => {
-    const routeCanBeTransparent = TRANSPARENT_PAGES.includes(
-      normalizePathname(pathname),
-    );
+    const routeCanBeTransparent = isTransparentPage(pathname);
 
     const onScroll = () => {
       const sentinel = document.getElementById(HEADER_SENTINEL_ID);
@@ -82,7 +93,7 @@ export function Header({
   }, [menuOpen, menuVisible]);
 
   const normalizedPathname = normalizePathname(pathname);
-  const canBeTransparent = TRANSPARENT_PAGES.includes(normalizedPathname);
+  const canBeTransparent = isTransparentPage(normalizedPathname);
   const transparent = canBeTransparent && !scrolled;
   const light = transparent || overQuoteBand;
   const navBackground = transparent

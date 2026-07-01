@@ -7,11 +7,11 @@
 }
 
 .homeOverlay {
-  background-color: var(--color-nav-home-overlay);
+  background-color: transparent;
 }
 
 .contactOverlay {
-  background-color: var(--color-nav-contact-overlay);
+  background-color: transparent;
 }
 
 .quoteOverlay {
@@ -120,6 +120,14 @@
   opacity: 0;
   backdrop-filter: blur(0);
   will-change: opacity, backdrop-filter;
+}
+
+.panel.homeOverlay {
+  background-color: var(--color-nav-home-overlay);
+}
+
+.panel.contactOverlay {
+  background-color: var(--color-nav-contact-overlay);
 }
 
 .panelOpen {

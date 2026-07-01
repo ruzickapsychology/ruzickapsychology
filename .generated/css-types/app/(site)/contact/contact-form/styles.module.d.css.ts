@@ -3,6 +3,7 @@ declare const styles: {
   readonly bloom: string;
   readonly bloomArt: string;
   readonly bloomFlower: string;
+  readonly bloomFlowerIn: string;
   readonly contactSuccessPanelIn: string;
   readonly error: string;
   readonly field: string;
