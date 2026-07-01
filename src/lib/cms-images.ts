@@ -39,12 +39,14 @@ type SanityImageHotspot = {
   width?: number;
 };
 
-const imageUrlBuilder = createImageUrlBuilder({ projectId, dataset });
-
 export function imageSrc(image: SanityImageValue) {
   if (!image?.asset) return undefined;
+  if (!projectId || !dataset) return undefined;
 
-  return imageUrlBuilder.image(image).auto("format").url();
+  return createImageUrlBuilder({ projectId, dataset })
+    .image(image)
+    .auto("format")
+    .url();
 }
 
 export function imageBlurData(image: SanityImageValue) {

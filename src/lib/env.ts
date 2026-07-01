@@ -12,16 +12,9 @@ export function optionalEnvValue(value: string | undefined) {
 }
 
 export const publicEnv = {
-  sanityProjectId: requireEnvValue(
-    "NEXT_PUBLIC_SANITY_PROJECT_ID",
-    process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  ),
-  sanityDataset: requireEnvValue(
-    "NEXT_PUBLIC_SANITY_DATASET",
-    process.env.NEXT_PUBLIC_SANITY_DATASET,
-  ),
-  sanityApiVersion: requireEnvValue(
-    "NEXT_PUBLIC_SANITY_API_VERSION",
+  sanityProjectId: optionalEnvValue(process.env.NEXT_PUBLIC_SANITY_PROJECT_ID),
+  sanityDataset: optionalEnvValue(process.env.NEXT_PUBLIC_SANITY_DATASET),
+  sanityApiVersion: optionalEnvValue(
     process.env.NEXT_PUBLIC_SANITY_API_VERSION,
   ),
   siteUrl: requireEnvValue(

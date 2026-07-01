@@ -8,12 +8,24 @@
  */
 
 import { NextStudio } from "next-sanity/studio";
-import config from "../../../../sanity.config";
+import config, { isStudioConfigured } from "../../../../sanity.config";
 
 export const dynamic = "force-static";
 
 export { metadata, viewport } from "next-sanity/studio";
 
 export default function StudioPage() {
+  if (!isStudioConfigured || !config) {
+    return (
+      <main style={{ padding: 32, fontFamily: "system-ui, sans-serif" }}>
+        <h1>Sanity Studio is unavailable</h1>
+        <p>
+          Add NEXT_PUBLIC_SANITY_PROJECT_ID, NEXT_PUBLIC_SANITY_DATASET, and
+          NEXT_PUBLIC_SANITY_API_VERSION to enable the Studio.
+        </p>
+      </main>
+    );
+  }
+
   return <NextStudio config={config} />;
 }

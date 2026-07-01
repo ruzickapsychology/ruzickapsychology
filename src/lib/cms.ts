@@ -502,6 +502,8 @@ export const sitemapEntriesQuery = defineQuery(/* groq */ `
 `);
 
 async function fetchCms<T>(query: string, params: QueryParams = {}) {
+  if (!client) return null;
+
   try {
     const data = await client.fetch<T | null>(query, params, {
       next: { revalidate: 60 },
@@ -514,6 +516,11 @@ async function fetchCms<T>(query: string, params: QueryParams = {}) {
 }
 
 async function fetchCmsStrict<T>(query: string, params: QueryParams = {}) {
+  if (!client) {
+    console.warn("[sanity] CMS content unavailable: Sanity is not configured.");
+    return null;
+  }
+
   return client.fetch<T>(query, params, {
     next: { revalidate: 60 },
   });
@@ -775,11 +782,13 @@ export async function getSanityPostMeta() {
 }
 
 export async function getSanityPostMetaStrict() {
-  return fetchCmsStrict<RawPostMeta[]>(blogPostMetaQuery);
+  return (await fetchCmsStrict<RawPostMeta[]>(blogPostMetaQuery)) ?? [];
 }
 
 export async function getSanityPostSlugsStrict() {
-  return fetchCmsStrict<Array<{ slug: string }>>(blogPostSlugsQuery);
+  return (
+    (await fetchCmsStrict<Array<{ slug: string }>>(blogPostSlugsQuery)) ?? []
+  );
 }
 
 export async function getSitemapEntriesStrict() {

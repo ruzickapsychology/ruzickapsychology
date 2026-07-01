@@ -5,3 +5,5 @@ export const apiVersion = publicEnv.sanityApiVersion;
 export const dataset = publicEnv.sanityDataset;
 
 export const projectId = publicEnv.sanityProjectId;
+
+export const isSanityConfigured = Boolean(projectId && dataset && apiVersion);

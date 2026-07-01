@@ -13,6 +13,13 @@ import { apiVersion, dataset, projectId } from "./src/sanity/env";
 import { schema } from "./src/sanity/schemaTypes";
 import { structure } from "./src/sanity/structure";
 
+export const isStudioConfigured = Boolean(projectId && dataset && apiVersion);
+
+const studioEnv =
+  projectId && dataset && apiVersion
+    ? { apiVersion, dataset, projectId }
+    : null;
+
 const singletonTypes = new Set([
   "siteSettings",
   "homePage",
@@ -25,24 +32,26 @@ const singletonTypes = new Set([
 
 const studioPlugins = [
   structureTool({ structure }),
-  ...(process.env.NODE_ENV === "production"
+  ...(process.env.NODE_ENV === "production" || !studioEnv
     ? []
     : [
         // Vision is for querying with GROQ from inside the Studio.
         // Keep it out of production unless an authoring need explicitly changes.
-        visionTool({ defaultApiVersion: apiVersion }),
+        visionTool({ defaultApiVersion: studioEnv.apiVersion }),
       ]),
 ];
 
-export default defineConfig({
-  basePath: "/studio",
-  projectId,
-  dataset,
-  // Add and edit the content schema in the './sanity/schemaTypes' folder
-  schema,
-  document: {
-    newDocumentOptions: (prev) =>
-      prev.filter((template) => !singletonTypes.has(template.templateId)),
-  },
-  plugins: studioPlugins,
-});
+export default studioEnv
+  ? defineConfig({
+      basePath: "/studio",
+      projectId: studioEnv.projectId,
+      dataset: studioEnv.dataset,
+      // Add and edit the content schema in the './sanity/schemaTypes' folder
+      schema,
+      document: {
+        newDocumentOptions: (prev) =>
+          prev.filter((template) => !singletonTypes.has(template.templateId)),
+      },
+      plugins: studioPlugins,
+    })
+  : null;
