@@ -1,0 +1,36 @@
+.modalityContent {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 100%;
+}
+
+.modalitySection {
+  position: relative;
+  overflow: hidden;
+}
+
+.modalityContainer {
+  position: relative;
+  z-index: 10;
+}
+
+.modalityContent {
+  max-width: var(--measure-xl);
+  padding: 3rem 2rem;
+  text-align: left;
+}
+
+.modalityBody {
+  margin-top: var(--space-6);
+  max-width: var(--measure-md);
+}
+
+.modalityLink {
+  margin-top: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .modalityContent {
+    padding: 3.5rem 3rem;
+  }
+}

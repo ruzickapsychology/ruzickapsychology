@@ -37,7 +37,7 @@ images: {
 
 The loader appends `w`, `q`, and `auto=format` to Sanity CDN URLs. This lets the browser request appropriately sized modern image formats.
 
-`src/lib/cms-images.ts` exposes the small normalized image values used by `next/image` wrappers, including blur placeholders from Sanity metadata.
+`src/config/cms-images.ts` exposes the small normalized image values used by `next/image` wrappers, including blur placeholders from Sanity metadata.
 
 ## Eager vs Lazy
 

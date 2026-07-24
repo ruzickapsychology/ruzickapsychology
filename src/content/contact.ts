@@ -3,7 +3,8 @@ export const contact = {
   heading: "Let's Work Together",
   intro:
     "I am currently accepting new clients for in-person and virtual appointments. I'll be in touch within two business days after receiving your inquiry.",
-  formNote: "Please do not include sensitive information.",
+  formNote:
+    "Please do not include sensitive health information. This form is for appointment inquiries, not emergency support. If you are in immediate danger, call 911 or go to the nearest emergency department.",
   expect: {
     eyebrow: "The Process",
     heading: "What to Expect",

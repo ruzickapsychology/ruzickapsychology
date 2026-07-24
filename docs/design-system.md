@@ -4,7 +4,7 @@ The design system should feel calm, editorial, and tactile without becoming deco
 
 ## Theme Tokens
 
-Theme values live in the `@theme` block of `src/app/globals.css`. Tailwind CSS v4 generates utilities from these tokens.
+Theme values live in the `:root` contract in `src/app/globals.css`. The site uses plain CSS and colocated CSS Modules; there is no utility-CSS build step.
 
 | Token                     |                       Hex | Use                                           |
 | ------------------------- | ------------------------: | --------------------------------------------- |
@@ -30,9 +30,9 @@ Theme values live in the `@theme` block of `src/app/globals.css`. Tailwind CSS v
 | `contact-responsive-wash` |    `rgb(37 31 18 / 0.35)` | Contact image wash on tablet/mobile           |
 | `hover-wash`              | `rgb(241 238 235 / 0.24)` | Shared quadrant/card hover wash               |
 
-Use semantic utilities such as `text-icon`, `bg-feature/35`, `border-muted`, and `text-light`. Avoid raw hex values in components.
+Use the semantic custom properties directly in CSS Modules, for example `var(--color-icon)`, `var(--color-feature)`, `var(--color-muted)`, and `var(--color-light)`. Avoid raw hex values in components.
 
-`src/lib/theme.ts` mirrors the core palette for the OpenGraph image runtime, which cannot read CSS variables.
+`src/config/theme.ts` mirrors the core palette for the OpenGraph image runtime, which cannot read CSS variables.
 
 ## Typography
 
@@ -44,16 +44,21 @@ Fonts are loaded in `src/app/layout.tsx`.
 
 Current content styles:
 
-- Hero/display headings: native `h1`.
-- Section headings: `h2` or `.heading-section`.
-- Module headings: `.heading-module`.
-- Item headings: `h3` or `.heading-item`.
-- Body 1: `.body-1`, 18px emphasis copy.
-- Body 2: `.body-2`, 16px default paragraphs and page body.
-- Body 3: `.body-3`, 14px detailed notes, form fields, compact descriptions.
-- Labels/eyebrows/meta: `.eyebrow`, `.mono-label`, 13px.
+- `Heading`: `display`, `section`, `content`, `module`, and `item`.
+- `Eyebrow`: `section`, `overline`, `label`, and `meta`.
+- `Text`: `lead`, `body`, `supporting`, `detail`, and `quote`.
+- `ContentHeader` composes those roles for every page or section
+  introduction.
+- `PortableContent` owns `intro`, `body`, `compact`, and `article` prose.
 
-Do not invent one-off font sizes unless a new reusable style is needed.
+The semantic element and visual role are explicit: a card may use
+`<Heading as="h2" size="item">`, while a page title uses
+`<Heading as="h1" size="display">`. Public page modules must not contain raw
+headings or paragraphs, and page-module CSS must not restyle typography roles.
+
+Reusable CSS Modules should consume the root typography tokens
+(`--text-*`, `--text-heading-*`, `--leading-*`, and `--tracking-*`) or compose
+the global typography roles instead of repeating their numeric values.
 
 ## Layout
 
@@ -61,9 +66,7 @@ Use:
 
 ```tsx
 <Section size="spacious" tone="default">
-  <Container size="xl" className="site-grid">
-    ...
-  </Container>
+  <GridContainer size="xl">...</GridContainer>
 </Section>
 ```
 
@@ -81,42 +84,62 @@ Use:
 - `lg` - medium content.
 - `xl` - full marketing grid.
 
-`site-grid` is the shared grid system. Keep hero elements, cards, forms, footer columns, and media aligned to it.
+Shared content widths use the `--measure-sm` through `--measure-xl` tokens.
+Common 4px-based spacing uses the root `--space-*` scale; leave genuinely
+one-off visual adjustments local to their component.
+
+`Grid` and `GridContainer` are the shared responsive grid system. `Stack`
+owns vertical rhythm, and `ContentSection` owns the standard
+Section/Container anatomy. Place a composed `ContentHeader` inside when the
+section needs an introduction.
 
 ## CTA Variants
 
-- Primary CTA: `buttonClasses("primary")`, dark pill with light text from `src/components/ui/button/styles.module.css`.
-- Secondary button CTA: `buttonClasses("secondary")`, light pill with a subtle border.
-- Outline button CTA: `buttonClasses("outline")`, transparent pill with an ink stroke.
+- Primary CTA: `<Button>`, dark pill with light text from
+  `src/components/button/styles.module.css`.
+- Secondary button CTA: `<Button variant="secondary">`, light pill with a
+  subtle border.
+- Outline button CTA: `<Button variant="outline">`, transparent pill with an
+  ink stroke.
+- Button-styled links use `buttonVariants({ variant })`.
 - Secondary CTA: underlined `.mono-label` text link with the arrow glyph, such as `Learn more ->` when represented in code as the chosen arrow character.
 - External CTA: same text treatment plus the shared up-right arrow icon.
 
-Avoid rogue button styles. If a new pill/button CTA style is needed, add it to `src/components/ui/button/styles.module.css`, expose it through `buttonClasses()`, and document it here.
+Avoid rogue button styles. If a new pill/button CTA style is needed, add it to
+`src/components/button/styles.module.css`, expose it through `Button` and
+`buttonVariants()`, and document it here.
 
 ## Component Recipes
 
 ### Normal Page Header
 
 ```tsx
-<Section size="page">
-  <Container size="md">
-    <div className="text-center">
-      <h1>{page.heading}</h1>
-      <p className="body-2 mx-auto mt-4 max-w-[520px]">{page.intro}</p>
-    </div>
-  </Container>
-</Section>
+<PageHeader>
+  <PageHeaderContent>
+    <PageHeaderEyebrow>{page.eyebrow}</PageHeaderEyebrow>
+    <PageHeaderTitle>{page.heading}</PageHeaderTitle>
+    <PageHeaderDescription>{page.intro}</PageHeaderDescription>
+  </PageHeaderContent>
+</PageHeader>
 ```
+
+`PageHeader` contains only breadcrumbs, eyebrow, H1, and lead copy. Page
+modules always belong in a following `ContentSection`.
+
+When a `ContentSection` immediately follows `PageHeader`, `PageShell` removes
+the content section’s leading padding. The page header already owns the space
+between its introduction and the next section; do not add another page-specific
+offset.
 
 ### Full-Bleed Image Section
 
 ```tsx
-<Section size="spacious" className="bg-fg relative overflow-hidden">
+<Section size="spacious" className={styles.imageSection}>
   <BackgroundImageLayer image={section.backgroundImage} />
-  <div className="bg-quote-overlay/20 absolute inset-0 z-0" aria-hidden />
-  <Container size="xl" className="site-grid relative z-10">
+  <div className={styles.imageOverlay} aria-hidden />
+  <GridContainer size="xl" className={styles.imageContent}>
     ...
-  </Container>
+  </GridContainer>
 </Section>
 ```
 
@@ -125,28 +148,33 @@ Use `next/image` directly for above-the-fold hero images. Use `BackgroundImageLa
 ### CTA Module
 
 ```tsx
-<Section size="spacious" className="bg-feature/35 relative overflow-hidden">
+<Section size="spacious" className={styles.ctaSection}>
   <BackgroundImageLayer image={cta.backgroundImage} />
-  <Container size="xl" className="site-grid relative z-10">
-    <div className="grid-center-xl border-muted bg-feature/90 rounded-none border px-8 py-20 text-center sm:px-12">
-      <h2>{cta.heading}</h2>
-      <p className="body-1 mx-auto mt-4.5 max-w-[430px]">{cta.body}</p>
+  <GridContainer size="xl" className={styles.ctaContent}>
+    <div className={styles.ctaPanel}>
+      <ContentHeader>
+        <ContentHeaderTitle>{cta.heading}</ContentHeaderTitle>
+        <ContentHeaderDescription>{cta.body}</ContentHeaderDescription>
+      </ContentHeader>
     </div>
-  </Container>
+  </GridContainer>
 </Section>
 ```
 
 ### Grid Module
 
-Use `grid-card-2`, `grid-card-4`, `rp-q`, and `border-muted`. Hover wash behavior is centralized in CSS. Do not hand-code new divider colors.
+Use `Grid`, `GridContainer`, `DividerGrid`, and the documented card-grid
+components. Do not recreate column transitions or divider logic in route CSS.
 
 ### Accordion Module
 
-Use native `<details>` and `<summary>` unless a stronger interaction need appears. Keep dividers `border-muted`, use the shared plus/X icon treatment, and keep collapsed content readable.
+Use `DisclosureList`, `DisclosureItem`, `DisclosureTrigger`,
+`DisclosureTitle`, and `DisclosureContent`. These preserve native
+`<details>`/`<summary>` behavior while keeping the hierarchy explicit.
 
 ### Blog List And Detail
 
-Use `src/lib/blog.ts` helpers. Blog cards should be tappable as a whole and use the shared hover wash. Blog detail pages should use `Section size="page"` with `Container size="md"`.
+Use `src/data/blog.ts` helpers. Blog cards should be tappable as a whole and use the shared hover wash. Blog detail pages should use `Section size="page"` with `Container size="md"`.
 
 ## Mobile Rules
 
@@ -166,7 +194,13 @@ Use a hybrid CSS model:
 
 - `src/app/globals.css` owns theme tokens, typography, grid primitives, shared hover states, and cross-page content utilities such as `.prose`.
 - Colocated `styles.module.css` files own component-only selectors, button variants, local keyframes, and one-off state transitions.
+- Route-specific selectors live with their render module under
+  `src/page-modules/`; `src/app/**/page.tsx` files do not import CSS.
 - Every reusable component under `src/components` gets its own folder. The folder entrypoint should be `index.tsx`/`index.ts`; generated CSS Module declaration files may sit beside their CSS.
+- Component folders are direct children of `src/components`; do not add
+  category directories.
+- Primitive roots expose stable `data-slot` attributes. Structured components
+  use compound exports instead of large configuration prop surfaces.
 - CSS Module declarations are generated by automation. Run `npm run verify` before handoff if you add or rename CSS Module classes.
 - Run `npm run components:validate` to enforce the component-folder rule.
 

@@ -114,13 +114,20 @@ const prettier = run("npx", [
   "prettier",
   "--write",
   "--ignore-unknown",
+  "--no-error-on-unmatched-pattern",
   ...formatFiles,
 ]);
 if (prettier.status) process.exit(prettier.status);
 
 const lintFiles = runnableFiles(formatFiles, lintExtensions);
 if (lintFiles.length) {
-  const eslint = run("npx", ["eslint", "--fix", ...lintFiles]);
+  const eslint = run("npx", [
+    "eslint",
+    "--fix",
+    "--no-warn-ignored",
+    "--no-error-on-unmatched-pattern",
+    ...lintFiles,
+  ]);
   if (eslint.status) process.exit(eslint.status);
 }
 

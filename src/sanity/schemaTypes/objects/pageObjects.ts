@@ -148,11 +148,22 @@ export const faqItem = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "answerRichText",
+      title: "Answer",
+      type: "simplePortableText",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "answer",
-      title: "Answer paragraphs",
+      title: "Answer paragraphs (Deprecated)",
+      description:
+        "This answer is being migrated to the link-capable Answer field.",
       type: "array",
       of: [defineArrayMember({ type: "text", rows: 3 })],
-      validation: (rule) => rule.required().min(1),
+      deprecated: { reason: "Use the Answer field instead." },
+      readOnly: true,
+      hidden: ({ value }) => value === undefined,
+      initialValue: undefined,
     }),
   ],
 });

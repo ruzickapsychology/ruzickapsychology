@@ -30,12 +30,144 @@ export const specialty = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "details",
-      title: "Detailed page copy",
+      name: "pageStatus",
+      title: "Detail page status",
+      type: "string",
       description:
-        "Longer paragraphs used only on the Specialties page. Add as much detail as this page needs over time.",
+        "Published services receive a standalone, indexable page. Hub-only services appear only on the Specialties page.",
+      options: {
+        list: [
+          { title: "Hub only", value: "hubOnly" },
+          { title: "Published detail page", value: "published" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "hubOnly",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "pageHeading",
+      title: "Detail page heading",
+      type: "string",
+      hidden: ({ document }) => document?.pageStatus !== "published",
+      validation: (rule) =>
+        rule.custom((value, context) =>
+          context.document?.pageStatus === "published" && !value
+            ? "Required for a published detail page."
+            : true,
+        ),
+    }),
+    defineField({
+      name: "intro",
+      title: "Detail page introduction",
+      type: "text",
+      rows: 4,
+      hidden: ({ document }) => document?.pageStatus !== "published",
+      validation: (rule) =>
+        rule.custom((value, context) =>
+          context.document?.pageStatus === "published" && !value
+            ? "Required for a published detail page."
+            : true,
+        ),
+    }),
+    defineField({
+      name: "overview",
+      title: "Overview",
+      type: "simplePortableText",
+      hidden: ({ document }) => document?.pageStatus !== "published",
+      validation: (rule) =>
+        rule.custom((value, context) =>
+          context.document?.pageStatus === "published" &&
+          (!Array.isArray(value) || value.length === 0)
+            ? "Required for a published detail page."
+            : true,
+        ),
+    }),
+    defineField({
+      name: "commonConcerns",
+      title: "Common reasons people reach out",
+      type: "array",
+      hidden: ({ document }) => document?.pageStatus !== "published",
+      of: [defineArrayMember({ type: "string" })],
+      validation: (rule) =>
+        rule.custom((value, context) =>
+          context.document?.pageStatus === "published" &&
+          (!Array.isArray(value) || value.length < 3)
+            ? "Add at least three concerns for a published detail page."
+            : true,
+        ),
+    }),
+    defineField({
+      name: "approachHeading",
+      title: "Approach heading",
+      type: "string",
+      hidden: ({ document }) => document?.pageStatus !== "published",
+      validation: (rule) =>
+        rule.custom((value, context) =>
+          context.document?.pageStatus === "published" && !value
+            ? "Required for a published detail page."
+            : true,
+        ),
+    }),
+    defineField({
+      name: "approachBody",
+      title: "Approach",
+      type: "simplePortableText",
+      hidden: ({ document }) => document?.pageStatus !== "published",
+      validation: (rule) =>
+        rule.custom((value, context) =>
+          context.document?.pageStatus === "published" &&
+          (!Array.isArray(value) || value.length === 0)
+            ? "Required for a published detail page."
+            : true,
+        ),
+    }),
+    defineField({
+      name: "whatToExpect",
+      title: "What sessions can involve",
+      type: "simplePortableText",
+      hidden: ({ document }) => document?.pageStatus !== "published",
+      validation: (rule) =>
+        rule.custom((value, context) =>
+          context.document?.pageStatus === "published" &&
+          (!Array.isArray(value) || value.length === 0)
+            ? "Required for a published detail page."
+            : true,
+        ),
+    }),
+    defineField({
+      name: "faqs",
+      title: "Service FAQs",
+      type: "array",
+      hidden: ({ document }) => document?.pageStatus !== "published",
+      of: [defineArrayMember({ type: "faqItem" })],
+      validation: (rule) =>
+        rule.custom((value, context) =>
+          context.document?.pageStatus === "published" &&
+          (!Array.isArray(value) || value.length < 3)
+            ? "Add at least three FAQs for a published detail page."
+            : true,
+        ),
+    }),
+    defineField({
+      name: "relatedPosts",
+      title: "Related blog posts",
+      type: "array",
+      hidden: ({ document }) => document?.pageStatus !== "published",
+      of: [defineArrayMember({ type: "reference", to: [{ type: "post" }] })],
+      validation: (rule) => rule.unique(),
+    }),
+    defineField({
+      name: "details",
+      title: "Specialties-page details (Deprecated)",
+      description:
+        "This content has moved to Overview. It remains visible temporarily so production content can be migrated safely.",
       type: "array",
       of: [defineArrayMember({ type: "text", rows: 5 })],
+      deprecated: { reason: "Use the Overview field instead." },
+      readOnly: true,
+      hidden: ({ value }) => value === undefined,
+      initialValue: undefined,
     }),
     defineField({
       name: "order",

@@ -22,7 +22,7 @@ Use this checklist when extracting or cloning this repo into a new high-quality 
 ## 3. Theme The Site
 
 - Update `src/app/globals.css` theme tokens.
-- Update `src/lib/theme.ts` to match the core palette for OpenGraph images.
+- Update `src/config/theme.ts` to match the core palette for OpenGraph images.
 - Update fonts in `src/app/layout.tsx` if needed.
 - Keep semantic class names in components.
 - Verify contrast for text on image bands and translucent overlays.

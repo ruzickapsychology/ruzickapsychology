@@ -1,0 +1,76 @@
+.root {
+  width: 100%;
+  min-width: 0;
+}
+
+.center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.sm {
+  max-width: var(--measure-sm);
+}
+
+.md {
+  max-width: var(--measure-md);
+}
+
+.lg {
+  max-width: var(--measure-lg);
+}
+
+.xl {
+  max-width: var(--measure-xl);
+}
+
+.gapDefault {
+  margin-bottom: var(--content-header-gap);
+}
+
+.gapSpacious {
+  margin-bottom: var(--content-header-gap-spacious);
+}
+
+.eyebrow {
+  color: var(--color-accent);
+}
+
+.title {
+  color: var(--color-fg);
+}
+
+.description {
+  color: var(--color-body);
+}
+
+.eyebrow + .title {
+  margin-top: var(--space-4);
+}
+
+.title + .description {
+  margin-top: var(--space-5);
+}
+
+.actions {
+  margin-top: var(--space-8);
+}
+
+.root[data-tone="inverse"] .eyebrow,
+.root[data-tone="inverse"] .title,
+.root[data-tone="inverse"] .description {
+  color: var(--color-light);
+}
+
+.center .description {
+  margin-inline: auto;
+  max-width: var(--measure-sm);
+}
+
+.left .description {
+  max-width: var(--measure-sm);
+}

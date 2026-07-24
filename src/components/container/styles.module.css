@@ -1,0 +1,22 @@
+.root {
+  margin-inline: auto;
+  width: 100%;
+  min-width: 0;
+  padding-inline: var(--page-gutter);
+}
+
+.sm {
+  max-width: var(--container-sm);
+}
+
+.md {
+  max-width: var(--container-md);
+}
+
+.lg {
+  max-width: var(--container-lg);
+}
+
+.xl {
+  max-width: var(--container-xl);
+}

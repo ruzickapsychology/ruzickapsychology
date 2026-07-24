@@ -1,0 +1,52 @@
+.root {
+  display: flex;
+  min-height: 15.5rem;
+  flex-direction: column;
+  padding: clamp(var(--space-6), 4vw, var(--space-10));
+  background: var(--color-bg);
+  color: inherit;
+  transition: background-color var(--transition-surface);
+}
+
+.root:hover {
+  background: var(--color-hover-wash);
+}
+
+.title {
+  font-size: var(--text-heading-item);
+}
+
+.titleAfterEyebrow {
+  margin-top: var(--space-3);
+}
+
+.description {
+  margin-top: var(--space-4);
+}
+
+.action {
+  margin-top: auto;
+  padding-top: var(--space-6);
+  color: var(--color-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    transition: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .gridThree {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 1px;
+  margin-top: var(--space-8);
+  overflow: hidden;
+  border: 1px solid var(--color-muted);
+  background: var(--color-muted);
+}

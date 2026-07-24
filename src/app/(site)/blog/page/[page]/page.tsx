@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { BlogIndex } from "../../blog-index";
 import {
   getBlogPageCount,
   getBlogPageCountForBuild,
   getPostMetaPage,
-} from "@/lib/blog";
-import { pageMetadata } from "@/lib/seo";
+} from "@/data/blog";
+import { pageMetadata } from "@/config/seo";
+import { BlogIndexPage } from "@/page-modules/blog-index";
 
 export const dynamicParams = false;
 
@@ -22,13 +22,15 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { page } = await props.params;
   return pageMetadata({
-    title: `Blog - Page ${page}`,
-    description: "Reflections from the practice.",
+    title: `Psychology & Relationship Insights - Page ${page}`,
+    description: `Browse page ${page} of articles from Dr. Christina Ruzicka on relationships, emotional patterns, therapy, and meaningful change.`,
     path: `/blog/page/${page}`,
   });
 }
 
-export default async function BlogPage(props: PageProps<"/blog/page/[page]">) {
+export default async function PaginatedBlogRoute(
+  props: PageProps<"/blog/page/[page]">,
+) {
   const { page } = await props.params;
   const currentPage = Number(page);
   const totalPages = await getBlogPageCount();
@@ -41,11 +43,9 @@ export default async function BlogPage(props: PageProps<"/blog/page/[page]">) {
     notFound();
   }
 
+  const posts = await getPostMetaPage(currentPage);
+
   return (
-    <BlogIndex
-      posts={await getPostMetaPage(currentPage)}
-      page={currentPage}
-      totalPages={totalPages}
-    />
+    <BlogIndexPage posts={posts} page={currentPage} totalPages={totalPages} />
   );
 }

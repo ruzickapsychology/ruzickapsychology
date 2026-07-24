@@ -1,0 +1,54 @@
+.serviceCard {
+  margin-top: var(--space-12);
+}
+
+.sources {
+  margin-top: var(--space-12);
+  border-top: 1px solid var(--color-muted);
+  padding-top: var(--space-8);
+}
+
+.sourcesList {
+  margin-top: var(--space-4);
+  padding-left: 1.25rem;
+}
+
+.sourcesList li + li {
+  margin-top: var(--space-4);
+}
+
+.sourcesList a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.sourcesList span {
+  display: block;
+  margin-top: var(--space-1);
+}
+
+.postNav {
+  margin-top: var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  border-top: 1px solid var(--color-muted);
+  padding-top: var(--space-8);
+}
+
+.olderLink {
+  max-width: 320px;
+}
+
+@media (min-width: 640px) {
+  .postNav {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .olderLink {
+    text-align: right;
+  }
+}

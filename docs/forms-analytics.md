@@ -2,7 +2,7 @@
 
 ## Contact Form
 
-The contact form is `src/app/(site)/contact/contact-form/index.tsx`.
+The contact form is `src/page-modules/contact/contact-form/index.tsx`.
 
 It is a client component that:
 
@@ -11,7 +11,7 @@ It is a client component that:
   `botcheck` checkbox honeypot.
 - Submits directly to `https://api.web3forms.com/submit`.
 - Uses `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`.
-- Labels every form control for assistive technology and shows keyboard focus
+- Labels every form control visibly and for assistive technology and shows keyboard focus
   styles on fields and submit/dismiss controls.
 - Reminds visitors to keep messages brief, avoid sensitive clinical details,
   and use emergency services for immediate help.
@@ -49,15 +49,23 @@ If fields change, update the payload mapping and keep the email message readable
 
 ## Analytics Events
 
-Vercel Analytics is enabled in `src/app/layout.tsx`.
+Vercel Analytics and Speed Insights are mounted through `SiteAnalytics` in
+`src/app/(site)/layout.tsx`, outside Studio. Their `beforeSend` callbacks remove
+URL query parameters and fragments, including contact-interest parameters.
+Custom events carry event names only; do not add form contents or contact details.
 
 Tracked events:
 
 - `consultation_cta_click` - primary consultation CTAs.
 - `client_portal_click` - Client Portal links.
 - `inquiry_submitted` - successful contact form delivery.
+- `phone_click` - a practice phone link is activated.
+- `email_click` - a practice email link is activated.
+- `external_profile_click` - an external practice profile is opened.
 
-Use `src/components/cta-link/index.tsx` for tracked internal CTAs and `src/components/tracked-external-link/index.tsx` for tracked external links. Keep event names stable unless analytics reporting is intentionally reset.
+Use `src/components/cta-link/index.tsx` for tracked internal CTAs and
+`src/components/tracked-external-link/index.tsx` for tracked external links.
+Keep event names stable unless analytics reporting is intentionally reset.
 
 ## Success And Error States
 
@@ -67,6 +75,7 @@ Success should:
 - Fade smoothly from fields to success art.
 - Show an ephemeral toast near the top nav.
 - Be dismissible.
+- Keep a persistent, focused confirmation after the temporary toast closes.
 
 Errors should:
 

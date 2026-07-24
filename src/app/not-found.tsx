@@ -1,5 +1,20 @@
-import { NotFoundContent } from "./(not-found-ui)/not-found-content";
+import Link from "next/link";
+import { buttonVariants } from "@/components/button";
+import { StatusPage } from "@/components/status-page";
 
 export default function NotFound() {
-  return <NotFoundContent />;
+  return (
+    <main>
+      <StatusPage
+        eyebrow="Not found"
+        heading="This page is not available."
+        message="The page you requested does not exist, or its content is not available right now."
+        actions={
+          <Link href="/" className={buttonVariants()}>
+            Return home
+          </Link>
+        }
+      />
+    </main>
+  );
 }

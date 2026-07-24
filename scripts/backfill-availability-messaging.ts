@@ -3,7 +3,7 @@ import { getCliClient } from "sanity/cli";
 import {
   initialAvailabilityBadgeMessages,
   initialAvailabilityMessaging,
-} from "../src/lib/availability";
+} from "../src/config/availability";
 
 const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2026-06-24";
 const client = getCliClient({ apiVersion }).withConfig({ useCdn: false });
@@ -125,6 +125,9 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error("[sanity] Failed to backfill availability messaging:", error);
+  console.error(
+    "[sanity] Failed to backfill availability messaging:",
+    error instanceof Error ? error.message : "Unknown error",
+  );
   process.exit(1);
 });

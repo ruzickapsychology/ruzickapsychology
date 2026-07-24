@@ -1,8 +1,10 @@
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
-import { getSiteSettings } from "@/lib/cms";
-import { psychologistJsonLd } from "@/lib/seo";
-import styles from "./styles.module.css";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteAnalytics } from "@/components/site-analytics";
+import { SiteHeader } from "@/components/site-header";
+import { JsonLd } from "@/components/json-ld";
+import { getSiteSettings } from "@/data/cms";
+import { practiceJsonLd } from "@/config/seo";
+import styles from "./_layout/styles.module.css";
 
 export default async function SiteLayout({
   children,
@@ -13,20 +15,16 @@ export default async function SiteLayout({
 
   return (
     <div className={styles.shell}>
-      {siteSettings ? (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(psychologistJsonLd(siteSettings)).replace(
-              /</g,
-              "\\u003c",
-            ),
-          }}
-        />
-      ) : null}
-      <Header siteSettings={siteSettings} />
-      <main className={styles.main}>{children}</main>
-      <Footer siteSettings={siteSettings} />
+      {siteSettings ? <JsonLd data={practiceJsonLd(siteSettings)} /> : null}
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+      <SiteHeader siteSettings={siteSettings} />
+      <SiteAnalytics />
+      <main id="main-content" tabIndex={-1} className={styles.main}>
+        {children}
+      </main>
+      <SiteFooter siteSettings={siteSettings} />
     </div>
   );
 }

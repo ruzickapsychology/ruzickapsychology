@@ -57,7 +57,16 @@ Before launch:
 6. Confirm the `botcheck` honeypot remains hidden and normal submissions still work.
 7. Confirm the fallback error is readable if delivery fails.
 
-## 5. Google Business Profile
+## 5. Privacy And Providers
+
+1. Review `/privacy` with the practice owner before launch.
+2. Confirm it accurately names the providers currently in use: Web3Forms,
+   Vercel hosting/analytics, and Sanity content delivery.
+3. Run `npm run privacy:check`.
+4. Re-review the notice whenever a form, analytics, hosting, or content
+   provider changes.
+
+## 6. Google Business Profile
 
 Highest leverage for local discovery.
 
@@ -67,7 +76,7 @@ Highest leverage for local discovery.
 4. Verify through the method Google offers.
 5. Keep NAP details identical to the website.
 
-## 6. Google Search Console
+## 7. Google Search Console
 
 1. Go to https://search.google.com/search-console.
 2. Add `https://www.ruzickapsychology.com`.
@@ -76,7 +85,7 @@ Highest leverage for local discovery.
 5. Redeploy and click Verify.
 6. Submit `https://www.ruzickapsychology.com/sitemap.xml`.
 
-## 7. Analytics
+## 8. Analytics
 
 Vercel Analytics is enabled. Custom events:
 
@@ -88,7 +97,7 @@ Vercel Analytics is enabled. Custom events:
 
 Review events in Vercel Project Analytics after real traffic starts.
 
-## 8. Post-Launch Checks
+## 9. Post-Launch Checks
 
 - Run PageSpeed Insights for mobile and desktop.
 - Confirm sitemap loads.
@@ -97,3 +106,4 @@ Review events in Vercel Project Analytics after real traffic starts.
 - Confirm all blog posts load.
 - Confirm Studio is accessible to the right editors.
 - Confirm forms, analytics, and portal links work.
+- Confirm `/privacy` loads and is linked from the footer.

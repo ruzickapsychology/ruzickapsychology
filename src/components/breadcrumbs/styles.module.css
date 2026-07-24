@@ -1,0 +1,35 @@
+.root {
+  color: rgb(81 74 76 / 0.72);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+
+.item {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.separator {
+  color: rgb(81 74 76 / 0.42);
+}
+
+.link {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+  transition:
+    color var(--transition-fast),
+    text-decoration-color var(--transition-fast);
+}
+
+.link:hover {
+  color: var(--color-accent);
+  text-decoration-color: currentcolor;
+}

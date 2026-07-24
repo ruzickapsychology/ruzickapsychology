@@ -1,5 +1,5 @@
 import { DocumentTextIcon } from "@sanity/icons";
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const post = defineType({
   name: "post",
@@ -38,6 +38,42 @@ export const post = defineType({
       title: "Body",
       type: "simplePortableText",
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "sources",
+      title: "Research sources",
+      description:
+        "Primary research or authoritative clinical sources supporting substantive claims in this article.",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "object",
+          fields: [
+            defineField({
+              name: "title",
+              title: "Source title",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "citation",
+              title: "Citation",
+              type: "text",
+              rows: 2,
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "url",
+              title: "Source URL",
+              type: "url",
+              validation: (rule) => rule.required().uri({ scheme: ["https"] }),
+            }),
+          ],
+          preview: {
+            select: { title: "title", subtitle: "citation" },
+          },
+        }),
+      ],
     }),
   ],
   orderings: [

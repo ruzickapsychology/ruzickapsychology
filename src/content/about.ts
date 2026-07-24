@@ -4,7 +4,7 @@ export const about = {
   intro: [
     "If you are here, you are likely navigating a major season of transition. Maybe your relationship feels strained and disconnected, or perhaps you are a new mother trying to find your footing amidst intense postpartum anxiety. I want you to know that you don't have to carry this weight alone.",
     "My therapeutic style is relational, warm, collaborative, and active. I want to be engaged and connected to your world.",
-    "As a clinical psychologist, I specialize in two core areas: helping couples move from friction to deep connection using Imago Relationship Therapy, and supporting women through the profound identity and emotional shifts of perinatal and postpartum mental health.",
+    "As a clinical psychologist, I specialize in two core areas: helping couples move from friction to deeper connection using Imago Relationship Therapy, and supporting women and parents through the profound identity and emotional shifts of perinatal and postpartum mental health.",
     "Therapy is a profound investment of your time, vulnerability, and resources—and it is an investment I respect deeply. To ensure you receive the highest standard of clinical care, I dedicate my own resources to advanced training, specialized certifications, and continuous education, so our time together feels effective and uniquely tailored to your healing.",
   ],
   education: {
@@ -37,11 +37,11 @@ export const about = {
         detail: "Postpartum Support International — Certification Track",
       },
     ],
-    license: "Licensed Clinical Psychologist — New York",
+    license: "Licensed Clinical Psychologist — New York License 024357",
   },
   space: {
     eyebrow: "The Therapy Space",
-    heading: "Located in Downtown Rochester",
+    heading: "Located on South Avenue in Rochester",
     body: "Virtual appointments are also offered for clients throughout New York.",
   },
   philosophy: {

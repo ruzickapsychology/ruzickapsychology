@@ -124,21 +124,80 @@ export const address = defineType({
   type: "object",
   fields: [
     defineField({
-      name: "line1",
-      title: "Line 1",
+      name: "streetAddress",
+      title: "Street address",
       type: "string",
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "line2",
-      title: "Line 2",
+      name: "addressLocality",
+      title: "City",
       type: "string",
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "addressRegion",
+      title: "State",
+      type: "string",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "postalCode",
+      title: "Postal code",
+      type: "string",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "addressCountry",
+      title: "Country code",
+      description: "Use the two-letter country code, such as US.",
+      type: "string",
+      initialValue: "US",
+      validation: (rule) => rule.required().length(2).uppercase(),
     }),
     defineField({
       name: "note",
       title: "Note",
       type: "string",
+    }),
+    defineField({
+      name: "line1",
+      title: "Line 1 (Deprecated)",
+      type: "string",
+      deprecated: { reason: "Use Street address instead." },
+      readOnly: true,
+      hidden: ({ value }) => value === undefined,
+      initialValue: undefined,
+    }),
+    defineField({
+      name: "line2",
+      title: "Line 2 (Deprecated)",
+      type: "string",
+      deprecated: { reason: "Use City, State, and Postal code instead." },
+      readOnly: true,
+      hidden: ({ value }) => value === undefined,
+      initialValue: undefined,
+    }),
+  ],
+});
+
+export const externalProfile = defineType({
+  name: "externalProfile",
+  title: "External Profile",
+  type: "object",
+  icon: LinkIcon,
+  fields: [
+    defineField({
+      name: "label",
+      title: "Label",
+      type: "string",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "url",
+      title: "URL",
+      type: "url",
+      validation: (rule) => rule.required().uri({ scheme: ["http", "https"] }),
     }),
   ],
 });

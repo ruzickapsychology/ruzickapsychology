@@ -1,0 +1,31 @@
+/* Shared consultation call-to-action section. */
+.section {
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+}
+
+.card {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 100%;
+  max-width: var(--measure-xl);
+  border: 1px solid var(--color-muted);
+  background-color: var(--color-feature-90);
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.button {
+  min-width: min(100%, 15rem);
+}
+
+@media (min-width: 640px) {
+  .card {
+    padding-inline: var(--panel-padding);
+  }
+}

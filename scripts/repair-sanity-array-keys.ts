@@ -137,6 +137,9 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error("[repair-keys] Failed:", error);
+  console.error(
+    "[repair-keys] Failed:",
+    error instanceof Error ? error.message : "Unknown error",
+  );
   process.exit(1);
 });

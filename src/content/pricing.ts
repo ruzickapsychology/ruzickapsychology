@@ -29,22 +29,30 @@ export const pricing = {
       {
         eyebrow: "Step 1",
         title: "Call your insurance company",
-        body: ["Coming soon"],
+        body: [
+          "Use the member-services number on your insurance card and ask to speak with someone about outpatient behavioral health benefits.",
+        ],
       },
       {
         eyebrow: "Step 2",
         title: "Find out if you have out-of-network benefits",
-        body: ["Coming soon"],
+        body: [
+          "Ask whether your plan reimburses outpatient psychotherapy with a licensed psychologist and whether you need a referral or prior authorization.",
+        ],
       },
       {
         eyebrow: "Step 3",
         title: "Find out if you owe a deductible before the coverage kicks in",
-        body: ["Coming soon"],
+        body: [
+          "Ask for your out-of-network deductible, how much you have already met, and whether reimbursement begins only after the deductible is satisfied.",
+        ],
       },
       {
         eyebrow: "Step 4",
         title: "Find out how much your plan will reimburse you",
-        body: ["Coming soon"],
+        body: [
+          "Ask what percentage of the plan's allowed amount is reimbursed, how to submit a superbill, and where you can find the claim form.",
+        ],
       },
     ],
   },

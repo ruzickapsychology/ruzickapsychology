@@ -1,0 +1,53 @@
+.root {
+  position: relative;
+  display: flex;
+  min-height: max(var(--hero-min-block-size), 100svh);
+  align-items: center;
+  overflow: hidden;
+}
+
+.start {
+  align-items: flex-start;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.navigation {
+  position: absolute;
+  inset-inline: 0;
+  bottom: calc(var(--space-8) + env(safe-area-inset-bottom));
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.jumpLink {
+  display: grid;
+  width: var(--touch-target);
+  height: var(--touch-target);
+  place-items: center;
+  pointer-events: auto;
+  color: var(--color-light);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--text-lg);
+  text-decoration: none;
+  filter: drop-shadow(0 1px 3px rgb(58 35 40 / 0.35));
+  animation: rp-bob 1.9s ease-in-out infinite;
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .root {
+    min-height: 36rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jumpLink {
+    animation: none;
+  }
+}

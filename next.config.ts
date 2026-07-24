@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import bundleAnalyzer from "@next/bundle-analyzer";
 import path from "node:path";
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -32,7 +31,7 @@ const sharedSecurityHeaders = [
     ? [
         {
           key: "Strict-Transport-Security",
-          value: "max-age=63072000; includeSubDomains; preload",
+          value: "max-age=63072000",
         },
       ]
     : []),
@@ -118,6 +117,7 @@ const studioContentSecurityPolicy = contentSecurityPolicy({
 });
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
   typedRoutes: true,
   async headers() {
     return [
@@ -162,6 +162,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default bundleAnalyzer({
-  enabled: process.env.ANALYZE === "true",
-})(nextConfig);
+export default nextConfig;

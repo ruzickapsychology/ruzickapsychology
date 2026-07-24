@@ -7,9 +7,9 @@ export const faq = {
     {
       q: "What do you help with?",
       a: [
-        "I work with adults navigating a range of challenges—including postpartum and motherhood transitions, emotional disconnection, resentment, life changes, and the pressure of holding everything together.",
-        "For couples, the work often includes rebuilding communication, understanding recurring patterns, repairing disconnection, and creating more emotional safety in the relationship.",
-        "For mothers and postpartum clients, therapy may focus on identity, anxiety, guilt, rage, depletion, partnership strain, or the complex emotional shift that can come with becoming a parent.",
+        "I offer [individual therapy](/specialties/individual-therapy) for adults navigating anxiety, life transitions, emotional disconnection, burnout, identity, body image, and recurring relationship patterns.",
+        "In [couples therapy](/specialties/couples-therapy), the work often includes rebuilding communication, understanding recurring cycles, repairing disconnection, and creating more emotional safety in the relationship.",
+        "[Perinatal and postpartum therapy](/specialties/perinatal-postpartum-therapy) may focus on pregnancy, loss, identity, anxiety, guilt, anger, depletion, partnership strain, or the complex emotional shift that can come with becoming a parent.",
       ],
     },
     {
@@ -37,7 +37,7 @@ export const faq = {
     {
       q: "How do I get started?",
       a: [
-        "You can get started by reaching out through the contact form to schedule an initial consultation. During that call, we will briefly discuss what you are looking for, answer any questions you have, and determine whether working together feels like the right fit.",
+        "You can get started through the [contact form](/contact) to request an initial consultation. During that call, we will briefly discuss what you are looking for, answer any questions you have, and determine whether working together feels like the right fit.",
         "If it does, we will schedule your first session and begin from there.",
       ],
     },

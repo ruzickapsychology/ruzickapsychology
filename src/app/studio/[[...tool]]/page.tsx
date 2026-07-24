@@ -8,11 +8,19 @@
  */
 
 import { NextStudio } from "next-sanity/studio";
+import type { Metadata } from "next";
 import config, { isStudioConfigured } from "../../../../sanity.config";
 
 export const dynamic = "force-static";
 
-export { metadata, viewport } from "next-sanity/studio";
+export const metadata: Metadata = {
+  title: "Ruzicka Psychology Studio",
+  description: "Private content editing for Ruzicka Psychology.",
+  referrer: "same-origin",
+  robots: { index: false, follow: false },
+};
+
+export { viewport } from "next-sanity/studio";
 
 export default function StudioPage() {
   if (!isStudioConfigured || !config) {

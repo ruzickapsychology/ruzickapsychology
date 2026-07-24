@@ -1,0 +1,9 @@
+.root {
+  composes: rp-fade from global;
+}
+
+.root
+  > :global([data-slot="page-header"])
+  + :global([data-slot="content-section"]) {
+  padding-block-start: var(--section-space-after-page-header);
+}
