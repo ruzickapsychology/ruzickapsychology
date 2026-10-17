@@ -11,7 +11,7 @@ export const about = {
     heading: "Education",
     items: [
       {
-        title: "Doctoral Degree",
+        title: "Doctor of Psychology (Psy.D.), 2020",
         detail:
           "California School of Professional Psychology at Alliant International University, San Diego, CA",
       },

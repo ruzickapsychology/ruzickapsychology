@@ -43,8 +43,8 @@ const categories = [
   ],
   [
     "local",
-    "Local presence & directories",
-    "Google profile, reviews, directory accuracy and business records.",
+    "Website practice facts",
+    "Internal source-cited facts for consistent website content.",
     [1, 2, 5, 7, 29],
   ],
   [
@@ -212,6 +212,8 @@ for (const line of tracker.split("\n")) {
       current.referenceGroup = line.split("**Reference group:**")[1].trim();
     else if (line.trim().startsWith("- **Task category:**"))
       current.taskCategory = line.split("**Task category:**")[1].trim();
+    else if (line.trim().startsWith("- **Website task:**"))
+      current.websiteTask = line.split("**Website task:**")[1].trim();
     else if (line.trim().startsWith("- **Scoped outcome:**"))
       current.outcome = line.split("**Scoped outcome:**")[1].trim();
     else if (line.trim().startsWith("- **Triage reason:**"))
@@ -249,14 +251,17 @@ for (const item of items) {
       "Needs scoping",
       "Blocked",
       "Archived",
+      "Excluded",
       "Done",
       "Resource",
     ].includes(item.workflow) ||
     !item.category ||
     !item.status ||
     !item.evidence ||
-    item.resource !==
-      categories.find((category) => category.id === item.category)?.reference ||
+    (item.workflow !== "Excluded" &&
+      item.resource !==
+        categories.find((category) => category.id === item.category)
+          ?.reference) ||
     (!item.resource &&
       !item.question &&
       item.checked !== (item.workflow === "Done"))
@@ -268,6 +273,8 @@ const pages = [
 ].map((m) => ({ page: Number(m[1]), text: m[2] }));
 if (pages.length !== 28)
   throw new Error("Expected complete 28-page source transcript.");
+// Validate the complete audit inventory before excluding outside-website work.
+const websiteItems = items.filter((item) => item.workflow !== "Excluded");
 const counts = Object.fromEntries(
   ["Done", "Ready", "In progress"].map((workflow) => [
     workflow,
@@ -275,7 +282,7 @@ const counts = Object.fromEntries(
   ]),
 );
 const data = {
-  items,
+  items: websiteItems,
   categories,
   pages,
   counts,
@@ -299,5 +306,5 @@ await writeFile(
   await format(html, { ...(await resolveConfig(output)), parser: "html" }),
 );
 console.log(
-  `Built ${path.relative(root, output)}: ${items.length} items, ${pages.length} PDF pages. ${JSON.stringify(counts)}`,
+  `Built ${path.relative(root, output)}: ${websiteItems.length} website items (${items.length - websiteItems.length} excluded), ${pages.length} PDF pages. ${JSON.stringify(counts)}`,
 );

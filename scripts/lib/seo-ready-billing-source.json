@@ -1,0 +1,156 @@
+{
+  "step2": {
+    "_key": "reimbursement-guide-item-1-step-2-find-out-if-you-have-out-of-network-benefits",
+    "_type": "reimbursementGuideItem",
+    "body": [
+      {
+        "_key": "65345b8abf6d",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "6e7217054822",
+            "_type": "span",
+            "marks": [],
+            "text": "Ask the representative: "
+          },
+          {
+            "_key": "a02524181b19",
+            "_type": "span",
+            "marks": ["em"],
+            "text": "\"Do I have out-of-network benefits for outpatient mental health services?\""
+          },
+          {
+            "_key": "8855e89a53a0",
+            "_type": "span",
+            "marks": [],
+            "text": " To be completely certain, you can provide them with these specific billing codes (called CPT codes):"
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "8f7399ae85b7",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "bf4a026bbc96",
+            "_type": "span",
+            "marks": ["strong"],
+            "text": "90791"
+          },
+          {
+            "_key": "33ac41220449",
+            "_type": "span",
+            "marks": [],
+            "text": " (for our initial intake session)"
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "9cfcea796743",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "218ff96b7ba5",
+            "_type": "span",
+            "marks": ["strong"],
+            "text": "90837"
+          },
+          {
+            "_key": "e98554d8e39e",
+            "_type": "span",
+            "marks": [],
+            "text": " (for our standard 60-minute individual therapy sessions)"
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "07b2ceb2295d",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "53dc3b812ea1",
+            "_type": "span",
+            "marks": ["strong"],
+            "text": "90847"
+          },
+          {
+            "_key": "2795bf181822",
+            "_type": "span",
+            "marks": [],
+            "text": " (if you are seeking couples/family therapy)"
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "eyebrow": "Step 2",
+    "title": "Find out if you have out-of-network benefits"
+  },
+  "step4": {
+    "_key": "reimbursement-guide-item-3-step-4-find-out-how-much-your-plan-will-reimburse-you",
+    "_type": "reimbursementGuideItem",
+    "body": [
+      {
+        "_key": "79788e94c7b7",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "f414f156c334",
+            "_type": "span",
+            "marks": [],
+            "text": "Ask the representative: "
+          },
+          {
+            "_key": "d21c1b3f5289",
+            "_type": "span",
+            "marks": ["em"],
+            "text": "\"Once my out-of-network deductible is met, what percentage of the session fee is reimbursed to me? Also, what is the 'allowed amount' for CPT code 90837?\""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "6d3cab28e913",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "d1abdb54ddce",
+            "_type": "span",
+            "marks": [],
+            "text": "After our sessions, I will provide you with an itemized receipt called a "
+          },
+          {
+            "_key": "10df0fe02ca3",
+            "_type": "span",
+            "marks": ["strong"],
+            "text": "Superbill"
+          },
+          {
+            "_key": "6fc902edd357",
+            "_type": "span",
+            "marks": [],
+            "text": ". You will upload this directly to your insurance portal, and they will mail a reimbursement check directly to you based on your plan's specific percentage. "
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "eyebrow": "Step 4",
+    "title": "Find out how much your plan will reimburse you"
+  }
+}

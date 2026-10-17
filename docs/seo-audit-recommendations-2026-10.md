@@ -10,18 +10,19 @@ The PDF is source material, not an instruction to execute its proposals. Conditi
 
 All 328 source items were reviewed across three parallel agents and reconciled by the coordinator. Workflow is separate from the original dated implementation assessment. No site changes were made during the initial triage. The implementation batch below now records verified branch changes. An archived recommendation is not a completed implementation.
 
-| Workflow      | Items | Meaning                                                                    |
-| ------------- | ----: | -------------------------------------------------------------------------- |
-| Ready         |     6 | Chosen, bounded work with acceptance criteria and no Christina dependency. |
-| In progress   |     0 | Implementation actually started; currently none.                           |
-| Needs scoping |    14 | Value, deliverable or completion check needs definition.                   |
-| Blocked       |    39 | A fact, approval, access or another external dependency is missing.        |
-| Backlog       |    41 | Potentially useful later; not a current commitment.                        |
-| Archived      |    39 | Declined, redundant, or consolidated; item-level rationale retained.       |
-| Done          |    29 | Distinct verified implementation or diagnostic outcomes.                   |
-| Resource      |   160 | Questions, guidance and future reference material; not tickets.            |
+| Workflow      | Items | Meaning                                                                         |
+| ------------- | ----: | ------------------------------------------------------------------------------- |
+| Ready         |     6 | Chosen, bounded work with acceptance criteria and no Christina dependency.      |
+| In progress   |     0 | Implementation actually started; currently none.                                |
+| Needs scoping |    10 | Value, deliverable or completion check needs definition.                        |
+| Blocked       |    24 | A fact, approval, access or another external dependency is missing.             |
+| Backlog       |    41 | Potentially useful later; not a current commitment.                             |
+| Archived      |    38 | Declined, redundant, or consolidated; item-level rationale retained.            |
+| Done          |    34 | Distinct verified implementation or diagnostic outcomes.                        |
+| Resource      |   152 | Questions, guidance and future reference material; not tickets.                 |
+| Excluded      |    29 | External-only work removed from the website tracker; audit provenance retained. |
 
-Accepted-work progress is **29 / 35 (82.9%)**: Done divided by Ready + In progress + Done. Completed guardrails and duplicate source restatements no longer earn implementation credit. References, questions, process notes, unselected ideas and archived items are excluded. This cleanup changes the inventory, not site implementation; filters never change the denominator.
+Accepted-work progress is **34 / 34 (100%)**: Done divided by Ready + In progress + Done. Completed guardrails and duplicate source restatements no longer earn implementation credit. References, questions, process notes, unselected ideas and archived items are excluded. Only accepted website work counts; Excluded items do not. Filters never change the denominator.
 
 ### Accepted batch — branch work completed
 
@@ -47,11 +48,11 @@ Word-count quotas, exact metadata variants, redundant thank-you tracking, mandat
 
 The review uses [Google’s people-first content guidance](https://developers.google.com/search/docs/fundamentals/creating-helpful-content), [title guidance](https://developers.google.com/search/docs/appearance/title-link), [description guidance](https://developers.google.com/search/docs/appearance/snippet), and [AI search guidance](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide). These support rejecting word/character quotas and a special AI-file ranking project. They do not establish conversion gains for our selected UX changes. FAQ rich results were [retired in May 2026](https://developers.google.com/search/updates); useful visible answers remain valuable.
 
-## Ticket inventory cleanup — October 17, 2026
+## Ticket inventory cleanup — October 17, 2026 (historical snapshot before website-only scope)
 
 All 328 source entries were checked for type and topic. **61 non-ticket entries moved into reference groups**, including SEO-40-07 (the optional eSEOspace walkthrough), the 12 AI prompt examples, seven metadata examples, unresolved decisions and standing rules. Eight former Done rules/preserve-existing notes no longer count as completed work. Four duplicate completions were archived under a canonical ticket. Twelve speculative enhancements moved from Needs scoping to Backlog because no concrete problem or selected delivery is established. Five task categories were corrected.
 
-There are now **100 open implementation candidates** across Ready, In progress, Needs scoping, Blocked and Backlog, plus 29 distinct Done tickets. Reference has 160 entries; Archived has 39. No source recommendation was deleted. [Detailed classification changes](seo-ticket-cleanup-2026-10.md).
+At that point there were **100 open implementation candidates** across Ready, In progress, Needs scoping, Blocked and Backlog, plus 29 distinct Done tickets. Reference has 160 entries; Archived has 39. No source recommendation was deleted. [Detailed classification changes](seo-ticket-cleanup-2026-10.md).
 
 - **Ready:** selected, executable change or finite diagnostic with acceptance criteria.
 - **Needs scoping:** a concrete gap/investigation whose deliverable or approach still needs definition.
@@ -59,6 +60,14 @@ There are now **100 open implementation candidates** across Ready, In progress, 
 - **Backlog:** plausible future implementation, not a selected commitment or proven defect.
 - **Reference:** facts to resolve, vendor/process guidance, monitoring protocols, and page/article/keyword/metadata ideas. These are not tickets.
 - **Archived:** declined or duplicate implementation proposals, with reasons and canonical ticket links.
+
+## Website-only scope and second Ready batch — October 17, 2026
+
+The six Ready requests were assessed independently. Five website deliverables are now Done: the internal practice fact sheet, existing About degree/year detail, general virtual FAQ, removal of contradictory billing-code advice, and Contact directions link. SEO-02-04 is **Excluded**, because a Google profile description is external content even when only drafted.
+
+All 328 source records were reviewed again. **29 external-only records are removed from every HTML task/reference queue**, while their Markdown entries and original PDF transcript remain as provenance. **11 mixed recommendations now have explicit website-only titles and actions**; external profile, posting and account configuration portions are not authorized work. Read-only source verification, website links to existing maps/profiles, and website-owned schema remain in scope. [Full scope audit](seo-website-scope-2026-10.md).
+
+The visible inventory contains **299 entries**: **75 open implementation candidates** (10 Needs scoping, 24 Blocked, 41 Backlog), **34 Done**, **38 Archived**, and **152 references**. Ready and In progress are empty. The accepted-work progress bar is 34/34; it does not claim that all future or blocked website work is finished. External content was not produced or changed.
 
 ## Blocker reassessment — October 17, 2026 (historical snapshot before inventory cleanup)
 
@@ -129,41 +138,43 @@ Source: Finding #1, Critical; pp. 5, 12–13, 18, 27; Phase 3.
 
 - **SEO-01-01** Establish an ethical, low-pressure review process with counsel: no incentives and no requests to current clients who may feel obliged.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-01-01).
-  - **Workflow:** Resource
+  - **Workflow:** Excluded
   - **Reference group:** questions
   - **Christina confirmation needed:** Confirm with your adviser which review process is appropriate for your practice.
-  - **Triage reason:** Optional review-policy choices; no accepted website deliverable or permission to solicit. Keep as decision context and create a concrete ticket only after a policy is selected.
-  - **Scoped action:** Revisit only if Christina wants a review-request program; then obtain her adviser-approved policy before outreach.
+  - **Triage reason:** 2026-10-17 website-only scope: External Google review solicitation or response process, outside website implementation.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** Google review practices, photo inventory and repeated Maps snapshots cannot be established from the site/code. No Google profile/account or private review process was audited.
 - **SEO-01-02** Discuss whether a passive “Leave a review” link on the website and in the email signature is appropriate.
+  - **Scope boundary:** 2026-10-17: website-only. The original recommendation below is historical and does not authorize its external-site portions.
+  - **Website task:** Decide whether an optional passive review link belongs on this website.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-01-02).
   - **Workflow:** Resource
   - **Reference group:** questions
   - **Christina confirmation needed:** Decide with your adviser whether a passive public review link is appropriate.
   - **Triage reason:** Optional review-policy choices; no accepted website deliverable or permission to solicit. Keep as decision context and create a concrete ticket only after a policy is selected.
-  - **Scoped action:** Keep as a future decision; do not add a review link until the practice opts in and approves the policy.
+  - **Scoped action:** Limit this decision to an optional passive link on this website; remove email-signature changes. Retain the existing adviser-approved review-policy dependency. No external review campaign is included.
   - **Tracking type:** Question / decision — excluded until explicitly scoped and promoted to accepted work.
   - **2026-10-17 — Unverified:** Google review practices, photo inventory and repeated Maps snapshots cannot be established from the site/code. No Google profile/account or private review process was audited.
 - **SEO-01-03** Discuss occasional requests to former clients or workshop participants only where appropriate.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-01-03).
-  - **Workflow:** Resource
+  - **Workflow:** Excluded
   - **Reference group:** questions
   - **Christina confirmation needed:** Decide with your adviser whether any former-client or workshop-participant review requests are appropriate.
-  - **Triage reason:** Optional review-policy choices; no accepted website deliverable or permission to solicit. Keep as decision context and create a concrete ticket only after a policy is selected.
-  - **Scoped action:** Reopen only as part of an approved review policy under SEO-01-01; never infer permission to solicit.
+  - **Triage reason:** 2026-10-17 website-only scope: External Google review solicitation or response process, outside website implementation.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **Tracking type:** Question / decision — excluded until explicitly scoped and promoted to accepted work.
   - **2026-10-17 — Unverified:** Google review practices, photo inventory and repeated Maps snapshots cannot be established from the site/code. No Google profile/account or private review process was audited.
 - **SEO-01-04** Use generic review replies that never confirm someone is a client; protect confidentiality.
-  - **Workflow:** Resource
+  - **Workflow:** Excluded
   - **Reference group:** process
-  - **Triage reason:** Confidentiality rule for future review replies, not a finite site change or a current response queue.
-  - **Scoped action:** Reference only; no action scheduled. Create a separate bounded ticket only when a concrete deliverable is selected.
+  - **Triage reason:** 2026-10-17 website-only scope: External Google review solicitation or response process, outside website implementation.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** Google review practices, photo inventory and repeated Maps snapshots cannot be established from the site/code. No Google profile/account or private review process was audited.
 - **SEO-01-05** Upload 8–12 real photos: professional headshot, building exterior/signage, entrance/parking, waiting area, therapy room and workshop/group room.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-01-05).
-  - **Workflow:** Needs scoping
-  - **Triage reason:** About already publishes real practitioner and office images; lack of an 8–12-photo inventory is not a blanket blocker. Exact Google profile access and asset reuse permissions still need inspection.
-  - **Scoped action:** Inventory existing CMS photos and identify useful missing views. Define an upload set and access owner; publication remains dependent on authorized profile access and cleared images. Discard arbitrary quantity target.
+  - **Workflow:** Excluded
+  - **Triage reason:** 2026-10-17 website-only scope: Uploads photos to the Google Business Profile, not this website.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** Google review practices, photo inventory and repeated Maps snapshots cannot be established from the site/code. No Google profile/account or private review process was audited.
 - **SEO-01-06** Re-check these same six Google Maps searches after every phase, logged out and centred on Rochester: “psychologist Rochester NY”, “couples therapist Rochester NY”, “Imago therapist Rochester NY”, “postpartum therapist Rochester NY”, “perinatal therapist Rochester NY”, “marriage counseling Rochester NY”. Preserve that these are snapshots, not a citywide ranking grid.
   - **Workflow:** Resource
@@ -178,51 +189,52 @@ Source: Finding #2, High; pp. 5, 12–13, 27; Phase 3.
 
 - **SEO-02-01** Switch from service-area-only to a storefront profile displaying 1577 South Ave, Rochester, NY 14620; add suite/floor if applicable. Keep virtual New York service in the description.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-02-01).
-  - **Workflow:** Blocked
+  - **Workflow:** Excluded
   - **Christina confirmation needed:** Confirm any suite/floor and client-facing office access details before displaying a storefront profile.
-  - **Triage reason:** Website address does not establish storefront eligibility. Google requires permanent signage for businesses displaying their address (https://support.google.com/business/answer/3038177?hl=en); actual signage/client access and authorized profile access remain unknown.
-  - **Scoped action:** Confirm eligibility/signage and any suite or floor with the practice, inspect current profile, then change address visibility only if eligible.
+  - **Triage reason:** 2026-10-17 website-only scope: Google Business Profile content, settings or publication; user explicitly removed external profile work, including drafting its description.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** Google Business Profile settings/posts/categories were outside this site/code comparison; no account update or completed external action is evidenced.
 - **SEO-02-02** Keep “Psychologist” as the primary category. Add available secondary categories only if they fit real services, e.g. “Marriage or relationship counselor”, “Psychotherapist”, “Mental health service”.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-02-02).
-  - **Workflow:** Blocked
-  - **Triage reason:** Published individual/couples/perinatal services provide enough evidence to propose matching categories; no new clinical-scope approval is needed for those existing offers. The actual profile controls/category availability and authorized write access have not been established in this audit.
-  - **Scoped action:** Prepare a minimal category proposal from current published services; retain Psychologist, inspect available categories, and apply only supported matches once authorized profile access is available. No need to add every example category.
+  - **Workflow:** Excluded
+  - **Triage reason:** 2026-10-17 website-only scope: Google Business Profile content, settings or publication; user explicitly removed external profile work, including drafting its description.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** Google Business Profile settings/posts/categories were outside this site/code comparison; no account update or completed external action is evidenced.
 - **SEO-02-03** Add individually described services for individual therapy, couples/Imago therapy, perinatal/postpartum therapy, Stronger Together couples workshop and virtual therapy in New York. Use short descriptions without prices.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-02-03).
-  - **Workflow:** Blocked
+  - **Workflow:** Excluded
   - **Christina confirmation needed:** Confirm the active workshop identity and which services are currently offered.
-  - **Triage reason:** Existing individual, couples and perinatal service descriptions can be reused; the workshop conflict in docs/christina-review.md does not block drafting those services. Publication requires authorized GBP access; workshop identity remains a separate dependency.
-  - **Scoped action:** Draft non-workshop service entries from current runtime pages, then publish with profile access. Keep the workshop entry pending SEO-09-01 rather than inventing a name or schedule.
+  - **Triage reason:** 2026-10-17 website-only scope: Google Business Profile content, settings or publication; user explicitly removed external profile work, including drafting its description.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** Google Business Profile settings/posts/categories were outside this site/code comparison; no account update or completed external action is evidenced.
-- [ ] **SEO-02-04** Write a description of up to 750 characters naming the practice, PsyD, NY Licensed Psychologist and Certified Imago Relationship Therapist credentials, specialties, in-person/virtual options, confirmed insurance position and free consultation.
+- **SEO-02-04** Write a description of up to 750 characters naming the practice, PsyD, NY Licensed Psychologist and Certified Imago Relationship Therapist credentials, specialties, in-person/virtual options, confirmed insurance position and free consultation.
+  - **Scoped outcome:** Excluded, not completed. [Scope review](seo-ready/SEO-02-04.md).
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-02-04).
-  - **Workflow:** Ready
+  - **Workflow:** Excluded
   - **Acceptance:** Draft is <=750 characters; each factual claim cites current runtime content; no new insurance, pricing, credential, availability or clinical claims; publishing dependency and omitted optional facts are explicit.
-  - **Triage reason:** This ticket asks for a description, which can be drafted from existing published practice/location/service facts. Unknown insurance, free-consultation wording and stronger credential wording can be omitted rather than blocking the whole draft.
-  - **Scoped action:** Write a <=750-character GBP description draft using current published facts and source links; omit insurance, unverified free-consultation and unsupported certification claims. This scoped task ends at a reviewable draft; publishing still needs GBP access.
+  - **Triage reason:** 2026-10-17 website-only scope: Google Business Profile content, settings or publication; user explicitly removed external profile work, including drafting its description.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** Google Business Profile settings/posts/categories were outside this site/code comparison; no account update or completed external action is evidenced.
 - **SEO-02-05** Add the SimplePractice new-client request URL as the appointment link, with UTM parameters to measure Google traffic.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-02-05).
-  - **Workflow:** Blocked
+  - **Workflow:** Excluded
   - **Christina confirmation needed:** Confirm whether you want to enable public new-client consultation requests and provide the intended working booking route.
-  - **Triage reason:** The recorded SimplePractice request route resolves to an unavailable page per the original live audit; the working portal is for existing clients and must not be relabeled booking. Actual new-client booking enablement and GBP write access are dependencies.
-  - **Scoped action:** Confirm or configure a working new-client request destination, verify its behavior, then add it using authorized GBP access. Website /contact can be considered separately as an inquiry destination, not represented as instant booking.
+  - **Triage reason:** 2026-10-17 website-only scope: Google Business Profile content, settings or publication; user explicitly removed external profile work, including drafting its description.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** Google appointment-link/UTM configuration was not assessed. A current read-only GET of SimplePractice /request redirects to /request/unavailable?reason=clinician%20does%20not%20exist (HTTP 200 unavailable page); do not treat it as a working booking path.
 - **SEO-02-06** Post every workshop date as a Google Event post and every new article as an Update post.
-  - **Workflow:** Resource
+  - **Workflow:** Excluded
   - **Reference group:** process
-  - **Triage reason:** Recurring article/event distribution policy with no particular approved post or date; create publication tickets only for actual approved material.
-  - **Scoped action:** Reference only; no action scheduled. Create a separate bounded ticket only when a concrete deliverable is selected.
+  - **Triage reason:** 2026-10-17 website-only scope: Google Business Profile content, settings or publication; user explicitly removed external profile work, including drafting its description.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **Christina confirmation needed:** Confirm real upcoming workshop dates before any event is posted.
   - **2026-10-17 — Unverified:** Google Business Profile settings/posts/categories were outside this site/code comparison; no account update or completed external action is evidenced.
 - **SEO-02-07** Complete the Q&A/profile accuracy work; keep hours identical to the website. Enable messaging only if someone can answer promptly.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-02-07).
-  - **Workflow:** Needs scoping
+  - **Workflow:** Excluded
   - **Christina confirmation needed:** Confirm current appointment hours and whether you can reliably respond to profile messaging.
-  - **Triage reason:** This mixes unresolved hours with unverified profile features. Google retired legacy profile chat/call history July 31 2024 (https://support.google.com/business/answer/14919056?hl=en); the PDF messaging task cannot be accepted literally.
-  - **Scoped action:** Inspect currently supported profile controls; discard legacy chat enablement, identify concrete accuracy edits, and keep hours changes dependent on SEO-03-01 plus authorized access.
+  - **Triage reason:** 2026-10-17 website-only scope: Google Business Profile content, settings or publication; user explicitly removed external profile work, including drafting its description.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** Google Business Profile settings/posts/categories were outside this site/code comparison; no account update or completed external action is evidenced.
 
 ### 03. Align hours everywhere
@@ -239,18 +251,20 @@ Source: Finding #3, Medium; pp. 6, 13, 27; Phase 1.
   - **Tracking type:** Question / decision — excluded until explicitly scoped and promoted to accepted work.
   - **2026-10-17 — Remaining:** docs/christina-review.md still asks Christina to confirm current hours. Live /contact shows Mon 9–6, Tue–Thu 5–9:30 and Friday by request, but agreement is not evidenced.
 - **SEO-03-02** Publish that schedule identically on Google, Contact, openingHoursSpecification schema and directories.
+  - **Scope boundary:** 2026-10-17: website-only. The original recommendation below is historical and does not authorize its external-site portions.
+  - **Website task:** Publish confirmed hours on Contact and in website structured data.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-03-02).
   - **Workflow:** Blocked
   - **Christina confirmation needed:** Confirm current appointment hours, including the Friday-by-request arrangement.
   - **Triage reason:** docs/christina-review.md explicitly records conflicting website/seed hours. src/content/site.ts lists Mon–Thu 9–5/Friday virtual/evenings by request; audit live Contact hours differ. No reliable basis exists for choosing a schedule.
-  - **Scoped action:** Resolve one appointment-hours decision under SEO-03-01, then publish consistently where appropriate. External profile changes also require authorized access; do not infer Friday closed or use special hours blindly.
+  - **Scoped action:** Publish the confirmed schedule on Contact and website openingHoursSpecification only. Remove Google and directory updates. The actual schedule still requires confirmation.
   - **2026-10-17 — Partial:** Live /contact publishes hours; src/config/seo.ts has no openingHoursSpecification. Google/directory alignment is unverified and confirmed hours remain pending in docs/christina-review.md.
 - **SEO-03-03** For Friday by request, show Google as closed with an explanatory description note, or use special hours as appropriate.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-03-03).
-  - **Workflow:** Blocked
+  - **Workflow:** Excluded
   - **Christina confirmation needed:** Confirm current appointment hours, including the Friday-by-request arrangement.
-  - **Triage reason:** docs/christina-review.md explicitly records conflicting website/seed hours. src/content/site.ts lists Mon–Thu 9–5/Friday virtual/evenings by request; audit live Contact hours differ. No reliable basis exists for choosing a schedule.
-  - **Scoped action:** Resolve one appointment-hours decision under SEO-03-01, then publish consistently where appropriate. External profile changes also require authorized access; do not infer Friday closed or use special hours blindly.
+  - **Triage reason:** 2026-10-17 website-only scope: Google Business Profile content, settings or publication; user explicitly removed external profile work, including drafting its description.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** Live /contact says Friday by request, but Google closed/special-hours settings were not assessed.
 
 ### 04. Resolve insurance contradictions
@@ -275,69 +289,73 @@ Source: Finding #4, Critical; pp. 6, 18, 27; Phase 1.
   - **2026-10-17 — Partial:** Live /pricing has an Insurance block and /faq repeats out-of-network wording. Aetna status remains unconfirmed in docs/christina-review.md, so the confirmed-insurance requirement is not complete.
 - **SEO-04-03** Use the same insurance statement on Google, Psychology Today, Headway, TherapyFinder, Sharecare and resource lists including Beautiful Birth Choices; align every other public mention.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-04-03).
-  - **Workflow:** Blocked
+  - **Workflow:** Excluded
   - **Christina confirmation needed:** Confirm current Aetna/Headway participation, services covered and approved insurance wording.
-  - **Triage reason:** docs/christina-review.md explicitly says current Aetna/Headway participation, eligible services and superbill policy are unresolved. Published out-of-network wording cannot resolve contradictory billing facts.
-  - **Scoped action:** Obtain the current insurance statement once under SEO-04-01, then reuse it on Pricing/FAQ and authorized directories. Existing website insurance blocks need content resolution, not speculative new UI.
+  - **Triage reason:** 2026-10-17 website-only scope: Changes insurance statements on external profiles and resource lists; website insurance work remains separately tracked.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** No Google/directory/resource-list comparison or account updates were performed. Internal confirmation remains pending in docs/christina-review.md.
 
 ### 05. Correct directories and maintain a master fact sheet
 
 Source: Finding #5, High; pp. 6, 13, 25, 27; Phase 3.
 
-- [ ] **SEO-05-01** Keep one master fact sheet for name, address, phone, website, hours, insurance, credentials, specialties and other shared facts; use it for every update.
+- [x] **SEO-05-01** Keep one master fact sheet for name, address, phone, website, hours, insurance, credentials, specialties and other shared facts; use it for every update.
+  - **Website task:** Create a source-cited internal website practice fact sheet.
+  - **Scoped outcome:** 2026-10-17 — Created a source-cited internal website fact sheet, including unresolved policy facts. Sanity remains the runtime source; this does not authorize directory updates. [Implementation and verification](seo-ready/SEO-05-01.md).
   - **Task category:** facts
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-05-01).
-  - **Workflow:** Ready
+  - **Workflow:** Done
   - **Acceptance:** Name/address/phone/site/current published credentials and services cite sources; disputed facts are clearly pending with dependency IDs; no invented facts or external updates; includes instructions to reuse confirmed values and avoid publishing unresolved ones.
   - **Triage reason:** src/data/cms.ts already centralizes runtime practice fields and docs/christina-review.md identifies genuine unknowns. A useful source-of-truth sheet does not need to pretend every fact is confirmed.
-  - **Scoped action:** Create a directory-update fact sheet from current runtime facts, with source/date/status per field and an explicit unresolved section linking hours, insurance, workshop and clinical-scope decisions; never use seed fixtures to override live values.
+  - **Scoped action:** Maintain a source-cited internal website fact sheet; preserve unresolved policy questions and refresh after published CMS changes. No external profile maintenance.
   - **2026-10-17 — Partial:** src/data/cms.ts centralizes runtime settings and docs/christina-review.md records unresolved facts. No completed, confirmed master fact sheet or evidence of its use across directories was found; hours/insurance/workshop details remain pending.
 - **SEO-05-02** Claim/correct Healthgrades: practice name “Ruzicka Psychology PLLC” rather than the other tenant’s practice, 1577 South Ave, Rochester, NY 14620, (585) 667-0970, photo, website and confirmed insurance.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-05-02).
-  - **Workflow:** Blocked
-  - **Triage reason:** Healthgrades correction needs authorized listing ownership/edit or correction-submission access. Insurance uncertainty does not block correction of demonstrably wrong name/address/phone; the prior insurance-only blocker was too broad.
-  - **Scoped action:** Prepare exact current-vs-canonical corrections for public identity/contact fields from SEO-05-01 and inspect correction route. Submit only once authorized access/outreach is established; leave insurance unchanged pending SEO-04-01.
+  - **Workflow:** Excluded
+  - **Triage reason:** 2026-10-17 website-only scope: Claims or corrects external directory records and their data feeds, outside this website.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** Third-party directory records and ownership/correction actions were not audited in this site/code comparison; no completion evidence was established.
 - **SEO-05-03** Correct Sharecare as well, accounting for its data feed from Healthgrades.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-05-03).
-  - **Workflow:** Blocked
-  - **Triage reason:** Sharecare correction needs authorized listing ownership/edit or correction-submission access. Insurance uncertainty does not block correction of demonstrably wrong name/address/phone; the prior insurance-only blocker was too broad.
-  - **Scoped action:** Prepare exact current-vs-canonical corrections for public identity/contact fields from SEO-05-01 and inspect correction route. Submit only once authorized access/outreach is established; leave insurance unchanged pending SEO-04-01.
+  - **Workflow:** Excluded
+  - **Triage reason:** 2026-10-17 website-only scope: Claims or corrects external directory records and their data feeds, outside this website.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** Third-party directory records and ownership/correction actions were not audited in this site/code comparison; no completion evidence was established.
 - **SEO-05-04** Claim/correct WebMD and Vitals: remove the old residential-style address; use the confirmed practice name, office address, practice phone, photo, website and insurance.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-05-04).
-  - **Workflow:** Blocked
-  - **Triage reason:** WebMD/Vitals correction needs authorized listing ownership/edit or correction-submission access. Insurance uncertainty does not block correction of demonstrably wrong name/address/phone; the prior insurance-only blocker was too broad.
-  - **Scoped action:** Prepare exact current-vs-canonical corrections for public identity/contact fields from SEO-05-01 and inspect correction route. Submit only once authorized access/outreach is established; leave insurance unchanged pending SEO-04-01.
+  - **Workflow:** Excluded
+  - **Triage reason:** 2026-10-17 website-only scope: Claims or corrects external directory records and their data feeds, outside this website.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** Third-party directory records and ownership/correction actions were not audited in this site/code comparison; no completion evidence was established.
 - **SEO-05-05** **Inferred cleanup from the PDF’s evidence, not a standalone explicit fix:** Correct inconsistent years-of-experience figures on Headway and Vitals.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-05-05).
-  - **Workflow:** Needs scoping
+  - **Workflow:** Excluded
   - **Christina confirmation needed:** Confirm the practice decision described in the scoped action before publication.
-  - **Triage reason:** Different years-of-experience counts may use different start dates or calculation conventions; discrepancy alone does not prove either is wrong. No current comparison or field definition has been inspected.
-  - **Scoped action:** Compare current public listings and their field definitions against dated published education/license evidence. If still materially inconsistent, ask for the intended experience basis before changing listings; do not guess a number.
+  - **Triage reason:** 2026-10-17 website-only scope: Claims or corrects external directory records and their data feeds, outside this website.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** Third-party directory records and ownership/correction actions were not audited in this site/code comparison; no completion evidence was established.
 - **SEO-05-06** Ask Imago Relationships North America to update the phone unless the second number is intentional, and align the license expiry/registration date with NYSED.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-05-06).
-  - **Workflow:** Blocked
+  - **Workflow:** Excluded
   - **Christina confirmation needed:** Confirm whether the different Imago-directory phone is intentional and which number public listings should use.
-  - **Triage reason:** docs/christina-review.md explicitly asks whether the different Imago phone is intentional. License registration dates can be independently checked with NYSED, but that does not authorize replacing a potentially intentional number or contacting the directory.
-  - **Scoped action:** Verify public license date read-only; ask one focused question about intended public phone, then prepare corrections. Sending request requires explicit outreach authorization.
+  - **Triage reason:** 2026-10-17 website-only scope: Claims or corrects external directory records and their data feeds, outside this website.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** Directory correction was not established. docs/christina-review.md still asks whether the Imago directory phone difference is intentional.
 - **SEO-05-07** Handle the insurance contradiction, old residential-style address, possible personal Imago phone, PMH-C candidate wording and office-rental group listing privately with Dr. Ruzicka.
+  - **Scope boundary:** 2026-10-17: website-only. The original recommendation below is historical and does not authorize its external-site portions.
+  - **Website task:** Resolve insurance and credential facts needed for website copy.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-05-07).
   - **Workflow:** Resource
   - **Reference group:** process
   - **Triage reason:** Privacy-handling umbrella duplicates individual fact decisions. Keep as sensitive-information handling guidance rather than an archived implementation ticket.
-  - **Scoped action:** Reference only; no action scheduled. Create a separate bounded ticket only when a concrete deliverable is selected.
+  - **Scoped action:** Keep only unresolved facts needed for website insurance and credential copy. Remove external directory-address/phone corrections and office-rental listing cleanup.
   - **Tracking type:** Question / decision — excluded until explicitly scoped and promoted to accepted work.
   - **2026-10-17 — Partial:** docs/christina-review.md tracks insurance and the Imago phone privately as unresolved practice inputs; there is no evidence all listed sensitive concerns have been discussed/resolved with Christina.
 - **SEO-05-08** Follow the stated entity-cleanup order: Google → website/master fact sheet → Psychology Today and Headway → Healthgrades/Sharecare → WebMD/Vitals → NPPES → Imago directory → resource lists. Do not infer that a Yelp, Zocdoc or BBB listing must be created merely because the audit did not find one.
-  - **Workflow:** Resource
+  - **Workflow:** Excluded
   - **Reference group:** process
-  - **Triage reason:** Suggested entity-update order and listing-creation caution are methodology, not implementation work.
-  - **Scoped action:** Reference only; no action scheduled. Create a separate bounded ticket only when a concrete deliverable is selected.
+  - **Triage reason:** 2026-10-17 website-only scope: External entity-cleanup campaign/order; website master facts already have their own in-scope ticket SEO-05-01.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** No external cleanup sequence or completion log was established. Existing release docs explicitly keep directory/Maps/NPI work outside the code release.
 
 ### 06. Agree specialties, populations and methods
@@ -354,10 +372,12 @@ Source: Finding #6, Medium; pp. 6, 23–24, 27; Phase 3.
   - **Tracking type:** Question / decision — excluded until explicitly scoped and promoted to accepted work.
   - **2026-10-17 — Unverified:** No documented confirmed clinical scope; docs/christina-review.md still requests clinical review. Website scope exists but training/intent and consistency across directories cannot be established from code.
 - **SEO-06-02** Use that list consistently on the website, directories and schema knowsAbout.
+  - **Scope boundary:** 2026-10-17: website-only. The original recommendation below is historical and does not authorize its external-site portions.
+  - **Website task:** Use confirmed populations and methods consistently in website copy and schema.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-06-02).
   - **Workflow:** Needs scoping
   - **Triage reason:** The ticket bundles website copy, externally controlled listings and optional knowsAbout markup. Existing published service facts are sufficient for consistency research; a new comprehensive clinical list is not needed to identify exact mismatches.
-  - **Scoped action:** Inventory concrete mismatches using current runtime service descriptions; propose separate bounded corrections. Any new scope claims depend on SEO-06-01, external changes on authorized access, and schema addition requires a demonstrated purpose rather than keyword stuffing.
+  - **Scoped action:** Apply the confirmed populations/methods list to website copy and website schema knowsAbout only; remove directory updates.
   - **2026-10-17 — Unverified:** No documented confirmed clinical scope; docs/christina-review.md still requests clinical review. Website scope exists but training/intent and consistency across directories cannot be established from code.
 - [x] **SEO-06-03** Remove “families” from the homepage meta description or add a confirmed family offering; do not imply an unconfirmed service.
   - **Workflow:** Done
@@ -385,27 +405,27 @@ Source: Finding #7, Low; pp. 6–7, 27; Phase 3.
 
 - **SEO-07-01** Update individual NPI 1831638501 in NPPES: remove the trainee taxonomy and confirm practice location, phone and website.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-07-01).
-  - **Workflow:** Blocked
+  - **Workflow:** Excluded
   - **Christina confirmation needed:** Confirm the practice decision described in the scoped action before publication.
-  - **Triage reason:** NPPES registration changes require an authorized account owner and correct taxonomy/billing details; site code cannot establish the intended registered classification. Read-only verification can prepare evidence but cannot complete the change.
-  - **Scoped action:** Inspect the public NPI record and record proposed corrections; have the owner confirm taxonomy and submit through authorized NPPES access. Do not infer the exact taxonomy from marketing copy.
+  - **Triage reason:** 2026-10-17 website-only scope: NPPES, NPI or billing-entity administration, outside website implementation.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** NPPES changes, sole-proprietor billing review and organizational-NPI decisions cannot be verified from site/code. External registry/billing-adviser actions were not assessed.
 - **SEO-07-02** **Inferred cleanup from the PDF’s evidence, not a standalone explicit fix:** Review the sole-proprietorship designation against the PLLC’s actual billing setup.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-07-02).
-  - **Workflow:** Resource
+  - **Workflow:** Excluded
   - **Reference group:** questions
   - **Christina confirmation needed:** Confirm with your billing adviser how the PLLC actually bills and whether the sole-proprietorship designation is correct.
-  - **Triage reason:** The deliverable is an unresolved practice fact, adviser determination, document or policy decision, rather than implementation. Retain the precise question and link downstream implementation dependencies; do not count this question as a blocked task.
-  - **Scoped action:** Ask the billing owner whether current sole-proprietor designation matches actual setup; change nothing until that determination is recorded.
+  - **Triage reason:** 2026-10-17 website-only scope: NPPES, NPI or billing-entity administration, outside website implementation.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **Tracking type:** Question / decision — excluded until explicitly scoped and promoted to accepted work.
   - **2026-10-17 — Unverified:** NPPES changes, sole-proprietor billing review and organizational-NPI decisions cannot be verified from site/code. External registry/billing-adviser actions were not assessed.
 - **SEO-07-03** Ask the accountant/billing adviser whether the PLLC needs a Type 2 organizational NPI, including how Headway billing affects the answer.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-07-03).
-  - **Workflow:** Resource
+  - **Workflow:** Excluded
   - **Reference group:** questions
   - **Christina confirmation needed:** Obtain your billing adviser’s decision on whether the PLLC needs an organizational NPI.
-  - **Triage reason:** The deliverable is an unresolved practice fact, adviser determination, document or policy decision, rather than implementation. Retain the precise question and link downstream implementation dependencies; do not count this question as a blocked task.
-  - **Scoped action:** Obtain the billing/adviser determination, then close as no change or define the required registration work.
+  - **Triage reason:** 2026-10-17 website-only scope: NPPES, NPI or billing-entity administration, outside website implementation.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **Tracking type:** Question / decision — excluded until explicitly scoped and promoted to accepted work.
   - **2026-10-17 — Unverified:** NPPES changes, sole-proprietor billing review and organizational-NPI decisions cannot be verified from site/code. External registry/billing-adviser actions were not assessed.
 
@@ -477,11 +497,13 @@ Source: Finding #9, High; pp. 7, 17–18, 19, 26–27; Phase 4.
   - **Scoped action:** Obtain the active offering, fee per person/couple/series and cancellation policy; then update the existing group page and FAQ, preserving current FAQ coverage.
   - **2026-10-17 — Partial:** Group service has four FAQs but says fees shared before registration; no price, pricing basis or cancellation policy.
 - **SEO-09-04** Add registration via a form or SimplePractice and a clear register button; link all workshop “Learn more” links to this page.
+  - **Scope boundary:** 2026-10-17: website-only. The original recommendation below is historical and does not authorize its external-site portions.
+  - **Website task:** Add website workshop registration access using an approved working destination.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-09-04).
   - **Workflow:** Blocked
   - **Christina confirmation needed:** Confirm the intended workshop enrollment process and registration route.
   - **Triage reason:** Existing Learn more links already reach /specialties/group-therapy and its inquiry CTA. A real registration destination and enrollment process are not established; the generic SimplePractice request path was unavailable in the original comparison.
-  - **Scoped action:** Retain working inquiry links; obtain and test the real workshop enrollment route before labeling a control Register. Existing navigation work does not depend on that decision.
+  - **Scoped action:** Website workshop registration CTA and on-site form only, or link an already working approved external destination. Configuring SimplePractice itself is outside scope.
   - **2026-10-17 — Partial:** Workshop Learn more links resolve to /specialties/group-therapy, with consultation inquiry CTA. No dedicated registration flow or Register button; /stronger-together-couples-workshop404.
 - **SEO-09-05** Ask counsel/advisers whether this is psychotherapy (with intake, records and consent) or education; align wording, intake, billing and any Good Faith Estimate treatment with that classification.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-09-05).
@@ -493,10 +515,12 @@ Source: Finding #9, High; pp. 7, 17–18, 19, 26–27; Phase 4.
   - **Tracking type:** Question / decision — excluded until explicitly scoped and promoted to accepted work.
   - **2026-10-17 — Unverified:** docs/christina-review.md requests clinical-group vs educational-workshop classification, price and registration facts; adviser decision not evidenced.
 - **SEO-09-06** Add Event schema for each published date and post each date on Google. Treat dates/times in the PDF template as placeholders, not real scheduled events.
+  - **Scope boundary:** 2026-10-17: website-only. The original recommendation below is historical and does not authorize its external-site portions.
+  - **Website task:** Add Event schema for real workshop dates published on the website.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-09-06).
   - **Workflow:** Backlog
   - **Triage reason:** There is no published scheduled event to mark up. This is a conditional future capability, not an active task waiting on invented dates; /specialties/group-therapy currently invites inquiries.
-  - **Scoped action:** Reopen only when a real event is scheduled. At that time reuse the same visible date/time/location for Event schema and separately arrange Google profile access. Track actual dates under the workshop fact dependency.
+  - **Scoped action:** Add website Event schema for real published dates only; remove Google Event posts.
   - **2026-10-17 — Remaining:** No real upcoming workshop dates or Event JSON-LD on the site; Google event publishing not verifiable here.
 
 ### 10. Rewrite homepage title, H1 and hero introduction
@@ -562,9 +586,11 @@ Source: Finding #12, High; pp. 8, 14, 19, 27; Phase 2.
   - **Triage reason:** Existing dated assessment records this recommendation as complete.
   - **Scoped action:** Retain completion evidence; recheck only if the related surface changes.
   - **2026-10-17 — Done:** About lists New York license024357 and links NYSED verification. src/page-modules/about/index.tsx.
-- [ ] **SEO-12-02** Name the PsyD from California School of Professional Psychology, Alliant International University, and add graduation year.
+- [x] **SEO-12-02** Name the PsyD from California School of Professional Psychology, Alliant International University, and add graduation year.
+  - **Website task:** Name the documented doctoral degree and graduation year in the existing About entry.
+  - **Scoped outcome:** 2026-10-17 — Updated the existing About education title to Doctor of Psychology (Psy.D.), 2020 using the published source evidence; preserved institution detail and all other credentials. [Implementation and verification](seo-ready/SEO-12-02.md).
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-12-02).
-  - **Workflow:** Ready
+  - **Workflow:** Done
   - **Acceptance:** About shows the exact degree/institution/year from the cited profile; migration preview changes only that education entry, handles drafts/revisions and preserves all other CMS content. Verify rendered About after publication; no reseed.
   - **Triage reason:** Psy.D. is already published on About and in src/content/about.ts. The linked practitioner-owned Psychology Today profile explicitly identifies CSPP, Psy.D., graduated 2020: https://www.psychologytoday.com/us/therapists/christina-ruzicka-rochester-ny/912736 (read 2026-10-17). This is a stable publicly supplied credential fact, not a new clinical claim. Fresh public HTML GET also confirms About still has Doctoral Degree without a year.
   - **Scoped action:** Narrowly update the About education entry to identify Doctor of Psychology (Psy.D.), retain CSPP/Alliant institution, and add 2020 using a reviewed CMS field patch; cite the profile.
@@ -653,9 +679,11 @@ Source: Finding #14, Medium; pp. 8, 19–20, 27; Phase 2.
   - **Scoped action:** Use the individual FAQ proposals and confirmed user needs rather than padding the page to a numeric target.
   - **Christina confirmation needed:** Provide the unresolved practice FAQ answers: insurance, cancellation, attendance, workshop, referrals and building access.
   - **2026-10-17 — Remaining:** /faq still has five questions; answers do not consistently begin with 40–60-word summaries.
-- [ ] **SEO-14-02** Add a question about virtual sessions and the requirement to be physically in New York.
+- [x] **SEO-14-02** Add a question about virtual sessions and the requirement to be physically in New York.
+  - **Website task:** Add a general virtual-appointments FAQ using existing published service wording.
+  - **Scoped outcome:** 2026-10-17 — Added a general virtual-appointments FAQ reusing published service wording with source links. No new physical-location, platform or legal eligibility claim; those remain separate decisions. [Implementation and verification](seo-ready/SEO-14-02.md).
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-14-02).
-  - **Workflow:** Ready
+  - **Workflow:** Done
   - **Acceptance:** General FAQ accurately repeats existing New York virtual availability, links existing services and avoids expanding eligibility. Reviewed targeted CMS patch preserves other FAQ items. Explicit physical-location-at-each-session legal wording remains open under SEO-26-01/02, not silently completed.
   - **Triage reason:** Fresh public HTML GET on 2026-10-17 verifies /specialties/individual-therapy says virtual therapy to clients located in New York, and /specialties/couples-therapy says both partners located in New York. Reusing that published service scope in the general FAQ requires no hypothetical multistate decision; stronger legal wording remains SEO-26-01/02.
   - **Scoped action:** Add a general virtual-appointments FAQ using the existing New York availability wording and links to relevant service pages; do not introduce legal mandates, exceptions or a platform/security claim.
@@ -737,9 +765,11 @@ Source: Finding #15, Medium; pp. 8, 18–19, 27; Phase 1.
   - **Scoped action:** Obtain actual duration/fee and whether any public code guidance is needed. Separately remove misleading generic code advice under SEO-15-02 without choosing a replacement code.
   - **Tracking type:** Question / decision — excluded until explicitly scoped and promoted to accepted work.
   - **2026-10-17 — Unverified:** Billing-code/session-length confirmation remains explicitly pending in docs/christina-review.md; no evidence Christina/biller has supplied a decision.
-- [ ] **SEO-15-02** Correct the mismatch between 50-minute sessions and the stated standard 60-minute CPT 90837 session. The PDF notes 90837 generally represents 53+ minutes and 50 minutes usually maps to 90834; this is source context, not a coding decision.
+- [x] **SEO-15-02** Correct the mismatch between 50-minute sessions and the stated standard 60-minute CPT 90837 session. The PDF notes 90837 generally represents 53+ minutes and 50 minutes usually maps to 90834; this is source context, not a coding decision.
+  - **Website task:** Remove contradictory billing-code advice without selecting a replacement code.
+  - **Scoped outcome:** 2026-10-17 — Removed contradictory CPT-specific reimbursement advice using neutral benefits questions. No replacement billing code, session length or insurance policy was inferred. [Implementation and verification](seo-ready/SEO-15-02.md).
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-15-02).
-  - **Workflow:** Ready
+  - **Workflow:** Done
   - **Acceptance:** Rendered reimbursement guide no longer equates the advertised service with 90837/60 minutes, contains no substitute billing-code claim, and fees, session-length display, insurance copy and drafts are unchanged. Exact CMS before/after/revision guards demonstrate the narrow scope.
   - **Triage reason:** The current source fixture src/content/pricing.ts already removes specific CPT instructions from the reimbursement guide and asks insurers about outpatient psychotherapy benefits. A safe fix can remove the unsupported 90837/60-minute claim without choosing another code or changing the advertised 50-minute service. scripts/migrate-seo-service-pages.ts bundles this with insurance, so it must not be applied broadly. Fresh public HTML GET on 2026-10-17 verifies the conflicting 90837/60-minute advice remains live on Pricing; fixture-only neutral wording is proposed content, not completion evidence.
   - **Scoped action:** Prepare a targeted reviewed CMS patch removing the conflicting code/duration advice from the reimbursement guide only, replacing it with the existing neutral insurer-benefit questions. Keep actual session duration/code confirmation under SEO-15-01.
@@ -863,9 +893,9 @@ Source: Finding #17, High; pp. 9, 18, 26–27; Phase 1.
   - **2026-10-17 — Partial:** Vercel Analytics and Speed Insights installed in public layout; src/components/site-analytics/index.tsx and src/lib/analytics-privacy.ts strip queries/fragments and exclude Studio. Other public service/contact pages are measured; sensitive-page exclusions and the requested IP/privacy setup have not been independently confirmed.
 - **SEO-17-03** Confirm Google Search Console verification (DNS may already be used) and Bing Webmaster Tools.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-17-03).
-  - **Workflow:** Blocked
-  - **Triage reason:** src/app/layout.tsx supports Google verification, but actual Search Console/Bing ownership status requires authorized account evidence; neither absent meta tags nor code proves DNS verification. This is an access dependency, not Christina clinical confirmation.
-  - **Scoped action:** Obtain authorized webmaster account access or dated owner verification evidence from whoever manages the domain; then verify each property and address actual gaps.
+  - **Workflow:** Excluded
+  - **Triage reason:** 2026-10-17 website-only scope: Search Console/Bing ownership verification is external webmaster-account administration, not a website implementation deliverable.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** src/app/layout.tsx supports GOOGLE_SITE_VERIFICATION; a missing meta tag cannot disprove DNS verification. Search Console ownership and Bing Webmaster verification require account evidence, unavailable in this audit.
 - **SEO-17-04** Track form submissions, phone taps/calls, email clicks, portal/new-client-request clicks and workshop sign-ups.
   - **Workflow:** Needs scoping
@@ -927,11 +957,13 @@ Source: Finding #19, Low; pp. 9, 27; Phase 2.
   - **Scoped action:** Build a reusable preview treatment from existing real images when social sharing becomes a priority; avoid requiring new CMS fields without need.
   - **2026-10-17 — Remaining:** All 15 current sitemap pages use the shared text-only /opengraph-image. No per-page Sanity social-image field/output. src/app/opengraph-image.tsx; src/config/seo.ts. Explicitly deferred in docs/seo-release-plan.md.
 - **SEO-19-02** If Dr. Ruzicka wants a social presence, create a simple Instagram or Facebook page for workshop dates and resources; link confirmed profiles on the site and through sameAs.
+  - **Scope boundary:** 2026-10-17: website-only. The original recommendation below is historical and does not authorize its external-site portions.
+  - **Website task:** Link an existing approved social profile from the website, if one is available.
   - **Task category:** local
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-19-02).
   - **Workflow:** Backlog
   - **Triage reason:** This is an optional marketing channel, expressly conditional on desire and maintenance. No website defect depends on an Instagram/Facebook account.
-  - **Scoped action:** Revisit if a channel owner and purpose are chosen; then verify profile URLs and add links. Do not create social accounts or imply ongoing content work is an active blocked engineering task.
+  - **Scoped action:** Remove creating or maintaining Instagram/Facebook profiles. Retain only an optional future website link/sameAs addition if a real approved profile already exists. Keep Backlog; no assumed social presence.
   - **2026-10-17 — Unverified:** Optional; no Instagram/Facebook links in live graph/site. Dr. Ruzicka’s preference and account ownership not established; external profiles were not created.
 
 ### 20. Fix form labels, contrast and visual accessibility
@@ -1003,11 +1035,13 @@ Source: Finding #21, High; pp. 9, 18, 26–27; Phase 1.
 Source: Finding #22, Medium; pp. 10, 20, 26–27; Phase 2.
 
 - **SEO-22-01** Offer two equal options on Contact and in every CTA: “Request a free consultation online” linking to https://christina-ruzicka.clientsecure.me/request, and “Send a message”. Keep the message form for general questions.
+  - **Scope boundary:** 2026-10-17: website-only. The original recommendation below is historical and does not authorize its external-site portions.
+  - **Website task:** Add website inquiry options only when a working new-client destination is approved.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-22-01).
   - **Workflow:** Blocked
   - **Christina confirmation needed:** Confirm whether you want to enable public new-client consultation requests and provide the intended working booking route.
   - **Triage reason:** The proposed public request endpoint was verified unavailable in the original comparison. Current inquiry/contact options work; account configuration and the intended booking workflow are unknown.
-  - **Scoped action:** Obtain the intended working request route and enrollment behavior from the practice/account owner, verify it end-to-end, then reconsider whether two equally weighted CTAs improve the flow. Do not copy the broken PDF URL.
+  - **Scoped action:** Keep website inquiry options and labels only. Use an already working approved new-client destination; external SimplePractice account setup is excluded. Do not label the existing-client portal as new-client booking.
   - **2026-10-17 — Remaining:** Live Contact offers message form, phone and email, with no equal online-request / Send a message choices in CTAs. A current read-only GET confirms SimplePractice /request redirects to the clinician-does-not-exist unavailable page; do not advertise it until fixed.
 - [x] **SEO-22-02** Rename the existing footer portal link “Client portal (existing clients)”.
   - **Workflow:** Done
@@ -1016,9 +1050,9 @@ Source: Finding #22, Medium; pp. 10, 20, 26–27; Phase 2.
   - **2026-10-17 — Done:** Live footer now labels it Existing Client Portal, clearly identifying existing clients (equivalent intent to proposed Client portal (existing clients)); site-footer/index.tsx.
 - **SEO-22-03** **Inferred cleanup from the PDF’s evidence, not a standalone explicit fix:** Address TherapyFinder’s “online booking is not enabled” inconsistency when updating directory booking information.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-22-03).
-  - **Workflow:** Archived
-  - **Triage reason:** The audit inferred a contradiction from TherapyFinder saying online booking is disabled, but the actual public SimplePractice request route was also unavailable. Those facts are consistent; absence of booking is not itself a directory error.
-  - **Scoped action:** Retain source evidence; reopen only if a working approved online booking flow is launched and the directory still misstates it. Do not enable booking merely to satisfy an inferred cleanup.
+  - **Workflow:** Excluded
+  - **Triage reason:** 2026-10-17 website-only scope: External TherapyFinder booking information; website inquiry and portal links remain separately tracked.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** TherapyFinder account/listing booking status was not authenticated or changed; no evidence directory inconsistency is resolved. The SimplePractice request URL was separately confirmed to redirect to an unavailable page during this comparison.
 
 ### 23. Surface peer endorsements and third-party proof
@@ -1179,11 +1213,13 @@ Source: Finding #27, Medium; pp. 11, 18–19, 27; Phase 1.
   - **Tracking type:** Question / decision — excluded until explicitly scoped and promoted to accepted work.
   - **2026-10-17 — Unverified:** Good Faith Estimate notice/process and adviser applicability decision remain pending in docs/christina-review.md; no adviser answer evidenced.
 - **SEO-27-02** If applicable, add the notice to Pricing and the intake flow and cover workshop clients too; track the proposed dedicated page below.
+  - **Scope boundary:** 2026-10-17: website-only. The original recommendation below is historical and does not authorize its external-site portions.
+  - **Website task:** Publish an approved Good Faith Estimate notice on applicable website pages.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-27-02).
   - **Workflow:** Blocked
   - **Christina confirmation needed:** Provide your adviser-approved Good Faith Estimate applicability, notice and intake/workshop process.
   - **Triage reason:** Pricing has no GFE notice, and the actual practice notice/intake process requested in docs/christina-review.md is missing. Adding a page cannot establish external SimplePractice intake compliance or workshop classification.
-  - **Scoped action:** Use SEO-27-01’s researched proposal; obtain the actual approved notice/process, then add accessible Pricing placement and separately coordinate external intake. A dedicated page is optional.
+  - **Scoped action:** Limit any approved Good Faith Estimate notice to website Pricing/workshop pages and any website-owned intake links. External intake-platform changes are excluded.
   - **2026-10-17 — Remaining:** Live /pricing has no Good Faith Estimate notice; /good-faith-estimate returns 404. No website intake/workshop GFE coverage evidenced; contingent on practice/adviser determination.
 
 ### 28. Align perinatal credential language
@@ -1201,16 +1237,16 @@ Source: Finding #28, Low; pp. 11, 14, 18, 27; Phase 1.
   - **2026-10-17 — Unverified:** PSI approval and external Beautiful Birth Choices/Psychology Today/Headway edits not evidenced. About uses Certification Track; third-party review cannot be established from site/code.
 - **SEO-28-02** Ask Beautiful Birth Choices to replace “PMH-C (Candidate)” with the same approved wording as the website until certification is complete.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-28-02).
-  - **Workflow:** Blocked
+  - **Workflow:** Excluded
   - **Christina confirmation needed:** Confirm current PSI training/certification status and provide the organization-approved wording.
-  - **Triage reason:** The requested external edit depends on present certification status and current third-party wording. Prior copy alone is insufficient to decide what credential should replace it; outreach also requires explicit authorization.
-  - **Scoped action:** Resolve SEO-28-01, inspect the current listing, prepare exact correction text, and obtain outreach authorization before sending.
+  - **Triage reason:** 2026-10-17 website-only scope: Changes external resource-list or directory credential wording; website credential wording remains separately tracked.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** PSI approval and external Beautiful Birth Choices/Psychology Today/Headway edits not evidenced. About uses Certification Track; third-party review cannot be established from site/code.
 - **SEO-28-03** Align “perinatal mental health specialist” and other specialty claims on Psychology Today, Headway and elsewhere with professional advertising rules.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-28-03).
-  - **Workflow:** Needs scoping
-  - **Triage reason:** This is a broad external-claims audit, not a specific blocked correction. The website already describes perinatal training without asserting PMH-C; current directory text has not been compared.
-  - **Scoped action:** Read current Psychology Today/Headway claims, compare them with published About qualifications, and identify exact unsupported or inconsistent claims. Only credential-status changes then depend on SEO-28-01.
+  - **Workflow:** Excluded
+  - **Triage reason:** 2026-10-17 website-only scope: Changes external resource-list or directory credential wording; website credential wording remains separately tracked.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** PSI approval and external Beautiful Birth Choices/Psychology Today/Headway edits not evidenced. About uses Certification Track; third-party review cannot be established from site/code.
 - **SEO-28-04** Preserve the PDF’s explicit caution to avoid “PMH-C” in any form until awarded; resolve the conflict with its proposed About phrase before publishing.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-28-04).
@@ -1227,17 +1263,17 @@ Source: Finding #29, Medium; pp. 11, 27; Phase 3.
 
 - **SEO-29-01** Move “Premium Office Space Available – Rochester, NY” out of the Psychology Today clinical Groups slot to a separate channel.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-29-01).
-  - **Workflow:** Blocked
+  - **Workflow:** Excluded
   - **Christina confirmation needed:** Confirm the purpose of the office-rental listing and where you want that nonclinical offering maintained.
-  - **Triage reason:** Moving/deleting a third-party office-rental listing changes a nonclinical business offering. No repository evidence establishes its intended destination or whether the listing is still desired.
-  - **Scoped action:** Inspect current public listing and draft a recommendation; obtain Christina’s desired destination and listing access before changing it.
+  - **Triage reason:** 2026-10-17 website-only scope: Changes or creates Psychology Today listings, outside this website.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** Psychology Today account/listing change not evidenced in site or code. Workshop identity remains awaiting Christina in docs/christina-review.md.
 - **SEO-29-02** Create a Psychology Today group listing for Stronger Together and link it to the workshop page.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-29-02).
-  - **Workflow:** Blocked
+  - **Workflow:** Excluded
   - **Christina confirmation needed:** Confirm the active workshop identity and participation/enrollment details before creating its clinical group listing.
-  - **Triage reason:** The known Stronger Together versus Connected Couple conflict is unresolved in docs/christina-review.md. A new group listing would assert an unconfirmed offering/classification.
-  - **Scoped action:** Resolve workshop identity, active availability and clinical-versus-education classification, then prepare directory copy; account access remains a separate operational dependency.
+  - **Triage reason:** 2026-10-17 website-only scope: Changes or creates Psychology Today listings, outside this website.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Unverified:** Psychology Today account/listing change not evidenced in site or code. Workshop identity remains awaiting Christina in docs/christina-review.md.
 
 ### 30. Improve AI visibility and track it over time
@@ -1263,16 +1299,18 @@ Source: Finding #30, Medium; pp. 11, 25–27; Phase 4.
   - **Scoped action:** Reference only; no action scheduled. Create a separate bounded ticket only when a concrete deliverable is selected.
   - **2026-10-17 — Done:** Documented decision: docs/seo-release-plan.md says “No word-count quotas or llms.txt ranking project” and defers llms.txt; this keeps the optional file in proportion and does not claim a ranking gain.
 - **SEO-30-04** Fix source facts (insurance, practice name, addresses, hours), schema, service depth and FAQs alongside llms.txt.
+  - **Scope boundary:** 2026-10-17: website-only. The original recommendation below is historical and does not authorize its external-site portions.
+  - **Website task:** Correct website facts, schema, service content and FAQs.
   - **Workflow:** Archived
   - **Triage reason:** This umbrella item duplicates existing practice-fact, schema, service, and FAQ tickets; counting it separately inflates the goal.
-  - **Scoped action:** Track remaining fact decisions and implementation in their specific source tickets; retain this recommendation as reference.
+  - **Scoped action:** Historical archived website-only fact/schema/content recommendation; exclude corrections to third-party source records from any future reopening.
   - **Christina confirmation needed:** Confirm unresolved insurance, appointment-hours and workshop facts before aligning their public descriptions.
   - **2026-10-17 — Partial:** Live corrected ProfessionalService/Person graph, full address, FAQPage and four service pages are present. Insurance/billing/workshop facts remain unresolved in docs/christina-review.md; full external entity/hours alignment unverified.
 - **SEO-30-05** Earn mentions from the Imago directory, PSI once certified, Rochester perinatal resource lists, local parenting groups, University of Rochester network and local media.
-  - **Workflow:** Resource
+  - **Workflow:** Excluded
   - **Reference group:** process
-  - **Triage reason:** Unbounded outreach program and possible channels; no chosen eligible recipient, authorized communication or finite deliverable.
-  - **Scoped action:** Reference only; no action scheduled. Create a separate bounded ticket only when a concrete deliverable is selected.
+  - **Triage reason:** 2026-10-17 website-only scope: External outreach/link earning, not website implementation.
+  - **Scoped action:** None. Removed from website task queues and progress; retained only as original audit provenance. Do not implement or prepare external-site content.
   - **2026-10-17 — Partial:** Existing Imago/Psychology Today sameAs links and prior resource-list references provide some third-party evidence, but earning new PSI/parenting/UR/local-media mentions is not established. PSI remains conditional on certification.
 - **SEO-30-06** After every phase, re-run the 12 separately tracked prompts below, logged out, and log answers, whether the practice is named and which facts are stated. The PDF did not live-test AI answers.
   - **Workflow:** Resource
@@ -1499,9 +1537,11 @@ Source: Page-by-page review; p. 20.
   - **Triage reason:** Optional enhancement with no selected implementation or demonstrated defect. The current heading is generic, but the proposed Book a Free Consultation wording must match an inquiry form and current availability states.
   - **Scoped action:** Define a clear state-aware contact heading and location subline using published facts; resolve request-versus-book semantics before implementation.
   - **2026-10-17 — Remaining:** Contact H1 remains Let’s Work Together; intro accepting new clients in-person/virtual omits Rochester/New York scope.
-- [ ] **SEO-37-02** Add an embedded map or directions and parking details.
+- [x] **SEO-37-02** Add an embedded map or directions and parking details.
+  - **Website task:** Add an accessible directions link beneath the existing Contact map.
+  - **Scoped outcome:** 2026-10-17 — Added a keyboard-accessible directions link below the existing Contact map using the same CMS address and shared layout/link primitives. No external listing was changed and no parking/access facts inferred. [Implementation and verification](seo-ready/SEO-37-02.md).
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-37-02).
-  - **Workflow:** Ready
+  - **Workflow:** Done
   - **Acceptance:** Link uses the exact currently rendered CMS address, works by keyboard on mobile/desktop without interacting with the iframe, has a descriptive label, and adds no inferred parking/accessibility claim.
   - **Triage reason:** Contact already includes an embedded map and complete CMS address; the remaining practical improvement that needs no private fact is a directly usable directions link. Parking/accessibility facts remain separately blocked under SEO-33-05. src/page-modules/contact/index.tsx:199 renders only iframe plus overlay.
   - **Scoped action:** Add an accessible Get directions external link adjacent to the existing map, deriving its destination from the same CMS address and using shared link styling. Scope this ticket to map/directions; retain unverified parking details under SEO-33-05.
@@ -1539,11 +1579,13 @@ Source: Page-by-page review; p. 20.
   - **Scoped action:** Reuse existing author identity and About link when revisiting the index; avoid duplicating the full article bio.
   - **2026-10-17 — Remaining:** Blog index contains title and three post cards/dates/excerpts, with no intro paragraph, topic filters or author line. src/page-modules/blog-index/index.tsx.
 - **SEO-38-04** Add a newsletter or workshop sign-up only if Dr. Ruzicka will maintain it.
+  - **Scope boundary:** 2026-10-17: website-only. The original recommendation below is historical and does not authorize its external-site portions.
+  - **Website task:** Add website signup UI only for an approved, maintained program.
   - **Blocker review:** 2026-10-17 — reassessed from Blocked; see [full 92-item review](seo-blocked-review-2026-10.md#seo-38-04).
   - **Workflow:** Backlog
   - **Christina confirmation needed:** Decide whether you will maintain a newsletter or workshop mailing list before adding a sign-up.
   - **Triage reason:** This is explicitly conditional on a sustained newsletter/workshop program. No such program is accepted; lack of that product decision is not a blocked website implementation.
-  - **Scoped action:** Keep signup out of scope until there is a real mailing program, owner and cadence. Then scope consent/provider/content work; do not create an empty signup flow.
+  - **Scoped action:** Any future scoped ticket may add website signup UI using an already approved provider and policy. Creating/running an external newsletter or social distribution program is excluded.
   - **2026-10-17 — Unverified:** No newsletter/workshop signup on Blog index; condition that Christina will maintain one is not confirmed.
 
 ### 39. Shared requirements for new articles

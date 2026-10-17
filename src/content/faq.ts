@@ -35,6 +35,14 @@ export const faq = {
       ],
     },
     {
+      q: "Are virtual appointments available?",
+      a: [
+        "Yes. Christina offers virtual therapy to clients located in New York, along with in-person appointments at the Rochester office.",
+        "Virtual couples sessions may be available when both partners are located in New York and the format is clinically appropriate. The consultation is the best place to discuss your situation.",
+        "Learn more about [individual therapy](/specialties/individual-therapy) and [couples therapy](/specialties/couples-therapy).",
+      ],
+    },
+    {
       q: "How do I get started?",
       a: [
         "You can get started through the [contact form](/contact) to request an initial consultation. During that call, we will briefly discuss what you are looking for, answer any questions you have, and determine whether working together feels like the right fit.",
