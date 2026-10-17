@@ -12,9 +12,13 @@ import {
   type MigrationDocument,
 } from "./seo-migration-plan";
 import {
-  articleFormattingId,
+  articleFormattingIds,
   buildArticleFormattingPatch,
 } from "./seo-article-formatting";
+import {
+  verifiedFactsIds,
+  buildVerifiedFactsPatch,
+} from "./seo-verified-facts";
 import { contact } from "../src/content/contact";
 
 import { about } from "../src/content/about";
@@ -33,6 +37,7 @@ const websiteCopyOnly = process.argv.includes("--website-copy-only");
 const articleFormattingOnly = process.argv.includes(
   "--article-formatting-only",
 );
+const verifiedFactsOnly = process.argv.includes("--verified-facts-only");
 const allContent = process.argv.includes("--all-content");
 function option(name: string) {
   const index = process.argv.indexOf(name);
@@ -338,11 +343,12 @@ async function main() {
       groupPageOnly,
       websiteCopyOnly,
       articleFormattingOnly,
+      verifiedFactsOnly,
       allContent,
     ].filter(Boolean).length !== 1
   ) {
     throw new Error(
-      "Choose exactly one scope: --website-copy-only, --service-pages-only, --group-page-only, --article-formatting-only, or --all-content.",
+      "Choose exactly one scope: --website-copy-only, --service-pages-only, --group-page-only, --article-formatting-only, --verified-facts-only, or --all-content.",
     );
   }
 
@@ -359,7 +365,7 @@ async function main() {
 
   const restrictedServiceScope = servicePagesOnly || groupPageOnly;
   const missingConfirmations =
-    websiteCopyOnly || articleFormattingOnly
+    websiteCopyOnly || articleFormattingOnly || verifiedFactsOnly
       ? []
       : restrictedServiceScope
         ? [
@@ -393,7 +399,7 @@ async function main() {
     );
 
   const specialtyItemsInScope =
-    websiteCopyOnly || articleFormattingOnly
+    websiteCopyOnly || articleFormattingOnly || verifiedFactsOnly
       ? []
       : groupPageOnly
         ? specialties.items.filter((item) => item.slug === "group-therapy")
@@ -445,7 +451,7 @@ async function main() {
   }
 
   const servicePatches =
-    websiteCopyOnly || articleFormattingOnly
+    websiteCopyOnly || articleFormattingOnly || verifiedFactsOnly
       ? []
       : buildServicePatches(
           postIdBySlug,
@@ -470,7 +476,10 @@ async function main() {
     );
   }
   const postPatches =
-    restrictedServiceScope || websiteCopyOnly || articleFormattingOnly
+    restrictedServiceScope ||
+    websiteCopyOnly ||
+    articleFormattingOnly ||
+    verifiedFactsOnly
       ? []
       : buildPostPatches(postIdBySlug);
   const singletonPatchesInScope = websiteCopyOnly
@@ -478,11 +487,12 @@ async function main() {
         { id: "homePage", values: { "hero.heading": home.hero.heading } },
         { id: "contactPage", values: { formNote: contact.formNote } },
       ].filter((patch) => !websiteDocument || patch.id === websiteDocument)
-    : restrictedServiceScope || articleFormattingOnly
+    : restrictedServiceScope || articleFormattingOnly || verifiedFactsOnly
       ? []
       : singletonPatches;
   const targets = [
-    ...(articleFormattingOnly ? [articleFormattingId] : []),
+    ...(articleFormattingOnly ? articleFormattingIds : []),
+    ...(verifiedFactsOnly ? verifiedFactsIds : []),
     ...servicePatches.map((patch) => patch.id),
     ...singletonPatchesInScope.map((patch) => patch.id),
     ...postPatches.map((patch) => patch.id),
@@ -512,12 +522,19 @@ async function main() {
   }
 
   const basePatches = [
-    ...(articleFormattingOnly
-      ? [
-          buildArticleFormattingPatch(
-            existing.find((document) => document._id === articleFormattingId)!,
+    ...(verifiedFactsOnly
+      ? verifiedFactsIds.map((id) =>
+          buildVerifiedFactsPatch(
+            existing.find((document) => document._id === id)!,
           ),
-        ]
+        )
+      : []),
+    ...(articleFormattingOnly
+      ? articleFormattingIds.map((id) =>
+          buildArticleFormattingPatch(
+            existing.find((document) => document._id === id)!,
+          ),
+        )
       : []),
     ...servicePatches,
     ...singletonPatchesInScope,
@@ -539,15 +556,17 @@ async function main() {
       projectId: config.projectId,
       dataset: config.dataset,
       ...(includeReviewedDrafts ? { reviewedDrafts: draftRevisions } : {}),
-      scope: articleFormattingOnly
-        ? "article-formatting"
-        : websiteCopyOnly
-          ? "website-copy"
-          : groupPageOnly
-            ? "group-page"
-            : servicePagesOnly
-              ? "service-pages"
-              : "all-content",
+      scope: verifiedFactsOnly
+        ? "verified-facts"
+        : articleFormattingOnly
+          ? "article-formatting"
+          : websiteCopyOnly
+            ? "website-copy"
+            : groupPageOnly
+              ? "group-page"
+              : servicePagesOnly
+                ? "service-pages"
+                : "all-content",
     },
     [...basePatches, ...draftPatches],
     allDocuments,

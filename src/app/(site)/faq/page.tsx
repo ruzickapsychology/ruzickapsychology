@@ -5,9 +5,9 @@ import { getFAQPage } from "@/data/cms";
 import { FAQPage } from "@/page-modules/faq";
 
 export const metadata: Metadata = pageMetadata({
-  title: "FAQ",
+  title: "Therapy FAQs in Rochester, NY",
   description:
-    "Common questions about therapy with Dr. Christina Ruzicka — what she helps with, her style, first sessions, fees, and how to begin.",
+    "Answers to common questions about therapy in Rochester, NY with Dr. Christina Ruzicka, including her approach, first sessions, fees, and getting started.",
   path: "/faq",
 });
 

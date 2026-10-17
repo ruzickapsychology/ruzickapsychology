@@ -29,8 +29,8 @@ export const about = {
     heading: "Specialized Training",
     items: [
       {
-        title: "Certified Imago Relationship Therapy",
-        detail: "Clinical Training",
+        title: "Certified Imago Relationship Therapist",
+        detail: "Imago Relationships North America",
       },
       {
         title: "Perinatal Mental Health",

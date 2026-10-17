@@ -22,6 +22,12 @@ const defaultSocialImage = {
   height: 630,
 };
 
+// Search summaries are code-owned; the CMS excerpt remains the article preview.
+const articleDescriptions: Readonly<Record<string, string>> = {
+  "welcome-to-the-practice":
+    "Meet Dr. Christina Ruzicka, a Rochester psychologist, and learn about her collaborative approach to couples therapy and perinatal mental health.",
+};
+
 export function pageMetadata({
   title,
   description = SITE_DEFAULT_DESCRIPTION,
@@ -71,7 +77,7 @@ export function blogPostMetadata(post: {
 }): Metadata {
   const metadata = pageMetadata({
     title: post.title,
-    description: excerptSummary(post.excerpt),
+    description: articleDescriptions[post.slug] ?? excerptSummary(post.excerpt),
     path: `/blog/${post.slug}`,
   });
   return {

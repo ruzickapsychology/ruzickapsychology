@@ -232,6 +232,7 @@ async function buildDocuments(): Promise<SeedDocument[]> {
       practitioner: site.practitioner,
       email: site.email,
       phone: site.phone,
+      safetyNotice: site.safetyNotice,
       address: site.address,
       hours: site.hours,
       portalUrl: site.portalUrl,
