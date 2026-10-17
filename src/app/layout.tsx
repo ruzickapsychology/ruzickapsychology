@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Libre_Baskerville, Manrope, IBM_Plex_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { metadataBase, pageMetadata } from "@/config/seo";
 
@@ -45,7 +46,10 @@ export default async function RootLayout({
       lang="en"
       className={`${baskerville.variable} ${manrope.variable} ${plexMono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
