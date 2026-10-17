@@ -24,7 +24,7 @@ export function CircularPortrait({
   size?: keyof typeof sizes;
   imageClassName?: string;
   imageSizes?: string;
-  sticky?: boolean | "md";
+  sticky?: boolean | "md" | "lg";
 } & Omit<ComponentProps<"div">, "children">) {
   return (
     <div
@@ -36,6 +36,7 @@ export function CircularPortrait({
         sizes[size],
         sticky === true && styles.sticky,
         sticky === "md" && styles.stickyMd,
+        sticky === "lg" && styles.stickyLg,
         className,
       )}
       {...props}

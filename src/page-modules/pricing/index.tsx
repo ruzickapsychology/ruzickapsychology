@@ -101,7 +101,12 @@ export function PricingPage({
                         {item.detail}
                       </Text>
                     </div>
-                    <Text as="div" variant="lead" tone="accent">
+                    <Text
+                      as="div"
+                      variant="lead"
+                      tone="accent"
+                      className={styles.feeAmount}
+                    >
                       {item.price}
                     </Text>
                   </div>

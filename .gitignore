@@ -16,6 +16,7 @@
 /test-results
 /.lighthouseci
 /.local/seo-release/
+/.local/ux-audit-*/
 *.inspect.ndjson
 
 # next.js

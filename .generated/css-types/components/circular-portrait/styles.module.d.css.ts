@@ -4,6 +4,7 @@ declare const styles: {
   readonly shell: string;
   readonly sm: string;
   readonly sticky: string;
+  readonly stickyLg: string;
   readonly stickyMd: string;
 };
 export = styles;

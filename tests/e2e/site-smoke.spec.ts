@@ -280,9 +280,13 @@ test("mobile menu exposes primary and utility navigation", async ({ page }) => {
   ).toBe("");
 });
 
-test("skip link moves focus to the public main landmark", async ({ page }) => {
+test("skip link moves focus to the public main landmark", async ({
+  page,
+  browserName,
+}) => {
   await page.goto("/");
-  await page.keyboard.press("Tab");
+  // WebKit's macOS default uses Option-Tab to include links in keyboard navigation.
+  await page.keyboard.press(browserName === "webkit" ? "Alt+Tab" : "Tab");
 
   const skipLink = page.getByRole("link", { name: "Skip to main content" });
   await expect(skipLink).toBeFocused();
