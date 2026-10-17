@@ -23,12 +23,7 @@
 }
 
 .heroText {
-  margin-top: 39px;
-}
-
-.sectionIntro {
-  grid-column: 1 / -1;
-  justify-self: center;
+  margin-top: var(--space-10);
 }
 
 .centeredAction {
@@ -40,23 +35,9 @@
   text-align: center;
 }
 
-.aboutGrid {
-  align-items: center;
-}
-
-.aboutCopy {
-  text-align: center;
-}
-
 .localCopy {
   grid-column: 1 / -1;
   max-width: 700px;
-}
-
-@media (min-width: 768px) {
-  .aboutCopy {
-    text-align: left;
-  }
 }
 
 @media (min-width: 1024px) {

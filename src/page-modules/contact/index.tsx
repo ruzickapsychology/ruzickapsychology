@@ -57,14 +57,8 @@ export function ContactPage({
           />
         }
       >
-        <ImmersivePageHeaderContent className={styles.headerGrid}>
-          <ContentHeader
-            tone="inverse"
-            align="left"
-            gap="none"
-            width="md"
-            className={styles.headerCopy}
-          >
+        <ImmersivePageHeaderContent layout="twoLg" align="start">
+          <ContentHeader tone="inverse" align="left" gap="none" width="md">
             <ContentHeaderEyebrow>{contact.eyebrow}</ContentHeaderEyebrow>
             <ContentHeaderTitle as="h1" size="display">
               {contactHeading}
@@ -105,7 +99,7 @@ export function ContactPage({
             </div>
           </ContentHeader>
 
-          <div className={styles.formColumn}>
+          <div>
             {availability.isClosed ? (
               <div className={styles.availabilityPanel}>
                 <ContentHeader tone="inverse" align="left" gap="none">
@@ -150,9 +144,8 @@ export function ContactPage({
         <ContentSection
           size="spacious"
           tone="feature"
-          layout="site"
+          layout="single"
           containerSize="xl"
-          containerClassName={styles.sectionGrid}
         >
           <ContentHeader>
             <ContentHeaderEyebrow>
@@ -179,9 +172,9 @@ export function ContactPage({
       {/* location + hours */}
       <ContentSection
         size="spacious"
-        layout="site"
+        layout="twoLg"
         containerSize="xl"
-        containerClassName={styles.sectionGrid}
+        align="start"
       >
         <div className={styles.detailsGrid}>
           <div className={styles.detailsPanel}>

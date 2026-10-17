@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { TextLink } from "@/components/text-link";
+import { Stack } from "@/components/stack";
 import {
   ContentHeader,
   ContentHeaderDescription,
@@ -79,20 +80,22 @@ export function PricingPage({
         </PageHeaderContent>
       </PageHeader>
       <ContentSection size="spacious" containerSize="lg">
-        <Grid layout="twoMd" gap="none" className={styles.pricingCard}>
+        <Grid layout="twoMd" gap="none">
           {/* fees */}
           {pricing.fees ? (
             <div className={styles.feesPanel}>
               <Heading as="h2" size="item" className={styles.feesHeading}>
                 {pricing.fees.heading}
               </Heading>
-              <div className={styles.feesList}>
+              <Stack gap="md">
                 {feeItems?.map((item) => (
                   <div key={item.label} className={styles.feeRow}>
                     <div>
                       <Text as="div">
                         {item.href ? (
-                          <Link href={item.href}>{item.label}</Link>
+                          <TextLink variant="inline" href={item.href}>
+                            {item.label}
+                          </TextLink>
                         ) : (
                           item.label
                         )}
@@ -111,7 +114,7 @@ export function PricingPage({
                     </Text>
                   </div>
                 ))}
-              </div>
+              </Stack>
               <Text variant="detail" tone="subdued" className={styles.feeNote}>
                 {pricing.fees.note}
               </Text>

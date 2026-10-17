@@ -1,7 +1,3 @@
-.bioGrid {
-  align-items: flex-start;
-}
-
 .intro {
   margin-top: var(--space-7);
 }
@@ -10,13 +6,7 @@
   margin-top: 2.75rem;
 }
 
-.sectionIntro {
-  grid-column: 1 / -1;
-  justify-self: center;
-}
-
 .spaceGrid {
-  grid-column: 1 / -1;
   margin-top: var(--space-12);
   gap: var(--space-5);
 }

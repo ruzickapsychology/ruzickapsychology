@@ -1,6 +1,7 @@
 declare const styles: {
   readonly actions: string;
   readonly center: string;
+  readonly centerLeft: string;
   readonly description: string;
   readonly eyebrow: string;
   readonly gapDefault: string;

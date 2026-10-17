@@ -55,12 +55,7 @@ export function AboutPage({
     <PageShell>
       {/* bio */}
       <Section size="default">
-        <GridContainer
-          size="xl"
-          layout="portrait"
-          gap="lg"
-          className={styles.bioGrid}
-        >
+        <GridContainer size="xl" layout="portrait" gap="lg" align="start">
           <CircularPortrait
             image={about.portraitImage}
             alt={about.portraitImage?.alt ?? "Dr. Christina Ruzicka"}
@@ -96,8 +91,8 @@ export function AboutPage({
       {/* therapy space */}
       {about.space ? (
         <Section size="spacious" tone="feature">
-          <GridContainer size="xl">
-            <ContentHeader className={styles.sectionIntro}>
+          <GridContainer size="xl" layout="single">
+            <ContentHeader>
               {about.space.eyebrow ? (
                 <ContentHeaderEyebrow>
                   {about.space.eyebrow}

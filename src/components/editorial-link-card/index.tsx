@@ -1,5 +1,6 @@
 import Link, { type LinkProps } from "next/link";
 import type { ComponentProps, ReactNode } from "react";
+import { Grid } from "@/components/grid";
 import { Eyebrow, Heading, Text } from "@/components/typography";
 import { cn } from "@/lib/class-names";
 import styles from "./styles.module.css";
@@ -56,10 +57,12 @@ export function EditorialLinkCardGrid({
   columns?: "auto" | 3;
 } & ComponentProps<"div">) {
   return (
-    <div
+    <Grid
       data-slot="editorial-link-card-grid"
       data-columns={columns}
-      className={cn(styles.grid, columns === 3 && styles.gridThree, className)}
+      layout={columns === 3 ? "three" : "auto"}
+      gap="none"
+      className={cn(styles.grid, className)}
       {...props}
     />
   );

@@ -139,8 +139,8 @@ export function HomePage({
 
       {/* specialties — quadrant layout */}
       <Section id="home-specialties" size="spacious">
-        <GridContainer size="xl">
-          <ContentHeader className={styles.sectionIntro}>
+        <GridContainer size="xl" layout="single">
+          <ContentHeader>
             <ContentHeaderEyebrow>
               {home.specialties.eyebrow}
             </ContentHeaderEyebrow>
@@ -172,19 +172,14 @@ export function HomePage({
 
       {/* about preview */}
       <Section size="spacious" tone="feature">
-        <GridContainer size="xl" layout="portrait" className={styles.aboutGrid}>
+        <GridContainer size="xl" layout="portrait" align="center">
           <CircularPortrait
             image={home.about.portraitImage}
             alt={home.about.portraitImage?.alt ?? "Dr. Christina Ruzicka"}
             size="sm"
             imageSizes="(min-width: 768px) 300px, 80vw"
           />
-          <ContentHeader
-            align="left"
-            width="lg"
-            gap="none"
-            className={styles.aboutCopy}
-          >
+          <ContentHeader align="centerLeft" width="lg" gap="none">
             <ContentHeaderEyebrow>{home.about.eyebrow}</ContentHeaderEyebrow>
             <ContentHeaderTitle>{home.about.heading}</ContentHeaderTitle>
             <ContentHeaderDescription>

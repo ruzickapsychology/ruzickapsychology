@@ -1,5 +1,4 @@
 declare const styles: {
-  readonly bioGrid: string;
   readonly credentialBody: string;
   readonly credentialItem: string;
   readonly credentialTitle: string;
@@ -15,7 +14,6 @@ declare const styles: {
   readonly quoteOverlay: string;
   readonly quoteSection: string;
   readonly quoteText: string;
-  readonly sectionIntro: string;
   readonly spaceGrid: string;
   readonly spaceImageFrame: string;
   readonly spaceImageShell: string;

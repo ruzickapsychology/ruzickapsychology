@@ -71,6 +71,16 @@
   max-width: var(--measure-sm);
 }
 
-.left .description {
+.left .description,
+.centerLeft .description {
   max-width: var(--measure-sm);
+}
+
+.centerLeft {
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .centerLeft {
+    text-align: left;
+  }
 }

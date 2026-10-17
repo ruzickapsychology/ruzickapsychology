@@ -16,3 +16,9 @@
 .root[data-slot="text-link"]:hover {
   color: var(--color-fg);
 }
+
+.root[data-slot="text-link"][data-variant="inline"] {
+  font: inherit;
+  letter-spacing: inherit;
+  text-underline-offset: 3px;
+}

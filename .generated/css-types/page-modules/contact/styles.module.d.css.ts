@@ -7,16 +7,12 @@ declare const styles: {
   readonly detailLabel: string;
   readonly detailsGrid: string;
   readonly detailsPanel: string;
-  readonly formColumn: string;
   readonly header: string;
-  readonly headerCopy: string;
-  readonly headerGrid: string;
   readonly headerWash: string;
   readonly imageGrain: string;
   readonly map: string;
   readonly mapOverlay: string;
   readonly mapShell: string;
-  readonly sectionGrid: string;
   readonly stepItem: string;
   readonly stepNumber: string;
   readonly stepTitle: string;

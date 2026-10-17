@@ -1,3 +1,4 @@
+import { ActionGroup } from "@/components/action-group";
 import type { Route } from "next";
 import { BreadcrumbTrail } from "@/components/breadcrumb-trail";
 import {
@@ -194,10 +195,14 @@ export function ServicePage({
               {cta.body ? (
                 <span className={styles.ctaBodyText}>{cta.body}</span>
               ) : null}
-              <span className={styles.ctaSupportLinks}>
+              <ActionGroup
+                as="span"
+                align="center"
+                className={styles.ctaSupportLinks}
+              >
                 <TextLink href="/pricing">Fees and insurance</TextLink>
                 <TextLink href="/faq">General therapy FAQs</TextLink>
-              </span>
+              </ActionGroup>
             </>
           }
           cta={cta.label}

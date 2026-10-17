@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 
 type TextLinkProps = {
   href: LinkProps<string>["href"];
+  variant?: "navigation" | "inline";
   direction?: "forward" | "back" | "none";
 } & Omit<ComponentProps<typeof Link>, "href">;
 
@@ -12,7 +13,8 @@ export function TextLink({
   href,
   children,
   className = "",
-  direction = "forward",
+  variant = "navigation",
+  direction = variant === "inline" ? "none" : "forward",
   ...props
 }: TextLinkProps) {
   const childText = typeof children === "string" ? children.trim() : "";
@@ -24,6 +26,7 @@ export function TextLink({
     <Link
       data-slot="text-link"
       data-direction={direction}
+      data-variant={variant}
       href={href}
       className={cn(styles.root, className)}
       {...props}
