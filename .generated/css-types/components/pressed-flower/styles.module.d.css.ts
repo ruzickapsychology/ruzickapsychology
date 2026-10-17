@@ -1,0 +1,25 @@
+declare const styles: {
+  readonly artPage: string;
+  readonly backPaper: string;
+  readonly botanicalLabel: string;
+  readonly close: string;
+  readonly collection: string;
+  readonly dialog: string;
+  readonly folio: string;
+  readonly frontPaper: string;
+  readonly mountTape: string;
+  readonly note: string;
+  readonly notePage: string;
+  readonly preview: string;
+  readonly previewRose: string;
+  readonly quote: string;
+  readonly reveal: string;
+  readonly root: string;
+  readonly rose: string;
+  readonly rule: string;
+  readonly sideNote: string;
+  readonly specimen: string;
+  readonly status: string;
+  readonly tape: string;
+};
+export = styles;

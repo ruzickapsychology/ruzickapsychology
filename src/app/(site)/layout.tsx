@@ -1,3 +1,4 @@
+import { PressedFlower } from "@/components/pressed-flower";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteAnalytics } from "@/components/site-analytics";
 import { SpecialtyMotion } from "@/components/specialty-motion";
@@ -36,6 +37,12 @@ export default async function SiteLayout({
       <main id="main-content" tabIndex={-1} className={styles.main}>
         {children}
       </main>
+      {about?.philosophy?.quote ? (
+        <PressedFlower
+          quote={about.philosophy.quote}
+          attribution={about.philosophy.attribution}
+        />
+      ) : null}
       <SiteFooter siteSettings={siteSettings} licenses={licenses} />
     </div>
   );
