@@ -185,3 +185,16 @@ Keep Portable Text constrained. This site needs paragraphs, simple emphasis, and
 Studio is embedded at `/studio`. This is convenient for the current client repo. For a generalized starter, consider whether a standalone Studio repo or workspace is preferable before cloning the pattern broadly.
 
 The Studio route is outside the public `(site)` route group. Keep it that way so Studio does not inherit marketing navigation, footer, or public CMS layout fetches.
+
+## Ready website content batch
+
+`npm run sanity:migrate-ready-website -- -- --plan /private/tmp/ready-plan.json`
+previews only the verified About degree/year, general virtual-appointments FAQ,
+and removal of the contradictory Pricing billing-code advice. It does not reseed.
+Review the exact saved before/after values; apply that same file using `--apply`
+and `--backup /private/tmp/ready-backup.json`. Both outputs are exclusive private
+files; keep them outside Git. The runner checks project/dataset/scope, target
+revisions, published source revisions, and relevant draft absence. A fresh preview
+after successful application has zero changes. Any changed wording or revision
+requires a fresh review. Coordinate publication with editors: draft absence and
+read-only source revisions cannot be asserted atomically with the target writes.

@@ -34,7 +34,8 @@
     "sanity:seed": "sanity exec scripts/seed-sanity.ts --with-user-token",
     "sanity:migrate-seo-pages": "sanity exec scripts/migrate-seo-service-pages.ts --with-user-token",
     "sanity:validate-content": "sanity exec scripts/validate-sanity-content.ts",
-    "sanity:repair-keys": "sanity exec scripts/repair-sanity-array-keys.ts --with-user-token"
+    "sanity:repair-keys": "sanity exec scripts/repair-sanity-array-keys.ts --with-user-token",
+    "sanity:migrate-ready-website": "sanity exec scripts/migrate-ready-website-content.ts --with-user-token"
   },
   "dependencies": {
     "@portabletext/react": "^6.2.0",

@@ -15,6 +15,8 @@ import {
 } from "@/components/immersive-page-header";
 import { PageShell } from "@/components/page-shell";
 import { OfficeHours } from "@/components/office-hours";
+import { Stack } from "@/components/stack";
+import { TextLink } from "@/components/text-link";
 import { TrackedExternalLink } from "@/components/tracked-external-link";
 import { Eyebrow, Heading, Text } from "@/components/typography";
 import { getAvailabilityContext } from "@/config/availability";
@@ -45,6 +47,7 @@ export function ContactPage({
   const contactIntro = availability.isDefault
     ? contact.intro
     : availability.copy?.contactIntro;
+  const destination = `${site.address.streetAddress}, ${site.address.addressLocality}, ${site.address.addressRegion} ${site.address.postalCode}`;
 
   return (
     <PageShell>
@@ -196,18 +199,25 @@ export function ContactPage({
             <OfficeHours hours={site.hours} />
           </div>
         </div>
-        <div className={styles.mapShell}>
-          <iframe
-            title={`Map to ${site.name}, ${site.address.streetAddress}`}
-            src={`https://maps.google.com/maps?q=${encodeURIComponent(
-              `${site.address.streetAddress}, ${site.address.addressLocality}, ${site.address.addressRegion} ${site.address.postalCode}`,
-            )}&z=14&output=embed`}
-            className={styles.map}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-          <div aria-hidden className={styles.mapOverlay} />
-        </div>
+        <Stack gap="sm">
+          <div className={styles.mapShell}>
+            <iframe
+              title={`Map to ${site.name}, ${site.address.streetAddress}`}
+              src={`https://maps.google.com/maps?q=${encodeURIComponent(
+                destination,
+              )}&z=14&output=embed`}
+              className={styles.map}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            <div aria-hidden className={styles.mapOverlay} />
+          </div>
+          <TextLink
+            href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}`}
+          >
+            Get directions in Google Maps
+          </TextLink>
+        </Stack>
       </ContentSection>
     </PageShell>
   );
