@@ -5,5 +5,7 @@ declare const styles: {
   readonly heroImage: string;
   readonly heroText: string;
   readonly localCopy: string;
+  readonly sunlitContent: string;
+  readonly sunlitSection: string;
 };
 export = styles;

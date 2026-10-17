@@ -34,6 +34,7 @@ import {
 } from "@/config/availability";
 import type { HomePageContent, SiteSettings } from "@/data/cms";
 import styles from "./styles.module.css";
+import { Sunlight } from "./sunlight";
 
 export function HomePage({
   home,
@@ -196,8 +197,9 @@ export function HomePage({
       </Section>
 
       {site ? (
-        <Section size="default">
-          <GridContainer size="xl">
+        <Section size="spacious" className={styles.sunlitSection}>
+          <Sunlight />
+          <GridContainer size="xl" className={styles.sunlitContent}>
             <ContentHeader align="left" gap="none" className={styles.localCopy}>
               <ContentHeaderEyebrow>
                 Therapy in Rochester & New York
