@@ -13,8 +13,10 @@ import styles from "./styles.module.css";
 
 export function SiteFooter({
   siteSettings,
+  licenses = [],
 }: {
   siteSettings?: SiteSettings | null;
+  licenses?: readonly string[];
 }) {
   return (
     <footer data-slot="site-footer" className={styles.root}>
@@ -130,6 +132,16 @@ export function SiteFooter({
                       ))}
                     </div>
                   ) : null}
+                  {licenses.map((license) => (
+                    <Text
+                      key={license}
+                      as="div"
+                      variant="detail"
+                      tone="inverse"
+                    >
+                      {license}
+                    </Text>
+                  ))}
                   <Text as="div" variant="detail" tone="inverse">
                     © {new Date().getFullYear()} {siteSettings.legalName}
                   </Text>

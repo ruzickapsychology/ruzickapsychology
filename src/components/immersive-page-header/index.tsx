@@ -8,11 +8,13 @@ export function ImmersivePageHeader({
   children,
   className,
   align = "center",
+  readability = "none",
   ...props
 }: {
   media?: ReactNode;
   children: ReactNode;
   align?: "center" | "start";
+  readability?: "none" | "dark";
 } & ComponentProps<"section">) {
   return (
     <section
@@ -22,6 +24,9 @@ export function ImmersivePageHeader({
       {...props}
     >
       {media}
+      {readability === "dark" ? (
+        <div className={styles.darkWash} aria-hidden="true" />
+      ) : null}
       {children}
     </section>
   );

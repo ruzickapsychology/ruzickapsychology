@@ -47,8 +47,10 @@ test("contact labels remain readable after typing and privacy is adjacent", asyn
   await expect(page.locator('main a[href^="tel:"]')).toBeVisible();
 });
 
-test("tablet desktop navigation fits beside the wordmark", async ({ page }) => {
-  await page.setViewportSize({ width: 768, height: 1024 });
+test("desktop navigation fits beside the wordmark at its breakpoint", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1024, height: 1024 });
   await page.goto("/about");
   const header = page.locator("header");
   const faq = header.getByRole("link", { name: "FAQ", exact: true });
@@ -61,7 +63,7 @@ test("tablet desktop navigation fits beside the wordmark", async ({ page }) => {
   );
   for (let index = 0; index < boxes.length; index++) {
     expect(boxes[index].left).toBeGreaterThanOrEqual(0);
-    expect(boxes[index].right).toBeLessThanOrEqual(768);
+    expect(boxes[index].right).toBeLessThanOrEqual(1024);
     if (index)
       expect(boxes[index].left).toBeGreaterThanOrEqual(boxes[index - 1].right);
   }

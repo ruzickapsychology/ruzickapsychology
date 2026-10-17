@@ -210,9 +210,13 @@ test("blog post headers use the editorial measure and a single-underline author 
   );
 
   const header = page.locator('[data-slot="page-header-content"]');
-  const author = page.getByRole("link", {
-    name: "Dr. Christina Ruzicka, PsyD",
+  const authorCard = page.locator('[data-slot="author-card"]');
+  const author = authorCard.getByRole("link", {
+    name: "Dr. Christina Ruzicka",
   });
+  await expect(author).toHaveAttribute("href", "/about");
+  await expect(authorCard).toContainText("Licensed Clinical Psychologist");
+  await expect(authorCard.getByRole("img")).toBeVisible();
 
   await expect(header).toHaveCSS("max-width", "1120px");
   await expect(author).toHaveCSS("text-decoration-line", "underline");
@@ -271,7 +275,7 @@ test("mobile menu exposes primary and utility navigation", async ({ page }) => {
   await expect(page.locator("main")).toHaveJSProperty("inert", false);
 
   await page.getByRole("button", { name: /open menu/i }).click();
-  await page.setViewportSize({ width: 768, height: 844 });
+  await page.setViewportSize({ width: 1024, height: 844 });
 
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await expect(page.locator("main")).toHaveJSProperty("inert", false);

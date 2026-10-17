@@ -175,6 +175,7 @@ export function PricingPage({
       {/* CTA */}
       {cta.heading ? (
         <CtaSection
+          phone={site?.phone}
           heading={cta.heading}
           body={cta.body}
           cta={cta.label}

@@ -137,6 +137,8 @@ columns and dividers; four-column grids use one/two/four columns at 0/640/1024px
 - Outline button CTA: `<Button variant="outline">`, transparent pill with an
   ink stroke.
 - Button-styled links use `buttonVariants({ variant })`.
+- `Button`, `buttonVariants`, and `CtaLink` support `size="compact"` for constrained navigation actions with a minimum 44px target. `CtaLink` also supports `tone="inverse"` for focus visibility over dark imagery.
+- The public header switches from its mobile menu to desktop navigation at 1024px so the wordmark and availability-aware contact action fit without crowding.
 - Secondary CTA: underlined `.mono-label` text link with the arrow glyph, such as `Learn more ->` when represented in code as the chosen arrow character.
 - External CTA: same text treatment plus the shared up-right arrow icon.
 
@@ -214,6 +216,11 @@ Use `DisclosureList`, `DisclosureItem`, `DisclosureTrigger`,
 
 ### Blog List And Detail
 
+Use `AuthorCard` once before article prose for compact attribution. It reuses the
+About portrait and credentials, with the author name linking to About.
+`CircularPortrait size="xs"` reserves an 80px portrait with a matching `sizes`
+hint; larger `sm` and `md` variants remain available for biography sections.
+
 Use `src/data/blog.ts` helpers. Blog cards should be tappable as a whole and use the shared hover wash. Blog detail pages should use `Section size="page"` with `Container size="md"`.
 
 ## Mobile Rules
@@ -270,3 +277,8 @@ requires a dark overlay, checked against the brightest area behind the text.
 Validate body text, eyebrow, links, and hover/focus states against the weakest
 background contrast (4.5:1 for normal text, 3:1 for large text), not average image
 color. Check actual rendered crops on mobile and desktop.
+
+Use `ImmersivePageHeader readability="dark"` for light hero text over photography.
+It applies the shared `--color-image-dark-wash` (55% quote-overlay ink) between
+the media and content. Verify the rendered crop when changing photography; the
+wash is a readability treatment, not permission to skip contrast measurement.

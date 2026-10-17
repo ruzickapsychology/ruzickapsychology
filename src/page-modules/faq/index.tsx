@@ -17,9 +17,28 @@ import {
 import { PageShell } from "@/components/page-shell";
 import { PortableContent } from "@/components/portable-content";
 import { faqPageJsonLd } from "@/config/seo";
-import type { FAQPageContent } from "@/data/cms";
+import { getAvailabilityCtaContent } from "@/config/availability";
+import type { FAQPageContent, SiteSettings } from "@/data/cms";
 
-export function FAQPage({ faq }: { faq: FAQPageContent }) {
+export function FAQPage({
+  faq,
+  site,
+}: {
+  faq: FAQPageContent;
+  site: SiteSettings | null;
+}) {
+  const cta =
+    site && faq.cta
+      ? getAvailabilityCtaContent({
+          status: site.availabilityStatus,
+          messaging: site.availabilityMessaging,
+          defaults: {
+            heading: faq.cta.heading,
+            body: faq.cta.body,
+            label: faq.cta.cta,
+          },
+        })
+      : null;
   const faqJsonLd = faqPageJsonLd(
     faq.items?.map((item) => ({
       question: item.q,
@@ -53,11 +72,12 @@ export function FAQPage({ faq }: { faq: FAQPageContent }) {
         </DisclosureList>
       </ContentSection>
 
-      {faq.cta ? (
+      {cta && faq.cta ? (
         <CtaSection
-          heading={faq.cta.heading}
-          body={faq.cta.body}
-          cta={faq.cta.cta}
+          phone={site?.phone}
+          heading={cta.heading}
+          body={cta.body}
+          cta={cta.label}
           backgroundImage={faq.cta.backgroundImage}
         />
       ) : null}

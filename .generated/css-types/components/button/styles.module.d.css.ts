@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly compact: string;
   readonly default: string;
   readonly inverse: string;
   readonly outline: string;

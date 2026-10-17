@@ -8,6 +8,8 @@ import {
   ContentHeaderDescription,
   ContentHeaderTitle,
 } from "@/components/content-header";
+import { buttonVariants } from "@/components/button";
+import { TrackedExternalLink } from "@/components/tracked-external-link";
 import { CtaLink } from "@/components/cta-link";
 import { GridContainer } from "@/components/grid";
 import { Section } from "@/components/section";
@@ -20,6 +22,7 @@ type CtaSectionProps = {
   cta?: ReactNode;
   href?: LinkProps<string>["href"];
   event?: string;
+  phone?: string;
   backgroundImage?: SanityImageValue;
 };
 
@@ -30,6 +33,7 @@ export function CtaSection({
   href = "/contact",
   event = "consultation_cta_click",
   backgroundImage,
+  phone,
 }: CtaSectionProps) {
   return (
     <Section
@@ -57,6 +61,16 @@ export function CtaSection({
                   >
                     {cta}
                   </CtaLink>
+                  {phone ? (
+                    <TrackedExternalLink
+                      href={`tel:${phone.replace(/[^+\d]/g, "")}`}
+                      event="phone_click"
+                      target="_self"
+                      className={buttonVariants({ variant: "secondary" })}
+                    >
+                      Call {phone}
+                    </TrackedExternalLink>
+                  ) : null}
                 </ActionGroup>
               </ContentHeaderActions>
             ) : null}

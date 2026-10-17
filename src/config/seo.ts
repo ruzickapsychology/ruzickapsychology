@@ -22,8 +22,22 @@ const defaultSocialImage = {
   height: 630,
 };
 
-// Search summaries are code-owned; the CMS excerpt remains the article preview.
+// Use the public-facing name in page titles; retain the legal identity elsewhere.
+const titleBrand = "Ruzicka Psychology";
+
+// Search copy is code-owned; CMS headlines and excerpts remain visible on articles.
+const articleTitles: Readonly<Record<string, string>> = {
+  "why-we-choose-the-partners-we-do-the-surprising-psychology-behind-romantic-attraction":
+    "Why We Choose Our Partners: The Psychology of Attraction",
+  "beyond-the-buzzword-what-does-doing-the-work-actually-mean-in-therapy":
+    'What Does "Doing the Work" Mean in Therapy?',
+};
+
 const articleDescriptions: Readonly<Record<string, string>> = {
+  "why-we-choose-the-partners-we-do-the-surprising-psychology-behind-romantic-attraction":
+    "Explore romantic attraction, familiar relationship patterns, and how Imago Relationship Therapy approaches recurring conflict.",
+  "beyond-the-buzzword-what-does-doing-the-work-actually-mean-in-therapy":
+    'What does "doing the work" mean? Explore the process in individual, perinatal, and couples therapy with Dr. Christina Ruzicka.',
   "welcome-to-the-practice":
     "Meet Dr. Christina Ruzicka, a Rochester psychologist, and learn about her collaborative approach to couples therapy and perinatal mental health.",
 };
@@ -37,7 +51,7 @@ export function pageMetadata({
   description?: string;
   path?: string;
 }): Metadata {
-  const fullTitle = title ? `${title} — ${SITE_LEGAL_NAME}` : SITE_LEGAL_NAME;
+  const fullTitle = title ? `${title} — ${titleBrand}` : titleBrand;
   return {
     title: fullTitle,
     description,
@@ -76,7 +90,7 @@ export function blogPostMetadata(post: {
   updatedAt?: string;
 }): Metadata {
   const metadata = pageMetadata({
-    title: post.title,
+    title: articleTitles[post.slug] ?? post.title,
     description: articleDescriptions[post.slug] ?? excerptSummary(post.excerpt),
     path: `/blog/${post.slug}`,
   });

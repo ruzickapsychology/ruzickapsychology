@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { blogPostMetadata } from "@/config/seo";
 import { getOlderPostMeta, getPost, getPostSlugsForBuild } from "@/data/blog";
 import {
+  getAboutPage,
   getHomePage,
   getPublishedServiceDefinitions,
   getSiteSettings,
@@ -29,11 +30,12 @@ export default async function BlogPostRoute(props: PageProps<"/blog/[slug]">) {
   const post = await getPost(slug);
   if (!post) notFound();
 
-  const [olderPost, publishedServices, home, site] = await Promise.all([
+  const [olderPost, publishedServices, home, site, about] = await Promise.all([
     getOlderPostMeta(slug),
     getPublishedServiceDefinitions(),
     getHomePage(),
     getSiteSettings(),
+    getAboutPage(),
   ]);
   const configuredServiceLink = POST_SERVICE_LINKS[post.slug];
   const serviceLink =
@@ -52,6 +54,7 @@ export default async function BlogPostRoute(props: PageProps<"/blog/[slug]">) {
       serviceLink={serviceLink}
       ctaContent={home?.cta}
       site={site}
+      about={about}
     />
   );
 }

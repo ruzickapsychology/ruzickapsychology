@@ -1,0 +1,2185 @@
+{
+  "scope": "Published production, pre-merge baseline; lab measurements, not field CWV",
+  "runs": [
+    {
+      "file": "article-desktop-1.json",
+      "url": "https://www.ruzickapsychology.com/blog/welcome-to-the-practice",
+      "fetched": "2026-10-17T19:56:57.868Z",
+      "version": "12.6.1",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "formFactor": "desktop",
+      "throttling": {
+        "rttMs": 40,
+        "throughputKbps": 10240,
+        "requestLatencyMs": 0,
+        "downloadThroughputKbps": 0,
+        "uploadThroughputKbps": 0,
+        "cpuSlowdownMultiplier": 1
+      },
+      "screen": {
+        "mobile": false,
+        "width": 1350,
+        "height": 940,
+        "deviceScaleFactor": 1,
+        "disabled": false
+      },
+      "score": 1,
+      "lcpMs": 584.685,
+      "cls": 0,
+      "tbtMs": 0,
+      "lcp": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": "Element"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-P",
+                  "path": "1,HTML,1,BODY,1,DIV,3,MAIN,0,DIV,2,SECTION,0,DIV,0,DIV,0,P",
+                  "selector": "section.styles-module__4Fi6mq__root > div.styles-module__Bu7ZvW__root > div.styles-module__W1wCZq__root > p",
+                  "boundingRect": {
+                    "top": 442,
+                    "bottom": 610,
+                    "left": 331,
+                    "right": 1019,
+                    "width": 688,
+                    "height": 168
+                  },
+                  "snippet": "<p>",
+                  "nodeLabel": "Welcome! I'm Dr. Christina Ruzicka and I am so glad you are here. As a licensed…"
+                }
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "phase",
+                "valueType": "text",
+                "label": "Phase"
+              },
+              {
+                "key": "percent",
+                "valueType": "text",
+                "label": "% of LCP"
+              },
+              {
+                "key": "timing",
+                "valueType": "ms",
+                "label": "Timing"
+              }
+            ],
+            "items": [
+              {
+                "phase": "TTFB",
+                "timing": 184.685,
+                "percent": "32%"
+              },
+              {
+                "phase": "Load Delay",
+                "timing": 0,
+                "percent": "0%"
+              },
+              {
+                "phase": "Load Time",
+                "timing": 0,
+                "percent": "0%"
+              },
+              {
+                "phase": "Render Delay",
+                "timing": 399.99999999999994,
+                "percent": "68%"
+              }
+            ]
+          }
+        ]
+      },
+      "imageSavings": [
+        {
+          "url": "https://www.ruzickapsychology.com/images/bg-texture.jpg",
+          "totalBytes": 79553,
+          "wastedBytes": 11406,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.",
+                "wastedBytes": 11406
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "article-desktop-2.json",
+      "url": "https://www.ruzickapsychology.com/blog/welcome-to-the-practice",
+      "fetched": "2026-10-17T19:57:08.757Z",
+      "version": "12.6.1",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "formFactor": "desktop",
+      "throttling": {
+        "rttMs": 40,
+        "throughputKbps": 10240,
+        "requestLatencyMs": 0,
+        "downloadThroughputKbps": 0,
+        "uploadThroughputKbps": 0,
+        "cpuSlowdownMultiplier": 1
+      },
+      "screen": {
+        "mobile": false,
+        "width": 1350,
+        "height": 940,
+        "deviceScaleFactor": 1,
+        "disabled": false
+      },
+      "score": 1,
+      "lcpMs": 558.582,
+      "cls": 0,
+      "tbtMs": 0,
+      "lcp": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": "Element"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-P",
+                  "path": "1,HTML,1,BODY,1,DIV,3,MAIN,0,DIV,2,SECTION,0,DIV,0,DIV,0,P",
+                  "selector": "section.styles-module__4Fi6mq__root > div.styles-module__Bu7ZvW__root > div.styles-module__W1wCZq__root > p",
+                  "boundingRect": {
+                    "top": 442,
+                    "bottom": 610,
+                    "left": 331,
+                    "right": 1019,
+                    "width": 688,
+                    "height": 168
+                  },
+                  "snippet": "<p>",
+                  "nodeLabel": "Welcome! I'm Dr. Christina Ruzicka and I am so glad you are here. As a licensed…"
+                }
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "phase",
+                "valueType": "text",
+                "label": "Phase"
+              },
+              {
+                "key": "percent",
+                "valueType": "text",
+                "label": "% of LCP"
+              },
+              {
+                "key": "timing",
+                "valueType": "ms",
+                "label": "Timing"
+              }
+            ],
+            "items": [
+              {
+                "phase": "TTFB",
+                "timing": 198.582,
+                "percent": "36%"
+              },
+              {
+                "phase": "Load Delay",
+                "timing": 0,
+                "percent": "0%"
+              },
+              {
+                "phase": "Load Time",
+                "timing": 0,
+                "percent": "0%"
+              },
+              {
+                "phase": "Render Delay",
+                "timing": 360,
+                "percent": "64%"
+              }
+            ]
+          }
+        ]
+      },
+      "imageSavings": [
+        {
+          "url": "https://www.ruzickapsychology.com/images/bg-texture.jpg",
+          "totalBytes": 79553,
+          "wastedBytes": 11406,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.",
+                "wastedBytes": 11406
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "article-mobile-1.json",
+      "url": "https://www.ruzickapsychology.com/blog/welcome-to-the-practice",
+      "fetched": "2026-10-17T19:56:36.211Z",
+      "version": "12.6.1",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screen": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "score": 0.98,
+      "lcpMs": 2432.118,
+      "cls": 0,
+      "tbtMs": 18,
+      "lcp": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": "Element"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-P",
+                  "path": "1,HTML,1,BODY,1,DIV,3,MAIN,0,DIV,2,SECTION,0,DIV,0,DIV,0,P",
+                  "selector": "section.styles-module__4Fi6mq__root > div.styles-module__Bu7ZvW__root > div.styles-module__W1wCZq__root > p",
+                  "boundingRect": {
+                    "top": 400,
+                    "bottom": 708,
+                    "left": 16,
+                    "right": 396,
+                    "width": 380,
+                    "height": 308
+                  },
+                  "snippet": "<p>",
+                  "nodeLabel": "Welcome! I'm Dr. Christina Ruzicka and I am so glad you are here. As a licensed…"
+                }
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "phase",
+                "valueType": "text",
+                "label": "Phase"
+              },
+              {
+                "key": "percent",
+                "valueType": "text",
+                "label": "% of LCP"
+              },
+              {
+                "key": "timing",
+                "valueType": "ms",
+                "label": "Timing"
+              }
+            ],
+            "items": [
+              {
+                "phase": "TTFB",
+                "timing": 632.1179999999999,
+                "percent": "26%"
+              },
+              {
+                "phase": "Load Delay",
+                "timing": 0,
+                "percent": "0%"
+              },
+              {
+                "phase": "Load Time",
+                "timing": 0,
+                "percent": "0%"
+              },
+              {
+                "phase": "Render Delay",
+                "timing": 1800,
+                "percent": "74%"
+              }
+            ]
+          }
+        ]
+      },
+      "imageSavings": [
+        {
+          "url": "https://www.ruzickapsychology.com/images/bg-texture.jpg",
+          "totalBytes": 79553,
+          "wastedBytes": 11406,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.",
+                "wastedBytes": 11406
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "article-mobile-2.json",
+      "url": "https://www.ruzickapsychology.com/blog/welcome-to-the-practice",
+      "fetched": "2026-10-17T19:56:47.028Z",
+      "version": "12.6.1",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screen": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "score": 0.98,
+      "lcpMs": 2435.641,
+      "cls": 0,
+      "tbtMs": 9,
+      "lcp": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": "Element"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-P",
+                  "path": "1,HTML,1,BODY,1,DIV,3,MAIN,0,DIV,2,SECTION,0,DIV,0,DIV,0,P",
+                  "selector": "section.styles-module__4Fi6mq__root > div.styles-module__Bu7ZvW__root > div.styles-module__W1wCZq__root > p",
+                  "boundingRect": {
+                    "top": 400,
+                    "bottom": 708,
+                    "left": 16,
+                    "right": 396,
+                    "width": 380,
+                    "height": 308
+                  },
+                  "snippet": "<p>",
+                  "nodeLabel": "Welcome! I'm Dr. Christina Ruzicka and I am so glad you are here. As a licensed…"
+                }
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "phase",
+                "valueType": "text",
+                "label": "Phase"
+              },
+              {
+                "key": "percent",
+                "valueType": "text",
+                "label": "% of LCP"
+              },
+              {
+                "key": "timing",
+                "valueType": "ms",
+                "label": "Timing"
+              }
+            ],
+            "items": [
+              {
+                "phase": "TTFB",
+                "timing": 635.641,
+                "percent": "26%"
+              },
+              {
+                "phase": "Load Delay",
+                "timing": 0,
+                "percent": "0%"
+              },
+              {
+                "phase": "Load Time",
+                "timing": 0,
+                "percent": "0%"
+              },
+              {
+                "phase": "Render Delay",
+                "timing": 1800,
+                "percent": "74%"
+              }
+            ]
+          }
+        ]
+      },
+      "imageSavings": [
+        {
+          "url": "https://www.ruzickapsychology.com/images/bg-texture.jpg",
+          "totalBytes": 79553,
+          "wastedBytes": 11406,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.",
+                "wastedBytes": 11406
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "contact-desktop-1.json",
+      "url": "https://www.ruzickapsychology.com/contact",
+      "fetched": "2026-10-17T19:55:29.282Z",
+      "version": "12.6.1",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "formFactor": "desktop",
+      "throttling": {
+        "rttMs": 40,
+        "throughputKbps": 10240,
+        "requestLatencyMs": 0,
+        "downloadThroughputKbps": 0,
+        "uploadThroughputKbps": 0,
+        "cpuSlowdownMultiplier": 1
+      },
+      "screen": {
+        "mobile": false,
+        "width": 1350,
+        "height": 940,
+        "deviceScaleFactor": 1,
+        "disabled": false
+      },
+      "score": 0.98,
+      "lcpMs": 1071.609,
+      "cls": 0,
+      "tbtMs": 0,
+      "lcp": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": "Element"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-IMG",
+                  "path": "1,HTML,1,BODY,1,DIV,7,MAIN,0,DIV,0,SECTION,0,IMG",
+                  "selector": "main#main-content > div.styles-module__sFoFtW__root > section.styles-module__ftiFJa__root > img.styles-module__l3M52G__image",
+                  "boundingRect": {
+                    "top": 0,
+                    "bottom": 1075,
+                    "left": 0,
+                    "right": 1350,
+                    "width": 1350,
+                    "height": 1075
+                  },
+                  "snippet": "<img data-slot=\"background-image-layer\" alt=\"\" fetchpriority=\"high\" loading=\"eager\" decoding=\"async\" data-nimg=\"fill\" class=\"styles-module__l3M52G__image\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" sizes=\"100vw\" srcset=\"https://cdn.sanity.io/images/vq39ihmt/production/735d10132b5e59bca3a33fe35…\" src=\"https://cdn.sanity.io/images/vq39ihmt/production/735d10132b5e59bca3a33fe35…\">",
+                  "nodeLabel": "main#main-content > div.styles-module__sFoFtW__root > section.styles-module__ftiFJa__root > img.styles-module__l3M52G__image"
+                }
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "phase",
+                "valueType": "text",
+                "label": "Phase"
+              },
+              {
+                "key": "percent",
+                "valueType": "text",
+                "label": "% of LCP"
+              },
+              {
+                "key": "timing",
+                "valueType": "ms",
+                "label": "Timing"
+              }
+            ],
+            "items": [
+              {
+                "phase": "TTFB",
+                "timing": 182.377,
+                "percent": "17%"
+              },
+              {
+                "phase": "Load Delay",
+                "timing": 185.85843540769184,
+                "percent": "17%"
+              },
+              {
+                "phase": "Load Time",
+                "timing": 553.4481025282034,
+                "percent": "52%"
+              },
+              {
+                "phase": "Render Delay",
+                "timing": 149.92546206410464,
+                "percent": "14%"
+              }
+            ]
+          }
+        ]
+      },
+      "imageSavings": [
+        {
+          "url": "https://www.ruzickapsychology.com/images/bg-texture.jpg",
+          "totalBytes": 79553,
+          "wastedBytes": 11406,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.",
+                "wastedBytes": 11406
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "contact-desktop-2.json",
+      "url": "https://www.ruzickapsychology.com/contact",
+      "fetched": "2026-10-17T19:55:40.798Z",
+      "version": "12.6.1",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "formFactor": "desktop",
+      "throttling": {
+        "rttMs": 40,
+        "throughputKbps": 10240,
+        "requestLatencyMs": 0,
+        "downloadThroughputKbps": 0,
+        "uploadThroughputKbps": 0,
+        "cpuSlowdownMultiplier": 1
+      },
+      "screen": {
+        "mobile": false,
+        "width": 1350,
+        "height": 940,
+        "deviceScaleFactor": 1,
+        "disabled": false
+      },
+      "score": 0.99,
+      "lcpMs": 900.7855,
+      "cls": 0,
+      "tbtMs": 0,
+      "lcp": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": "Element"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-IMG",
+                  "path": "1,HTML,1,BODY,1,DIV,7,MAIN,0,DIV,0,SECTION,0,IMG",
+                  "selector": "main#main-content > div.styles-module__sFoFtW__root > section.styles-module__ftiFJa__root > img.styles-module__l3M52G__image",
+                  "boundingRect": {
+                    "top": 0,
+                    "bottom": 1075,
+                    "left": 0,
+                    "right": 1350,
+                    "width": 1350,
+                    "height": 1075
+                  },
+                  "snippet": "<img data-slot=\"background-image-layer\" alt=\"\" fetchpriority=\"high\" loading=\"eager\" decoding=\"async\" data-nimg=\"fill\" class=\"styles-module__l3M52G__image\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" sizes=\"100vw\" srcset=\"https://cdn.sanity.io/images/vq39ihmt/production/735d10132b5e59bca3a33fe35…\" src=\"https://cdn.sanity.io/images/vq39ihmt/production/735d10132b5e59bca3a33fe35…\">",
+                  "nodeLabel": "main#main-content > div.styles-module__sFoFtW__root > section.styles-module__ftiFJa__root > img.styles-module__l3M52G__image"
+                }
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "phase",
+                "valueType": "text",
+                "label": "Phase"
+              },
+              {
+                "key": "percent",
+                "valueType": "text",
+                "label": "% of LCP"
+              },
+              {
+                "key": "timing",
+                "valueType": "ms",
+                "label": "Timing"
+              }
+            ],
+            "items": [
+              {
+                "phase": "TTFB",
+                "timing": 194.298,
+                "percent": "22%"
+              },
+              {
+                "phase": "Load Delay",
+                "timing": 252.905641015002,
+                "percent": "28%"
+              },
+              {
+                "phase": "Load Time",
+                "timing": 300.17502694708656,
+                "percent": "33%"
+              },
+              {
+                "phase": "Render Delay",
+                "timing": 153.40683203791139,
+                "percent": "17%"
+              }
+            ]
+          }
+        ]
+      },
+      "imageSavings": [
+        {
+          "url": "https://www.ruzickapsychology.com/images/bg-texture.jpg",
+          "totalBytes": 79553,
+          "wastedBytes": 11406,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.",
+                "wastedBytes": 11406
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "contact-mobile-1.json",
+      "url": "https://www.ruzickapsychology.com/contact",
+      "fetched": "2026-10-17T19:55:06.104Z",
+      "version": "12.6.1",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screen": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "score": 0.87,
+      "lcpMs": 3905.806999999999,
+      "cls": 0,
+      "tbtMs": 16,
+      "lcp": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": "Element"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-SECTION",
+                  "path": "1,HTML,1,BODY,1,DIV,7,MAIN,0,DIV,0,SECTION",
+                  "selector": "div.styles-module__3aQPLq__shell > main#main-content > div.styles-module__sFoFtW__root > section.styles-module__ftiFJa__root",
+                  "boundingRect": {
+                    "top": 0,
+                    "bottom": 1646,
+                    "left": 0,
+                    "right": 412,
+                    "width": 412,
+                    "height": 1646
+                  },
+                  "snippet": "<section data-slot=\"immersive-page-header\" data-align=\"center\" class=\"styles-module__ftiFJa__root styles-module__KtM7eq__header styles-module__K…\">",
+                  "nodeLabel": "INQUIRY FORM\n\nLet's Work Together\n\nI am currently accepting new clients for in-…"
+                }
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "phase",
+                "valueType": "text",
+                "label": "Phase"
+              },
+              {
+                "key": "percent",
+                "valueType": "text",
+                "label": "% of LCP"
+              },
+              {
+                "key": "timing",
+                "valueType": "ms",
+                "label": "Timing"
+              }
+            ],
+            "items": [
+              {
+                "phase": "TTFB",
+                "timing": 640.007,
+                "percent": "16%"
+              },
+              {
+                "phase": "Load Delay",
+                "timing": 1065.756389195853,
+                "percent": "27%"
+              },
+              {
+                "phase": "Load Time",
+                "timing": 225.19248757539617,
+                "percent": "6%"
+              },
+              {
+                "phase": "Render Delay",
+                "timing": 1974.8511232287497,
+                "percent": "51%"
+              }
+            ]
+          }
+        ]
+      },
+      "imageSavings": [
+        {
+          "url": "https://www.ruzickapsychology.com/images/bg-texture.jpg",
+          "totalBytes": 79553,
+          "wastedBytes": 11406,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.",
+                "wastedBytes": 11406
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "contact-mobile-2.json",
+      "url": "https://www.ruzickapsychology.com/contact",
+      "fetched": "2026-10-17T19:55:17.730Z",
+      "version": "12.6.1",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screen": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "score": 0.94,
+      "lcpMs": 3101.6595,
+      "cls": 0,
+      "tbtMs": 16.5,
+      "lcp": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": "Element"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-SECTION",
+                  "path": "1,HTML,1,BODY,1,DIV,7,MAIN,0,DIV,0,SECTION",
+                  "selector": "div.styles-module__3aQPLq__shell > main#main-content > div.styles-module__sFoFtW__root > section.styles-module__ftiFJa__root",
+                  "boundingRect": {
+                    "top": 0,
+                    "bottom": 1646,
+                    "left": 0,
+                    "right": 412,
+                    "width": 412,
+                    "height": 1646
+                  },
+                  "snippet": "<section data-slot=\"immersive-page-header\" data-align=\"center\" class=\"styles-module__ftiFJa__root styles-module__KtM7eq__header styles-module__K…\">",
+                  "nodeLabel": "INQUIRY FORM\n\nLet's Work Together\n\nI am currently accepting new clients for in-…"
+                }
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "phase",
+                "valueType": "text",
+                "label": "Phase"
+              },
+              {
+                "key": "percent",
+                "valueType": "text",
+                "label": "% of LCP"
+              },
+              {
+                "key": "timing",
+                "valueType": "ms",
+                "label": "Timing"
+              }
+            ],
+            "items": [
+              {
+                "phase": "TTFB",
+                "timing": 629.996,
+                "percent": "20%"
+              },
+              {
+                "phase": "Load Delay",
+                "timing": 1937.395235957511,
+                "percent": "62%"
+              },
+              {
+                "phase": "Load Time",
+                "timing": 414.0328579664615,
+                "percent": "13%"
+              },
+              {
+                "phase": "Render Delay",
+                "timing": 120.23540607602763,
+                "percent": "4%"
+              }
+            ]
+          }
+        ]
+      },
+      "imageSavings": [
+        {
+          "url": "https://www.ruzickapsychology.com/images/bg-texture.jpg",
+          "totalBytes": 79553,
+          "wastedBytes": 11406,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.",
+                "wastedBytes": 11406
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "contact-mobile-3.json",
+      "url": "https://www.ruzickapsychology.com/contact",
+      "fetched": "2026-10-17T19:57:23.923Z",
+      "version": "12.6.1",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screen": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "score": 0.91,
+      "lcpMs": 3462.1730000000007,
+      "cls": 0,
+      "tbtMs": 15,
+      "lcp": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": "Element"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-SECTION",
+                  "path": "1,HTML,1,BODY,1,DIV,7,MAIN,0,DIV,0,SECTION",
+                  "selector": "div.styles-module__3aQPLq__shell > main#main-content > div.styles-module__sFoFtW__root > section.styles-module__ftiFJa__root",
+                  "boundingRect": {
+                    "top": 0,
+                    "bottom": 1646,
+                    "left": 0,
+                    "right": 412,
+                    "width": 412,
+                    "height": 1646
+                  },
+                  "snippet": "<section data-slot=\"immersive-page-header\" data-align=\"center\" class=\"styles-module__ftiFJa__root styles-module__KtM7eq__header styles-module__K…\">",
+                  "nodeLabel": "INQUIRY FORM\n\nLet's Work Together\n\nI am currently accepting new clients for in-…"
+                }
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "phase",
+                "valueType": "text",
+                "label": "Phase"
+              },
+              {
+                "key": "percent",
+                "valueType": "text",
+                "label": "% of LCP"
+              },
+              {
+                "key": "timing",
+                "valueType": "ms",
+                "label": "Timing"
+              }
+            ],
+            "items": [
+              {
+                "phase": "TTFB",
+                "timing": 635.501,
+                "percent": "18%"
+              },
+              {
+                "phase": "Load Delay",
+                "timing": 2183.516066001478,
+                "percent": "63%"
+              },
+              {
+                "phase": "Load Time",
+                "timing": 332.1537615293105,
+                "percent": "10%"
+              },
+              {
+                "phase": "Render Delay",
+                "timing": 311.0021724692124,
+                "percent": "9%"
+              }
+            ]
+          }
+        ]
+      },
+      "imageSavings": [
+        {
+          "url": "https://www.ruzickapsychology.com/images/bg-texture.jpg",
+          "totalBytes": 79553,
+          "wastedBytes": 11406,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.",
+                "wastedBytes": 11406
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "couples-desktop-1.json",
+      "url": "https://www.ruzickapsychology.com/specialties/couples-therapy",
+      "fetched": "2026-10-17T19:56:14.499Z",
+      "version": "12.6.1",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "formFactor": "desktop",
+      "throttling": {
+        "rttMs": 40,
+        "throughputKbps": 10240,
+        "requestLatencyMs": 0,
+        "downloadThroughputKbps": 0,
+        "uploadThroughputKbps": 0,
+        "cpuSlowdownMultiplier": 1
+      },
+      "screen": {
+        "mobile": false,
+        "width": 1350,
+        "height": 940,
+        "deviceScaleFactor": 1,
+        "disabled": false
+      },
+      "score": 1,
+      "lcpMs": 546.61,
+      "cls": 0,
+      "tbtMs": 0,
+      "lcp": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": "Element"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-H1",
+                  "path": "1,HTML,1,BODY,1,DIV,3,MAIN,0,DIV,2,SECTION,0,DIV,1,DIV,1,H1",
+                  "selector": "section.styles-module__4Fi6mq__root > div.styles-module__Bu7ZvW__root > div.styles-module__gsEmpG__root > h1.styles-module__MHV4Da__heading",
+                  "boundingRect": {
+                    "top": 223,
+                    "bottom": 376,
+                    "left": 331,
+                    "right": 1011,
+                    "width": 680,
+                    "height": 153
+                  },
+                  "snippet": "<h1 data-slot=\"page-header-title\" data-size=\"display\" data-tone=\"inherit\" class=\"styles-module__MHV4Da__heading styles-module__MHV4Da__headingDisplay style…\">",
+                  "nodeLabel": "Couples Therapy in Rochester, NY"
+                }
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "phase",
+                "valueType": "text",
+                "label": "Phase"
+              },
+              {
+                "key": "percent",
+                "valueType": "text",
+                "label": "% of LCP"
+              },
+              {
+                "key": "timing",
+                "valueType": "ms",
+                "label": "Timing"
+              }
+            ],
+            "items": [
+              {
+                "phase": "TTFB",
+                "timing": 186.60999999999999,
+                "percent": "34%"
+              },
+              {
+                "phase": "Load Delay",
+                "timing": 0,
+                "percent": "0%"
+              },
+              {
+                "phase": "Load Time",
+                "timing": 0,
+                "percent": "0%"
+              },
+              {
+                "phase": "Render Delay",
+                "timing": 360,
+                "percent": "66%"
+              }
+            ]
+          }
+        ]
+      },
+      "imageSavings": [
+        {
+          "url": "https://www.ruzickapsychology.com/images/bg-texture.jpg",
+          "totalBytes": 79553,
+          "wastedBytes": 11406,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.",
+                "wastedBytes": 11406
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "couples-desktop-2.json",
+      "url": "https://www.ruzickapsychology.com/specialties/couples-therapy",
+      "fetched": "2026-10-17T19:56:25.269Z",
+      "version": "12.6.1",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "formFactor": "desktop",
+      "throttling": {
+        "rttMs": 40,
+        "throughputKbps": 10240,
+        "requestLatencyMs": 0,
+        "downloadThroughputKbps": 0,
+        "uploadThroughputKbps": 0,
+        "cpuSlowdownMultiplier": 1
+      },
+      "screen": {
+        "mobile": false,
+        "width": 1350,
+        "height": 940,
+        "deviceScaleFactor": 1,
+        "disabled": false
+      },
+      "score": 1,
+      "lcpMs": 509.221,
+      "cls": 0,
+      "tbtMs": 0,
+      "lcp": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": "Element"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-H1",
+                  "path": "1,HTML,1,BODY,1,DIV,3,MAIN,0,DIV,2,SECTION,0,DIV,1,DIV,1,H1",
+                  "selector": "section.styles-module__4Fi6mq__root > div.styles-module__Bu7ZvW__root > div.styles-module__gsEmpG__root > h1.styles-module__MHV4Da__heading",
+                  "boundingRect": {
+                    "top": 223,
+                    "bottom": 376,
+                    "left": 331,
+                    "right": 1011,
+                    "width": 680,
+                    "height": 153
+                  },
+                  "snippet": "<h1 data-slot=\"page-header-title\" data-size=\"display\" data-tone=\"inherit\" class=\"styles-module__MHV4Da__heading styles-module__MHV4Da__headingDisplay style…\">",
+                  "nodeLabel": "Couples Therapy in Rochester, NY"
+                }
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "phase",
+                "valueType": "text",
+                "label": "Phase"
+              },
+              {
+                "key": "percent",
+                "valueType": "text",
+                "label": "% of LCP"
+              },
+              {
+                "key": "timing",
+                "valueType": "ms",
+                "label": "Timing"
+              }
+            ],
+            "items": [
+              {
+                "phase": "TTFB",
+                "timing": 189.221,
+                "percent": "37%"
+              },
+              {
+                "phase": "Load Delay",
+                "timing": 0,
+                "percent": "0%"
+              },
+              {
+                "phase": "Load Time",
+                "timing": 0,
+                "percent": "0%"
+              },
+              {
+                "phase": "Render Delay",
+                "timing": 320,
+                "percent": "63%"
+              }
+            ]
+          }
+        ]
+      },
+      "imageSavings": [
+        {
+          "url": "https://www.ruzickapsychology.com/images/bg-texture.jpg",
+          "totalBytes": 79553,
+          "wastedBytes": 11406,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.",
+                "wastedBytes": 11406
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "couples-mobile-1.json",
+      "url": "https://www.ruzickapsychology.com/specialties/couples-therapy",
+      "fetched": "2026-10-17T19:55:52.624Z",
+      "version": "12.6.1",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screen": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "score": 0.98,
+      "lcpMs": 2447.059,
+      "cls": 0,
+      "tbtMs": 14,
+      "lcp": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": "Element"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-P",
+                  "path": "1,HTML,1,BODY,1,DIV,3,MAIN,0,DIV,3,SECTION,0,DIV,0,DIV,0,P",
+                  "selector": "section.styles-module__4Fi6mq__root > div.styles-module__Bu7ZvW__root > div.styles-module__W1wCZq__root > p",
+                  "boundingRect": {
+                    "top": 499,
+                    "bottom": 667,
+                    "left": 16,
+                    "right": 396,
+                    "width": 380,
+                    "height": 168
+                  },
+                  "snippet": "<p>",
+                  "nodeLabel": "Many couples arrive knowing the argument almost by heart. The details may chang…"
+                }
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "phase",
+                "valueType": "text",
+                "label": "Phase"
+              },
+              {
+                "key": "percent",
+                "valueType": "text",
+                "label": "% of LCP"
+              },
+              {
+                "key": "timing",
+                "valueType": "ms",
+                "label": "Timing"
+              }
+            ],
+            "items": [
+              {
+                "phase": "TTFB",
+                "timing": 647.059,
+                "percent": "26%"
+              },
+              {
+                "phase": "Load Delay",
+                "timing": 0,
+                "percent": "0%"
+              },
+              {
+                "phase": "Load Time",
+                "timing": 0,
+                "percent": "0%"
+              },
+              {
+                "phase": "Render Delay",
+                "timing": 1800.0000000000002,
+                "percent": "74%"
+              }
+            ]
+          }
+        ]
+      },
+      "imageSavings": [
+        {
+          "url": "https://www.ruzickapsychology.com/images/bg-texture.jpg",
+          "totalBytes": 79553,
+          "wastedBytes": 11406,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.",
+                "wastedBytes": 11406
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "couples-mobile-2.json",
+      "url": "https://www.ruzickapsychology.com/specialties/couples-therapy",
+      "fetched": "2026-10-17T19:56:03.740Z",
+      "version": "12.6.1",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screen": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "score": 1,
+      "lcpMs": 1682.9279999999999,
+      "cls": 0,
+      "tbtMs": 8.5,
+      "lcp": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": "Element"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-P",
+                  "path": "1,HTML,1,BODY,1,DIV,3,MAIN,0,DIV,3,SECTION,0,DIV,0,DIV,0,P",
+                  "selector": "section.styles-module__4Fi6mq__root > div.styles-module__Bu7ZvW__root > div.styles-module__W1wCZq__root > p",
+                  "boundingRect": {
+                    "top": 499,
+                    "bottom": 667,
+                    "left": 16,
+                    "right": 396,
+                    "width": 380,
+                    "height": 168
+                  },
+                  "snippet": "<p>",
+                  "nodeLabel": "Many couples arrive knowing the argument almost by heart. The details may chang…"
+                }
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "phase",
+                "valueType": "text",
+                "label": "Phase"
+              },
+              {
+                "key": "percent",
+                "valueType": "text",
+                "label": "% of LCP"
+              },
+              {
+                "key": "timing",
+                "valueType": "ms",
+                "label": "Timing"
+              }
+            ],
+            "items": [
+              {
+                "phase": "TTFB",
+                "timing": 632.928,
+                "percent": "38%"
+              },
+              {
+                "phase": "Load Delay",
+                "timing": 0,
+                "percent": "0%"
+              },
+              {
+                "phase": "Load Time",
+                "timing": 0,
+                "percent": "0%"
+              },
+              {
+                "phase": "Render Delay",
+                "timing": 1050,
+                "percent": "62%"
+              }
+            ]
+          }
+        ]
+      },
+      "imageSavings": [
+        {
+          "url": "https://www.ruzickapsychology.com/images/bg-texture.jpg",
+          "totalBytes": 79553,
+          "wastedBytes": 11406,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.",
+                "wastedBytes": 11406
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "home-desktop-1.json",
+      "url": "https://www.ruzickapsychology.com/",
+      "fetched": "2026-10-17T19:54:44.009Z",
+      "version": "12.6.1",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "formFactor": "desktop",
+      "throttling": {
+        "rttMs": 40,
+        "throughputKbps": 10240,
+        "requestLatencyMs": 0,
+        "downloadThroughputKbps": 0,
+        "uploadThroughputKbps": 0,
+        "cpuSlowdownMultiplier": 1
+      },
+      "screen": {
+        "mobile": false,
+        "width": 1350,
+        "height": 940,
+        "deviceScaleFactor": 1,
+        "disabled": false
+      },
+      "score": 0.99,
+      "lcpMs": 969.9630000000001,
+      "cls": 0,
+      "tbtMs": 0,
+      "lcp": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": "Element"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-1-IMG",
+                  "path": "1,HTML,1,BODY,1,DIV,3,MAIN,0,DIV,0,SECTION,0,IMG",
+                  "selector": "main#main-content > div.styles-module__sFoFtW__root > section.styles-module__ftiFJa__root > img.styles-module__pfkwzq__heroImage",
+                  "boundingRect": {
+                    "top": 0,
+                    "bottom": 940,
+                    "left": 0,
+                    "right": 1350,
+                    "width": 1350,
+                    "height": 940
+                  },
+                  "snippet": "<img alt=\"Soft floral background\" fetchpriority=\"high\" loading=\"eager\" decoding=\"async\" data-nimg=\"fill\" class=\"styles-module__pfkwzq__heroImage\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" sizes=\"100vw\" srcset=\"https://cdn.sanity.io/images/vq39ihmt/production/84fe219c41c63095e2778a84d…\" src=\"https://cdn.sanity.io/images/vq39ihmt/production/84fe219c41c63095e2778a84d…\">",
+                  "nodeLabel": "Soft floral background"
+                }
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "phase",
+                "valueType": "text",
+                "label": "Phase"
+              },
+              {
+                "key": "percent",
+                "valueType": "text",
+                "label": "% of LCP"
+              },
+              {
+                "key": "timing",
+                "valueType": "ms",
+                "label": "Timing"
+              }
+            ],
+            "items": [
+              {
+                "phase": "TTFB",
+                "timing": 190.04250000000002,
+                "percent": "20%"
+              },
+              {
+                "phase": "Load Delay",
+                "timing": 187.22359558025232,
+                "percent": "19%"
+              },
+              {
+                "phase": "Load Time",
+                "timing": 483.61272664318574,
+                "percent": "50%"
+              },
+              {
+                "phase": "Render Delay",
+                "timing": 109.084177776562,
+                "percent": "11%"
+              }
+            ]
+          }
+        ]
+      },
+      "imageSavings": [
+        {
+          "url": "https://cdn.sanity.io/images/vq39ihmt/production/7f6c7ae82c3671f89d564f81969c206ab02cb25b-1500x1247.jpg?auto=format&w=1500&q=75",
+          "totalBytes": 393759,
+          "wastedBytes": 220379,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Increasing the image compression factor could improve this image's download size.",
+                "wastedBytes": 220379
+              }
+            ]
+          }
+        },
+        {
+          "url": "https://cdn.sanity.io/images/vq39ihmt/production/84fe219c41c63095e2778a84d6e923cea4ee85a6-1500x1121.jpg?auto=format&w=1500&q=75",
+          "totalBytes": 263442,
+          "wastedBytes": 36442,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "This image file is larger than it needs to be (1500x1045) for its displayed dimensions (1350x1009). Use responsive images to reduce the image download size.",
+                "wastedBytes": 34620
+              }
+            ]
+          }
+        },
+        {
+          "url": "https://cdn.sanity.io/images/vq39ihmt/production/f6ad595a7dfd81d1a160e9539f660c97abf45b8f-1200x1200.jpg?auto=format&w=640&q=75",
+          "totalBytes": 18831,
+          "wastedBytes": 15175,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "This image file is larger than it needs to be (640x640) for its displayed dimensions (282x282). Use responsive images to reduce the image download size.",
+                "wastedBytes": 15175
+              }
+            ]
+          }
+        },
+        {
+          "url": "https://www.ruzickapsychology.com/images/bg-texture.jpg",
+          "totalBytes": 79553,
+          "wastedBytes": 11406,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.",
+                "wastedBytes": 11406
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "home-desktop-2.json",
+      "url": "https://www.ruzickapsychology.com/",
+      "fetched": "2026-10-17T19:54:55.022Z",
+      "version": "12.6.1",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "formFactor": "desktop",
+      "throttling": {
+        "rttMs": 40,
+        "throughputKbps": 10240,
+        "requestLatencyMs": 0,
+        "downloadThroughputKbps": 0,
+        "uploadThroughputKbps": 0,
+        "cpuSlowdownMultiplier": 1
+      },
+      "screen": {
+        "mobile": false,
+        "width": 1350,
+        "height": 940,
+        "deviceScaleFactor": 1,
+        "disabled": false
+      },
+      "score": 0.99,
+      "lcpMs": 1009.0135,
+      "cls": 0,
+      "tbtMs": 0,
+      "lcp": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": "Element"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-1-IMG",
+                  "path": "1,HTML,1,BODY,1,DIV,3,MAIN,0,DIV,0,SECTION,0,IMG",
+                  "selector": "main#main-content > div.styles-module__sFoFtW__root > section.styles-module__ftiFJa__root > img.styles-module__pfkwzq__heroImage",
+                  "boundingRect": {
+                    "top": 0,
+                    "bottom": 940,
+                    "left": 0,
+                    "right": 1350,
+                    "width": 1350,
+                    "height": 940
+                  },
+                  "snippet": "<img alt=\"Soft floral background\" fetchpriority=\"high\" loading=\"eager\" decoding=\"async\" data-nimg=\"fill\" class=\"styles-module__pfkwzq__heroImage\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" sizes=\"100vw\" srcset=\"https://cdn.sanity.io/images/vq39ihmt/production/84fe219c41c63095e2778a84d…\" src=\"https://cdn.sanity.io/images/vq39ihmt/production/84fe219c41c63095e2778a84d…\">",
+                  "nodeLabel": "Soft floral background"
+                }
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "phase",
+                "valueType": "text",
+                "label": "Phase"
+              },
+              {
+                "key": "percent",
+                "valueType": "text",
+                "label": "% of LCP"
+              },
+              {
+                "key": "timing",
+                "valueType": "ms",
+                "label": "Timing"
+              }
+            ],
+            "items": [
+              {
+                "phase": "TTFB",
+                "timing": 197.3785,
+                "percent": "20%"
+              },
+              {
+                "phase": "Load Delay",
+                "timing": 150.34497693478747,
+                "percent": "15%"
+              },
+              {
+                "phase": "Load Time",
+                "timing": 549.8756786536146,
+                "percent": "54%"
+              },
+              {
+                "phase": "Render Delay",
+                "timing": 111.41434441159788,
+                "percent": "11%"
+              }
+            ]
+          }
+        ]
+      },
+      "imageSavings": [
+        {
+          "url": "https://cdn.sanity.io/images/vq39ihmt/production/7f6c7ae82c3671f89d564f81969c206ab02cb25b-1500x1247.jpg?auto=format&w=1500&q=75",
+          "totalBytes": 393759,
+          "wastedBytes": 220379,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Increasing the image compression factor could improve this image's download size.",
+                "wastedBytes": 220379
+              }
+            ]
+          }
+        },
+        {
+          "url": "https://cdn.sanity.io/images/vq39ihmt/production/84fe219c41c63095e2778a84d6e923cea4ee85a6-1500x1121.jpg?auto=format&w=1500&q=75",
+          "totalBytes": 263442,
+          "wastedBytes": 36442,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "This image file is larger than it needs to be (1500x1045) for its displayed dimensions (1350x1009). Use responsive images to reduce the image download size.",
+                "wastedBytes": 34620
+              }
+            ]
+          }
+        },
+        {
+          "url": "https://cdn.sanity.io/images/vq39ihmt/production/f6ad595a7dfd81d1a160e9539f660c97abf45b8f-1200x1200.jpg?auto=format&w=640&q=75",
+          "totalBytes": 18831,
+          "wastedBytes": 15175,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "This image file is larger than it needs to be (640x640) for its displayed dimensions (282x282). Use responsive images to reduce the image download size.",
+                "wastedBytes": 15175
+              }
+            ]
+          }
+        },
+        {
+          "url": "https://www.ruzickapsychology.com/images/bg-texture.jpg",
+          "totalBytes": 79553,
+          "wastedBytes": 11406,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.",
+                "wastedBytes": 11406
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "home-mobile-1.json",
+      "url": "https://www.ruzickapsychology.com/",
+      "fetched": "2026-10-17T19:54:21.885Z",
+      "version": "12.6.1",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screen": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "score": 0.91,
+      "lcpMs": 3496.432,
+      "cls": 0,
+      "tbtMs": 18.5,
+      "lcp": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": "Element"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-IMG",
+                  "path": "1,HTML,1,BODY,1,DIV,3,MAIN,0,DIV,0,SECTION,0,IMG",
+                  "selector": "main#main-content > div.styles-module__sFoFtW__root > section.styles-module__ftiFJa__root > img.styles-module__pfkwzq__heroImage",
+                  "boundingRect": {
+                    "top": 0,
+                    "bottom": 823,
+                    "left": 0,
+                    "right": 412,
+                    "width": 412,
+                    "height": 823
+                  },
+                  "snippet": "<img alt=\"Soft floral background\" fetchpriority=\"high\" loading=\"eager\" decoding=\"async\" data-nimg=\"fill\" class=\"styles-module__pfkwzq__heroImage\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" sizes=\"100vw\" srcset=\"https://cdn.sanity.io/images/vq39ihmt/production/84fe219c41c63095e2778a84d…\" src=\"https://cdn.sanity.io/images/vq39ihmt/production/84fe219c41c63095e2778a84d…\">",
+                  "nodeLabel": "Soft floral background"
+                }
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "phase",
+                "valueType": "text",
+                "label": "Phase"
+              },
+              {
+                "key": "percent",
+                "valueType": "text",
+                "label": "% of LCP"
+              },
+              {
+                "key": "timing",
+                "valueType": "ms",
+                "label": "Timing"
+              }
+            ],
+            "items": [
+              {
+                "phase": "TTFB",
+                "timing": 646.432,
+                "percent": "18%"
+              },
+              {
+                "phase": "Load Delay",
+                "timing": 1194.1377038486428,
+                "percent": "34%"
+              },
+              {
+                "phase": "Load Time",
+                "timing": 1331.9095292849938,
+                "percent": "38%"
+              },
+              {
+                "phase": "Render Delay",
+                "timing": 323.95276686636316,
+                "percent": "9%"
+              }
+            ]
+          }
+        ]
+      },
+      "imageSavings": [
+        {
+          "url": "https://cdn.sanity.io/images/vq39ihmt/production/7f6c7ae82c3671f89d564f81969c206ab02cb25b-1500x1247.jpg?auto=format&w=750&q=75",
+          "totalBytes": 116034,
+          "wastedBytes": 67046,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Increasing the image compression factor could improve this image's download size.",
+                "wastedBytes": 67046
+              }
+            ]
+          }
+        },
+        {
+          "url": "https://cdn.sanity.io/images/vq39ihmt/production/f6ad595a7dfd81d1a160e9539f660c97abf45b8f-1200x1200.jpg?auto=format&w=640&q=75",
+          "totalBytes": 18831,
+          "wastedBytes": 15175,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "This image file is larger than it needs to be (640x640) for its displayed dimensions (282x282). Use responsive images to reduce the image download size.",
+                "wastedBytes": 15175
+              }
+            ]
+          }
+        },
+        {
+          "url": "https://www.ruzickapsychology.com/images/bg-texture.jpg",
+          "totalBytes": 79553,
+          "wastedBytes": 11406,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.",
+                "wastedBytes": 11406
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "home-mobile-2.json",
+      "url": "https://www.ruzickapsychology.com/",
+      "fetched": "2026-10-17T19:54:32.968Z",
+      "version": "12.6.1",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screen": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "score": 0.92,
+      "lcpMs": 3420.495,
+      "cls": 0,
+      "tbtMs": 10,
+      "lcp": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": "Element"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-IMG",
+                  "path": "1,HTML,1,BODY,1,DIV,3,MAIN,0,DIV,0,SECTION,0,IMG",
+                  "selector": "main#main-content > div.styles-module__sFoFtW__root > section.styles-module__ftiFJa__root > img.styles-module__pfkwzq__heroImage",
+                  "boundingRect": {
+                    "top": 0,
+                    "bottom": 823,
+                    "left": 0,
+                    "right": 412,
+                    "width": 412,
+                    "height": 823
+                  },
+                  "snippet": "<img alt=\"Soft floral background\" fetchpriority=\"high\" loading=\"eager\" decoding=\"async\" data-nimg=\"fill\" class=\"styles-module__pfkwzq__heroImage\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" sizes=\"100vw\" srcset=\"https://cdn.sanity.io/images/vq39ihmt/production/84fe219c41c63095e2778a84d…\" src=\"https://cdn.sanity.io/images/vq39ihmt/production/84fe219c41c63095e2778a84d…\">",
+                  "nodeLabel": "Soft floral background"
+                }
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "phase",
+                "valueType": "text",
+                "label": "Phase"
+              },
+              {
+                "key": "percent",
+                "valueType": "text",
+                "label": "% of LCP"
+              },
+              {
+                "key": "timing",
+                "valueType": "ms",
+                "label": "Timing"
+              }
+            ],
+            "items": [
+              {
+                "phase": "TTFB",
+                "timing": 645.495,
+                "percent": "19%"
+              },
+              {
+                "phase": "Load Delay",
+                "timing": 1213.1235086329566,
+                "percent": "35%"
+              },
+              {
+                "phase": "Load Time",
+                "timing": 1253.5849421355701,
+                "percent": "37%"
+              },
+              {
+                "phase": "Render Delay",
+                "timing": 308.29154923147325,
+                "percent": "9%"
+              }
+            ]
+          }
+        ]
+      },
+      "imageSavings": [
+        {
+          "url": "https://cdn.sanity.io/images/vq39ihmt/production/7f6c7ae82c3671f89d564f81969c206ab02cb25b-1500x1247.jpg?auto=format&w=750&q=75",
+          "totalBytes": 116034,
+          "wastedBytes": 67046,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Increasing the image compression factor could improve this image's download size.",
+                "wastedBytes": 67046
+              }
+            ]
+          }
+        },
+        {
+          "url": "https://cdn.sanity.io/images/vq39ihmt/production/f6ad595a7dfd81d1a160e9539f660c97abf45b8f-1200x1200.jpg?auto=format&w=640&q=75",
+          "totalBytes": 18831,
+          "wastedBytes": 15175,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "This image file is larger than it needs to be (640x640) for its displayed dimensions (282x282). Use responsive images to reduce the image download size.",
+                "wastedBytes": 15175
+              }
+            ]
+          }
+        },
+        {
+          "url": "https://www.ruzickapsychology.com/images/bg-texture.jpg",
+          "totalBytes": 79553,
+          "wastedBytes": 11406,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "reason": "Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.",
+                "wastedBytes": 11406
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

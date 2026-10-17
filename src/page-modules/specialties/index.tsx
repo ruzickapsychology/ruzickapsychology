@@ -119,6 +119,7 @@ export function SpecialtiesPage({
       ) : null}
 
       <CtaSection
+        phone={site?.phone}
         heading="Ready to talk about what you need?"
         body="Start with a complimentary 15 minute consultation to ask questions and determine whether working together feels like the right fit."
         cta={acceptingInquiries ? "Request a consultation" : undefined}

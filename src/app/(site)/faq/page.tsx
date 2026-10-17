@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { pageMetadata } from "@/config/seo";
-import { getFAQPage } from "@/data/cms";
+import { getFAQPage, getSiteSettings } from "@/data/cms";
 import { FAQPage } from "@/page-modules/faq";
 
 export const metadata: Metadata = pageMetadata({
@@ -12,8 +12,8 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default async function FAQRoute() {
-  const faq = await getFAQPage();
+  const [faq, site] = await Promise.all([getFAQPage(), getSiteSettings()]);
   if (!faq) notFound();
 
-  return <FAQPage faq={faq} />;
+  return <FAQPage faq={faq} site={site} />;
 }
