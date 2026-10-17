@@ -170,6 +170,15 @@ export const siteSettings = defineType({
       group: "practice",
     }),
     defineField({
+      name: "safetyNotice",
+      title: "Emergency care notice",
+      type: "text",
+      group: "practice",
+      rows: 3,
+      description:
+        "Shared emergency care guidance displayed in the website footer.",
+    }),
+    defineField({
       name: "address",
       title: "Address",
       type: "address",

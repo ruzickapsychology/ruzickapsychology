@@ -10,6 +10,8 @@ export const site = {
   practitioner: "Dr. Christina Ruzicka, Psy.D.",
   email: "Christina@ruzickapsychology.com",
   phone: "(585) 667-0970",
+  safetyNotice:
+    "This practice does not provide emergency care. If you are in immediate danger, call 911 or go to the nearest emergency department.",
   address: {
     streetAddress: "1577 South Avenue",
     addressLocality: "Rochester",
@@ -37,8 +39,8 @@ export const site = {
       url: "https://www.psychologytoday.com/us/therapists/christina-ruzicka-rochester-ny/912736",
     },
     {
-      label: "NPI Profile",
-      url: "https://npiprofile.com/npi/1831638501",
+      label: "Imago Relationships North America",
+      url: "https://imagorelationshipswork.com/profile/christinaruzicka/",
     },
   ],
   nav: [

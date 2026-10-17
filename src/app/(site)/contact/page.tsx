@@ -6,9 +6,9 @@ import { getContactInterestLabel } from "@/config/services";
 import { ContactPage } from "@/page-modules/contact";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contact",
+  title: "Contact a Rochester, NY Psychologist",
   description:
-    "Request a consultation with Dr. Christina Ruzicka. In-person in Rochester, NY and virtual appointments available.",
+    "Contact Dr. Christina Ruzicka in Rochester, NY to ask about individual, couples, or perinatal therapy and request an initial consultation.",
   path: "/contact",
 });
 

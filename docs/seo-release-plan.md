@@ -37,7 +37,7 @@ Keep a single focused PR. Christina's review log contains only material clinical
 
 New workshop dates/registration/Event markup until confirmed; page-specific social images; additional service/location pages only with distinct value. Directory/Maps/NPI work is outside this code PR. No word-count quotas or llms.txt ranking project. Google retired FAQ rich results in May 2026; useful FAQ content remains valuable.
 
-## Progress
+## Original release record
 
 - Production deployment points to `ed3450c`; this branch's baseline `e86bfa9` had a successful preview but had not reached production. No existing PR was open for this branch.
 - Packages 1–6 completed within the verified scope; only the practice-specific content in `christina-review.md` remains pending.
@@ -51,3 +51,41 @@ New workshop dates/registration/Event markup until confirmed; page-specific soci
 - SimplePractice's `/request` URL redirects to `/request/unavailable?reason=clinician%20does%20not%20exist`; do not advertise it as a working new-client booking route. Retain the existing-client portal and contact inquiry path.
 - Deliverable: [PR #14](https://github.com/ruzickapsychology/ruzickapsychology/pull/14), one shared branch and one integration commit. This plan's final update is documentation only.
 - Follow-up Chrome visual review and corrections are recorded in `ux-review.md`, grouped by agent and UX category. The article repair is formatting only; substantive clinical replacements remain pending.
+
+## Audit follow-up — October 16, 2026
+
+The original release above was merged as PR #14. Fresh production checks found
+the four service pages, privacy page, corrected schema, analytics, phone links,
+and consultation paths live. The sitemap contains 15 URLs. Search-tool cached
+pages still showed the older site, so completion was checked with direct HTTP
+and browser requests.
+
+This follow-up improves FAQ/contact metadata and the welcome article's search
+summary; adds an optional CMS-managed shared footer safety notice; and completes
+the remaining article heading repair. It does not change insurance, billing,
+hours, workshop claims, or clinical prose. Page-specific social imagery remains
+optional polish, and the unavailable SimplePractice request URL remains unused.
+
+Two reviewed, revision-guarded migrations were applied to production Sanity:
+
+- About: visible license number, verified Imago certification wording, and the
+  accurate South Avenue location heading.
+- Practice settings: verified Psychology Today and Imago profile links, plus
+  emergency guidance consistent with the existing contact/perinatal pages.
+- Blog: three existing “Doing the Work” section headings changed to `h2`, with
+  all wording, keys, and marks preserved.
+
+Post-apply previews returned no changes for both scopes. Plans and backups are
+in ignored `.local/seo-release/followup/`; use the field-level rollback guidance
+above if needed. New metadata/footer rendering still requires code deployment.
+Christina's input log now covers the actual 50/60-minute billing contradiction,
+monthly Stronger Together vs. eight-week Connected Couple discrepancy,
+insurance/superbills, practical FAQs, virtual care, and practice notices.
+
+Validation: component and provider checks, formatting, lint, typecheck, Sanity
+content validation, 82 unit tests, production build, and 87 browser tests passed
+(one existing intentional skip). Mobile/desktop footer screenshots were reviewed.
+`verify:ci` stopped at its committed-file drift gate because this change
+intentionally updates `schema.json` and `sanity.types.ts`; those diffs contain only
+the new safety field/query, were reviewed, and the remaining CI commands passed
+when run directly. Content validation retains the existing legacy address warnings.

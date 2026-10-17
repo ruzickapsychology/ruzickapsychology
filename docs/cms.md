@@ -140,9 +140,20 @@ publishes or discards the draft. Coordinate publishing with editors because
 draft nonexistence cannot be asserted atomically.
 
 `--article-formatting-only` repairs the known romantic-attraction article's
-three section-heading styles and stray delimiter span. It requires exact
+three section-heading styles and stray delimiter span, plus the three existing
+section-heading styles in the “Doing the Work” article. It requires exact
 source-text matches and uses the same reviewed-plan, backup, revision, and
 draft guards. It does not import fixture copy or change clinical wording.
+
+`--verified-facts-only` narrowly corrects the known About license/certification
+and South Avenue heading, adds verified profile links without removing existing
+profiles, and initializes the shared emergency notice. It rejects unexpected
+existing wording and uses the same saved-plan, backup, revision, and draft guards.
+It does not update hours, insurance, billing, workshop details, or clinical prose.
+
+The optional `siteSettings.safetyNotice` supplies the public footer notice. Keep
+it concise and consistent with the contact-page emergency guidance. Missing
+content renders nothing; it does not fall back to seed fixtures.
 
 ## Array key repair
 

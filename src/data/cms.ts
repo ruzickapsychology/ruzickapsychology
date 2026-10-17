@@ -27,6 +27,7 @@ export type SiteSettings = {
   practitioner: string;
   email: string;
   phone?: string;
+  safetyNotice?: string | null;
   address: {
     streetAddress: string;
     addressLocality: string;
@@ -265,6 +266,7 @@ const siteSettingsQuery = defineQuery(/* groq */ `
     practitioner,
     email,
     phone,
+    safetyNotice,
     address{
       "streetAddress": coalesce(streetAddress, line1),
       "addressLocality": coalesce(addressLocality, "Rochester"),

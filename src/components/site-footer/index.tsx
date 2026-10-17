@@ -18,123 +18,130 @@ export function SiteFooter({
   return (
     <footer data-slot="site-footer" className={styles.root}>
       <Container size="xl" className={styles.container}>
-        <Grid layout="three" gap="lg" className={styles.grid}>
-          <Stack
-            as="section"
-            gap="xs"
-            className={styles.links}
-            aria-labelledby="footer-explore"
-          >
-            <Eyebrow
-              as="div"
-              variant="overline"
-              tone="inverse"
-              id="footer-explore"
-              className={styles.groupLabel}
+        <Stack gap="lg">
+          <Grid layout="three" gap="lg" className={styles.grid}>
+            <Stack
+              as="section"
+              gap="xs"
+              className={styles.links}
+              aria-labelledby="footer-explore"
             >
-              Explore
-            </Eyebrow>
-            <nav aria-label="Footer navigation">
-              <Stack gap="xs">
-                {FOOTER_NAV.map((l) => (
-                  <Link key={l.label} href={l.href} className={styles.link}>
-                    {l.label}
-                  </Link>
-                ))}
-                {siteSettings?.portalUrl ? (
-                  <TrackedExternalLink
-                    href={siteSettings.portalUrl}
-                    event="client_portal_click"
-                    className={styles.link}
-                  >
-                    <span className={styles.portalInner}>
-                      Existing Client Portal
-                      <span className={styles.portalIcon}>
-                        <ArrowUpRight />
-                      </span>
-                    </span>
-                  </TrackedExternalLink>
-                ) : null}
-              </Stack>
-            </nav>
-          </Stack>
-
-          <div className={styles.badge}>
-            {siteSettings?.name ? (
-              <Link
-                href="/"
-                aria-label={`${siteSettings.name}, Rochester, New York — home`}
-                className={styles.badgeLink}
+              <Eyebrow
+                as="div"
+                variant="overline"
+                tone="inverse"
+                id="footer-explore"
+                className={styles.groupLabel}
               >
-                <RotatingFlowerBadge
-                  messages={[
-                    siteSettings.name.toUpperCase(),
-                    "ROCHESTER, NEW YORK",
-                  ]}
-                  pathId="rp-footer-badge-path"
-                  flowerColor="rgb(241 238 235 / 0.18)"
-                  flowerClassName="footerFlowerEmboss"
-                  textColor="var(--color-footer-badge)"
-                />
-              </Link>
-            ) : null}
-          </div>
-
-          <Stack gap="sm" className={styles.info}>
-            {siteSettings ? (
-              <>
-                <Text as="div" variant="detail" tone="inverse">
-                  {siteSettings.address.streetAddress}
-                  <br />
-                  {siteSettings.address.addressLocality},{" "}
-                  {siteSettings.address.addressRegion === "NY"
-                    ? "New York"
-                    : siteSettings.address.addressRegion}{" "}
-                  {siteSettings.address.postalCode}
-                  {siteSettings.address.note ? (
-                    <Text
-                      as="div"
-                      variant="detail"
-                      tone="inverse"
-                      className={styles.note}
-                    >
-                      {siteSettings.address.note.replace("also ", "")}
-                    </Text>
-                  ) : null}
-                </Text>
-                {siteSettings.phone ? (
-                  <Text as="div" variant="detail" tone="inverse">
+                Explore
+              </Eyebrow>
+              <nav aria-label="Footer navigation">
+                <Stack gap="xs">
+                  {FOOTER_NAV.map((l) => (
+                    <Link key={l.label} href={l.href} className={styles.link}>
+                      {l.label}
+                    </Link>
+                  ))}
+                  {siteSettings?.portalUrl ? (
                     <TrackedExternalLink
-                      href={`tel:${siteSettings.phone.replace(/[^+\d]/g, "")}`}
-                      event="phone_click"
-                      target="_self"
-                      className={styles.profileLink}
+                      href={siteSettings.portalUrl}
+                      event="client_portal_click"
+                      className={styles.link}
                     >
-                      {siteSettings.phone}
+                      <span className={styles.portalInner}>
+                        Existing Client Portal
+                        <span className={styles.portalIcon}>
+                          <ArrowUpRight />
+                        </span>
+                      </span>
                     </TrackedExternalLink>
+                  ) : null}
+                </Stack>
+              </nav>
+            </Stack>
+
+            <div className={styles.badge}>
+              {siteSettings?.name ? (
+                <Link
+                  href="/"
+                  aria-label={`${siteSettings.name}, Rochester, New York — home`}
+                  className={styles.badgeLink}
+                >
+                  <RotatingFlowerBadge
+                    messages={[
+                      siteSettings.name.toUpperCase(),
+                      "ROCHESTER, NEW YORK",
+                    ]}
+                    pathId="rp-footer-badge-path"
+                    flowerColor="rgb(241 238 235 / 0.18)"
+                    flowerClassName="footerFlowerEmboss"
+                    textColor="var(--color-footer-badge)"
+                  />
+                </Link>
+              ) : null}
+            </div>
+
+            <Stack gap="sm" className={styles.info}>
+              {siteSettings ? (
+                <>
+                  <Text as="div" variant="detail" tone="inverse">
+                    {siteSettings.address.streetAddress}
+                    <br />
+                    {siteSettings.address.addressLocality},{" "}
+                    {siteSettings.address.addressRegion === "NY"
+                      ? "New York"
+                      : siteSettings.address.addressRegion}{" "}
+                    {siteSettings.address.postalCode}
+                    {siteSettings.address.note ? (
+                      <Text
+                        as="div"
+                        variant="detail"
+                        tone="inverse"
+                        className={styles.note}
+                      >
+                        {siteSettings.address.note.replace("also ", "")}
+                      </Text>
+                    ) : null}
                   </Text>
-                ) : null}
-                {siteSettings.externalProfiles?.length ? (
-                  <div className={styles.profileLinks}>
-                    {siteSettings.externalProfiles.map((profile) => (
+                  {siteSettings.phone ? (
+                    <Text as="div" variant="detail" tone="inverse">
                       <TrackedExternalLink
-                        key={profile._key ?? profile.url}
-                        href={profile.url}
-                        event="external_profile_click"
+                        href={`tel:${siteSettings.phone.replace(/[^+\d]/g, "")}`}
+                        event="phone_click"
+                        target="_self"
                         className={styles.profileLink}
                       >
-                        {profile.label}
+                        {siteSettings.phone}
                       </TrackedExternalLink>
-                    ))}
-                  </div>
-                ) : null}
-                <Text as="div" variant="detail" tone="inverse">
-                  © {new Date().getFullYear()} {siteSettings.legalName}
-                </Text>
-              </>
-            ) : null}
-          </Stack>
-        </Grid>
+                    </Text>
+                  ) : null}
+                  {siteSettings.externalProfiles?.length ? (
+                    <div className={styles.profileLinks}>
+                      {siteSettings.externalProfiles.map((profile) => (
+                        <TrackedExternalLink
+                          key={profile._key ?? profile.url}
+                          href={profile.url}
+                          event="external_profile_click"
+                          className={styles.profileLink}
+                        >
+                          {profile.label}
+                        </TrackedExternalLink>
+                      ))}
+                    </div>
+                  ) : null}
+                  <Text as="div" variant="detail" tone="inverse">
+                    © {new Date().getFullYear()} {siteSettings.legalName}
+                  </Text>
+                </>
+              ) : null}
+            </Stack>
+          </Grid>
+          {siteSettings?.safetyNotice ? (
+            <Text variant="detail" tone="inverse">
+              {siteSettings.safetyNotice}
+            </Text>
+          ) : null}
+        </Stack>
       </Container>
     </footer>
   );
