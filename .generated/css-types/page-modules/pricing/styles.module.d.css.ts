@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly feeAmount: string;
   readonly feeNote: string;
   readonly feeRow: string;
   readonly feesHeading: string;

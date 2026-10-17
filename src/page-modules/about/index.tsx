@@ -65,7 +65,7 @@ export function AboutPage({
             image={about.portraitImage}
             alt={about.portraitImage?.alt ?? "Dr. Christina Ruzicka"}
             imageSizes="(min-width: 1024px) 360px, 85vw"
-            sticky
+            sticky="lg"
           />
           <ContentHeader align="left" gap="none" width="lg">
             <ContentHeaderEyebrow>{about.credentials}</ContentHeaderEyebrow>

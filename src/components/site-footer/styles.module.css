@@ -101,6 +101,11 @@
   color: var(--color-accent-soft);
 }
 
+.root a:focus-visible {
+  outline: 2px solid var(--color-light);
+  outline-offset: 4px;
+}
+
 @media (min-width: 640px) {
   .badge {
     justify-content: center;

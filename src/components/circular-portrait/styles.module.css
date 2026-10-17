@@ -19,8 +19,16 @@
   top: var(--portrait-sticky-top, 6rem);
 }
 
-.stickyMd {
+.stickyMd,
+.stickyLg {
   position: static;
+}
+
+@media (min-width: 1024px) {
+  .stickyLg {
+    position: sticky;
+    top: var(--portrait-sticky-top, 6rem);
+  }
 }
 
 .frame {

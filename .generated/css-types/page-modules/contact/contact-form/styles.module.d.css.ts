@@ -14,6 +14,7 @@ declare const styles: {
   readonly honeypot: string;
   readonly privacyNote: string;
   readonly submit: string;
+  readonly successShell: string;
   readonly successToastLifecycle: string;
   readonly toast: string;
   readonly toastClose: string;

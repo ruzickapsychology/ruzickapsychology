@@ -84,12 +84,19 @@ export function ContactForm({
   const [animationRun, setAnimationRun] = useState(0);
   const [showToast, setShowToast] = useState(false);
   const [toastScrolled, setToastScrolled] = useState(false);
+  const [successHeight, setSuccessHeight] = useState<number>();
   const submissionInFlight = useRef(false);
   const successRef = useRef<HTMLElement>(null);
   const errorRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    if (state.status === "success") successRef.current?.focus();
+    if (state.status === "success") {
+      successRef.current?.focus({ preventScroll: true });
+      successRef.current?.scrollIntoView({
+        block: "center",
+        behavior: "instant",
+      });
+    }
   }, [state.status]);
 
   useEffect(() => {
@@ -217,6 +224,8 @@ export function ContactForm({
       } catch {
         // Keep the successful delivery state when analytics is unavailable.
       }
+      // Retain the filled form's footprint when replacing it with confirmation.
+      setSuccessHeight(form.getBoundingClientRect().height);
       setAnimationRun((run) => run + 1);
       setState({
         status: "success",
@@ -245,7 +254,12 @@ export function ContactForm({
         />
       )}
 
-      <form onSubmit={handleSubmit} className={styles.form} aria-busy={pending}>
+      <form
+        onSubmit={handleSubmit}
+        className={styles.form}
+        aria-busy={pending}
+        style={successHeight ? { minHeight: successHeight } : undefined}
+      >
         <div aria-hidden className={styles.honeypot}>
           <label htmlFor="company">Company</label>
           <input id="company" name="company" tabIndex={-1} autoComplete="off" />
@@ -261,7 +275,7 @@ export function ContactForm({
 
         {state.status === "success" ? (
           <>
-            <div className={styles.fieldsShell}>
+            <div className={cn(styles.fieldsShell, styles.successShell)}>
               <SubmissionBloom animationRun={animationRun} />
               <Text ref={successRef} tabIndex={-1} role="status" tone="inverse">
                 Your message has been received. Thank you for getting in touch.

@@ -102,7 +102,8 @@
 
 .menuButton {
   display: inline-flex;
-  height: 1.5rem;
+  min-height: 44px;
+  margin-block: -10px;
   min-width: 3rem;
   align-items: center;
   justify-content: flex-end;
@@ -117,7 +118,7 @@
   position: fixed;
   inset: 0;
   z-index: 10;
-  overflow-y: auto;
+  overflow: hidden;
   opacity: 0;
   backdrop-filter: blur(0);
   will-change: opacity, backdrop-filter;
@@ -142,10 +143,17 @@
 
 .mobileContainer {
   display: flex;
-  min-height: 100dvh;
+  height: calc(100dvh - 4rem);
+  margin-top: 4rem;
+  overflow-y: auto;
   flex-direction: column;
-  justify-content: center;
-  padding-block: 7rem;
+  justify-content: safe center;
+  padding-block: 3rem 7rem;
+}
+
+.primaryNav,
+.secondary {
+  flex-shrink: 0;
 }
 
 .primaryNav {
@@ -330,7 +338,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .panel,
-  .item {
+  .panelOpen .item,
+  .panelClosing .item {
     animation: none;
     transform: none;
   }
@@ -338,6 +347,10 @@
   .panelOpen,
   .panelOpen .item {
     opacity: 1;
+  }
+
+  .panelOpen {
+    backdrop-filter: blur(40px);
   }
 
   .panelClosing,
