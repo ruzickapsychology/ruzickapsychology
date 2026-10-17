@@ -44,7 +44,7 @@ export function SpecialtiesPage({
   return (
     <PageShell>
       <PageHeader>
-        <PageHeaderContent>
+        <PageHeaderContent variant="overview">
           {specialties.eyebrow ? (
             <PageHeaderEyebrow>{specialties.eyebrow}</PageHeaderEyebrow>
           ) : null}
@@ -86,6 +86,7 @@ export function SpecialtiesPage({
         >
           <BackgroundImageLayer
             image={specialties.modality.backgroundImage}
+            readability="light"
             sizes="100vw"
           />
           <GridContainer size="xl" className={styles.modalityContainer}>

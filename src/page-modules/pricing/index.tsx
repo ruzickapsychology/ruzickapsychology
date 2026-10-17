@@ -69,7 +69,7 @@ export function PricingPage({
   return (
     <PageShell>
       <PageHeader>
-        <PageHeaderContent width="md">
+        <PageHeaderContent variant="overview" width="md">
           {pricing.eyebrow ? (
             <PageHeaderEyebrow>{pricing.eyebrow}</PageHeaderEyebrow>
           ) : null}

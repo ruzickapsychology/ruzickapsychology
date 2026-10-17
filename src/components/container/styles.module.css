@@ -2,7 +2,8 @@
   margin-inline: auto;
   width: 100%;
   min-width: 0;
-  padding-inline: var(--page-gutter);
+  padding-inline-start: max(var(--page-gutter), env(safe-area-inset-left, 0px));
+  padding-inline-end: max(var(--page-gutter), env(safe-area-inset-right, 0px));
 }
 
 .sm {

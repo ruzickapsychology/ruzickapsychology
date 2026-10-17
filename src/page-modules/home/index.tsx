@@ -1,3 +1,4 @@
+import { Container } from "@/components/container";
 import Image from "next/image";
 import { ActionGroup } from "@/components/action-group";
 import { CircularPortrait } from "@/components/circular-portrait";
@@ -139,7 +140,7 @@ export function HomePage({
 
       {/* specialties — quadrant layout */}
       <Section id="home-specialties" size="spacious">
-        <GridContainer size="xl" layout="single">
+        <Container size="xl">
           <ContentHeader>
             <ContentHeaderEyebrow>
               {home.specialties.eyebrow}
@@ -167,7 +168,7 @@ export function HomePage({
           <div className={styles.centeredAction}>
             <TextLink href="/specialties">View all specialties</TextLink>
           </div>
-        </GridContainer>
+        </Container>
       </Section>
 
       {/* about preview */}

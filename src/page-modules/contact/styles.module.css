@@ -1,5 +1,6 @@
 .header {
-  padding-block: calc(var(--fixed-header-offset) + var(--space-16));
+  padding-block: var(--section-space-spacious);
+  padding-block-start: var(--section-space-page-start);
 }
 
 .imageGrain {
@@ -31,6 +32,11 @@
 
 .contactMethods > * + * {
   margin-top: 0.375rem;
+}
+
+.inquiryPanel {
+  border-top: 1px solid color-mix(in srgb, var(--color-light) 35%, transparent);
+  padding-top: var(--space-8);
 }
 
 .contactLink {
@@ -67,10 +73,6 @@
   display: grid;
 }
 
-.stepItem {
-  padding: 2rem;
-}
-
 .stepNumber {
   margin-bottom: var(--space-4);
 }
@@ -81,7 +83,6 @@
 
 .detailsPanel {
   padding-block: 2.5rem;
-  padding-right: 2rem;
 }
 
 .detailLabel {
@@ -124,15 +125,23 @@
 @media (min-width: 768px) {
   .detailsPanel {
     padding-block: 3.5rem;
-    padding-right: 3rem;
-  }
-
-  .detailDivider {
-    margin-right: 3rem;
   }
 }
 
 @media (min-width: 1024px) {
+  .detailsPanel {
+    padding-inline-end: var(--panel-padding);
+  }
+
+  .detailDivider {
+    margin-inline-end: var(--panel-padding);
+  }
+
+  .inquiryPanel {
+    border-top: 0;
+    padding-top: 0;
+  }
+
   .detailsGrid {
     border-right: 1px solid var(--color-muted);
   }

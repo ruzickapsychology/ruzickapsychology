@@ -1,7 +1,7 @@
 .heading {
   font-family: var(--font-heading), Georgia, serif;
   font-weight: 400;
-  line-height: var(--leading-tight);
+  line-height: var(--leading-heading);
   letter-spacing: var(--tracking-heading);
   text-wrap: balance;
   overflow-wrap: anywhere;

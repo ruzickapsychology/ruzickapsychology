@@ -47,9 +47,20 @@ export function PageHeaderBreadcrumbs({
   );
 }
 
-export function PageHeaderContent(props: ComponentProps<typeof ContentHeader>) {
+export function PageHeaderContent({
+  variant = "editorial",
+  ...props
+}: {
+  variant?: "overview" | "editorial";
+} & Omit<ComponentProps<typeof ContentHeader>, "align">) {
   return (
-    <ContentHeader data-slot="page-header-content" gap="none" {...props} />
+    <ContentHeader
+      data-slot="page-header-content"
+      data-variant={variant}
+      align={variant === "overview" ? "center" : "left"}
+      gap="none"
+      {...props}
+    />
   );
 }
 

@@ -7,9 +7,11 @@ declare const styles: {
   readonly info: string;
   readonly link: string;
   readonly links: string;
+  readonly navigation: string;
   readonly note: string;
   readonly portalIcon: string;
   readonly portalInner: string;
+  readonly portalLink: string;
   readonly profileLink: string;
   readonly profileLinks: string;
   readonly root: string;

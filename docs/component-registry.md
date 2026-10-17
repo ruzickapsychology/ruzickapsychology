@@ -30,6 +30,11 @@ follow a shadcn-style composition contract while retaining CSS Modules.
 
 ## Compound Content
 
+- `office-hours` — semantic day/time table for CMS hours lines. Splits the
+  existing middle-dot delimiter, aligns times in a shared column, and preserves
+  unstructured availability notes across both columns. Does not infer or change
+  business hours.
+
 - `content-header` — `ContentHeader`, `ContentHeaderEyebrow`,
   `ContentHeaderTitle`, `ContentHeaderDescription`, and
   `ContentHeaderActions`. `align="centerLeft"` centers on mobile and switches
@@ -37,6 +42,8 @@ follow a shadcn-style composition contract while retaining CSS Modules.
 - `page-header` — `PageHeader`, `PageHeaderBreadcrumbs`,
   `PageHeaderContent`, `PageHeaderEyebrow`, `PageHeaderTitle`, and
   `PageHeaderDescription`. `PageHeaderTitle` always renders the page H1.
+  `PageHeaderContent variant="overview"` centers overview introductions;
+  `variant="editorial"` (default) left-aligns reading-page introductions.
 - `disclosure-list` — `DisclosureList`, `DisclosureItem`,
   `DisclosureTrigger`, `DisclosureEyebrow`, `DisclosureTitle`, and
   `DisclosureContent`.
@@ -68,6 +75,8 @@ follow a shadcn-style composition contract while retaining CSS Modules.
 ## Media, Cards, And Brand
 
 - `background-image-layer`, `circular-portrait` — responsive Sanity imagery.
+  `BackgroundImageLayer readability="light"` adds the shared cream wash for dark
+  text over artwork; the default leaves standalone imagery unchanged.
 - `divider-grid`, `editorial-link-card`, `specialty-card` — reusable content
   blocks.
 - `flower-mark`, `hero-badge`, `specialty-glyph`, `arrow-up-right` —

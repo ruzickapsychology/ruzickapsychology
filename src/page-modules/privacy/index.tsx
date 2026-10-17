@@ -15,7 +15,7 @@ export function PrivacyPage() {
   return (
     <PageShell>
       <PageHeader>
-        <PageHeaderContent align="left">
+        <PageHeaderContent variant="editorial">
           <PageHeaderEyebrow>Website information</PageHeaderEyebrow>
           <PageHeaderTitle>Privacy Notice</PageHeaderTitle>
           <PageHeaderDescription>

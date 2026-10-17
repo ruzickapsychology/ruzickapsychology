@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/site-footer";
 import { SiteAnalytics } from "@/components/site-analytics";
+import { SpecialtyMotion } from "@/components/specialty-motion";
 import { SiteHeader } from "@/components/site-header";
 import { JsonLd } from "@/components/json-ld";
 import { getSiteSettings } from "@/data/cms";
@@ -21,6 +22,7 @@ export default async function SiteLayout({
       </a>
       <SiteHeader siteSettings={siteSettings} />
       <SiteAnalytics />
+      <SpecialtyMotion />
       <main id="main-content" tabIndex={-1} className={styles.main}>
         {children}
       </main>

@@ -25,7 +25,7 @@ function Icon({
 }
 
 /**
- * Specialty glyph. Sub-parts animate only inside a hovered specialty card.
+ * Specialty glyph. Sub-parts animate on desktop hover/focus or the coordinated touch active card.
  */
 export function SpecialtyGlyph({
   icon,
