@@ -77,7 +77,7 @@ export function ServicePage({
             ]}
           />
         </PageHeaderBreadcrumbs>
-        <PageHeaderContent align="left">
+        <PageHeaderContent variant="editorial">
           <PageHeaderEyebrow>Rochester, New York</PageHeaderEyebrow>
           <PageHeaderTitle>{service.pageHeading}</PageHeaderTitle>
           <PageHeaderDescription>{service.intro}</PageHeaderDescription>
@@ -96,11 +96,9 @@ export function ServicePage({
       >
         <ContentHeader align="left" gap="none">
           <ContentHeaderEyebrow variant="overline">
-            This may be a fit if…
+            Common concerns
           </ContentHeaderEyebrow>
-          <ContentHeaderTitle>
-            You want support with concerns such as:
-          </ContentHeaderTitle>
+          <ContentHeaderTitle>What brings you to therapy</ContentHeaderTitle>
         </ContentHeader>
         <ul className={styles.concernList}>
           {service.commonConcerns.map((concern) => (

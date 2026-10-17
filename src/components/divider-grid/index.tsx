@@ -28,6 +28,7 @@ export function DividerGrid({
       )}
       data-slot="divider-grid"
       data-divider-grid={columns}
+      data-two-column-breakpoint={twoColumnBreakpoint}
     >
       {items.map((child, index) => (
         <div

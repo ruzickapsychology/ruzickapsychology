@@ -29,6 +29,11 @@
   --color-contact-responsive-wash: rgb(37 31 18 / 0.35);
   --color-hover-wash: rgb(241 238 235 / 0.24);
   --color-feature-35: color-mix(in srgb, var(--color-feature) 35%, transparent);
+  --color-image-light-wash: color-mix(
+    in srgb,
+    var(--color-surface) 90%,
+    transparent
+  );
   --color-feature-90: color-mix(in srgb, var(--color-feature) 90%, transparent);
   --color-contact-65: color-mix(
     in srgb,
@@ -63,6 +68,7 @@
   --text-heading-section: clamp(2rem, 5.5vw, 2.75rem);
   --text-heading-display: clamp(2.6rem, 7vw, 4.125rem);
   --leading-tight: 1.08;
+  --leading-heading: 1.16;
   --leading-compact: 1.55;
   --leading-body: 1.6;
   --leading-relaxed: 1.65;
@@ -95,17 +101,20 @@
   --container-lg: 64rem;
   --container-xl: 75rem;
 
-  --page-gutter: clamp(1.5rem, 4vw, 2.5rem);
+  --page-gutter: var(--space-4);
   --grid-gutter: clamp(1.25rem, 3vw, 2rem);
   --grid-card-min: 20rem;
-  --section-space-compact: 3rem;
-  --section-space-default: var(--space-16);
-  --section-space-page-start: 7rem;
-  --section-space-page-end: 5rem;
+  --section-space-compact: var(--space-8);
+  --section-space-default: var(--space-12);
+  --page-intro-gap: 2.5rem;
+  --section-space-page-start: calc(
+    var(--fixed-header-offset) + var(--page-intro-gap)
+  );
+  --section-space-page-end: var(--space-12);
   --section-space-after-page-header: 0rem;
-  --section-space-spacious: 5rem;
-  --content-header-gap: 3.5rem;
-  --content-header-gap-spacious: var(--space-16);
+  --section-space-spacious: var(--space-16);
+  --content-header-gap: var(--space-8);
+  --content-header-gap-spacious: var(--space-12);
   --panel-padding: var(--space-6);
   --fixed-header-offset: var(--space-16);
   --hero-min-block-size: 47.5rem;
@@ -119,21 +128,28 @@
 
 @media (min-width: 640px) {
   :root {
-    --section-space-compact: var(--space-16);
-    --section-space-default: 5rem;
-    --section-space-page-start: 8rem;
-    --section-space-page-end: 6rem;
-    --section-space-spacious: 7rem;
-    --content-header-gap: 3.75rem;
-    --content-header-gap-spacious: var(--space-20);
+    --page-gutter: clamp(1.5rem, 4vw, 2.5rem);
+    --section-space-compact: var(--space-12);
+    --section-space-default: var(--space-16);
+    --page-intro-gap: 3.5rem;
+    --section-space-page-end: var(--space-16);
+    --section-space-spacious: var(--space-20);
+    --content-header-gap: var(--space-10);
+    --content-header-gap-spacious: var(--space-16);
     --panel-padding: var(--space-8);
     --hero-min-block-size: 52.5rem;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   :root {
+    --page-intro-gap: 4.5rem;
+    --section-space-compact: var(--space-16);
+    --section-space-default: var(--space-20);
+    --section-space-page-end: 6rem;
     --section-space-spacious: 8rem;
+    --content-header-gap: 3.75rem;
+    --content-header-gap-spacious: var(--space-20);
   }
 }
 
@@ -226,7 +242,7 @@
   h3 {
     font-family: var(--font-heading), Georgia, serif;
     font-weight: 400;
-    line-height: var(--leading-tight);
+    line-height: var(--leading-heading);
     letter-spacing: var(--tracking-heading);
     color: var(--color-fg);
   }

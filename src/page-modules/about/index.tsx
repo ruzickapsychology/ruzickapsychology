@@ -1,3 +1,4 @@
+import { Container } from "@/components/container";
 import { BackgroundImageLayer } from "@/components/background-image-layer";
 import { CircularPortrait } from "@/components/circular-portrait";
 import {
@@ -54,7 +55,7 @@ export function AboutPage({
   return (
     <PageShell>
       {/* bio */}
-      <Section size="default">
+      <Section size="page">
         <GridContainer size="xl" layout="portrait" gap="lg" align="start">
           <CircularPortrait
             image={about.portraitImage}
@@ -91,7 +92,7 @@ export function AboutPage({
       {/* therapy space */}
       {about.space ? (
         <Section size="spacious" tone="feature">
-          <GridContainer size="xl" layout="single">
+          <Container size="xl">
             <ContentHeader>
               {about.space.eyebrow ? (
                 <ContentHeaderEyebrow>
@@ -142,7 +143,7 @@ export function AboutPage({
                 />
               </div>
             </Grid>
-          </GridContainer>
+          </Container>
         </Section>
       ) : null}
 

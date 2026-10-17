@@ -1,5 +1,6 @@
 .columns2,
 .columns4 {
+  --divider-item-inset: 0px;
   display: grid;
   grid-column: 1 / -1;
   grid-template-columns: minmax(0, 1fr);
@@ -13,13 +14,18 @@
   border-color: var(--color-muted);
 }
 
+.item > * {
+  padding: var(--panel-padding) var(--divider-item-inset);
+}
+
 .borderBottom {
   border-bottom-width: 1px;
 }
 
 @media (min-width: 640px) {
-  .columns2,
+  .columns2[data-two-column-breakpoint="sm"],
   .columns4 {
+    --divider-item-inset: var(--panel-padding);
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -33,6 +39,11 @@
 }
 
 @media (min-width: 768px) {
+  .columns2[data-two-column-breakpoint="md"] {
+    --divider-item-inset: var(--panel-padding);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .borderRightMd {
     border-right-width: 1px;
   }

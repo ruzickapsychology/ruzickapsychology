@@ -8,6 +8,7 @@ import { TrackedExternalLink } from "@/components/tracked-external-link";
 import { Eyebrow, Text } from "@/components/typography";
 import type { SiteSettings } from "@/data/cms";
 import { FOOTER_NAV } from "@/config/site";
+import { cn } from "@/lib/class-names";
 import styles from "./styles.module.css";
 
 export function SiteFooter({
@@ -36,7 +37,7 @@ export function SiteFooter({
                 Explore
               </Eyebrow>
               <nav aria-label="Footer navigation">
-                <Stack gap="xs">
+                <Grid layout="two" gap="none" className={styles.navigation}>
                   {FOOTER_NAV.map((l) => (
                     <Link key={l.label} href={l.href} className={styles.link}>
                       {l.label}
@@ -46,7 +47,7 @@ export function SiteFooter({
                     <TrackedExternalLink
                       href={siteSettings.portalUrl}
                       event="client_portal_click"
-                      className={styles.link}
+                      className={cn(styles.link, styles.portalLink)}
                     >
                       <span className={styles.portalInner}>
                         Existing Client Portal
@@ -56,7 +57,7 @@ export function SiteFooter({
                       </span>
                     </TrackedExternalLink>
                   ) : null}
-                </Stack>
+                </Grid>
               </nav>
             </Stack>
 

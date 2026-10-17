@@ -14,6 +14,7 @@ import {
   ImmersivePageHeaderContent,
 } from "@/components/immersive-page-header";
 import { PageShell } from "@/components/page-shell";
+import { OfficeHours } from "@/components/office-hours";
 import { TrackedExternalLink } from "@/components/tracked-external-link";
 import { Eyebrow, Heading, Text } from "@/components/typography";
 import { getAvailabilityContext } from "@/config/availability";
@@ -57,7 +58,7 @@ export function ContactPage({
           />
         }
       >
-        <ImmersivePageHeaderContent layout="twoLg" align="start">
+        <ImmersivePageHeaderContent layout="twoLg" align="start" gap="lg">
           <ContentHeader tone="inverse" align="left" gap="none" width="md">
             <ContentHeaderEyebrow>{contact.eyebrow}</ContentHeaderEyebrow>
             <ContentHeaderTitle as="h1" size="display">
@@ -99,7 +100,7 @@ export function ContactPage({
             </div>
           </ContentHeader>
 
-          <div>
+          <div className={styles.inquiryPanel}>
             {availability.isClosed ? (
               <div className={styles.availabilityPanel}>
                 <ContentHeader tone="inverse" align="left" gap="none">
@@ -141,19 +142,14 @@ export function ContactPage({
 
       {/* what to expect */}
       {contact.expect ? (
-        <ContentSection
-          size="spacious"
-          tone="feature"
-          layout="single"
-          containerSize="xl"
-        >
+        <ContentSection size="spacious" tone="feature" containerSize="xl">
           <ContentHeader>
             <ContentHeaderEyebrow>
               {contact.expect.eyebrow}
             </ContentHeaderEyebrow>
             <ContentHeaderTitle>{contact.expect.heading}</ContentHeaderTitle>
           </ContentHeader>
-          <DividerGrid columns={4} itemClassName={styles.stepItem}>
+          <DividerGrid columns={4}>
             {contact.expect.steps?.map((step) => (
               <div key={step._key ?? step.n}>
                 <Eyebrow variant="label" className={styles.stepNumber}>
@@ -197,14 +193,7 @@ export function ContactPage({
             <Eyebrow as="div" variant="label" className={styles.detailLabel}>
               Hours
             </Eyebrow>
-            <Text>
-              {site.hours.map((h) => (
-                <span key={h}>
-                  {h}
-                  <br />
-                </span>
-              ))}
-            </Text>
+            <OfficeHours hours={site.hours} />
           </div>
         </div>
         <div className={styles.mapShell}>

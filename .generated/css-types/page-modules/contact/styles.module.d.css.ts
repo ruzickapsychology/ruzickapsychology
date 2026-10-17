@@ -10,10 +10,10 @@ declare const styles: {
   readonly header: string;
   readonly headerWash: string;
   readonly imageGrain: string;
+  readonly inquiryPanel: string;
   readonly map: string;
   readonly mapOverlay: string;
   readonly mapShell: string;
-  readonly stepItem: string;
   readonly stepNumber: string;
   readonly stepTitle: string;
 };

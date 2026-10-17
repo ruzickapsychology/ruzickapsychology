@@ -16,7 +16,7 @@
 
 .modalityContent {
   max-width: var(--measure-xl);
-  padding: 3rem 2rem;
+  padding-block: 3rem;
   text-align: left;
 }
 
@@ -31,6 +31,6 @@
 
 @media (min-width: 640px) {
   .modalityContent {
-    padding: 3.5rem 3rem;
+    padding-block: 3.5rem;
   }
 }

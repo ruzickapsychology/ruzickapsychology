@@ -5,3 +5,11 @@
   z-index: 0;
   object-fit: cover;
 }
+
+.lightWash {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--color-image-light-wash);
+}

@@ -395,7 +395,7 @@ test("footer uses the simplified three-part layout without services", async ({
 
   const footer = page.locator('[data-slot="site-footer"]');
   await expect(footer.getByText("Services", { exact: true })).toHaveCount(0);
-  await expect(footer.locator('[data-slot="grid"]')).toHaveAttribute(
+  await expect(footer.locator('[data-slot="grid"]').first()).toHaveAttribute(
     "data-layout",
     "three",
   );

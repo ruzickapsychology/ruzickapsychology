@@ -31,7 +31,7 @@ export function FAQPage({ faq }: { faq: FAQPageContent }) {
     <PageShell>
       <JsonLd data={faqJsonLd} />
       <PageHeader>
-        <PageHeaderContent>
+        <PageHeaderContent variant="overview">
           <PageHeaderTitle>{faq.heading}</PageHeaderTitle>
           {faq.intro ? (
             <PageHeaderDescription>{faq.intro}</PageHeaderDescription>

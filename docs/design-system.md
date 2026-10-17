@@ -44,12 +44,21 @@ Fonts are loaded in `src/app/layout.tsx`.
 
 Current content styles:
 
+Headings use `--leading-heading` (1.16) to give multiline serif text room for
+ascenders and descenders. Keep this separate from the tighter navigation leading;
+do not compensate with route-specific line heights or manual line breaks.
+
 - `Heading`: `display`, `section`, `content`, `module`, and `item`.
 - `Eyebrow`: `section`, `overline`, `label`, and `meta`.
 - `Text`: `lead`, `body`, `supporting`, `detail`, and `quote`.
 - `ContentHeader` composes those roles for every page or section
   introduction.
 - `PortableContent` owns `intro`, `body`, `compact`, and `article` prose.
+
+Section eyebrows are short, standalone labels. Titles should make sense without
+the eyebrow and describe the section directly. Avoid splitting a sentence across
+the two roles or ending a display heading with an ellipsis or list-introducing
+colon. Keep ellipses for actual truncation or ongoing states such as “Sending…”.
 
 The semantic element and visual role are explicit: a card may use
 `<Heading as="h2" size="item">`, while a page title uses
@@ -88,10 +97,36 @@ Shared content widths use the `--measure-sm` through `--measure-xl` tokens.
 Common 4px-based spacing uses the root `--space-*` scale; leave genuinely
 one-off visual adjustments local to their component.
 
+`--page-gutter` is 16px below 640px and `clamp(24px, 4vw, 40px)` from 640px.
+`Container` applies it to both sides, respecting larger device safe-area insets.
+Navigation, footer, page headers, and section content use this same container.
+Unboxed stacked content must not add another horizontal inset. Bordered cards
+retain their own internal panel padding; centered reading widths on larger
+screens are intentional and do not change the gutter rule.
+
 `Grid` and `GridContainer` are the shared responsive grid system. `Stack`
 owns vertical rhythm, and `ContentSection` owns the standard
 Section/Container anatomy. Place a composed `ContentHeader` inside when the
 section needs an introduction.
+
+For a heading followed by content, use `ContentSection`'s default stack layout
+or a plain `Container`: `ContentHeader` owns the intervening space. Do not add a
+single-column grid gap to the header's bottom margin. When a grid or Stack owns
+spacing instead, use `ContentHeader gap="none"`.
+
+Section padding per edge is 32/48/64px (compact/default/spacious) below 640px,
+48/64/80px from 640px, and 64/80/128px from 1024px. Default header-to-content
+spacing is 32/40/60px at those breakpoints. Card padding is separate and uses
+`--panel-padding` (24px mobile, 32px from 640px). Page introductions retain their
+fixed-navigation clearance; never apply that offset to a section's bottom edge.
+
+`DividerGrid` owns padding on each item's immediate content element. Stacked
+items have no horizontal inset: the enclosing `Container` already supplies the
+page gutter. At the grid's actual multi-column breakpoint, items gain shared
+`--panel-padding` horizontally. Do not add padding in a nested card or route
+class; keep links as the immediate content element so the entire padded area
+remains clickable. Two-column grids honor their `sm` or `md` breakpoint for both
+columns and dividers; four-column grids use one/two/four columns at 0/640/1024px.
 
 ## CTA Variants
 
@@ -115,13 +150,18 @@ Avoid rogue button styles. If a new pill/button CTA style is needed, add it to
 
 ```tsx
 <PageHeader>
-  <PageHeaderContent>
+  <PageHeaderContent variant="overview">
     <PageHeaderEyebrow>{page.eyebrow}</PageHeaderEyebrow>
     <PageHeaderTitle>{page.heading}</PageHeaderTitle>
     <PageHeaderDescription>{page.intro}</PageHeaderDescription>
   </PageHeaderContent>
 </PageHeader>
 ```
+
+Use `variant="overview"` for centered Pricing, Specialties, FAQ, and Blog index
+introductions. Use `variant="editorial"` (the default) for left-aligned service,
+article, and privacy introductions. Alignment comes from the shared component,
+not route CSS.
 
 `PageHeader` contains only breadcrumbs, eyebrow, H1, and lead copy. Page
 modules always belong in a following `ContentSection`.
@@ -178,6 +218,11 @@ Use `src/data/blog.ts` helpers. Blog cards should be tappable as a whole and use
 
 ## Mobile Rules
 
+The site footer uses two columns of navigation links below 768px, with the client
+portal spanning both columns. Contact information follows a divider. Hide the
+decorative badge at this size; restore the three-part footer from 768px. Keep
+navigation links at least 44px tall and preserve visible keyboard focus.
+
 - Start single-column by default.
 - Collapse complex grids at `md` unless documented otherwise.
 - Keep tap targets comfortable.
@@ -187,6 +232,12 @@ Use `src/data/blog.ts` helpers. Blog cards should be tappable as a whole and use
 ## Motion
 
 Motion should be gentle and meaningful. Animations live in `globals.css` or purpose-built components. Always preserve `prefers-reduced-motion` behavior.
+
+`SpecialtyMotion` coordinates specialty icons on non-hover devices. Only the
+fully visible glyph nearest 40% of the viewport height plays one cycle; glyphs behind
+the fixed header are excluded. Scrolling, resizing, route content changes, and
+motion-preference changes update the selection. Hover-capable devices retain
+hover/focus animation. Reduced motion disables both modes.
 
 ## CSS Ownership
 
@@ -205,3 +256,17 @@ Use a hybrid CSS model:
 - Run `npm run components:validate` to enforce the component-folder rule.
 
 Do not place component-only selectors in `globals.css` just because it is convenient. If a selector is only used by one component, colocate it.
+
+## Text over artwork
+
+Use `BackgroundImageLayer readability="light"` for dark text directly over
+artwork. Its shared 90% warm-surface wash covers the entire reading area at every
+breakpoint, including when text wraps or the image crop changes. Keep content
+positioned above the image and wash. Do not reduce the wash behind longer copy
+or rely on text shadows. Existing CTA panels provide their own light surface;
+do not stack an additional wash beneath those panels. Light text over photos
+requires a dark overlay, checked against the brightest area behind the text.
+
+Validate body text, eyebrow, links, and hover/focus states against the weakest
+background contrast (4.5:1 for normal text, 3:1 for large text), not average image
+color. Check actual rendered crops on mobile and desktop.

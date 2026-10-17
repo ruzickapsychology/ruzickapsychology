@@ -49,7 +49,7 @@ export function EditorialPage({
   return (
     <PageShell>
       <PageHeader width="md">
-        <PageHeaderContent align="left">
+        <PageHeaderContent variant="editorial">
           <PageHeaderTitle>{title}</PageHeaderTitle>
           <PageHeaderDescription>{intro}</PageHeaderDescription>
         </PageHeaderContent>
@@ -185,3 +185,26 @@ an all-purpose form/page builder.
 ## Responsive Review
 
 Review every new pattern at 375px, 768px, and desktop width. Verify heading order, keyboard focus, link purpose, tap targets, image cropping, and reduced motion.
+
+## Page introductions and breadcrumbs
+
+`PageHeaderContent variant="overview"` centers the title and introduction on
+Pricing, Specialties, FAQ, and the Blog index at every viewport width.
+`variant="editorial"` (the default) keeps service details, articles, and privacy
+introductions left-aligned for reading. All page titles use the
+shared display Heading role and heading line-height token. Long article titles
+may use the documented wider `xl` header measure; body copy stays at `md`.
+Home's centered image hero and About's portrait composition are deliberate
+variants, not separate typography systems.
+
+Breadcrumbs represent hierarchy: use `Home → Specialties → Service` on service
+details and `Home → Blog → Article` on articles. Top-level destinations omit them.
+Use `BreadcrumbTrail` inside `PageHeaderBreadcrumbs` so visible navigation and
+structured data stay together. Do not add a redundant Home/current-page trail
+solely to make top-level pages look like detail pages.
+
+Page introduction clearance is shared: `--fixed-header-offset` plus
+`--page-intro-gap` (40px mobile, 56px from 640px, 72px from 1024px). `Section
+size="page"` applies it to PageHeader and the About portrait introduction;
+Contact uses the same start token for its image header. Later sections retain
+their own section rhythm. Containers continue to own horizontal gutters.

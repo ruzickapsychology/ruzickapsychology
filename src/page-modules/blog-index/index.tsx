@@ -29,7 +29,7 @@ export function BlogIndexPage({
   return (
     <PageShell>
       <PageHeader>
-        <PageHeaderContent>
+        <PageHeaderContent variant="overview">
           <PageHeaderTitle>Blog</PageHeaderTitle>
         </PageHeaderContent>
       </PageHeader>

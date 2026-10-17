@@ -69,7 +69,7 @@ export function BlogPostPage({
             ]}
           />
         </PageHeaderBreadcrumbs>
-        <PageHeaderContent align="left" width="xl">
+        <PageHeaderContent variant="editorial" width="xl">
           <PageHeaderEyebrow variant="meta">
             Published {formatPostDate(post.date)}
             {post.updatedAt && post.updatedAt !== post.date

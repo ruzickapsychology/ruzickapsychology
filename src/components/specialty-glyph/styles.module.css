@@ -211,57 +211,90 @@
   transform: scale(0);
 }
 
-:global(.rp-q):is(:hover, :focus-within) .individualRing {
-  animation: individualRing 1.55s cubic-bezier(0.42, 0, 0.3, 1) infinite;
+@media (hover: hover) {
+  :global(.rp-q):is(:hover, :focus-within) .individualRing {
+    animation: individualRing 1.55s cubic-bezier(0.42, 0, 0.3, 1) infinite;
+  }
+
+  :global(.rp-q):is(:hover, :focus-within) .individualFill {
+    animation: individualFill 1.55s cubic-bezier(0.42, 0, 0.3, 1) infinite;
+  }
+
+  :global(.rp-q):is(:hover, :focus-within) .coupleLeft {
+    animation: coupleLeft 3.7s cubic-bezier(0.42, 0, 0.3, 1) infinite;
+  }
+
+  :global(.rp-q):is(:hover, :focus-within) .coupleRight {
+    animation: coupleRight 3.7s cubic-bezier(0.42, 0, 0.3, 1) infinite;
+  }
+
+  :global(.rp-q):is(:hover, :focus-within) .coupleBridgeX {
+    animation: coupleBridgeX 3.7s cubic-bezier(0.42, 0, 0.3, 1) infinite;
+  }
+
+  :global(.rp-q):is(:hover, :focus-within) .coupleBridgeY {
+    animation: coupleBridgeY 3.7s cubic-bezier(0.42, 0, 0.3, 1) infinite;
+  }
+
+  :global(.rp-q):is(:hover, :focus-within) .cuddleDrop {
+    animation: mother 2.1s ease-in-out infinite;
+  }
+
+  :global(.rp-q):is(:hover, :focus-within) .cuddleCircle {
+    animation: child 2.1s ease-in-out infinite;
+  }
+
+  :global(.rp-q):is(:hover, :focus-within) .spinGroup {
+    animation: quatspin 4.8s linear infinite;
+  }
+
+  :global(.rp-q):is(:hover, :focus-within) .petal {
+    animation: petal 1.6s ease-in-out infinite;
+  }
 }
 
-:global(.rp-q):is(:hover, :focus-within) .individualFill {
-  animation: individualFill 1.55s cubic-bezier(0.42, 0, 0.3, 1) infinite;
+:global(.rp-q)[data-motion-active="true"] .individualRing {
+  animation: individualRing 1.55s cubic-bezier(0.42, 0, 0.3, 1) 1;
 }
 
-:global(.rp-q):is(:hover, :focus-within) .coupleLeft {
-  animation: coupleLeft 3.7s cubic-bezier(0.42, 0, 0.3, 1) infinite;
+:global(.rp-q)[data-motion-active="true"] .individualFill {
+  animation: individualFill 1.55s cubic-bezier(0.42, 0, 0.3, 1) 1;
 }
 
-:global(.rp-q):is(:hover, :focus-within) .coupleRight {
-  animation: coupleRight 3.7s cubic-bezier(0.42, 0, 0.3, 1) infinite;
+:global(.rp-q)[data-motion-active="true"] .coupleLeft {
+  animation: coupleLeft 3.7s cubic-bezier(0.42, 0, 0.3, 1) 1;
 }
 
-:global(.rp-q):is(:hover, :focus-within) .coupleBridgeX {
-  animation: coupleBridgeX 3.7s cubic-bezier(0.42, 0, 0.3, 1) infinite;
+:global(.rp-q)[data-motion-active="true"] .coupleRight {
+  animation: coupleRight 3.7s cubic-bezier(0.42, 0, 0.3, 1) 1;
 }
 
-:global(.rp-q):is(:hover, :focus-within) .coupleBridgeY {
-  animation: coupleBridgeY 3.7s cubic-bezier(0.42, 0, 0.3, 1) infinite;
+:global(.rp-q)[data-motion-active="true"] .coupleBridgeX {
+  animation: coupleBridgeX 3.7s cubic-bezier(0.42, 0, 0.3, 1) 1;
 }
 
-:global(.rp-q):is(:hover, :focus-within) .cuddleDrop {
-  animation: mother 2.1s ease-in-out infinite;
+:global(.rp-q)[data-motion-active="true"] .coupleBridgeY {
+  animation: coupleBridgeY 3.7s cubic-bezier(0.42, 0, 0.3, 1) 1;
 }
 
-:global(.rp-q):is(:hover, :focus-within) .cuddleCircle {
-  animation: child 2.1s ease-in-out infinite;
+:global(.rp-q)[data-motion-active="true"] .cuddleDrop {
+  animation: mother 2.1s ease-in-out 1;
 }
 
-:global(.rp-q):is(:hover, :focus-within) .spinGroup {
-  animation: quatspin 4.8s linear infinite;
+:global(.rp-q)[data-motion-active="true"] .cuddleCircle {
+  animation: child 2.1s ease-in-out 1;
 }
 
-:global(.rp-q):is(:hover, :focus-within) .petal {
-  animation: petal 1.6s ease-in-out infinite;
+:global(.rp-q)[data-motion-active="true"] .spinGroup {
+  animation: quatspin 4.8s linear 1;
+}
+
+:global(.rp-q)[data-motion-active="true"] .petal {
+  animation: petal 1.6s ease-in-out 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :global(.rp-q):is(:hover, :focus-within) .individualRing,
-  :global(.rp-q):is(:hover, :focus-within) .individualFill,
-  :global(.rp-q):is(:hover, :focus-within) .coupleLeft,
-  :global(.rp-q):is(:hover, :focus-within) .coupleRight,
-  :global(.rp-q):is(:hover, :focus-within) .coupleBridgeX,
-  :global(.rp-q):is(:hover, :focus-within) .coupleBridgeY,
-  :global(.rp-q):is(:hover, :focus-within) .cuddleDrop,
-  :global(.rp-q):is(:hover, :focus-within) .cuddleCircle,
-  :global(.rp-q):is(:hover, :focus-within) .spinGroup,
-  :global(.rp-q):is(:hover, :focus-within) .petal {
-    animation: none;
+  .icon * {
+    animation: none !important;
   }
 }
