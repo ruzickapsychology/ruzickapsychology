@@ -1,0 +1,70 @@
+.root {
+  position: relative;
+  isolation: isolate;
+}
+
+.drawing {
+  position: absolute;
+  visibility: hidden;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--color-accent);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.stem {
+  opacity: 0.52;
+}
+
+.flower {
+  opacity: 1;
+  stroke-width: 1.3;
+}
+
+.finish {
+  height: 250px;
+}
+
+@media (min-width: 768px) {
+  .finish {
+    height: 280px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stem {
+    stroke-dashoffset: 0 !important;
+  }
+
+  .flower {
+    opacity: 1 !important;
+  }
+}
+
+.root[data-drawn] .drawing {
+  visibility: visible;
+}
+
+.fallback {
+  position: absolute;
+  bottom: 100px;
+  left: calc(50% - 50px);
+  width: 100px;
+  height: 150px;
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 1.3;
+  pointer-events: none;
+}
+
+.root[data-drawn] .fallback {
+  visibility: hidden;
+}

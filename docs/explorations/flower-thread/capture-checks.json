@@ -1,0 +1,35 @@
+[
+  {
+    "width": 1440,
+    "scrollWidth": 1440,
+    "stroke": "0px",
+    "focusable": 0,
+    "heightBefore": 2417.859375,
+    "heightAfter": 2417.8592529296875,
+    "layoutStable": true,
+    "keyboardFirst": "Skip to main content",
+    "threadPointerEvents": "none"
+  },
+  {
+    "width": 768,
+    "scrollWidth": 768,
+    "stroke": "0px",
+    "focusable": 0,
+    "heightBefore": 2614.484375,
+    "heightAfter": 2614.4844970703125,
+    "layoutStable": true,
+    "keyboardFirst": "Skip to main content",
+    "threadPointerEvents": "none"
+  },
+  {
+    "width": 375,
+    "scrollWidth": 375,
+    "stroke": "0px",
+    "focusable": 0,
+    "heightBefore": 3166.09375,
+    "heightAfter": 3166.09375,
+    "layoutStable": true,
+    "keyboardFirst": "Skip to main content",
+    "threadPointerEvents": "none"
+  }
+]

@@ -34,6 +34,7 @@ import {
 } from "@/config/availability";
 import type { HomePageContent, SiteSettings } from "@/data/cms";
 import styles from "./styles.module.css";
+import { BotanicalThread } from "./botanical-thread";
 
 export function HomePage({
   home,
@@ -140,86 +141,94 @@ export function HomePage({
       </ImmersivePageHeader>
       <HeaderSentinel />
 
-      {/* specialties — quadrant layout */}
-      <Section id="home-specialties" size="spacious">
-        <Container size="xl">
-          <ContentHeader>
-            <ContentHeaderEyebrow>
-              {home.specialties.eyebrow}
-            </ContentHeaderEyebrow>
-            <ContentHeaderTitle>{home.specialties.heading}</ContentHeaderTitle>
-          </ContentHeader>
-          <DividerGrid>
-            {home.specialties.items.map((s) => {
-              const href =
-                s.pageStatus === "published" && isServiceSlug(s.slug)
-                  ? serviceHref(s.slug)
-                  : undefined;
-              return (
-                <SpecialtyCard
-                  key={s._key ?? s.slug}
-                  title={s.title}
-                  summary={s.summary}
-                  icon={s.icon}
-                  glyphSize={38}
-                  href={href}
-                />
-              );
-            })}
-          </DividerGrid>
-          <div className={styles.centeredAction}>
-            <TextLink href="/specialties">View all specialties</TextLink>
-          </div>
-        </Container>
-      </Section>
-
-      {/* about preview */}
-      <Section size="spacious" tone="feature">
-        <GridContainer size="xl" layout="portrait" align="center">
-          <CircularPortrait
-            image={home.about.portraitImage}
-            alt={home.about.portraitImage?.alt ?? "Dr. Christina Ruzicka"}
-            size="sm"
-            imageSizes="(min-width: 768px) 300px, 80vw"
-          />
-          <ContentHeader align="centerLeft" width="lg" gap="none">
-            <ContentHeaderEyebrow>{home.about.eyebrow}</ContentHeaderEyebrow>
-            <ContentHeaderTitle>{home.about.heading}</ContentHeaderTitle>
-            <ContentHeaderDescription>
-              {home.about.body}
-            </ContentHeaderDescription>
-            <ContentHeaderActions>
-              <TextLink href="/about">{home.about.cta}</TextLink>
-            </ContentHeaderActions>
-          </ContentHeader>
-        </GridContainer>
-      </Section>
-
-      {site ? (
-        <Section size="default">
-          <GridContainer size="xl">
-            <ContentHeader align="left" gap="none" className={styles.localCopy}>
+      <BotanicalThread>
+        {/* specialties — quadrant layout */}
+        <Section id="home-specialties" size="spacious">
+          <Container size="xl">
+            <ContentHeader>
               <ContentHeaderEyebrow>
-                Therapy in Rochester & New York
+                {home.specialties.eyebrow}
               </ContentHeaderEyebrow>
               <ContentHeaderTitle>
-                In-person on South Avenue. Virtual throughout New York.
+                {home.specialties.heading}
               </ContentHeaderTitle>
+            </ContentHeader>
+            <DividerGrid>
+              {home.specialties.items.map((s) => {
+                const href =
+                  s.pageStatus === "published" && isServiceSlug(s.slug)
+                    ? serviceHref(s.slug)
+                    : undefined;
+                return (
+                  <SpecialtyCard
+                    key={s._key ?? s.slug}
+                    title={s.title}
+                    summary={s.summary}
+                    icon={s.icon}
+                    glyphSize={38}
+                    href={href}
+                  />
+                );
+              })}
+            </DividerGrid>
+            <div className={styles.centeredAction}>
+              <TextLink href="/specialties">View all specialties</TextLink>
+            </div>
+          </Container>
+        </Section>
+
+        {/* about preview */}
+        <Section size="spacious" tone="feature">
+          <GridContainer size="xl" layout="portrait" align="center">
+            <CircularPortrait
+              image={home.about.portraitImage}
+              alt={home.about.portraitImage?.alt ?? "Dr. Christina Ruzicka"}
+              size="sm"
+              imageSizes="(min-width: 768px) 300px, 80vw"
+            />
+            <ContentHeader align="centerLeft" width="lg" gap="none">
+              <ContentHeaderEyebrow>{home.about.eyebrow}</ContentHeaderEyebrow>
+              <ContentHeaderTitle>{home.about.heading}</ContentHeaderTitle>
               <ContentHeaderDescription>
-                Meet with Dr. Christina Ruzicka at {site.address.streetAddress}{" "}
-                in Rochester, or ask about virtual appointments available to
-                clients located across New York.
+                {home.about.body}
               </ContentHeaderDescription>
               <ContentHeaderActions>
-                <TextLink href="/contact">
-                  View location and get started
-                </TextLink>
+                <TextLink href="/about">{home.about.cta}</TextLink>
               </ContentHeaderActions>
             </ContentHeader>
           </GridContainer>
         </Section>
-      ) : null}
 
+        {site ? (
+          <Section size="default">
+            <GridContainer size="xl">
+              <ContentHeader
+                align="left"
+                gap="none"
+                className={styles.localCopy}
+              >
+                <ContentHeaderEyebrow>
+                  Therapy in Rochester & New York
+                </ContentHeaderEyebrow>
+                <ContentHeaderTitle>
+                  In-person on South Avenue. Virtual throughout New York.
+                </ContentHeaderTitle>
+                <ContentHeaderDescription>
+                  Meet with Dr. Christina Ruzicka at{" "}
+                  {site.address.streetAddress} in Rochester, or ask about
+                  virtual appointments available to clients located across New
+                  York.
+                </ContentHeaderDescription>
+                <ContentHeaderActions>
+                  <TextLink href="/contact">
+                    View location and get started
+                  </TextLink>
+                </ContentHeaderActions>
+              </ContentHeader>
+            </GridContainer>
+          </Section>
+        ) : null}
+      </BotanicalThread>
       {/* CTA band */}
       <CtaSection
         phone={site?.phone}
