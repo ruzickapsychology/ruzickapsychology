@@ -1,8 +1,13 @@
 import type { Route } from "next";
+import { AuthorCard } from "@/components/author-card";
 import { BreadcrumbTrail } from "@/components/breadcrumb-trail";
 import { CtaSection } from "@/components/cta-section";
 import { getAvailabilityCtaContent } from "@/config/availability";
-import type { HomePageContent, SiteSettings } from "@/data/cms";
+import type {
+  AboutPageContent,
+  HomePageContent,
+  SiteSettings,
+} from "@/data/cms";
 import { ContentSection } from "@/components/content-section";
 import { EditorialLinkCard } from "@/components/editorial-link-card";
 import { JsonLd } from "@/components/json-ld";
@@ -10,7 +15,6 @@ import {
   PageHeader,
   PageHeaderBreadcrumbs,
   PageHeaderContent,
-  PageHeaderDescription,
   PageHeaderEyebrow,
   PageHeaderTitle,
 } from "@/components/page-header";
@@ -36,12 +40,14 @@ export function BlogPostPage({
   serviceLink,
   ctaContent,
   site,
+  about,
 }: {
   post: Post;
   olderPost: PostMeta | null;
   serviceLink?: RelatedServiceLink;
   ctaContent?: HomePageContent["cta"];
   site?: SiteSettings | null;
+  about?: AboutPageContent | null;
 }) {
   const cta = site
     ? getAvailabilityCtaContent({
@@ -78,16 +84,27 @@ export function BlogPostPage({
             · {post.readTime}
           </PageHeaderEyebrow>
           <PageHeaderTitle>{post.title}</PageHeaderTitle>
-          <PageHeaderDescription>
-            Written by{" "}
-            <TextLink href="/about" direction="none">
-              Dr. Christina Ruzicka, PsyD
-            </TextLink>
-          </PageHeaderDescription>
         </PageHeaderContent>
       </PageHeader>
       <ContentSection size="spacious" containerSize="md">
-        <PortableContent value={post.body} variant="article" />
+        <Stack gap="lg">
+          {about?.heading ? (
+            <AuthorCard
+              name={about.heading}
+              credentials={about.credentials}
+              image={about.portraitImage}
+              href="/about"
+            />
+          ) : site?.practitioner ? (
+            <Text variant="supporting">
+              Written by{" "}
+              <TextLink href="/about" variant="inline">
+                {site.practitioner}
+              </TextLink>
+            </Text>
+          ) : null}
+          <PortableContent value={post.body} variant="article" />
+        </Stack>
         {post.sources?.length ? (
           <Stack
             as="aside"
@@ -143,7 +160,12 @@ export function BlogPostPage({
         </nav>
       </ContentSection>
       {cta?.heading ? (
-        <CtaSection heading={cta.heading} body={cta.body} cta={cta.label} />
+        <CtaSection
+          phone={site?.phone}
+          heading={cta.heading}
+          body={cta.body}
+          cta={cta.label}
+        />
       ) : null}
     </PageShell>
   );

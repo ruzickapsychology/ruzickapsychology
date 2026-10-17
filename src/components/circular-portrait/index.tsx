@@ -5,6 +5,7 @@ import { cn } from "@/lib/class-names";
 import styles from "./styles.module.css";
 
 const sizes = {
+  xs: styles.xs,
   sm: styles.sm,
   md: styles.md,
 } as const;

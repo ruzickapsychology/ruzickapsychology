@@ -5,6 +5,8 @@ import { act, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "../setup/dom";
+import { track } from "@vercel/analytics";
+import type { SiteSettings } from "@/data/cms";
 import { usePathname } from "next/navigation";
 import { HEADER_SENTINEL_ID } from "@/components/header-sentinel";
 import { SiteHeader } from "@/components/site-header";
@@ -66,6 +68,49 @@ describe("SiteHeader mobile navigation", () => {
     });
   });
 
+  it.each([
+    ["accepting", "Send an inquiry"],
+    ["waitlist", "Join the waitlist"],
+    ["closed", "Current availability"],
+  ] as const)(
+    "uses the %s inquiry action in desktop and mobile navigation",
+    async (status, label) => {
+      const user = userEvent.setup();
+      render(
+        <SiteHeader
+          siteSettings={
+            {
+              name: "Ruzicka Psychology PLLC",
+              availabilityStatus: status,
+              portalUrl: "https://example.com/portal",
+            } as SiteSettings
+          }
+        />,
+      );
+      const desktop = screen.getByRole("navigation", {
+        name: "Primary navigation",
+      });
+      expect(
+        within(desktop).getByRole("link", { name: label }),
+      ).toHaveAttribute("href", "/contact");
+      expect(
+        within(desktop).queryByRole("link", { name: /^Contact$/ }),
+      ).not.toBeInTheDocument();
+      await user.click(screen.getByRole("button", { name: "Open menu" }));
+      const dialog = await screen.findByRole("dialog");
+      const action = within(dialog).getByRole("link", { name: label });
+      expect(action).toHaveAttribute("href", "/contact");
+      expect(
+        within(dialog).getByRole("link", { name: "Existing Client Portal" }),
+      ).toHaveAttribute("href", "https://example.com/portal");
+      await user.click(action);
+      expect(track).toHaveBeenCalledWith("consultation_cta_click");
+      expect(
+        screen.getByRole("button", { name: "Close menu" }),
+      ).toHaveAttribute("aria-expanded", "false");
+    },
+  );
+
   it("opens as a modal, traps focus, and restores interaction on Escape", async () => {
     const user = userEvent.setup();
     render(
@@ -119,7 +164,7 @@ describe("SiteHeader mobile navigation", () => {
       for (const listener of mediaChangeListeners) {
         listener({
           matches: true,
-          media: "(min-width: 640px)",
+          media: "(min-width: 1024px)",
         } as MediaQueryListEvent);
       }
     });

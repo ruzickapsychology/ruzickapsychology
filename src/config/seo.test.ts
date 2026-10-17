@@ -21,6 +21,10 @@ describe("pageMetadata", () => {
       { url: "/opengraph-image", width: 1200, height: 630 },
     ]);
     expect(metadata.twitter?.images).toEqual(["/opengraph-image"]);
+    expect(metadata.title).toBe("About — Ruzicka Psychology");
+    expect(metadata.openGraph?.title).toBe(metadata.title);
+    expect(metadata.twitter?.title).toBe(metadata.title);
+    expect(metadata.alternates?.canonical).toBe("/about");
   });
 });
 
@@ -106,6 +110,27 @@ describe("structured data", () => {
 });
 
 describe("article previews", () => {
+  it("uses concise search copy without changing the article headline or URL", () => {
+    const post = {
+      title:
+        'Beyond the Buzzword: What Does "Doing the Work" Actually Mean in Therapy?',
+      slug: "beyond-the-buzzword-what-does-doing-the-work-actually-mean-in-therapy",
+      excerpt: "A long original introduction. ".repeat(20),
+      date: "2026-06-26",
+    };
+    const metadata = blogPostMetadata(post);
+    expect(metadata.title).toBe(
+      'What Does "Doing the Work" Mean in Therapy? — Ruzicka Psychology',
+    );
+    expect(metadata.openGraph?.title).toBe(metadata.title);
+    expect(metadata.twitter?.title).toBe(metadata.title);
+    expect(metadata.alternates?.canonical).toBe(`/blog/${post.slug}`);
+    expect(metadata.description).not.toContain("…");
+    expect(metadata.openGraph?.description).toBe(metadata.description);
+    expect(metadata.twitter?.description).toBe(metadata.description);
+    expect(blogPostJsonLd(post).headline).toBe(post.title);
+  });
+
   it("normalizes whitespace and leaves concise excerpts intact", () => {
     expect(excerptSummary("  A short\n article summary.  ")).toBe(
       "A short article summary.",

@@ -178,7 +178,12 @@ export function AboutPage({
       ) : null}
 
       {!availability.isClosed ? (
-        <CtaSection heading={cta.heading} body={cta.body} cta={cta.label} />
+        <CtaSection
+          phone={site?.phone}
+          heading={cta.heading}
+          body={cta.body}
+          cta={cta.label}
+        />
       ) : null}
     </PageShell>
   );

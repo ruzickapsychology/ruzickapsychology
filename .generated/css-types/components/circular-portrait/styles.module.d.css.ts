@@ -6,5 +6,6 @@ declare const styles: {
   readonly sticky: string;
   readonly stickyLg: string;
   readonly stickyMd: string;
+  readonly xs: string;
 };
 export = styles;

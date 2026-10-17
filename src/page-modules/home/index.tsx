@@ -74,6 +74,7 @@ export function HomePage({
     <PageShell>
       {/* hero */}
       <ImmersivePageHeader
+        readability="dark"
         className={styles.hero}
         media={
           heroImageSrc ? (
@@ -118,6 +119,7 @@ export function HomePage({
                       href={heroCtaHref}
                       event={heroCtaEvent}
                       variant="primary"
+                      tone="inverse"
                     >
                       {heroCtaLabel}
                     </CtaLink>
@@ -220,6 +222,7 @@ export function HomePage({
 
       {/* CTA band */}
       <CtaSection
+        phone={site?.phone}
         heading={cta.heading}
         body={cta.body}
         cta={cta.label}

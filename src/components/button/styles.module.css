@@ -58,3 +58,8 @@
   outline: 2px solid var(--color-light);
   outline-offset: 4px;
 }
+
+.compact {
+  min-height: 44px;
+  padding: var(--space-2) var(--space-4);
+}

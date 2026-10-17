@@ -187,6 +187,7 @@ export function ServicePage({
 
       {cta.heading ? (
         <CtaSection
+          phone={site?.phone}
           heading={cta.heading}
           body={
             <>

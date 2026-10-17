@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { CtaLink } from "@/components/cta-link";
+import { normalizeAvailabilityStatus } from "@/config/availability";
 import { Container } from "@/components/container";
 import { HEADER_SENTINEL_ID } from "@/components/header-sentinel";
 import { ArrowUpRight } from "@/components/arrow-up-right";
@@ -13,7 +15,7 @@ import { cn } from "@/lib/class-names";
 import styles from "./styles.module.css";
 
 const TRANSPARENT_PAGES = ["/", "/contact"];
-const DESKTOP_MEDIA_QUERY = "(min-width: 768px)";
+const DESKTOP_MEDIA_QUERY = "(min-width: 1024px)";
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
@@ -202,7 +204,20 @@ export function SiteHeader({
   }[background];
 
   const wordmark = light ? styles.lightText : styles.darkText;
-  const mobilePrimaryLinks = MAIN_NAV.filter((item) => item.href !== "/faq");
+  const navigationLinks = MAIN_NAV.filter((item) => item.href !== "/contact");
+  const mobilePrimaryLinks = navigationLinks.filter(
+    (item) => item.href !== "/faq",
+  );
+  const availability = normalizeAvailabilityStatus(
+    siteSettings?.availabilityStatus,
+  );
+  const contactLabel = !siteSettings
+    ? "Contact"
+    : {
+        accepting: "Send an inquiry",
+        waitlist: "Join the waitlist",
+        closed: "Current availability",
+      }[availability];
   const mobileUtilityLinks = [
     { label: "Blog", href: "/blog" },
     { label: "FAQ", href: "/faq" },
@@ -236,7 +251,7 @@ export function SiteHeader({
         </Link>
 
         <nav aria-label="Primary navigation" className={styles.desktopNav}>
-          {MAIN_NAV.map((item) => {
+          {navigationLinks.map((item) => {
             const href = item.href as string;
             const active = pathname === href || pathname.startsWith(`${href}/`);
             const stateClass = active
@@ -262,6 +277,18 @@ export function SiteHeader({
               </Link>
             );
           })}
+          <CtaLink
+            href="/contact"
+            event="consultation_cta_click"
+            variant={light ? "secondary" : "primary"}
+            tone={light ? "inverse" : "default"}
+            size="compact"
+            aria-current={
+              normalizedPathname === "/contact" ? "page" : undefined
+            }
+          >
+            {contactLabel}
+          </CtaLink>
         </nav>
 
         <button
@@ -334,6 +361,19 @@ export function SiteHeader({
                   </Link>
                 );
               })}
+              <CtaLink
+                href="/contact"
+                event="consultation_cta_click"
+                variant={light ? "secondary" : "primary"}
+                tone={light ? "inverse" : "default"}
+                aria-current={
+                  normalizedPathname === "/contact" ? "page" : undefined
+                }
+                onClick={closeMobileMenu}
+                className={styles.item}
+              >
+                {contactLabel}
+              </CtaLink>
             </nav>
 
             <nav

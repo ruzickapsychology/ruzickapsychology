@@ -3,7 +3,7 @@ import { SiteAnalytics } from "@/components/site-analytics";
 import { SpecialtyMotion } from "@/components/specialty-motion";
 import { SiteHeader } from "@/components/site-header";
 import { JsonLd } from "@/components/json-ld";
-import { getSiteSettings } from "@/data/cms";
+import { getAboutPage, getSiteSettings } from "@/data/cms";
 import { practiceJsonLd } from "@/config/seo";
 import styles from "./_layout/styles.module.css";
 
@@ -12,7 +12,17 @@ export default async function SiteLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const siteSettings = await getSiteSettings();
+  const [siteSettings, about] = await Promise.all([
+    getSiteSettings(),
+    getAboutPage(),
+  ]);
+  const licenses = [
+    ...new Set(
+      about?.credentialGroups
+        ?.map((group) => group.license?.trim())
+        .filter((license): license is string => Boolean(license)),
+    ),
+  ];
 
   return (
     <div className={styles.shell}>
@@ -26,7 +36,7 @@ export default async function SiteLayout({
       <main id="main-content" tabIndex={-1} className={styles.main}>
         {children}
       </main>
-      <SiteFooter siteSettings={siteSettings} />
+      <SiteFooter siteSettings={siteSettings} licenses={licenses} />
     </div>
   );
 }

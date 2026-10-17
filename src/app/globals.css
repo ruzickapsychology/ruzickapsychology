@@ -29,6 +29,11 @@
   --color-contact-responsive-wash: rgb(37 31 18 / 0.35);
   --color-hover-wash: rgb(241 238 235 / 0.24);
   --color-feature-35: color-mix(in srgb, var(--color-feature) 35%, transparent);
+  --color-image-dark-wash: color-mix(
+    in srgb,
+    var(--color-quote-overlay) 55%,
+    transparent
+  );
   --color-image-light-wash: color-mix(
     in srgb,
     var(--color-surface) 90%,

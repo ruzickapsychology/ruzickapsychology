@@ -359,7 +359,11 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
+  .inner {
+    padding-block: var(--space-2);
+  }
+
   .desktopNav {
     display: flex;
   }

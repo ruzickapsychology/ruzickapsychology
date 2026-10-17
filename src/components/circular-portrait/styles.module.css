@@ -6,6 +6,13 @@
   padding: 0.5rem;
 }
 
+.xs {
+  width: var(--space-20);
+  flex: 0 0 var(--space-20);
+  margin-inline: 0;
+  padding: var(--space-1);
+}
+
 .sm {
   max-width: 300px;
 }
