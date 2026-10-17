@@ -24,6 +24,7 @@ import {
 import {
   address,
   cta,
+  externalProfile,
   imageWithAlt,
   pageHeader,
   simplePortableText,
@@ -33,6 +34,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     address,
     cta,
+    externalProfile,
     imageWithAlt,
     pageHeader,
     simplePortableText,

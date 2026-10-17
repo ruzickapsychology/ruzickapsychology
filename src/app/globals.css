@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@layer reset, base, components, utilities;
 
 /* ============================================================
    THEME CONTRACT — to rebrand, edit only this block (and the
@@ -6,12 +6,12 @@
    (bg-surface, text-accent, tone="feature"…), never color names,
    so a new direction means new values here and nothing else.
    ============================================================ */
-@theme {
+:root {
   --color-bg: #eae6dd; /* warm sand page background (paper texture overlaid) */
   --color-fg: #3a232a; /* aubergine ink — headings + dark bands */
   --color-body: #514a4c; /* body copy (softer than fg) */
   --color-surface: #fbf8f1; /* cards / raised panels */
-  --color-muted: rgb(241 238 235 / 0.9); /* hairline borders, card edges */
+  --color-muted: var(--color-light-90); /* hairline borders, card edges */
   --color-accent: #8c4651; /* deep rose — links, eyebrows, emphasis */
   --color-accent-soft: #e3c7cb; /* soft rose — selection, subtle fills */
   --color-feature: #efe2d6; /* warm feature band */
@@ -28,26 +28,192 @@
   --color-nav-solid-overlay: rgb(217 211 198 / 0.8);
   --color-contact-responsive-wash: rgb(37 31 18 / 0.35);
   --color-hover-wash: rgb(241 238 235 / 0.24);
+  --color-feature-35: color-mix(in srgb, var(--color-feature) 35%, transparent);
+  --color-feature-90: color-mix(in srgb, var(--color-feature) 90%, transparent);
+  --color-contact-65: color-mix(
+    in srgb,
+    var(--color-contact-overlay) 65%,
+    transparent
+  );
+  --color-white: #fff;
+  --color-body-65: rgb(81 74 76 / 0.65);
+  --color-body-70: rgb(81 74 76 / 0.7);
+  --color-body-75: rgb(81 74 76 / 0.75);
+  --color-body-85: rgb(81 74 76 / 0.85);
+  --color-light-50: rgb(241 238 235 / 0.5);
+  --color-light-72: rgb(241 238 235 / 0.72);
+  --color-light-75: rgb(241 238 235 / 0.75);
+  --color-light-80: rgb(241 238 235 / 0.8);
+  --color-light-90: rgb(241 238 235 / 0.9);
 
   --font-heading: var(--font-baskerville);
   --font-body: var(--font-baskerville);
   --font-sans: var(--font-manrope);
   --font-mono: var(--font-plex-mono);
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-md: 0.875rem;
+  --text-body-sm: 0.9375rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-heading-item: clamp(1.25rem, 3vw, 1.5rem);
+  --text-heading-content: clamp(1.8rem, 4vw, 2.5rem);
+  --text-heading-module: clamp(1.75rem, 4vw, 2.375rem);
+  --text-heading-section: clamp(2rem, 5.5vw, 2.75rem);
+  --text-heading-display: clamp(2.6rem, 7vw, 4.125rem);
+  --leading-tight: 1.08;
+  --leading-compact: 1.55;
+  --leading-body: 1.6;
+  --leading-relaxed: 1.65;
+  --leading-prose: 1.75;
+  --tracking-heading: -0.02em;
+  --tracking-meta: 0.08em;
+  --tracking-overline: 0.12em;
+  --tracking-eyebrow: 0.22em;
+  --tracking-label: 0.2em;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  --measure-sm: 32.5rem;
+  --measure-md: 42.5rem;
+  --measure-lg: 56.25rem;
+  --measure-xl: 70rem;
+  --container-sm: 42.5rem;
+  --container-md: 48rem;
+  --container-lg: 64rem;
+  --container-xl: 75rem;
+
+  --page-gutter: clamp(1.5rem, 4vw, 2.5rem);
+  --grid-gutter: clamp(1.25rem, 3vw, 2rem);
+  --grid-card-min: 20rem;
+  --section-space-compact: 3rem;
+  --section-space-default: var(--space-16);
+  --section-space-page-start: 7rem;
+  --section-space-page-end: 5rem;
+  --section-space-after-page-header: 0rem;
+  --section-space-spacious: 5rem;
+  --content-header-gap: 3.5rem;
+  --content-header-gap-spacious: var(--space-16);
+  --panel-padding: var(--space-6);
+  --fixed-header-offset: var(--space-16);
+  --hero-min-block-size: 47.5rem;
+  --touch-target: 2.75rem;
+
   --radius-btn: 9999px;
+  --transition-fast: 150ms ease;
+  --transition-surface: 250ms ease;
 }
 /* ===================== end theme contract ==================== */
 
+@media (min-width: 640px) {
+  :root {
+    --section-space-compact: var(--space-16);
+    --section-space-default: 5rem;
+    --section-space-page-start: 8rem;
+    --section-space-page-end: 6rem;
+    --section-space-spacious: 7rem;
+    --content-header-gap: 3.75rem;
+    --content-header-gap-spacious: var(--space-20);
+    --panel-padding: var(--space-8);
+    --hero-min-block-size: 52.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --section-space-spacious: 8rem;
+  }
+}
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    text-size-adjust: 100%;
+  }
+
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  figure,
+  blockquote,
+  dl,
+  dd {
+    margin: 0;
+  }
+
+  ul,
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+}
+
 @layer base {
   body {
+    min-height: 100vh;
     background-color: var(--color-bg);
     background-image: url("/images/bg-texture.jpg");
     background-size: 760px;
     background-repeat: repeat;
     color: var(--color-body);
     font-family: var(--font-body), Georgia, serif;
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: var(--text-base);
+    line-height: var(--leading-body);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
@@ -60,167 +226,46 @@
   h3 {
     font-family: var(--font-heading), Georgia, serif;
     font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: -0.02em;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-heading);
     color: var(--color-fg);
   }
 
   h1 {
-    font-size: clamp(2.6rem, 7vw, 66px);
+    font-size: var(--text-heading-display);
   }
   h2 {
-    font-size: clamp(2rem, 5.5vw, 44px);
+    font-size: var(--text-heading-section);
   }
   h3 {
-    font-size: clamp(1.25rem, 3vw, 24px);
+    font-size: var(--text-heading-item);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  .skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 100;
+    padding: 0.75rem 1rem;
+    background: var(--color-fg);
+    color: var(--color-light);
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: var(--text-sm);
+    transform: translateY(calc(-100% - 1rem));
+    transition: transform var(--transition-fast);
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
   }
 }
 
 @layer components {
-  .site-grid {
-    --grid-gutter: clamp(1.25rem, 3vw, 2rem);
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    column-gap: var(--grid-gutter);
-    row-gap: var(--grid-gutter);
-  }
-
-  .grid-full {
-    grid-column: 1 / -1;
-  }
-
-  .grid-center-sm,
-  .grid-center-md,
-  .grid-center-lg,
-  .grid-center-xl {
-    grid-column: 1 / -1;
-    justify-self: center;
-    width: 100%;
-  }
-
-  .grid-center-sm {
-    max-width: 520px;
-  }
-
-  .grid-center-md {
-    max-width: 680px;
-  }
-
-  .grid-center-lg {
-    max-width: 900px;
-  }
-
-  .grid-center-xl {
-    max-width: 1120px;
-  }
-
-  .grid-stack {
-    display: grid;
-    gap: var(--grid-gutter, clamp(1.25rem, 3vw, 2rem));
-  }
-
-  .grid-split-media,
-  .grid-split-copy,
-  .grid-split-copy-wide,
-  .grid-split-half,
-  .grid-split-half-alt {
-    grid-column: 1 / -1;
-  }
-
-  .grid-card-2,
-  .grid-card-4 {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  @media (min-width: 640px) {
-    .site-grid {
-      grid-template-columns: repeat(8, minmax(0, 1fr));
-    }
-
-    .grid-card-2,
-    .grid-card-4 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 768px) {
-    .grid-split-half {
-      grid-column: 1 / span 4;
-    }
-
-    .grid-split-half-alt {
-      grid-column: 5 / -1;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .site-grid {
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-    }
-
-    .grid-split-media {
-      grid-column: 1 / span 4;
-    }
-
-    .grid-split-copy {
-      grid-column: 6 / -1;
-    }
-
-    .grid-split-copy-wide {
-      grid-column: 5 / -1;
-    }
-
-    .grid-split-half {
-      grid-column: 1 / span 6;
-    }
-
-    .grid-split-half-alt {
-      grid-column: 7 / -1;
-    }
-
-    .grid-card-4 {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-  }
-
-  .heading-display,
-  .heading-section,
-  .heading-module,
-  .heading-item {
-    font-family: var(--font-heading), Georgia, serif;
-    font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: -0.02em;
-    color: var(--color-fg);
-  }
-
-  .heading-display {
-    font-size: clamp(2.6rem, 7vw, 66px);
-  }
-
-  .heading-section {
-    font-size: clamp(2rem, 5.5vw, 44px);
-  }
-
-  .heading-module {
-    font-size: clamp(1.75rem, 4vw, 38px);
-  }
-
-  .heading-item {
-    font-size: clamp(1.25rem, 3vw, 24px);
-  }
-
-  /* Manrope eyebrow — small uppercase label above headings */
-  .eyebrow {
-    font-family: var(--font-sans), system-ui, sans-serif;
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--color-accent);
-  }
-
   .list-row {
     padding-block: 2rem;
     padding-inline: 0.5rem;
@@ -230,95 +275,19 @@
     padding-inline: 0.5rem;
   }
 
-  .list-row-eyebrow {
-    font-family: var(--font-mono), ui-monospace, monospace;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.4;
-    color: rgb(105 93 98 / 0.65);
-    letter-spacing: 0.08em;
-  }
-
-  /* IBM Plex Mono label — nav, step numbers, footer captions */
-  .mono-label {
-    font-family: var(--font-mono), ui-monospace, monospace;
-    font-weight: 500;
-    font-size: 13px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-  }
-
-  .body-1 {
-    font-size: 18px;
-    line-height: 1.6;
-  }
-
-  .body-2 {
-    font-size: 16px;
-    line-height: 1.6;
-  }
-
-  .body-3 {
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  /* Translucent card surface (specialties / location) */
-  .card {
-    background-color: color-mix(in srgb, var(--color-surface) 70%, transparent);
-    border: 1px solid var(--color-muted);
-    border-radius: 24px;
-  }
-
-  .rp-q {
-    transition: background-color 0.25s ease;
-  }
-
-  .rp-q:hover {
-    background-color: var(--color-hover-wash);
-  }
-
-  @media (max-width: 767px) {
-    .home-about-copy {
-      text-align: center !important;
-    }
-
-    .home-about-copy .body-1 {
-      margin-left: auto !important;
-      margin-right: auto !important;
-    }
-  }
-
   @media (min-width: 640px) {
     .list-row,
     .list-row-inset {
       padding-inline: 1.5rem;
     }
   }
-
-  .prose {
-    line-height: 1.75;
-  }
-  .prose p {
-    margin-bottom: 1.25rem;
-  }
-  .prose a {
-    color: var(--color-accent);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-  .prose h2 {
-    margin: 2rem 0 1rem;
-  }
 }
 
 @keyframes rp-fade {
   from {
-    opacity: 0;
     transform: translateY(12px);
   }
   to {
-    opacity: 1;
     transform: none;
   }
 }

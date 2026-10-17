@@ -48,47 +48,88 @@ Use `npm run verify:quick` for normal code and content edits. Use `npm run verif
 
 ## When To Read More
 
-| Change area                                                      | Read first                                             |
-| ---------------------------------------------------------------- | ------------------------------------------------------ |
-| Visual layout, spacing, typography, buttons, responsive behavior | `docs/design-system.md`                                |
-| Sanity schemas, GROQ, seed data, content validation              | `docs/cms.md`                                          |
-| Images, loading behavior, Lighthouse, Core Web Vitals            | `docs/performance.md`                                  |
-| Contact form, analytics events, conversion tracking              | `docs/forms-analytics.md`                              |
-| Environment variables, deployment, launch checks                 | `docs/launch.md`                                       |
-| Extracting this into a reusable starter                          | `docs/template-customization.md`                       |
-| Next.js APIs, routing, config, metadata, typed routes            | Relevant local guide in `node_modules/next/dist/docs/` |
+| Change area                                                      | Read first                                              |
+| ---------------------------------------------------------------- | ------------------------------------------------------- |
+| Visual layout, spacing, typography, buttons, responsive behavior | `docs/design-system.md`                                 |
+| Sanity schemas, GROQ, seed data, content validation              | `docs/cms.md`                                           |
+| Images, loading behavior, Lighthouse, Core Web Vitals            | `docs/performance.md`                                   |
+| Contact form, analytics events, conversion tracking              | `docs/forms-analytics.md`                               |
+| Environment variables, deployment, launch checks                 | `docs/launch.md`                                        |
+| Components and approved composition patterns                     | `docs/component-registry.md`, `docs/pattern-library.md` |
+| Security headers, providers, and privacy                         | `docs/security.md`                                      |
+| Extracting this into a reusable starter                          | `docs/template-customization.md`                        |
+| Next.js APIs, routing, config, metadata, typed routes            | Relevant local guide in `node_modules/next/dist/docs/`  |
 
 ## What This Is
 
-This is a static marketing site for a solo therapy practice: Dr. Christina Ruzicka in Rochester, New York. It uses Next.js App Router, Tailwind CSS v4, Sanity Studio, Vercel Analytics, and Web3Forms. Booking and intake happen off-site through the SimplePractice Client Portal link.
+This is a static marketing site for a solo therapy practice: Dr. Christina Ruzicka in Rochester, New York. It uses Next.js App Router, plain CSS with colocated CSS Modules, an embedded Sanity Studio, Vercel Analytics, and Web3Forms. Booking and intake happen off-site through the SimplePractice Client Portal link.
 
 ## Runtime Content
 
-Sanity is the runtime source of truth. Pages fetch normalized content through `src/lib/cms.ts`.
+Sanity is the runtime source of truth. App Router entries fetch normalized
+content through `src/data/cms.ts` and pass it to render-only page modules.
 
 `src/content/*` and `src/content/blog/*.md` are seed fixtures only. They exist so `scripts/seed-sanity.ts` can recreate the initial Sanity documents with deterministic IDs. Do not add runtime fallbacks to these files, and do not duplicate CMS copy in JSX.
 
 If Sanity data is missing, a page may render nothing rather than falling back to stale local content. Fix the content or seed data instead of adding redundancy.
 
+## Routes And Page Modules
+
+- `src/app/` is the framework boundary. Public `page.tsx` files own metadata,
+  typed params/search params, static-param generation, data loading, and route
+  decisions such as `notFound()`.
+- `src/page-modules/` owns route-level rendering and route-specific CSS. Each
+  module lives in its own folder with an `index.tsx` entrypoint and receives
+  already-loaded, typed props.
+- Public `page.tsx` files must not import reusable components or CSS Modules
+  directly. They should delegate rendering to one page module.
+- Page modules must not fetch route data. Shared CMS and blog reads belong in
+  `src/data/` and are called by the App Router entry.
+- Page modules may import data types only; put pure presentation helpers in
+  `src/lib/` or `src/config/`. Start new pages from `docs/pattern-library.md`.
+- Keep Next.js convention files such as `layout.tsx`, `error.tsx`, and
+  `not-found.tsx` in `src/app/`; shared layouts may compose site chrome there.
+- Do not create `src/pages/`. This project uses the App Router, and
+  `src/page-modules/` deliberately avoids the reserved Pages Router name.
+
 ## Layout And Design
 
-Use the reusable primitives in `src/components/ui/`:
+Use the reusable primitives in the flat `src/components/` directory:
 
 ```tsx
 <Section tone="default" size="spacious">
-  <Container size="xl" className="site-grid">
-    ...
-  </Container>
+  <GridContainer size="xl">...</GridContainer>
 </Section>
 ```
 
 - `Section` owns vertical spacing and background tone. Avoid page-specific `py-*` when a `Section` size can express the rhythm.
 - `Container` owns gutters and max width. Keep important content aligned to the shared grid.
+- `Grid`, `GridContainer`, `Stack`, `ContentSection`, and `PageHeader` own
+  responsive page composition. Do not recreate these structures in route CSS.
+- `Heading`, `Eyebrow`, `Text`, `ContentHeader`, and `PortableContent` own
+  visible typography. Public page modules must not contain raw `h1`-`h3` or
+  paragraph elements.
+- Follow the shadcn-style open-code and composition model while retaining CSS
+  Modules. Low-level components forward native element props, expose explicit
+  variants, merge `className` with `cn()`, and publish stable `data-slot`
+  attributes.
+- Prefer compound APIs for structured UI. Compose
+  `ContentHeaderEyebrow`/`ContentHeaderTitle`/`ContentHeaderDescription`,
+  `PageHeaderContent`/`PageHeaderTitle`, `Field`/`FieldLabel`/`Input`, and
+  `DisclosureTrigger`/`DisclosureTitle`/`DisclosureContent` instead of adding
+  configuration props that hide the rendered hierarchy.
+- Domain blocks such as `SiteHeader`, `SiteFooter`, `CtaSection`, and
+  `SpecialtyCard` may accept content-oriented props, but they must compose the
+  shared primitives rather than recreate their styles.
 - `globals.css` owns theme tokens, typography, grid helpers, shared hover states, and cross-page content utilities.
-- Component selectors, local keyframes, and component state transitions belong in colocated CSS Modules named `styles.module.css`. CSS Module type declarations are generated into `.generated/css-types` by automation and checked during verification.
-- Every reusable component under `src/components` should live in its own folder with an `index.tsx`/`index.ts` entrypoint.
-- Prefer `buttonClasses()` in `src/components/ui/button/index.tsx` for reusable button and link components. Do not invent new button styles outside the shared button system.
-- Use semantic utilities such as `text-accent`, `text-light`, `text-icon`, `bg-feature`, `bg-contact-overlay`, and `border-muted`.
+- Component selectors, local keyframes, and component state transitions belong in colocated CSS Modules named `styles.module.css`. Do not introduce utility-CSS framework classes. CSS Module type declarations are generated into `.generated/css-types` by automation and checked during verification.
+- Every reusable component is a direct child of `src/components`, in its own
+  folder with an `index.tsx`/`index.ts` entrypoint. Do not recreate `ui/` or
+  `layout/` category directories.
+- Use `Button` for actual buttons and `buttonVariants()` for links that use a
+  button treatment. Do not invent button styles outside
+  `src/components/button/`.
+- Use semantic CSS variables such as `var(--color-accent)`, `var(--color-light)`, `var(--color-icon)`, `var(--color-feature)`, and `var(--color-muted)`.
 - Do not add new hard-coded brand hex values in components unless there is a clear reason and the value is promoted to a theme token afterward.
 - Multi-column layouts should collapse cleanly at `md` unless a component has its own documented breakpoint behavior.
 - Respect `prefers-reduced-motion` for any new animation.
@@ -120,14 +161,14 @@ See `docs/cms.md`.
 
 ## SEO And Analytics
 
-- SEO metadata is code-owned in `src/lib/seo.ts`.
+- SEO metadata is code-owned in `src/config/seo.ts`.
 - Every route should export metadata with `pageMetadata({ title, description, path })`.
-- Structured data is injected from `src/app/(site)/layout.tsx` using `psychologistJsonLd()`, so `/studio` does not inherit marketing chrome or CMS fetches.
-- Vercel Analytics events live near their interaction surfaces in components such as `src/components/cta-link/index.tsx`, `src/components/tracked-external-link/index.tsx`, and `src/app/(site)/contact/contact-form.tsx`.
+- Structured data is injected from `src/app/(site)/layout.tsx` using `practiceJsonLd()`, so `/studio` does not inherit marketing chrome or CMS fetches.
+- Vercel Analytics events live near their interaction surfaces in components such as `src/components/cta-link/index.tsx`, `src/components/tracked-external-link/index.tsx`, and `src/page-modules/contact/contact-form/index.tsx`.
 
 ## Contact Form
 
-The contact form is a client component in `src/app/(site)/contact/contact-form.tsx`. It submits directly to Web3Forms with `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`, validates required fields, includes a honeypot, tracks successful human submissions, and shows client-side success/error states.
+The contact form is a client component in `src/page-modules/contact/contact-form/index.tsx`. It submits directly to Web3Forms with `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`, validates required fields, includes a honeypot, tracks successful human submissions, and shows client-side success/error states.
 
 Do not reintroduce a server action unless the product goal changes. The current direct Web3Forms path keeps the site static and simple.
 

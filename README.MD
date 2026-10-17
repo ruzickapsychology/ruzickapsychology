@@ -1,6 +1,6 @@
 # Ruzicka Psychology
 
-Static marketing site for Dr. Christina Ruzicka's therapy practice in Rochester, New York. Built with Next.js App Router, TypeScript, Tailwind CSS v4, Sanity Studio, Vercel Analytics, and Web3Forms.
+Static marketing site for Dr. Christina Ruzicka's therapy practice in Rochester, New York. Built with Next.js App Router, TypeScript, plain CSS with colocated CSS Modules, an embedded Sanity Studio, Vercel Analytics, and Web3Forms.
 
 ## Quick Start
 
@@ -57,10 +57,13 @@ GOOGLE_SITE_VERIFICATION=
 
 ```text
 src/
-  app/                 App Router pages, route groups, metadata, sitemap, robots, Studio route
-  components/          Header, footer, analytics links, reusable UI primitives
+  app/                 thin App Router entries, route groups, metadata, sitemap, robots, Studio route
+  page-modules/        route-level rendering, page-specific CSS, local client boundaries
+  components/          Layout components, analytics links, reusable UI primitives
+  config/              environment, SEO, service, site, availability, and theme configuration
   content/             deterministic seed fixtures only
-  lib/                 CMS queries, image helpers, SEO, blog normalization
+  data/                CMS queries and content normalization
+  lib/                 framework-specific helpers such as the Next image loader
   sanity/              Sanity schema, Studio structure, env helpers
 scripts/
   seed-sanity.ts       idempotent Sanity seed from src/content fixtures
@@ -69,9 +72,12 @@ scripts/
 docs/
   architecture.md
   cms.md
+  component-registry.md
   design-system.md
   forms-analytics.md
+  pattern-library.md
   performance.md
+  security.md
   template-customization.md
 ```
 
@@ -106,7 +112,7 @@ npm run sanity:repair-keys
 
 ## Contact Form
 
-The contact form lives in `src/app/(site)/contact/contact-form.tsx`. It submits directly to Web3Forms, includes basic validation and a honeypot, shows success/error UI, and tracks `inquiry_submitted` with Vercel Analytics.
+The contact form lives in `src/page-modules/contact/contact-form/index.tsx`. It submits directly to Web3Forms, includes basic validation and a honeypot, shows success/error UI, and tracks `inquiry_submitted` with Vercel Analytics.
 
 To enable delivery, create a Web3Forms access key for the recipient inbox and set `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`.
 
@@ -145,6 +151,7 @@ For CMS or launch changes, also spot-check:
 - `/pricing`
 - `/contact`
 - `/faq`
+- `/privacy`
 - `/blog`
 - one `/blog/[slug]`
 - `/studio`

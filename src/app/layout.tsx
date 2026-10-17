@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Libre_Baskerville, Manrope, IBM_Plex_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
-import { metadataBase, pageMetadata } from "@/lib/seo";
+import { metadataBase, pageMetadata } from "@/config/seo";
 
 const baskerville = Libre_Baskerville({
   variable: "--font-baskerville",
@@ -26,7 +24,12 @@ const plexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   metadataBase,
-  ...pageMetadata({ path: "/" }),
+  ...pageMetadata({
+    title: "Psychologist & Therapist in Rochester, NY",
+    description:
+      "Individual therapy, Imago couples therapy, and perinatal and postpartum support with Dr. Christina Ruzicka, Psy.D., in Rochester, NY.",
+    path: "/",
+  }),
   verification: process.env.GOOGLE_SITE_VERIFICATION
     ? { google: process.env.GOOGLE_SITE_VERIFICATION }
     : undefined,
@@ -40,13 +43,9 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${baskerville.variable} ${manrope.variable} ${plexMono.variable} antialiased`}
+      className={`${baskerville.variable} ${manrope.variable} ${plexMono.variable}`}
     >
-      <body>
-        {children}
-        <Analytics />
-        <SpeedInsights />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

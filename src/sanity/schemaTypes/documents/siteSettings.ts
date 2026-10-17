@@ -4,7 +4,7 @@ import {
   DEFAULT_AVAILABILITY_STATUS,
   initialAvailabilityBadgeMessages,
   initialAvailabilityMessaging,
-} from "../../../lib/availability";
+} from "../../../config/availability";
 
 const badgeMessageFields = [
   defineField({
@@ -290,6 +290,16 @@ export const siteSettings = defineType({
       type: "array",
       group: "practice",
       of: [defineArrayMember({ type: "string" })],
+    }),
+    defineField({
+      name: "externalProfiles",
+      title: "Verified external profiles",
+      description:
+        "Authoritative profiles used to connect the practice identity across the web. Add the Google Business Profile URL after verification.",
+      type: "array",
+      group: "practice",
+      of: [defineArrayMember({ type: "externalProfile" })],
+      validation: (rule) => rule.unique(),
     }),
   ],
   preview: {

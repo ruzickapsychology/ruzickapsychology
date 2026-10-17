@@ -1,5 +1,6 @@
 ---
 title: Welcome to the Practice
+slug: welcome-to-the-practice
 date: 2026-01-01
 excerpt: Welcome! I'm Dr. Christina Ruzicka and I am so glad you are here.
 ---

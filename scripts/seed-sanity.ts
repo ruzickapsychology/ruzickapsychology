@@ -40,6 +40,47 @@ const specialtyIds = [
   "specialty-group-therapy",
 ] as const;
 
+const postIdByPublicSlug: Record<string, string> = {
+  "why-we-choose-the-partners-we-do-the-surprising-psychology-behind-romantic-attraction":
+    "post-finding-your-footing-after-change",
+  "beyond-the-buzzword-what-does-doing-the-work-actually-mean-in-therapy":
+    "post-repairing-connection-in-relationships",
+  "welcome-to-the-practice": "post-welcome-to-the-practice",
+};
+
+const postSourcesByPublicSlug: Record<
+  string,
+  Array<{ _key: string; title: string; citation: string; url: string }>
+> = {
+  "why-we-choose-the-partners-we-do-the-surprising-psychology-behind-romantic-attraction":
+    [
+      {
+        _key: "hazan-shaver-1987",
+        title: "Romantic love conceptualized as an attachment process",
+        citation:
+          "Hazan, C., & Shaver, P. (1987). Journal of Personality and Social Psychology, 52(3), 511–524.",
+        url: "https://doi.org/10.1037/0022-3514.52.3.511",
+      },
+      {
+        _key: "gehlert-et-al-2017",
+        title:
+          "Randomized controlled trial of Imago Relationship Therapy: Exploring statistical and clinical significance",
+        citation:
+          "Gehlert, N. C., Schmidt, C. D., Giegerich, V., & Luquet, W. (2017). Journal of Couple & Relationship Therapy, 16(3), 188–209.",
+        url: "https://doi.org/10.1080/15332691.2016.1253518",
+      },
+    ],
+  "beyond-the-buzzword-what-does-doing-the-work-actually-mean-in-therapy": [
+    {
+      _key: "fairbrother-et-al-2016",
+      title: "Perinatal anxiety disorder prevalence and incidence",
+      citation:
+        "Fairbrother, N., Janssen, P., Antony, M. M., Tucker, E., & Young, A. H. (2016). Journal of Affective Disorders, 200, 148–155.",
+      url: "https://doi.org/10.1016/j.jad.2015.12.082",
+    },
+  ],
+};
+
 function slugify(value: string) {
   return value
     .toLowerCase()
@@ -142,8 +183,41 @@ async function buildDocuments(): Promise<SeedDocument[]> {
     _id: specialtyIds[index],
     _type: "specialty",
     title: item.title,
-    slug: { _type: "slug", current: slugify(item.title) },
+    slug: { _type: "slug", current: item.slug },
     summary: item.body,
+    pageStatus: item.pageStatus,
+    ...("pageHeading" in item
+      ? {
+          pageHeading: item.pageHeading,
+          intro: item.intro,
+          overview: paragraphsToPortableText(
+            item.overview,
+            `${item.slug}-overview`,
+          ),
+          commonConcerns: item.commonConcerns,
+          approachHeading: item.approachHeading,
+          approachBody: paragraphsToPortableText(
+            item.approachBody,
+            `${item.slug}-approach`,
+          ),
+          whatToExpect: paragraphsToPortableText(
+            item.whatToExpect,
+            `${item.slug}-expect`,
+          ),
+          faqs: item.faqs.map((faqItem, faqIndex) => ({
+            _key: keyFor("service-faq", `${item.slug}-${faqIndex}`),
+            question: faqItem.question,
+            answerRichText: paragraphsToPortableText(
+              faqItem.answer,
+              `${item.slug}-faq-${faqIndex}`,
+            ),
+          })),
+          relatedPosts: item.relatedPostSlugs
+            .map((slug) => postIdByPublicSlug[slug])
+            .filter(Boolean)
+            .map((id) => ref(id, keyFor("related-post", id))),
+        }
+      : {}),
     details: item.details,
     order: index,
     active: true,
@@ -167,6 +241,10 @@ async function buildDocuments(): Promise<SeedDocument[]> {
       url: site.url,
       tagline: site.tagline,
       areaServed: site.areaServed,
+      externalProfiles: site.externalProfiles.map((profile) => ({
+        _key: keyFor("external-profile", profile.label),
+        ...profile,
+      })),
     },
     {
       _id: "homePage",
@@ -324,7 +402,7 @@ async function buildDocuments(): Promise<SeedDocument[]> {
       items: faq.items.map((item) => ({
         _key: keyFor("faq-item", item.q),
         question: item.q,
-        answer: item.a,
+        answerRichText: markdownToPortableText(item.a.join("\n\n")),
       })),
       cta: {
         heading: "Still have a question?",
@@ -344,6 +422,7 @@ async function buildDocuments(): Promise<SeedDocument[]> {
       const source = fs.readFileSync(path.join(blogDir, file), "utf8");
       const { data, content } = matter(source);
       const title = String(data.title ?? slug);
+      const publicSlug = String(data.slug ?? slug);
       const date =
         data.date instanceof Date
           ? data.date.toISOString()
@@ -353,10 +432,11 @@ async function buildDocuments(): Promise<SeedDocument[]> {
         _id: `post-${slug}`,
         _type: "post",
         title,
-        slug: { _type: "slug", current: slug },
+        slug: { _type: "slug", current: publicSlug },
         publishedAt: date,
         excerpt: String(data.excerpt ?? ""),
         body: markdownToPortableText(content),
+        sources: postSourcesByPublicSlug[publicSlug],
       };
     });
 
@@ -402,6 +482,9 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error("[seed] Failed:", error);
+  console.error(
+    "[seed] Failed:",
+    error instanceof Error ? error.message : "Unknown error",
+  );
   process.exit(1);
 });

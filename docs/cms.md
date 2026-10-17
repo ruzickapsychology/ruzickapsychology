@@ -118,7 +118,33 @@ Expected initial content:
 - 4 specialties.
 - 3 blog posts.
 
-## Array Keys
+## Reviewed website copy migrations
+
+The SEO migration requires an explicit scope and a saved field-by-field preview.
+For routine website copy, preview one document at a time:
+
+```bash
+npm run sanity:migrate-seo-pages -- -- --website-copy-only --document homePage --plan /private/tmp/homepage-plan.json
+```
+
+Review the exact before/after values, then apply that same plan with `--apply`
+and `--backup /private/tmp/homepage-backup.json`. Files are created exclusively;
+use fresh paths and keep backups outside Git. Changed revisions, fixtures,
+scope, or target dataset require a new preview. Clinical/service scopes retain
+their explicit review flags; `--all-content` is a broad replacement scope.
+
+Existing drafts normally block writes. `--include-reviewed-drafts` is available
+only for `--website-copy-only`: the preview includes both published and draft
+revisions and only the allowlisted heading/form-note fields. Applying never
+publishes or discards the draft. Coordinate publishing with editors because
+draft nonexistence cannot be asserted atomically.
+
+`--article-formatting-only` repairs the known romantic-attraction article's
+three section-heading styles and stray delimiter span. It requires exact
+source-text matches and uses the same reviewed-plan, backup, revision, and
+draft guards. It does not import fixture copy or change clinical wording.
+
+## Array key repair
 
 Sanity arrays need stable `_key` values for Studio editing. API-created content can miss keys if scripts do not add them.
 

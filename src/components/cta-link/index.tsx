@@ -1,10 +1,16 @@
 "use client";
 
-import Link, { type LinkProps } from "next/link";
 import { track } from "@vercel/analytics";
-import { buttonClasses } from "@/components/ui/button";
+import Link, { type LinkProps } from "next/link";
+import type { ComponentProps } from "react";
+import { buttonVariants, type ButtonVariant } from "@/components/button";
 
-type Variant = "primary" | "secondary" | "outline";
+type CtaLinkProps = Omit<ComponentProps<typeof Link>, "className" | "href"> & {
+  href: LinkProps<string>["href"];
+  event: string;
+  variant?: ButtonVariant;
+  className?: string;
+};
 
 export function CtaLink({
   href,
@@ -12,18 +18,20 @@ export function CtaLink({
   variant = "primary",
   className,
   children,
-}: {
-  href: LinkProps<string>["href"];
-  event: string;
-  variant?: Variant;
-  className?: string;
-  children: React.ReactNode;
-}) {
+  onClick,
+  ...props
+}: CtaLinkProps) {
   return (
     <Link
+      {...props}
+      data-slot="cta-link"
+      data-variant={variant}
       href={href}
-      className={buttonClasses(variant, className)}
-      onClick={() => track(event)}
+      className={buttonVariants({ variant, className })}
+      onClick={(clickEvent) => {
+        onClick?.(clickEvent);
+        if (!clickEvent.defaultPrevented) track(event);
+      }}
     >
       {children}
     </Link>

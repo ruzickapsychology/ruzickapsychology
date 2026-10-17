@@ -1,0 +1,118 @@
+.field {
+  min-width: 0;
+}
+
+.label {
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.default {
+  --field-background: var(--color-surface);
+  --field-foreground: var(--color-fg);
+  --field-placeholder: var(--color-body);
+  --field-focus-background: var(--color-surface);
+  --field-focus-ring: var(--color-accent);
+}
+
+.inverse {
+  --field-background: color-mix(
+    in srgb,
+    var(--color-contact-overlay) 35%,
+    transparent
+  );
+  --field-foreground: var(--color-light);
+  --field-placeholder: var(--color-light-80);
+  --field-focus-background: var(--color-fg);
+  --field-focus-ring: var(--color-light);
+}
+
+.control {
+  scroll-margin-top: calc(var(--fixed-header-offset) + var(--space-16));
+  min-width: 0;
+  width: 100%;
+  border: 1px solid var(--field-foreground);
+  border-radius: 0;
+  background-color: var(--field-background);
+  padding: 0.625rem 1rem;
+  font-size: var(--text-md);
+  line-height: 1.375;
+  color: var(--field-foreground);
+  outline: none;
+  transition: background-color var(--transition-fast);
+}
+
+.control::placeholder {
+  color: var(--field-placeholder);
+}
+
+.control:focus {
+  background-color: var(--field-focus-background);
+}
+
+.control:focus-visible {
+  outline: 2px solid var(--field-focus-ring);
+  outline-offset: 3px;
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.description,
+.error {
+  margin-top: var(--space-2);
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+}
+.description {
+  color: var(--color-body-85);
+}
+.error {
+  color: var(--color-accent);
+  padding: var(--space-3);
+  border: 1px solid currentColor;
+}
+.description.inverse,
+.error.inverse {
+  color: var(--color-light);
+}
+
+.description,
+.error {
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+
+.description a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.description.inverse a {
+  text-underline-offset: 0.2em;
+  color: var(--color-light);
+  text-decoration-color: var(--color-light-72);
+}
+
+.description.inverse a:hover {
+  color: var(--color-accent-soft);
+}
+
+.description.inverse a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}

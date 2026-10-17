@@ -32,7 +32,10 @@ The site intentionally uses a small type system:
 
 ## Layout
 
-The site should stay aligned to the shared `Container` and `site-grid` system. Sections should use `Section` sizing instead of one-off padding. Full-bleed image sections may break the background visually, but their text and inner containers should remain grid-aligned.
+The site should stay aligned to the shared `Container`, `Grid`, and
+`GridContainer` system. Sections should use `Section`/`ContentSection` sizing
+instead of one-off padding. Full-bleed image sections may break the background
+visually, but their text and inner containers should remain grid-aligned.
 
 ## Imagery
 

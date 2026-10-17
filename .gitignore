@@ -15,6 +15,7 @@
 /playwright-report
 /test-results
 /.lighthouseci
+/.local/seo-release/
 *.inspect.ndjson
 
 # next.js

@@ -1,0 +1,45 @@
+.root {
+  display: block;
+  height: 100%;
+  padding: var(--space-6) var(--space-2);
+  color: inherit;
+}
+
+.link {
+  transition: background-color var(--transition-surface);
+}
+
+.link:hover {
+  background-color: var(--color-hover-wash);
+}
+
+.glyph {
+  margin-bottom: var(--space-5);
+  color: var(--color-icon);
+}
+
+.title {
+  margin-bottom: 0.875rem;
+}
+
+.summary {
+  max-width: 28rem;
+}
+
+.action,
+.note {
+  display: inline-block;
+  margin-top: var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .root {
+    padding: 3.5rem var(--space-10);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
+}

@@ -1,0 +1,7 @@
+.header {
+  width: 100%;
+}
+
+.breadcrumbs {
+  margin-bottom: var(--space-8);
+}

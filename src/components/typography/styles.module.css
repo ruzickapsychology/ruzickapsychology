@@ -1,0 +1,146 @@
+.heading {
+  font-family: var(--font-heading), Georgia, serif;
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-heading);
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.headingDisplay {
+  font-size: var(--text-heading-display);
+}
+
+.headingSection {
+  font-size: var(--text-heading-section);
+}
+
+.headingContent {
+  font-size: var(--text-heading-content);
+}
+
+.headingModule {
+  font-size: var(--text-heading-module);
+}
+
+.headingItem {
+  font-size: var(--text-heading-item);
+}
+
+.eyebrow {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.eyebrowSection {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+}
+
+.eyebrowOverline,
+.eyebrowLabel,
+.eyebrowMeta {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+.eyebrowOverline {
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+}
+
+.eyebrowLabel {
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.eyebrowMeta {
+  line-height: 1.4;
+  letter-spacing: var(--tracking-meta);
+}
+
+.text {
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+
+.text a:not([data-slot="text-link"]) {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.text.toneInverse a:not([data-slot="text-link"]) {
+  color: var(--color-light);
+  text-decoration-color: var(--color-light-72);
+}
+
+.text.toneInverse a:not([data-slot="text-link"]):hover {
+  color: var(--color-accent-soft);
+}
+
+.textLead {
+  font-size: var(--text-lg);
+  line-height: var(--leading-body);
+}
+
+.textBody {
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+}
+
+.textSupporting {
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.textDetail {
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+}
+
+.textQuote {
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: var(--text-heading-module);
+  line-height: var(--leading-relaxed);
+  letter-spacing: var(--tracking-heading);
+}
+
+.toneDefault {
+  color: var(--color-body);
+}
+
+.heading.toneDefault {
+  color: var(--color-fg);
+}
+
+.toneAccent {
+  color: var(--color-accent);
+}
+
+.toneInverse {
+  color: var(--color-light);
+}
+
+.toneSubdued {
+  color: var(--color-body-85);
+}
+
+.toneInherit {
+  color: inherit;
+}
+
+.measureSm {
+  max-width: var(--measure-sm);
+}
+
+.measureMd {
+  max-width: var(--measure-md);
+}
+
+.measureLg {
+  max-width: var(--measure-lg);
+}

@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
-import { getBlogPageCount, getPostMetaPage } from "@/lib/blog";
-import { BlogIndex } from "./blog-index";
+import { pageMetadata } from "@/config/seo";
+import { getBlogPageCount, getPostMetaPage } from "@/data/blog";
+import { BlogIndexPage } from "@/page-modules/blog-index";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Blog",
-  description: "Reflections from the practice.",
+  title: "Psychology & Relationship Insights",
+  description:
+    "Articles from Dr. Christina Ruzicka on relationships, emotional patterns, therapy, and meaningful change.",
   path: "/blog",
 });
 
-export default async function Blog() {
-  return (
-    <BlogIndex
-      posts={await getPostMetaPage(1)}
-      page={1}
-      totalPages={await getBlogPageCount()}
-    />
-  );
+export default async function BlogIndexRoute() {
+  const [posts, totalPages] = await Promise.all([
+    getPostMetaPage(1),
+    getBlogPageCount(),
+  ]);
+
+  return <BlogIndexPage posts={posts} page={1} totalPages={totalPages} />;
 }

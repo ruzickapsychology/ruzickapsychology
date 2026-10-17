@@ -1,0 +1,66 @@
+.hero {
+  justify-content: center;
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+}
+
+.heroImage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  object-fit: cover;
+}
+
+.heroContent {
+  position: relative;
+  top: 1rem;
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 100%;
+  max-width: var(--measure-lg);
+  padding-block: var(--space-16);
+}
+
+.heroText {
+  margin-top: 39px;
+}
+
+.sectionIntro {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+.centeredAction {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 100%;
+  max-width: var(--measure-md);
+  margin-top: var(--space-10);
+  text-align: center;
+}
+
+.aboutGrid {
+  align-items: center;
+}
+
+.aboutCopy {
+  text-align: center;
+}
+
+.localCopy {
+  grid-column: 1 / -1;
+  max-width: 700px;
+}
+
+@media (min-width: 768px) {
+  .aboutCopy {
+    text-align: left;
+  }
+}
+
+@media (min-width: 1024px) {
+  .localCopy {
+    grid-column: 3 / span 8;
+  }
+}

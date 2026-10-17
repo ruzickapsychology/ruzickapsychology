@@ -1,0 +1,26 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  margin-top: var(--space-12);
+}
+
+.link {
+  display: inline-flex;
+  min-width: var(--touch-target);
+  min-height: var(--touch-target);
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid transparent;
+  color: var(--color-body);
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.link:hover,
+.active {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}

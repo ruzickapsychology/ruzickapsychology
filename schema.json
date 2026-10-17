@@ -70,6 +70,50 @@
           "name": "simplePortableText"
         },
         "optional": false
+      },
+      "sources": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "title": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": false
+              },
+              "citation": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": false
+              },
+              "url": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": false
+              }
+            },
+            "rest": {
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "optional": true
       }
     }
   },
@@ -259,6 +303,36 @@
     }
   },
   {
+    "type": "type",
+    "name": "post.reference",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_ref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          }
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "reference"
+          }
+        },
+        "_weak": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      },
+      "dereferencesTo": "post"
+    }
+  },
+  {
     "name": "specialty",
     "type": "document",
     "attributes": {
@@ -314,6 +388,122 @@
           "type": "string"
         },
         "optional": false
+      },
+      "pageStatus": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "hubOnly"
+            },
+            {
+              "type": "string",
+              "value": "published"
+            }
+          ]
+        },
+        "optional": false
+      },
+      "pageHeading": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "intro": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "overview": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "simplePortableText"
+        },
+        "optional": true
+      },
+      "commonConcerns": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "string"
+          }
+        },
+        "optional": true
+      },
+      "approachHeading": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "approachBody": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "simplePortableText"
+        },
+        "optional": true
+      },
+      "whatToExpect": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "simplePortableText"
+        },
+        "optional": true
+      },
+      "faqs": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "_key": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "rest": {
+              "type": "inline",
+              "name": "faqItem"
+            }
+          }
+        },
+        "optional": true
+      },
+      "relatedPosts": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "_key": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "rest": {
+              "type": "inline",
+              "name": "post.reference"
+            }
+          }
+        },
+        "optional": true
       },
       "details": {
         "type": "objectAttribute",
@@ -1801,6 +1991,28 @@
           }
         },
         "optional": true
+      },
+      "externalProfiles": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "_key": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "rest": {
+              "type": "inline",
+              "name": "externalProfile"
+            }
+          }
+        },
+        "optional": true
       }
     }
   },
@@ -1817,14 +2029,35 @@
             "value": "address"
           }
         },
-        "line1": {
+        "streetAddress": {
           "type": "objectAttribute",
           "value": {
             "type": "string"
           },
           "optional": false
         },
-        "line2": {
+        "addressLocality": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": false
+        },
+        "addressRegion": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": false
+        },
+        "postalCode": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": false
+        },
+        "addressCountry": {
           "type": "objectAttribute",
           "value": {
             "type": "string"
@@ -1832,6 +2065,20 @@
           "optional": false
         },
         "note": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "line1": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "line2": {
           "type": "objectAttribute",
           "value": {
             "type": "string"
@@ -1861,6 +2108,14 @@
           },
           "optional": false
         },
+        "answerRichText": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "simplePortableText"
+          },
+          "optional": false
+        },
         "answer": {
           "type": "objectAttribute",
           "value": {
@@ -1869,7 +2124,7 @@
               "type": "string"
             }
           },
-          "optional": false
+          "optional": true
         }
       }
     }
@@ -2150,6 +2405,36 @@
           "type": "objectAttribute",
           "value": {
             "type": "number"
+          },
+          "optional": false
+        }
+      }
+    }
+  },
+  {
+    "name": "externalProfile",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "externalProfile"
+          }
+        },
+        "label": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": false
+        },
+        "url": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
           },
           "optional": false
         }

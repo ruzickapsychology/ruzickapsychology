@@ -1,0 +1,75 @@
+.root {
+  min-width: 0;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+
+.root p,
+.root li {
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+}
+
+.root a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.root ul {
+  list-style: disc;
+}
+
+.root ol {
+  list-style: decimal;
+}
+
+.root ul,
+.root ol {
+  padding-left: var(--space-6);
+}
+
+.root blockquote {
+  border-left: 2px solid var(--color-accent);
+  padding-left: var(--space-6);
+  font-style: italic;
+}
+
+.root > * + * {
+  margin-top: var(--space-5);
+}
+
+.intro p {
+  font-size: var(--text-lg);
+  line-height: var(--leading-body);
+}
+
+.compact > * + * {
+  margin-top: var(--space-4);
+}
+
+.compact p,
+.compact li {
+  font-size: var(--text-md);
+}
+
+.article {
+  line-height: var(--leading-prose);
+}
+
+.article p,
+.article li {
+  line-height: var(--leading-prose);
+}
+
+.article > * + * {
+  margin-top: var(--space-6);
+}
+
+.article h2 {
+  margin-top: var(--space-12);
+}
+
+.article h3 {
+  margin-top: var(--space-8);
+}

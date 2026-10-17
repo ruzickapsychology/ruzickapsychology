@@ -1,0 +1,57 @@
+.pricingCard {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 100%;
+  max-width: var(--measure-lg);
+}
+
+.feesPanel {
+  border-bottom: 1px solid var(--color-muted);
+  padding: 2.5rem 0.5rem;
+}
+
+.insurancePanel {
+  padding: 2.5rem 0.5rem;
+}
+
+.feesHeading {
+  margin-bottom: var(--space-7);
+}
+
+.insuranceHeading {
+  margin-bottom: var(--space-6);
+}
+
+.feesList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.feeRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.feeRow a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.feeNote {
+  margin-top: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .feesPanel {
+    border-right: 1px solid var(--color-muted);
+    border-bottom: 0;
+    padding: 3.5rem 4rem 3.5rem 2.5rem;
+  }
+
+  .insurancePanel {
+    padding: 3.5rem 2.5rem 3.5rem 4rem;
+  }
+}

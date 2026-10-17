@@ -1,4 +1,4 @@
-import { publicEnv } from "../lib/env";
+import { publicEnv } from "../config/env";
 
 export const apiVersion = publicEnv.sanityApiVersion;
 

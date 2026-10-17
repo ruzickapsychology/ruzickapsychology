@@ -4,6 +4,7 @@ const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2026-06-24";
 const client = getCliClient({ apiVersion }).withConfig({ useCdn: false });
 
 type ValidationResult = {
+  legacyCompatibilityWarnings: string[];
   missingSingletons: string[];
   missingImageAlt: Array<{ documentId: string; path: string }>;
   missingRequiredValues: string[];
@@ -19,11 +20,20 @@ const requiredSingletons = [
   "faqPage",
 ];
 
+const requiredServiceIds = [
+  "specialty-individual-therapy",
+  "specialty-couples-counseling",
+  "specialty-perinatal-postpartum-support",
+  "specialty-group-therapy",
+];
+
 const query = /* groq */ `
 {
   "missingSingletons": $requiredSingletons[!(@ in *[defined(_id)]._id)],
   "missingRequiredValues": [
     select(!defined(*[_id == "siteSettings"][0].email) => "siteSettings.email", null),
+    select(!defined(*[_id == "siteSettings"][0].phone) => "siteSettings.phone", null),
+    select(!defined(coalesce(*[_id == "siteSettings"][0].address.streetAddress, *[_id == "siteSettings"][0].address.line1)) => "siteSettings.address.streetAddress-or-line1", null),
     select(!defined(*[_id == "siteSettings"][0].portalUrl) => "siteSettings.portalUrl", null),
     select(!defined(*[_id == "siteSettings"][0].availabilityBadgeMessages.accepting.line1) => "siteSettings.availabilityBadgeMessages.accepting.line1", null),
     select(!defined(*[_id == "siteSettings"][0].availabilityBadgeMessages.accepting.line2) => "siteSettings.availabilityBadgeMessages.accepting.line2", null),
@@ -50,7 +60,16 @@ const query = /* groq */ `
     select(!defined(*[_id == "siteSettings"][0].availabilityMessaging.closed.panelHeading) => "siteSettings.availabilityMessaging.closed.panelHeading", null),
     select(!defined(*[_id == "siteSettings"][0].availabilityMessaging.closed.panelBody) => "siteSettings.availabilityMessaging.closed.panelBody", null),
     select(!defined(*[_id == "siteSettings"][0].availabilityMessaging.closed.contactMethodsLabel) => "siteSettings.availabilityMessaging.closed.contactMethodsLabel", null),
-    select(!defined(*[_id == "contactPage"][0].header.heading) => "contactPage.header.heading", null)
+    select(!defined(*[_id == "contactPage"][0].header.heading) => "contactPage.header.heading", null),
+    select(count(*[_id in $requiredServiceIds && pageStatus == "published"]) != count($requiredServiceIds) => "published service pages", null),
+    select(count(*[_id in $requiredServiceIds && defined(pageHeading) && defined(intro) && count(overview) > 0 && count(commonConcerns) > 0 && defined(approachHeading) && count(approachBody) > 0 && count(whatToExpect) > 0 && count(faqs) >= 3]) != count($requiredServiceIds) => "published service page content", null)
+  ][@ != null],
+  "legacyCompatibilityWarnings": [
+    select(!defined(*[_id == "siteSettings"][0].address.streetAddress) => "siteSettings.address uses legacy line1", null),
+    select(!defined(*[_id == "siteSettings"][0].address.addressLocality) => "siteSettings.address uses the Rochester locality fallback", null),
+    select(!defined(*[_id == "siteSettings"][0].address.addressRegion) => "siteSettings.address uses the NY region fallback", null),
+    select(!defined(*[_id == "siteSettings"][0].address.postalCode) => "siteSettings.address uses the 14620 postal-code fallback", null),
+    select(!defined(*[_id == "siteSettings"][0].address.addressCountry) => "siteSettings.address uses the US country fallback", null)
   ][@ != null],
   "missingImageAlt": *[
     defined(*[references(^._id)][0]) || _id in $requiredSingletons || _type in ["post", "specialty"]
@@ -102,9 +121,10 @@ async function main() {
     Omit<ValidationResult, "missingImageAlt"> & {
       missingImageAlt: Array<{ documentId: string; paths?: string[] }>;
     }
-  >(query, { requiredSingletons });
+  >(query, { requiredSingletons, requiredServiceIds });
 
   const result: ValidationResult = {
+    legacyCompatibilityWarnings: raw.legacyCompatibilityWarnings,
     missingSingletons: raw.missingSingletons,
     missingRequiredValues: raw.missingRequiredValues,
     missingImageAlt: flattenMissingImageAlt(raw.missingImageAlt),
@@ -121,10 +141,19 @@ async function main() {
     return;
   }
 
+  if (result.legacyCompatibilityWarnings.length) {
+    console.warn("[content] Validation passed with legacy fallbacks:");
+    console.warn(JSON.stringify(result.legacyCompatibilityWarnings, null, 2));
+    return;
+  }
+
   console.log("[content] Validation passed.");
 }
 
 main().catch((error) => {
-  console.error("[content] Validation failed:", error);
+  console.error(
+    "[content] Validation failed:",
+    error instanceof Error ? error.message : "Unknown error",
+  );
   process.exit(1);
 });

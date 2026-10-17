@@ -1,8 +1,11 @@
-import { existsSync, readdirSync, statSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
+import { pageComponentViolations } from "./page-component-policy.mjs";
 
 const componentRoot = join(process.cwd(), "src/components");
 const appRoot = join(process.cwd(), "src/app");
+const pageModuleRoot = join(process.cwd(), "src/page-modules");
+const publicSiteRoot = join(appRoot, "(site)");
 const routeConventionFiles = new Set([
   "default.tsx",
   "error.tsx",
@@ -23,6 +26,11 @@ const routeConventionFiles = new Set([
   "template.tsx",
   "twitter-image.tsx",
   "unauthorized.tsx",
+]);
+const slotExemptComponents = new Set([
+  "breadcrumb-trail",
+  "error-content",
+  "site-analytics", // Nonvisual instrumentation has no DOM slot.
 ]);
 
 function walk(dir) {
@@ -78,6 +86,12 @@ function validateSourceRoot(root, { allowRouteConventions = false } = {}) {
     }
 
     if (!isRouteConvention) {
+      if (root === componentRoot && parts.length !== 2) {
+        errors.push(
+          `${relative(process.cwd(), file)} must be a direct child component folder under src/components.`,
+        );
+      }
+
       const dir = parts.slice(0, -1).join("/");
       filesByDir.set(dir, [...(filesByDir.get(dir) ?? []), rel]);
     }
@@ -94,8 +108,111 @@ function validateSourceRoot(root, { allowRouteConventions = false } = {}) {
 
 validateSourceRoot(componentRoot);
 validateSourceRoot(appRoot, { allowRouteConventions: true });
+validateSourceRoot(pageModuleRoot);
 
-for (const root of [componentRoot, appRoot]) {
+if (existsSync(pageModuleRoot)) {
+  for (const file of walk(pageModuleRoot).filter((path) =>
+    path.endsWith(".tsx"),
+  )) {
+    errors.push(
+      ...pageComponentViolations(
+        readFileSync(file, "utf8"),
+        relative(process.cwd(), file),
+      ),
+    );
+  }
+}
+
+if (existsSync(componentRoot)) {
+  for (const file of walk(componentRoot).filter(isSourceComponentFile)) {
+    const componentName = relative(componentRoot, file).split("/")[0];
+    const source = readFileSync(file, "utf8");
+
+    if (
+      !slotExemptComponents.has(componentName) &&
+      !source.includes("data-slot")
+    ) {
+      errors.push(
+        `${relative(process.cwd(), file)} must expose at least one stable data-slot attribute.`,
+      );
+    }
+  }
+}
+
+for (const file of walk(join(process.cwd(), "src")).filter(
+  isSourceComponentFile,
+)) {
+  const source = readFileSync(file, "utf8");
+  const path = relative(process.cwd(), file);
+
+  if (/@\/components\/(?:ui|layout)\//.test(source)) {
+    errors.push(
+      `${path} imports a legacy component category; components are flat under @/components.`,
+    );
+  }
+
+  if (/\bbuttonClasses\b|\bFormField\b/.test(source)) {
+    errors.push(
+      `${path} uses a retired component API; use Button/buttonVariants or the compound field primitives.`,
+    );
+  }
+
+  const hiddenCompositionPatterns = [
+    /<ContentHeader\b[^>]*\b(?:eyebrow|heading|intro)=/,
+    /<PageHeader\b[^>]*\b(?:eyebrow|heading|intro|breadcrumbs)=/,
+    /<DisclosureItem\b[^>]*\b(?:eyebrow|title|headingAs)=/,
+  ];
+
+  if (hiddenCompositionPatterns.some((pattern) => pattern.test(source))) {
+    errors.push(
+      `${path} hides a shared hierarchy in configuration props; use the component's compound children.`,
+    );
+  }
+}
+
+if (existsSync(publicSiteRoot)) {
+  const publicRouteFiles = walk(publicSiteRoot).filter((path) =>
+    path.endsWith("/page.tsx"),
+  );
+
+  for (const file of publicRouteFiles) {
+    const source = readFileSync(file, "utf8");
+    const path = relative(process.cwd(), file);
+
+    if (/@\/components\//.test(source) || /\.module\.css["']/.test(source)) {
+      errors.push(
+        `${path} owns rendering details; public page routes may only load data and render a page module.`,
+      );
+    }
+
+    if (!/@\/page-modules\//.test(source)) {
+      errors.push(
+        `${path} must delegate its page rendering to a module under src/page-modules.`,
+      );
+    }
+  }
+}
+
+for (const root of [publicSiteRoot, pageModuleRoot]) {
+  if (!existsSync(root)) continue;
+
+  for (const file of walk(root).filter((path) => path.endsWith(".tsx"))) {
+    const source = readFileSync(file, "utf8");
+    const rawTypography = source.match(/<(?:h1|h2|h3|p)(?:\s|>)/g);
+
+    if (rawTypography?.length) {
+      errors.push(
+        `${relative(process.cwd(), file)} contains raw page typography (${[
+          ...new Set(rawTypography),
+        ].join(
+          ", ",
+        )}); use the shared typography, ContentHeader, or PortableContent components.`,
+      );
+    }
+  }
+}
+
+for (const root of [componentRoot, appRoot, pageModuleRoot]) {
   if (!existsSync(root)) continue;
 
   for (const file of walk(root).filter(isCssModuleFile)) {
