@@ -1,4 +1,7 @@
 declare const styles: {
+  readonly alignCenter: string;
+  readonly alignStart: string;
+  readonly alignStretch: string;
   readonly auto: string;
   readonly editorial: string;
   readonly four: string;
@@ -9,9 +12,11 @@ declare const styles: {
   readonly gapSm: string;
   readonly portrait: string;
   readonly root: string;
+  readonly single: string;
   readonly site: string;
   readonly three: string;
   readonly two: string;
+  readonly twoLg: string;
   readonly twoMd: string;
 };
 export = styles;

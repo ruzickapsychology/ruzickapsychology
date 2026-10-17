@@ -17,8 +17,10 @@ follow a shadcn-style composition contract while retaining CSS Modules.
 - `section` — vertical rhythm and background tone.
 - `container` — shared gutters and maximum widths.
 - `grid`, `stack`, `action-group` — responsive layout and spacing.
+  `ActionGroup as="span"` supports grouped links inside prose without invalid nesting.
   Grid's `portrait` and `editorial` layouts own the recurring two-child asymmetric
-  compositions; `two`, `twoMd`, `three`, `four` and `auto` own equal/card grids.
+  compositions; `two`, `twoMd`, `twoLg`, `three`, `four` and `auto` own equal/card grids.
+  Use `single` for a full-width stack with grid gaps; `align` owns vertical alignment.
 - `page-shell` — standard page root and entrance behavior.
 - `content-section` — Section + Container/GridContainer composition.
   Defaults to an ordinary container; accepts all Grid layouts and grid gap variants.
@@ -30,7 +32,8 @@ follow a shadcn-style composition contract while retaining CSS Modules.
 
 - `content-header` — `ContentHeader`, `ContentHeaderEyebrow`,
   `ContentHeaderTitle`, `ContentHeaderDescription`, and
-  `ContentHeaderActions`.
+  `ContentHeaderActions`. `align="centerLeft"` centers on mobile and switches
+  to left alignment at 768px; do not repeat that breakpoint in route CSS.
 - `page-header` — `PageHeader`, `PageHeaderBreadcrumbs`,
   `PageHeaderContent`, `PageHeaderEyebrow`, `PageHeaderTitle`, and
   `PageHeaderDescription`. `PageHeaderTitle` always renders the page H1.
@@ -50,7 +53,8 @@ follow a shadcn-style composition contract while retaining CSS Modules.
 - `button` — `Button` for button elements and `buttonVariants()` for links.
   `tone="inverse"` supplies light focus treatment on dark backgrounds.
 - `cta-link` — button-styled internal consultation links with analytics.
-- `text-link` — consistent inline navigation treatment.
+- `text-link` — consistent navigation treatment; `variant="inline"` inherits prose
+  typography and adds an underline without an arrow.
 - `tracked-external-link` — external destinations with analytics.
 - `pagination` — shared accessible numbered pagination.
 
@@ -94,3 +98,22 @@ Do not force these into tile cards or opaque panels for uniformity. Reuse shared
 typography, controls, spacing and layout beneath those intentional differences.
 FAQ/service/pricing disclosures already share the same compound components;
 their differing heading levels and content are deliberate.
+
+## Consistency review — October 17, 2026
+
+All public render modules use the shared typography and section/header families.
+Home and Contact intentionally use `ImmersivePageHeader`; About combines the
+portrait grid with `ContentHeader`; editorial pages use `PageHeader`.
+
+The review consolidated repeated Contact column spans, full-width section grids,
+portrait alignment, responsive header alignment, fee-list spacing, related-card
+columns, and service CTA link grouping. Privacy and fee links use the same inline
+link variant. Repeated header/column geometry belongs in these shared APIs rather
+than new route-level selectors.
+
+Local CSS still owns image crops/washes, fee-row alignment and panel dividers,
+blog editorial rows/navigation, map treatment, credentials, and submission states.
+These are deliberate compositions, not alternate systems for page typography or
+responsive columns. Current validation enforces component/route boundaries and
+shared visible typography/controls; visual review is still needed to catch CSS
+that duplicates a shared component's responsibility.

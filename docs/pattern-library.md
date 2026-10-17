@@ -70,16 +70,16 @@ their normal padding. Do not compensate with page-specific margin arithmetic.
 
 ## Section Selection
 
-| Need                                 | Use                                                |
-| ------------------------------------ | -------------------------------------------------- |
-| Prose, FAQ or one content block      | `ContentSection containerSize="md"`                |
-| Heading beside body/list             | `ContentSection layout="editorial"`                |
-| Portrait beside biography            | `GridContainer layout="portrait"` inside `Section` |
-| Equal columns                        | `Grid layout="twoMd"` (768px) or `two` (640px)     |
-| Related reading                      | `EditorialLinkCardGrid` and `EditorialLinkCard`    |
-| Vertical grouping within a section   | `Stack` with an explicit `gap`                     |
-| Home/contact full-bleed introduction | `ImmersivePageHeader` compounds                    |
-| Consultation band                    | Availability-aware content passed to `CtaSection`  |
+| Need                                 | Use                                                               |
+| ------------------------------------ | ----------------------------------------------------------------- |
+| Prose, FAQ or one content block      | `ContentSection containerSize="md"`                               |
+| Heading beside body/list             | `ContentSection layout="editorial"`                               |
+| Portrait beside biography            | `GridContainer layout="portrait"` inside `Section`                |
+| Equal columns                        | `Grid layout="two"` (640px), `twoMd` (768px), or `twoLg` (1024px) |
+| Related reading                      | `EditorialLinkCardGrid` and `EditorialLinkCard`                   |
+| Vertical grouping within a section   | `Stack` with an explicit `gap`                                    |
+| Home/contact full-bleed introduction | `ImmersivePageHeader` compounds                                   |
+| Consultation band                    | Availability-aware content passed to `CtaSection`                 |
 
 `portrait` and `editorial` take exactly two direct children. Both stack below
 1024px. At desktop, portrait uses 4 / spacer / 7 tracks; editorial uses
@@ -87,7 +87,9 @@ their normal padding. Do not compensate with page-specific margin arithmetic.
 `ContentSection` accepts all `Grid` layouts and a grid `gap`. Its default
 `layout="stack"` means an ordinary container; use `Stack` inside it when children
 need vertical gaps. Do not use a 12-column site grid merely to stack full-width
-children on new pages.
+children on new pages. Use `layout="single"` when retaining grid gaps between
+full-width children. Grid alignment belongs in `align="start"` or `align="center"`.
+Contact uses `twoLg` for both its introduction/form and location/map pairs.
 
 ```tsx
 <ContentSection layout="editorial" size="spacious" tone="feature">
@@ -131,7 +133,8 @@ Use the shared grid and container primitives. The complete card should be a cohe
 
 ## Links
 
-Use ordinary internal links for navigation, `CtaLink` for consultation
+Use `TextLink variant="inline"` for prose links so they inherit surrounding
+typography while remaining visibly underlined. Use ordinary internal links for navigation, `CtaLink` for consultation
 conversion points, and `TrackedExternalLink` for tracked off-site destinations.
 Use `Button` for button elements and `buttonVariants()` when a link needs the
 same pill treatment.

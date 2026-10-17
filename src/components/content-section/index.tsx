@@ -8,6 +8,7 @@ export function ContentSection({
   containerClassName,
   layout = "stack",
   gap,
+  align,
   className,
   children,
   ...sectionProps
@@ -16,6 +17,7 @@ export function ContentSection({
   containerClassName?: string;
   layout?: "stack" | ComponentProps<typeof GridContainer>["layout"];
   gap?: ComponentProps<typeof GridContainer>["gap"];
+  align?: ComponentProps<typeof GridContainer>["align"];
 } & ComponentProps<typeof Section>) {
   return (
     <Section
@@ -29,6 +31,7 @@ export function ContentSection({
           size={containerSize}
           layout={layout}
           gap={gap}
+          align={align}
           className={containerClassName}
         >
           {children}

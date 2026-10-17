@@ -6,6 +6,7 @@ import styles from "./styles.module.css";
 const alignments = {
   center: styles.center,
   left: styles.left,
+  centerLeft: styles.centerLeft,
 } as const;
 
 const widths = {

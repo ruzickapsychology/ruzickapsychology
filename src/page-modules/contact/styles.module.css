@@ -25,15 +25,6 @@
   z-index: 2;
 }
 
-.headerGrid {
-  align-items: start;
-}
-
-.headerCopy {
-  grid-column: 1 / -1;
-  color: var(--color-light);
-}
-
 .contactMethods {
   margin-top: var(--space-7);
 }
@@ -56,12 +47,6 @@
   color: var(--color-accent-soft);
 }
 
-.formColumn,
-.detailsGrid,
-.mapShell {
-  grid-column: 1 / -1;
-}
-
 .availabilityPanel {
   display: flex;
   min-height: 446px;
@@ -80,14 +65,6 @@
 
 .detailsGrid {
   display: grid;
-}
-
-.sectionGrid {
-  align-items: start;
-}
-
-.sectionGrid > * {
-  grid-column: 1 / -1;
 }
 
 .stepItem {
@@ -156,16 +133,6 @@
 }
 
 @media (min-width: 1024px) {
-  .headerCopy,
-  .detailsGrid {
-    grid-column: 1 / span 6;
-  }
-
-  .formColumn,
-  .mapShell {
-    grid-column: 7 / -1;
-  }
-
   .detailsGrid {
     border-right: 1px solid var(--color-muted);
   }

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { TextLink } from "@/components/text-link";
 import { ContentSection } from "@/components/content-section";
 import {
   PageHeader,
@@ -98,7 +98,10 @@ export function PrivacyPage() {
             </Text>
             <Text>
               For questions about this notice, use the{" "}
-              <Link href="/contact">contact page</Link>.
+              <TextLink variant="inline" href="/contact">
+                contact page
+              </TextLink>
+              .
             </Text>
           </Stack>
 
