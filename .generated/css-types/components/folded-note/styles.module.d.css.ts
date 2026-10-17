@@ -1,0 +1,20 @@
+declare const styles: {
+  readonly action: string;
+  readonly arrow: string;
+  readonly closeLabel: string;
+  readonly cover: string;
+  readonly coverFooter: string;
+  readonly eyebrow: string;
+  readonly ink: string;
+  readonly letter: string;
+  readonly letterInk: string;
+  readonly note: string;
+  readonly openLabel: string;
+  readonly seal: string;
+  readonly signature: string;
+  readonly signatureRule: string;
+  readonly title: string;
+  readonly unfold: string;
+  readonly watermark: string;
+};
+export = styles;

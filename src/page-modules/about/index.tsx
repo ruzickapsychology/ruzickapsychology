@@ -8,6 +8,7 @@ import {
   ContentHeaderTitle,
 } from "@/components/content-header";
 import { CtaSection } from "@/components/cta-section";
+import { FoldedNote } from "@/components/folded-note";
 import {
   DisclosureContent,
   DisclosureItem,
@@ -89,9 +90,19 @@ export function AboutPage({
         </GridContainer>
       </Section>
 
+      {about.intro?.length ? (
+        <Section size="spacious" tone="feature" id="before-we-meet">
+          <Container size="xl">
+            <FoldedNote attribution={about.heading}>
+              <PortableContent value={about.intro.slice(0, 2)} variant="body" />
+            </FoldedNote>
+          </Container>
+        </Section>
+      ) : null}
+
       {/* therapy space */}
       {about.space ? (
-        <Section size="spacious" tone="feature">
+        <Section size="spacious">
           <Container size="xl">
             <ContentHeader>
               {about.space.eyebrow ? (

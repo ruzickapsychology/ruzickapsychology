@@ -1,0 +1,244 @@
+.note {
+  --paper-edge: color-mix(in srgb, var(--color-fg) 14%, transparent);
+  position: relative;
+  width: 100%;
+  max-width: 740px;
+  margin-inline: auto;
+  isolation: isolate;
+  background: var(--color-surface);
+  border: 1px solid var(--paper-edge);
+  box-shadow:
+    0 1px 0 var(--color-surface),
+    0 3px 0 var(--paper-edge),
+    0 4px 0 var(--color-surface),
+    0 18px 28px -18px color-mix(in srgb, var(--color-fg) 35%, transparent),
+    0 42px 72px -42px color-mix(in srgb, var(--color-fg) 30%, transparent);
+}
+
+.note::before {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  content: "";
+  pointer-events: none;
+  opacity: 0.25;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23000' opacity='.15' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E");
+}
+
+.cover {
+  position: relative;
+  min-height: 340px;
+  padding: var(--space-8) var(--space-7);
+  list-style: none;
+  cursor: pointer;
+  background:
+    linear-gradient(
+      178deg,
+      transparent 58%,
+      var(--paper-edge) 58.3%,
+      transparent 58.8%
+    ),
+    linear-gradient(
+      178deg,
+      transparent 59%,
+      color-mix(in srgb, var(--color-feature) 30%, transparent) 60%
+    );
+}
+
+.cover::-webkit-details-marker {
+  display: none;
+}
+.cover::marker {
+  content: "";
+}
+
+.cover:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 8px;
+}
+
+.eyebrow {
+  display: block;
+}
+.title {
+  margin-top: var(--space-6);
+}
+
+.seal {
+  position: absolute;
+  top: 50%;
+  right: var(--space-7);
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  color: var(--color-surface);
+  background: var(--color-accent);
+  border: 5px double color-mix(in srgb, var(--color-surface) 22%, transparent);
+  box-shadow:
+    inset 0 2px 3px color-mix(in srgb, var(--color-light) 20%, transparent),
+    inset 0 -3px 5px color-mix(in srgb, var(--color-fg) 25%, transparent),
+    0 5px 8px color-mix(in srgb, var(--color-fg) 16%, transparent);
+  transform: rotate(-9deg);
+  transition: transform 450ms ease;
+}
+
+.coverFooter {
+  position: absolute;
+  inset: auto var(--space-7) var(--space-7);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.arrow {
+  display: inline-block;
+  transition: transform 350ms ease;
+}
+.closeLabel {
+  display: none;
+}
+
+.note[open] .openLabel {
+  display: none;
+}
+.note[open] .closeLabel {
+  display: inline;
+}
+.note[open] .arrow {
+  transform: rotate(-90deg);
+}
+.note[open] .cover {
+  min-height: 250px;
+  background: none;
+}
+.note[open] .seal {
+  transform: rotate(5deg);
+}
+
+.letter {
+  position: relative;
+  padding: var(--space-8) var(--space-7) var(--space-10);
+  border-top: 1px solid var(--paper-edge);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-feature) 38%, transparent),
+    transparent 30px
+  );
+  transform-origin: top center;
+}
+
+.letterInk {
+  position: relative;
+  z-index: 1;
+}
+.signature {
+  margin-top: var(--space-8);
+}
+.signatureRule {
+  display: block;
+  width: 32px;
+  margin-bottom: var(--space-4);
+  border-top: 1px solid var(--color-accent);
+}
+.watermark {
+  position: absolute;
+  bottom: var(--space-7);
+  right: var(--space-7);
+  opacity: 0.08;
+  color: var(--color-accent);
+  transform: rotate(8deg);
+}
+
+@media (min-width: 640px) {
+  .cover {
+    min-height: 350px;
+    padding: var(--space-10) var(--space-10);
+  }
+  .coverFooter {
+    inset: auto var(--space-10) var(--space-8);
+  }
+  .seal {
+    right: var(--space-10);
+  }
+  .letter {
+    padding: var(--space-10) var(--space-10) var(--space-10);
+  }
+  .note[open] .cover {
+    min-height: 260px;
+  }
+  .watermark {
+    right: var(--space-10);
+    bottom: var(--space-10);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .cover:hover .seal {
+    transform: rotate(2deg) translateY(-3px);
+  }
+  .cover:hover .action {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .note[open] .letter {
+    animation: unfold 650ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .note[open] .letterInk {
+    animation: ink 750ms ease both;
+  }
+  @keyframes unfold {
+    from {
+      opacity: 0.25;
+      transform: perspective(1100px) rotateX(-18deg);
+    }
+    to {
+      opacity: 1;
+      transform: perspective(1100px) rotateX(0);
+    }
+  }
+  @keyframes ink {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seal,
+  .arrow {
+    transition: none;
+  }
+}
+
+@media print {
+  .note {
+    box-shadow: none;
+  }
+  .note::details-content {
+    content-visibility: visible;
+  }
+  .cover {
+    min-height: 230px;
+    background: none;
+  }
+  .action {
+    display: none;
+  }
+}

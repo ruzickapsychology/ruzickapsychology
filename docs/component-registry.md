@@ -84,6 +84,8 @@ follow a shadcn-style composition contract while retaining CSS Modules.
 
 ## Domain Blocks
 
+- `folded-note` — a native details disclosure presented as folded stationery; uses the existing flower mark and shared typography, with composed CMS content and attribution. Works without JavaScript and honors reduced motion.
+
 - `author-card` — compact article attribution using the CMS author name, credentials, real portrait and profile link; composes CircularPortrait, Stack and typography.
 - `cta-section` — consultation call-to-action band.
 - `status-page`, `error-content` — shared error and not-found presentation.
