@@ -78,20 +78,33 @@ const pricingBottomCtaFields = [
 ];
 
 const waitlistMessagingFields = [
-  ...heroAndContactMessagingFields,
+  ...heroAndContactMessagingFields.map((field) =>
+    field.name === "heroCta"
+      ? defineField({
+          name: "heroCta",
+          title: "Legacy hero button label",
+          type: "string",
+          hidden: true,
+          deprecated: { reason: "Use Shared waitlist button label." },
+        })
+      : field,
+  ),
   ...homeBottomCtaFields,
   defineField({
     name: "homeCtaLabel",
-    title: "Home bottom CTA button label",
+    title: "Shared waitlist button label",
+    description:
+      "Used in navigation, the home hero, and all inquiry CTA sections when the practice is waitlist only.",
     type: "string",
     validation: (rule) => rule.required(),
   }),
   ...pricingBottomCtaFields,
   defineField({
     name: "pricingCtaLabel",
-    title: "Pricing bottom CTA button label",
+    title: "Legacy pricing button label",
     type: "string",
-    validation: (rule) => rule.required(),
+    hidden: true,
+    deprecated: { reason: "Use Shared waitlist button label." },
   }),
 ];
 
@@ -135,6 +148,16 @@ export const siteSettings = defineType({
     { name: "availability", title: "Availability" },
   ],
   fields: [
+    defineField({
+      name: "consultationCtaLabel",
+      title: "Shared consultation button label",
+      type: "string",
+      group: "availability",
+      description:
+        "Used in navigation, the home hero, and all consultation CTA sections when accepting new clients.",
+      initialValue: "Request a consultation",
+      validation: (rule) => rule.required().max(40),
+    }),
     defineField({
       name: "name",
       title: "Practice name",

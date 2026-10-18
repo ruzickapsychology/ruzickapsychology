@@ -230,7 +230,7 @@ test("footer keeps mobile navigation compact with comfortable tap targets", asyn
       expect((await link.boundingBox())!.height).toBeGreaterThanOrEqual(44);
     }
     const badge = footer.getByRole("link", {
-      name: /Rochester, New York — home/,
+      name: /Rochester, New York, home/,
     });
     if (width < 768) await expect(badge).toBeHidden();
     else await expect(badge).toBeVisible();

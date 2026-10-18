@@ -56,10 +56,10 @@ export function ServicePage({
   const cta = getAvailabilityCtaContent({
     status: site.availabilityStatus,
     messaging: site.availabilityMessaging,
+    consultationLabel: site.consultationCtaLabel,
     defaults: {
       heading: "Curious whether this could be a fit?",
       body: "Request a consultation to ask questions and talk through what you are looking for.",
-      label: "Request a consultation",
     },
   });
   return (

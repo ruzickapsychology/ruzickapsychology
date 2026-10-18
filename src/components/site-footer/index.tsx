@@ -67,7 +67,7 @@ export function SiteFooter({
               {siteSettings?.name ? (
                 <Link
                   href="/"
-                  aria-label={`${siteSettings.name}, Rochester, New York — home`}
+                  aria-label={`${siteSettings.name}, Rochester, New York, home`}
                   className={styles.badgeLink}
                 >
                   <RotatingFlowerBadge

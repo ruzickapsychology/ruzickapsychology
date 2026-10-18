@@ -39,9 +39,9 @@ export function PrivacyPage() {
             </Text>
             <Text>
               The form is delivered through Web3Forms. Please use it for
-              scheduling questions or a brief general note—not emergencies,
-              detailed medical information, or highly sensitive clinical
-              history. Submitting the form does not establish a
+              scheduling questions or a brief general note. Do not use it for
+              emergencies, detailed medical information, or highly sensitive
+              clinical history. Submitting the form does not establish a
               psychologist-client relationship.
             </Text>
           </Stack>

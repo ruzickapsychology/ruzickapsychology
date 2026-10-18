@@ -17,7 +17,7 @@ export const pricing = {
     body: [
       "I am an out-of-network provider. Practicing this way keeps your care private and fully tailored to you, rather than to the limits of an insurance plan.",
       "Each month I provide a superbill you can submit to your insurer for possible out-of-network reimbursement. I'm glad to walk you through how to ask about your benefits.",
-      "A limited number of sliding-scale spaces are reserved for those with genuine financial need—please don't hesitate to ask.",
+      "A limited number of sliding-scale spaces are reserved for those with genuine financial need. Please don't hesitate to ask.",
     ],
   },
   reimbursementGuide: {

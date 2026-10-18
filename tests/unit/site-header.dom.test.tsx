@@ -9,6 +9,7 @@ import { track } from "@vercel/analytics";
 import type { SiteSettings } from "@/data/cms";
 import { usePathname } from "next/navigation";
 import { HEADER_SENTINEL_ID } from "@/components/header-sentinel";
+import { initialAvailabilityMessaging } from "@/config/availability";
 import { SiteHeader } from "@/components/site-header";
 
 vi.mock("next/navigation", () => ({
@@ -69,7 +70,7 @@ describe("SiteHeader mobile navigation", () => {
   });
 
   it.each([
-    ["accepting", "Send an inquiry"],
+    ["accepting", "Request a consultation"],
     ["waitlist", "Join the waitlist"],
     ["closed", "Current availability"],
   ] as const)(
@@ -81,7 +82,9 @@ describe("SiteHeader mobile navigation", () => {
           siteSettings={
             {
               name: "Ruzicka Psychology PLLC",
+              consultationCtaLabel: "Request a consultation",
               availabilityStatus: status,
+              availabilityMessaging: initialAvailabilityMessaging,
               portalUrl: "https://example.com/portal",
             } as SiteSettings
           }

@@ -26,8 +26,13 @@ export const homePage = defineType({
         defineField({ name: "body", title: "Body", type: "text", rows: 3 }),
         defineField({
           name: "ctaLabel",
-          title: "Button label",
+          title: "Legacy button label",
           type: "string",
+          hidden: true,
+          deprecated: {
+            reason:
+              "Use Practice Settings → Availability → Shared consultation button label.",
+          },
         }),
         defineField({
           name: "backgroundImage",
@@ -82,8 +87,13 @@ export const homePage = defineType({
         defineField({ name: "body", title: "Body", type: "text", rows: 3 }),
         defineField({
           name: "ctaLabel",
-          title: "Button label",
+          title: "Legacy button label",
           type: "string",
+          hidden: true,
+          deprecated: {
+            reason:
+              "Use Practice Settings → Availability → Shared consultation button label.",
+          },
         }),
         defineField({
           name: "backgroundImage",

@@ -2,7 +2,7 @@
 title: "Why We Choose the Partners We Do: The Psychology Behind Romantic Attraction"
 slug: why-we-choose-the-partners-we-do-the-surprising-psychology-behind-romantic-attraction
 date: 2026-06-28
-excerpt: Explore how attachment history, familiarity, and relationship patterns can shape attraction—and how couples therapy can make those patterns easier to understand.
+excerpt: Explore how attachment history, familiarity, and relationship patterns can shape attraction, and how couples therapy can make those patterns easier to understand.
 ---
 
 In the early stages of a relationship, attraction can feel effortless. Conversation flows, familiarity arrives quickly, and a partner’s differences may feel exciting. Later, some of those same differences can become the center of recurring conflict.
@@ -11,7 +11,7 @@ That shift does not prove that two people chose the “wrong” partner. It may 
 
 ## What the Imago framework offers
 
-Imago Relationship Therapy uses the idea of an internal “image” to help couples explore how early experiences may influence what feels familiar in adult relationships. It is one clinical framework—not a definitive explanation for every attraction or every conflict.
+Imago Relationship Therapy uses the idea of an internal “image” to help couples explore how early experiences may influence what feels familiar in adult relationships. It is one clinical framework, rather than a definitive explanation for every attraction or every conflict.
 
 Attachment research also suggests that early relational experiences can inform expectations about closeness, dependability, and emotional safety in adult romantic relationships. Biology, culture, values, timing, shared experience, and individual preference matter too. Attraction is complex.
 

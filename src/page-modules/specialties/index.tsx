@@ -20,7 +20,7 @@ import { SpecialtyCard } from "@/components/specialty-card";
 import { PortableContent } from "@/components/portable-content";
 import { Section } from "@/components/section";
 import { TextLink } from "@/components/text-link";
-import { getAvailabilityContext } from "@/config/availability";
+import { getAvailabilityCtaContent } from "@/config/availability";
 import type { SiteSettings, SpecialtiesPageContent } from "@/data/cms";
 import { isServiceSlug, serviceHref } from "@/config/services";
 import styles from "./styles.module.css";
@@ -32,10 +32,15 @@ export function SpecialtiesPage({
   specialties: SpecialtiesPageContent;
   site: SiteSettings | null;
 }) {
-  const acceptingInquiries = !getAvailabilityContext(
-    site?.availabilityStatus,
-    site?.availabilityMessaging,
-  ).isClosed;
+  const cta = getAvailabilityCtaContent({
+    status: site?.availabilityStatus,
+    messaging: site?.availabilityMessaging,
+    consultationLabel: site?.consultationCtaLabel,
+    defaults: {
+      heading: "Ready to talk about what you need?",
+      body: "Start with a complimentary 15 minute consultation to ask questions and determine whether working together feels like the right fit.",
+    },
+  });
   const couplesPageIsPublished = specialties.items.some(
     (service) =>
       service.pageStatus === "published" && service.slug === "couples-therapy",
@@ -121,9 +126,9 @@ export function SpecialtiesPage({
 
       <CtaSection
         phone={site?.phone}
-        heading="Ready to talk about what you need?"
-        body="Start with a complimentary 15 minute consultation to ask questions and determine whether working together feels like the right fit."
-        cta={acceptingInquiries ? "Request a consultation" : undefined}
+        heading={cta.heading}
+        body={cta.body}
+        cta={cta.label}
       />
     </PageShell>
   );

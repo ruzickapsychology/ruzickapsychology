@@ -53,10 +53,10 @@ export function BlogPostPage({
     ? getAvailabilityCtaContent({
         status: site.availabilityStatus,
         messaging: site.availabilityMessaging,
+        consultationLabel: site.consultationCtaLabel,
         defaults: {
           heading: ctaContent?.heading,
           body: ctaContent?.body,
-          label: ctaContent?.cta,
         },
       })
     : null;

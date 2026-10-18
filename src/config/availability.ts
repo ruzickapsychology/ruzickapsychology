@@ -166,19 +166,22 @@ export function getAvailabilityCtaContent({
   messaging,
   defaults,
   placement = "standard",
+  consultationLabel,
 }: {
   status?: unknown;
   messaging?: AvailabilityMessagingInput;
   defaults: {
     heading?: string | null;
     body?: string | null;
-    label?: string | null;
   };
   placement?: "standard" | "pricing";
+  consultationLabel?: string | null;
 }) {
   const availability = getAvailabilityContext(status, messaging);
 
-  if (availability.isDefault) return defaults;
+  const label = getInquiryCtaLabel(status, messaging, consultationLabel);
+
+  if (availability.isDefault) return { ...defaults, label };
 
   if (availability.isWaitlist) {
     const copy = messaging?.waitlist;
@@ -186,12 +189,12 @@ export function getAvailabilityCtaContent({
       ? {
           heading: copy?.pricingCtaHeading,
           body: copy?.pricingCtaBody,
-          label: copy?.pricingCtaLabel,
+          label,
         }
       : {
           heading: copy?.ctaHeading,
           body: copy?.ctaBody,
-          label: copy?.homeCtaLabel,
+          label,
         };
   }
 
@@ -209,6 +212,18 @@ export function getAvailabilityCtaContent({
     body: copy?.ctaBody,
     label: undefined,
   };
+}
+
+// One label for the same inquiry action in navigation, the hero, and CTA bands.
+export function getInquiryCtaLabel(
+  status?: unknown,
+  messaging?: AvailabilityMessagingInput,
+  consultationLabel?: string | null,
+) {
+  const availability = normalizeAvailabilityStatus(status);
+  if (availability === "closed") return undefined;
+  if (availability === "waitlist") return messaging?.waitlist?.homeCtaLabel;
+  return consultationLabel?.trim() || undefined;
 }
 
 export function getAvailabilityBadgeMessages(
