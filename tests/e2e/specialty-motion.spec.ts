@@ -8,7 +8,7 @@ const animatedGlyphs = () =>
       ),
   ).length;
 
-test("touch scrolling coordinates full illustrations while compact marks stay still", async ({
+test("botanical illustrations and compact marks stay still during touch scrolling", async ({
   page,
 }, info) => {
   test.skip(
@@ -32,9 +32,7 @@ test("touch scrolling coordinates full illustrations while compact marks stay st
       });
       const card = page.locator('[data-slot="specialty-card"]').nth(i);
       await expect(card).toHaveAttribute("data-motion-active", "true");
-      await expect
-        .poll(() => page.evaluate(animatedGlyphs))
-        .toBe(route === "/" ? 1 : 0);
+      await expect.poll(() => page.evaluate(animatedGlyphs)).toBe(0);
       const iterations = await card
         .locator("svg *")
         .evaluateAll((parts) =>
@@ -48,9 +46,7 @@ test("touch scrolling coordinates full illustrations while compact marks stay st
     await expect(page.locator('[data-motion-active="true"]')).toHaveCount(0);
     await expect.poll(() => page.evaluate(animatedGlyphs)).toBe(0);
     await page.emulateMedia({ reducedMotion: "no-preference" });
-    await expect
-      .poll(() => page.evaluate(animatedGlyphs))
-      .toBe(route === "/" ? 1 : 0);
+    await expect.poll(() => page.evaluate(animatedGlyphs)).toBe(0);
     await page.evaluate(() =>
       scrollTo(0, document.documentElement.scrollHeight),
     );
@@ -58,17 +54,17 @@ test("touch scrolling coordinates full illustrations while compact marks stay st
   }
 });
 
-test("desktop homepage illustrations retain hover and keyboard focus animations", async ({
+test("desktop homepage illustrations stay still on hover and keyboard focus", async ({
   page,
 }, info) => {
   test.skip(info.project.name !== "chromium", "Requires a hover device.");
   await page.goto("/");
   const card = page.locator('[data-slot="specialty-card"]').first();
   await card.hover();
-  await expect.poll(() => page.evaluate(animatedGlyphs)).toBe(1);
+  await expect.poll(() => page.evaluate(animatedGlyphs)).toBe(0);
   await page.mouse.move(0, 0);
   await card.focus();
-  await expect.poll(() => page.evaluate(animatedGlyphs)).toBe(1);
+  await expect.poll(() => page.evaluate(animatedGlyphs)).toBe(0);
   await page.emulateMedia({ reducedMotion: "reduce" });
   await expect.poll(() => page.evaluate(animatedGlyphs)).toBe(0);
 });

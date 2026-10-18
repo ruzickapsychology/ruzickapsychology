@@ -353,11 +353,9 @@ test("home and contact headers are transparent at the top", async ({
 }) => {
   for (const route of ["/", "/contact"]) {
     await page.goto(route);
-    await page.reload();
-    await page.evaluate(() => window.scrollTo(0, 0));
-
     const header = page.locator("header");
-
+    await expect(header).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+    await page.reload();
     await expect(header).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
   }
 });
