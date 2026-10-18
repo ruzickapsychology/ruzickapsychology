@@ -24,7 +24,10 @@ const FOCUSABLE_SELECTOR =
 
 function normalizePathname(pathname: string | null | undefined) {
   if (!pathname || pathname === "/") return "/";
-  return pathname.replace(/\/$/, "");
+  const normalized = pathname.replace(/\/$/, "");
+  // The deployed homepage can be prerendered with /index in its initial
+  // routing payload, even though the browser URL and client navigation use /.
+  return normalized === "/index" ? "/" : normalized;
 }
 
 function isTransparentPage(pathname: string) {
