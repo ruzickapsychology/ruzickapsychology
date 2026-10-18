@@ -1,0 +1,177 @@
+.root {
+  border-top: 1px solid color-mix(in srgb, var(--color-accent) 25%, transparent);
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-accent) 25%, transparent);
+  padding-block: var(--space-7);
+}
+
+.figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 600 / 580;
+  isolation: isolate;
+  perspective: 1100px;
+  color: var(--color-accent);
+}
+
+.architecture {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.65;
+}
+
+.opening,
+.door {
+  position: absolute;
+  top: 14.14%;
+  left: 27.67%;
+  width: 44.66%;
+  height: 73.79%;
+  border-radius: 50% 50% 0 0 / 31.3% 31.3% 0 0;
+}
+
+.opening {
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: inset 0 0 30px
+    color-mix(in srgb, var(--color-accent) 15%, transparent);
+}
+
+.opening img {
+  object-position: 48% center;
+  transition: transform 1.5s ease;
+}
+
+.root[data-open="true"] .opening img {
+  transform: scale(1.025);
+}
+
+.door {
+  transform-origin: 0 50%;
+  transform: rotateY(-16deg);
+  background: linear-gradient(
+    105deg,
+    var(--color-feature),
+    var(--color-surface)
+  );
+  border: 1px solid color-mix(in srgb, var(--color-accent) 60%, transparent);
+  box-shadow: 8px 4px 16px color-mix(in srgb, var(--color-fg) 12%, transparent);
+  transition:
+    transform 1.35s cubic-bezier(0.22, 0.7, 0.25, 1),
+    box-shadow 1.35s ease;
+}
+
+.root[data-open="true"] .door {
+  transform: rotateY(-112deg);
+  box-shadow: 3px 3px 10px color-mix(in srgb, var(--color-fg) 8%, transparent);
+}
+
+.doorInset {
+  position: absolute;
+  inset: 4.5% 7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
+  border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+  color: var(--color-accent);
+}
+
+.doorInset svg {
+  width: 24%;
+  height: auto;
+  margin-top: -35%;
+  opacity: 0.7;
+}
+
+.doorLine {
+  position: absolute;
+  inset: 61% 11% 7%;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
+}
+
+.handle {
+  position: absolute;
+  right: 12%;
+  top: 55%;
+  width: 6%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 2px 2px 3px color-mix(in srgb, var(--color-fg) 25%, transparent);
+}
+
+.caption {
+  text-align: center;
+  padding-inline: var(--space-2);
+}
+
+.details {
+  padding-block: var(--space-7);
+  max-width: var(--measure-sm);
+}
+
+.modeControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.information {
+  min-height: 190px;
+}
+
+.address {
+  font-style: normal;
+}
+
+.actions {
+  margin-top: var(--space-5);
+  min-height: 60px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.onlineArt {
+  width: 100%;
+  height: 100%;
+  stroke: var(--color-accent);
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sun {
+  stroke: none;
+  fill: var(--color-accent-soft);
+  opacity: 0.55;
+}
+
+@media (max-width: 767px) {
+  .details {
+    padding-block: 0 var(--space-4);
+  }
+
+  .information {
+    min-height: 165px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .door,
+  .opening img {
+    transition: none;
+  }
+}

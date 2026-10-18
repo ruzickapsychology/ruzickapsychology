@@ -1,0 +1,20 @@
+declare const styles: {
+  readonly actions: string;
+  readonly address: string;
+  readonly architecture: string;
+  readonly caption: string;
+  readonly details: string;
+  readonly door: string;
+  readonly doorInset: string;
+  readonly doorLine: string;
+  readonly figure: string;
+  readonly handle: string;
+  readonly information: string;
+  readonly modeControls: string;
+  readonly onlineArt: string;
+  readonly opening: string;
+  readonly root: string;
+  readonly stage: string;
+  readonly sun: string;
+};
+export = styles;

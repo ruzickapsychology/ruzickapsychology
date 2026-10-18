@@ -16,17 +16,17 @@ import {
   DisclosureTrigger,
 } from "@/components/disclosure-list";
 import { PageShell } from "@/components/page-shell";
-import { Grid, GridContainer } from "@/components/grid";
+import { GridContainer } from "@/components/grid";
 import { PortableContent } from "@/components/portable-content";
 import { Section } from "@/components/section";
 import { Eyebrow, Text } from "@/components/typography";
-import { imageSrc } from "@/config/cms-images";
 import type { AboutPageContent, SiteSettings } from "@/data/cms";
 import {
   getAvailabilityContext,
   getAvailabilityCtaContent,
 } from "@/config/availability";
 import styles from "./styles.module.css";
+import { ArrivalPreview } from "./arrival-preview";
 
 const newYorkLicenseVerificationUrl =
   "https://www.op.nysed.gov/services/verifications/online-verification-searches";
@@ -91,7 +91,7 @@ export function AboutPage({
 
       {/* therapy space */}
       {about.space ? (
-        <Section size="spacious" tone="feature">
+        <Section size="spacious" tone="feature" id="therapy-space">
           <Container size="xl">
             <ContentHeader>
               {about.space.eyebrow ? (
@@ -107,42 +107,7 @@ export function AboutPage({
               ) : null}
             </ContentHeader>
 
-            <Grid layout="two" className={styles.spaceGrid}>
-              <div className={styles.spaceImageShell}>
-                {imageSrc(about.space.exteriorImage) ? (
-                  <div className={styles.spaceImageFrame}>
-                    <BackgroundImageLayer
-                      image={about.space.exteriorImage}
-                      alt={about.space.exteriorImage?.alt ?? "Office exterior"}
-                      sizes="(min-width: 640px) 50vw, 100vw"
-                    />
-                  </div>
-                ) : (
-                  <div className={styles.placeholder}>
-                    <div>
-                      <Eyebrow variant="label">Exterior Photo</Eyebrow>
-                      <Text
-                        variant="detail"
-                        tone="subdued"
-                        className={styles.placeholderBody}
-                      >
-                        Placeholder for the building exterior.
-                      </Text>
-                    </div>
-                  </div>
-                )}
-              </div>
-              <div className={styles.interiorImageShell}>
-                <BackgroundImageLayer
-                  image={about.space.interiorImage}
-                  alt={
-                    about.space.interiorImage?.alt ??
-                    "Therapy office seating area"
-                  }
-                  sizes="(min-width: 640px) 50vw, 100vw"
-                />
-              </div>
-            </Grid>
+            <ArrivalPreview space={about.space} address={site?.address} />
           </Container>
         </Section>
       ) : null}
