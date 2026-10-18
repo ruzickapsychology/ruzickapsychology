@@ -6,28 +6,23 @@ export const contact = {
   formNote:
     "Please do not include sensitive health information. This form is for appointment inquiries, not emergency support. If you are in immediate danger, call 911 or go to the nearest emergency department.",
   expect: {
-    eyebrow: "The Process",
+    eyebrow: "Getting Started",
     heading: "What to Expect",
     steps: [
       {
         n: "01",
         title: "Reach Out",
-        body: "Complete the contact form with a few details about what brings you here.",
+        body: "Use the contact form to introduce yourself and ask about working together.",
       },
       {
         n: "02",
-        title: "Initial Consultation",
-        body: "We'll schedule a brief phone call to discuss your needs, answer questions, and determine whether we're a good fit.",
+        title: "Talk It Through",
+        body: "We'll arrange a brief phone call to discuss what you're looking for, answer your questions, and explore whether we're a good fit.",
       },
       {
         n: "03",
         title: "Begin Therapy",
-        body: "If it feels right, we'll schedule your first session and begin working together at a pace that feels manageable.",
-      },
-      {
-        n: "04",
-        title: "Ongoing Support",
-        body: "Therapy becomes a dedicated space to explore challenges, build insight, and create meaningful change over time.",
+        body: "If we decide to work together, we'll schedule your first session. We'll start by exploring what brings you to therapy and what you'd like help with.",
       },
     ],
   },

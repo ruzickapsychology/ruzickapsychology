@@ -7,6 +7,7 @@ declare const styles: {
   readonly borderRightMd: string;
   readonly borderRightSm: string;
   readonly columns2: string;
+  readonly columns3: string;
   readonly columns4: string;
   readonly item: string;
 };

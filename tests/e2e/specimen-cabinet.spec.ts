@@ -88,7 +88,7 @@ test("botanical plates retain their content, links, and layout at every breakpoi
   await expect(page).toHaveURL(/individual-therapy/);
 });
 
-test("botanical gesture plays once with keyboard focus and stops under reduced motion", async ({
+test("botanical illustrations remain still on focus and hover", async ({
   page,
 }, info) => {
   test.skip(
@@ -108,10 +108,9 @@ test("botanical gesture plays once with keyboard focus and stops under reduced m
         }))
         .filter((value) => value.name !== "none"),
     );
-  await expect.poll(async () => (await animations()).length).toBeGreaterThan(0);
-  expect((await animations()).every((value) => value.iterations === "1")).toBe(
-    true,
-  );
+  await expect.poll(animations).toEqual([]);
+  await card.hover();
+  await expect.poll(animations).toEqual([]);
   await page.emulateMedia({ reducedMotion: "reduce" });
   await expect.poll(animations).toEqual([]);
 });

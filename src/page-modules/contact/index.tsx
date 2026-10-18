@@ -152,7 +152,7 @@ export function ContactPage({
             </ContentHeaderEyebrow>
             <ContentHeaderTitle>{contact.expect.heading}</ContentHeaderTitle>
           </ContentHeader>
-          <DividerGrid columns={4}>
+          <DividerGrid columns={3}>
             {contact.expect.steps?.map((step) => (
               <div key={step._key ?? step.n}>
                 <Eyebrow variant="label" className={styles.stepNumber}>

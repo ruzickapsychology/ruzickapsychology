@@ -229,3 +229,12 @@ revisions, published source revisions, and relevant draft absence. A fresh previ
 after successful application has zero changes. Any changed wording or revision
 requires a fresh review. Coordinate publication with editors: draft absence and
 read-only source revisions cannot be asserted atomically with the target writes.
+
+## Contact getting-started copy
+
+`npx sanity exec scripts/migrate-contact-steps.ts --with-user-token -- --plan /private/tmp/contact-plan.json`
+previews the approved three-step contact section. Apply the saved plan with
+`--apply --backup /private/tmp/contact-backup.json`. It updates only
+`process.eyebrow` and `process.steps`, preserves existing step keys, and patches
+published and existing draft documents without publishing unrelated draft edits.
+The runner checks the saved plan and revisions and saves a private backup.

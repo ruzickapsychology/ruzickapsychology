@@ -126,7 +126,7 @@ page gutter. At the grid's actual multi-column breakpoint, items gain shared
 `--panel-padding` horizontally. Do not add padding in a nested card or route
 class; keep links as the immediate content element so the entire padded area
 remains clickable. Two-column grids honor their `sm` or `md` breakpoint for both
-columns and dividers; four-column grids use one/two/four columns at 0/640/1024px.
+columns and dividers; three-column grids stack below 768px; four-column grids use one/two/four columns at 0/640/1024px.
 
 ## CTA Variants
 
