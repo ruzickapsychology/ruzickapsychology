@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 
 type DividerGridProps = {
   children: ReactNode;
-  columns?: 2 | 4;
+  columns?: 2 | 3 | 4;
   twoColumnBreakpoint?: "sm" | "md";
   className?: string;
   itemClassName?: string;
@@ -23,7 +23,11 @@ export function DividerGrid({
   return (
     <div
       className={cn(
-        columns === 4 ? styles.columns4 : styles.columns2,
+        columns === 4
+          ? styles.columns4
+          : columns === 3
+            ? styles.columns3
+            : styles.columns2,
         className,
       )}
       data-slot="divider-grid"
@@ -49,9 +53,18 @@ export function DividerGrid({
 function dividerClasses(
   index: number,
   count: number,
-  columns: 2 | 4,
+  columns: 2 | 3 | 4,
   breakpoint: "sm" | "md",
 ) {
+  if (columns === 3) {
+    return cn(
+      styles.item,
+      index < count - 1 ? styles.borderBottom : "",
+      index % 3 !== 2 && index + 1 < count ? styles.borderRightMd : "",
+      index >= Math.floor((count - 1) / 3) * 3 ? styles.borderBottomOffMd : "",
+    );
+  }
+
   if (columns === 4) {
     const lastTwoColumnRowStart = Math.floor((count - 1) / 2) * 2;
     const lastFourColumnRowStart = Math.floor((count - 1) / 4) * 4;

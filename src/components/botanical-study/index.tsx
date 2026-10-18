@@ -66,7 +66,7 @@ function Flower({
 
 function Fern() {
   return (
-    <g className={styles.gesture}>
+    <g>
       <path
         className={styles.stem}
         d="M105 270 C103 205 111 146 138 65 Q148 36 159 50 Q164 59 155 62 Q149 63 150 57"
@@ -88,7 +88,7 @@ function Fern() {
 
 function Pair() {
   return (
-    <g className={styles.gesture}>
+    <g>
       <path
         className={styles.stem}
         d="M127 271 C106 215 95 157 92 88 M122 262 C133 209 151 158 162 111"
@@ -107,14 +107,14 @@ function Pair() {
 
 function Bud() {
   return (
-    <g className={styles.gesture}>
+    <g>
       <path
         className={styles.stem}
         d="M117 270 Q133 202 119 114 M125 213 Q169 184 165 143"
       />
       <Leaf x={125} y={217} angle={-60} scale={1.12} />
       <Leaf x={124} y={172} angle={55} scale={0.82} />
-      <g className={styles.bud}>
+      <g>
         <path
           className={styles.petal}
           d="M119 119 C100 111 88 88 96 65 Q101 51 112 57 Q120 44 131 53 C158 70 144 105 119 119Z"
@@ -146,7 +146,7 @@ function Bud() {
 
 function Meadow() {
   return (
-    <g className={styles.gesture}>
+    <g>
       <path
         className={styles.stem}
         d="M118 271 Q105 189 74 134 M120 271 Q134 168 146 81 M120 263 Q149 217 180 171 M117 250 Q92 214 61 201"

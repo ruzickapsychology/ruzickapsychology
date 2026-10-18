@@ -168,7 +168,7 @@ test("divider grids share the page gutter until their column breakpoint", async 
     await page.setViewportSize({ width, height: 900 });
     for (const [route, breakpoint, columns] of [
       ["/specialties", 768, 2],
-      ["/contact", 640, 4],
+      ["/contact", 768, 3],
     ] as const) {
       await page.goto(route);
       const grid = page.locator('[data-slot="divider-grid"]');
@@ -187,8 +187,7 @@ test("divider grids share the page gutter until their column breakpoint", async 
           gridX: element.getBoundingClientRect().left,
         };
       });
-      const expectedColumns =
-        width < breakpoint ? 1 : columns === 4 && width >= 1024 ? 4 : 2;
+      const expectedColumns = width < breakpoint ? 1 : columns;
       expect(metrics.columns, `${route} at ${width}`).toBe(expectedColumns);
       expect(metrics.inset).toBe(width < breakpoint ? 0 : 32);
       expect(metrics.rightInset).toBe(metrics.inset);

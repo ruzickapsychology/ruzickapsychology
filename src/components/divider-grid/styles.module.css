@@ -1,4 +1,5 @@
 .columns2,
+.columns3,
 .columns4 {
   --divider-item-inset: 0px;
   display: grid;
@@ -39,6 +40,11 @@
 }
 
 @media (min-width: 768px) {
+  .columns3 {
+    --divider-item-inset: var(--panel-padding);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .columns2[data-two-column-breakpoint="md"] {
     --divider-item-inset: var(--panel-padding);
     grid-template-columns: repeat(2, minmax(0, 1fr));
