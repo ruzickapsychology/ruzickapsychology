@@ -1,0 +1,20 @@
+declare const styles: {
+  readonly botanical: string;
+  readonly drawing: string;
+  readonly fallen: string;
+  readonly ground: string;
+  readonly halo: string;
+  readonly heart: string;
+  readonly hip: string;
+  readonly leafFill: string;
+  readonly leaves: string;
+  readonly orbit: string;
+  readonly petal: string;
+  readonly petalVein: string;
+  readonly root: string;
+  readonly seed: string;
+  readonly snow: string;
+  readonly stems: string;
+  readonly tick: string;
+};
+export = styles;

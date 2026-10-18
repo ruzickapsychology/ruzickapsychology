@@ -1,0 +1,104 @@
+.root {
+  --garden-ink: var(--color-accent);
+  --garden-petal: var(--color-accent-soft);
+  --garden-paper: var(--color-feature);
+  width: 100%;
+  max-width: 29rem;
+  margin-inline: auto;
+}
+
+.root[data-season="summer"] {
+  --garden-petal: var(--color-icon);
+  --garden-paper: color-mix(
+    in srgb,
+    var(--color-accent-soft) 42%,
+    var(--color-surface)
+  );
+}
+
+.root[data-season="autumn"] {
+  --garden-petal: var(--color-feature);
+  --garden-paper: color-mix(
+    in srgb,
+    var(--color-feature) 70%,
+    var(--color-surface)
+  );
+}
+
+.root[data-season="winter"] {
+  --garden-ink: var(--color-footer-badge);
+  --garden-petal: var(--color-bg);
+  --garden-paper: color-mix(
+    in srgb,
+    var(--color-cream) 40%,
+    var(--color-surface)
+  );
+}
+
+.drawing {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 11 / 10;
+  overflow: visible;
+}
+.halo {
+  fill: var(--garden-paper);
+}
+.orbit,
+.tick {
+  fill: none;
+  stroke: var(--garden-ink);
+  stroke-width: 0.55;
+  opacity: 0.3;
+}
+.botanical {
+  fill: none;
+  stroke: var(--garden-ink);
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.stems {
+  stroke-width: 1.65;
+}
+.leafFill {
+  fill: color-mix(in srgb, var(--garden-ink) 8%, var(--color-surface));
+}
+.petal {
+  fill: var(--garden-petal);
+  stroke-width: 1;
+}
+.petalVein {
+  opacity: 0.35;
+  stroke-width: 0.8;
+}
+.heart {
+  fill: var(--color-feature);
+}
+.seed {
+  fill: var(--garden-ink);
+  stroke-width: 0.5;
+}
+.hip {
+  fill: var(--color-icon);
+}
+.root[data-season="winter"] .hip {
+  fill: var(--color-cream);
+}
+.leaves {
+  stroke-width: 0.9;
+}
+.fallen {
+  opacity: 0.7;
+  stroke-width: 1;
+}
+.snow {
+  fill: var(--color-surface);
+  stroke: none;
+}
+.ground {
+  fill: none;
+  stroke: var(--garden-ink);
+  stroke-width: 0.75;
+  opacity: 0.4;
+}
