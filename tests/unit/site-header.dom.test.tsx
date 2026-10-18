@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 
 import type { AnchorHTMLAttributes, ReactNode } from "react";
+import { renderToString } from "react-dom/server";
 import { act, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -213,35 +214,49 @@ describe("SiteHeader mobile navigation", () => {
     },
   );
 
-  it("keeps the homepage transparent before its hero has laid out", () => {
-    render(
-      <>
-        <SiteHeader />
-        <div id={HEADER_SENTINEL_ID} />
-      </>,
-    );
-    // A sentinel in streamed, hidden content initially has a zero rect.
-    const header = screen.getByRole("banner");
-    expect(header).toHaveAttribute("data-background", "home");
+  it.each(["/", "/index", "/index/"])(
+    "renders %s transparent in the initial server HTML",
+    (pathname) => {
+      vi.mocked(usePathname).mockReturnValue(pathname);
+      expect(renderToString(<SiteHeader />)).toContain(
+        'data-background="home"',
+      );
+    },
+  );
 
-    act(() => {
-      Object.defineProperty(window, "scrollY", {
-        configurable: true,
-        value: 1000,
-      });
-      window.dispatchEvent(new Event("scroll"));
-    });
-    expect(header).toHaveAttribute("data-background", "solid");
+  it.each(["/", "/index", "/index/"])(
+    "keeps %s transparent before its hero has laid out",
+    (pathname) => {
+      vi.mocked(usePathname).mockReturnValue(pathname);
+      render(
+        <>
+          <SiteHeader />
+          <div id={HEADER_SENTINEL_ID} />
+        </>,
+      );
+      // A sentinel in streamed, hidden content initially has a zero rect.
+      const header = screen.getByRole("banner");
+      expect(header).toHaveAttribute("data-background", "home");
 
-    act(() => {
-      Object.defineProperty(window, "scrollY", {
-        configurable: true,
-        value: 0,
+      act(() => {
+        Object.defineProperty(window, "scrollY", {
+          configurable: true,
+          value: 1000,
+        });
+        window.dispatchEvent(new Event("scroll"));
       });
-      window.dispatchEvent(new Event("scroll"));
-    });
-    expect(header).toHaveAttribute("data-background", "home");
-  });
+      expect(header).toHaveAttribute("data-background", "solid");
+
+      act(() => {
+        Object.defineProperty(window, "scrollY", {
+          configurable: true,
+          value: 0,
+        });
+        window.dispatchEvent(new Event("scroll"));
+      });
+      expect(header).toHaveAttribute("data-background", "home");
+    },
+  );
 
   it("keeps homepage transparency tied to its hero sentinel", () => {
     render(
