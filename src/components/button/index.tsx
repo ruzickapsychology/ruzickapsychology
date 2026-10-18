@@ -2,14 +2,15 @@ import type { ComponentProps } from "react";
 import { cn } from "@/lib/class-names";
 import styles from "./styles.module.css";
 
-export type ButtonSize = "default" | "compact";
+export type ButtonSize = "default" | "compact" | "icon";
 
 export type ButtonTone = "default" | "inverse";
 
-export type ButtonVariant = "primary" | "secondary" | "outline";
+export type ButtonVariant = "primary" | "secondary" | "outline" | "quiet";
 
 const variants: Record<ButtonVariant, string> = {
   primary: styles.primary,
+  quiet: styles.quiet,
   secondary: styles.secondary,
   outline: styles.outline,
 };
@@ -30,6 +31,7 @@ export function buttonVariants({
     variants[variant],
     styles[tone],
     size === "compact" && styles.compact,
+    size === "icon" && styles.icon,
     className,
   );
 }

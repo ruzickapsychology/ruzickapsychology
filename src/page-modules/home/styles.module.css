@@ -45,3 +45,12 @@
     grid-column: 3 / span 8;
   }
 }
+
+.sunlitSection {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.sunlitContent {
+  position: relative;
+}

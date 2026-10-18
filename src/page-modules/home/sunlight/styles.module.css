@@ -1,0 +1,94 @@
+.root {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  /* Feather the whole light treatment into the adjoining paper sections. */
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 64px,
+    black calc(100% - 64px),
+    transparent
+  );
+  color: var(--color-fg);
+  background: linear-gradient(
+    115deg,
+    transparent 10%,
+    color-mix(in srgb, var(--color-surface) 70%, transparent) 46%,
+    transparent 91%
+  );
+}
+
+.window {
+  position: absolute;
+  inset: -35%;
+  opacity: 0.25;
+  transform: rotate(-25deg);
+  background: linear-gradient(
+    90deg,
+    transparent 13%,
+    var(--color-surface) 13.5% 39%,
+    transparent 40% 42%,
+    var(--color-surface) 43% 68%,
+    transparent 69%
+  );
+  filter: blur(12px);
+}
+
+.branch {
+  --shadow-strength: 0.15;
+  position: absolute;
+  /* Padded SVG artboard keeps leaves and blur clear of its clipping edges.
+     Offsets preserve the original drawing's position and physical scale. */
+  right: -310px;
+  top: -215px;
+  width: 800px;
+  height: 960px;
+  opacity: var(--shadow-strength);
+  filter: blur(5px);
+  transform: translate(var(--wind-x, 0px), var(--wind-y, 0px))
+    rotate(calc(-12deg + var(--wind-angle, 0deg))) skewY(-10deg);
+  transform-origin: 85% 89.583333%;
+  mask-image: linear-gradient(90deg, transparent, black 48%);
+}
+
+.motionToggle {
+  position: absolute;
+  z-index: 1;
+  right: var(--space-4);
+  bottom: var(--space-2);
+}
+
+@media (max-width: 1023px) {
+  .branch {
+    --shadow-strength: 0.12;
+
+    right: -420px;
+    mask-image: linear-gradient(90deg, transparent 20%, black 80%);
+  }
+}
+
+@media (max-width: 767px) {
+  .branch {
+    width: 574px;
+    height: 688px;
+    top: -257px;
+    right: -301px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .branch {
+    transform: rotate(-12deg) skewY(-10deg);
+  }
+  .motionToggle {
+    display: none;
+  }
+}
+
+@media (scripting: none) {
+  .motionToggle {
+    display: none;
+  }
+}
