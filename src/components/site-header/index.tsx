@@ -65,13 +65,15 @@ export function SiteHeader({
       const quoteBand = document.getElementById("about-quote-band");
       // No hero on ordinary pages means solid from the top. On transparent
       // pages, async content can render the sentinel after the header mounts.
+      // Streamed content can also give the sentinel a zero rect before layout;
+      // keep the homepage transparent at the top regardless of that measurement.
       // The contact hero contains the entire form, so its bottom sentinel is
       // too late to protect navigation contrast as visitors move through fields.
       const past =
         normalizePathname(pathname) === "/contact"
           ? window.scrollY >= 64
           : sentinel
-            ? sentinel.getBoundingClientRect().top <= 64
+            ? window.scrollY > 0 && sentinel.getBoundingClientRect().top <= 64
             : !routeCanBeTransparent;
       const quoteRect = quoteBand?.getBoundingClientRect();
 
