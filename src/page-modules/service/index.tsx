@@ -1,3 +1,4 @@
+import { BotanicalStudy } from "@/components/botanical-study";
 import { ActionGroup } from "@/components/action-group";
 import type { Route } from "next";
 import { BreadcrumbTrail } from "@/components/breadcrumb-trail";
@@ -78,7 +79,10 @@ export function ServicePage({
           />
         </PageHeaderBreadcrumbs>
         <PageHeaderContent variant="editorial">
-          <PageHeaderEyebrow>Rochester, New York</PageHeaderEyebrow>
+          <PageHeaderEyebrow className={styles.serviceIdentity}>
+            <BotanicalStudy icon={service.icon} size="compact" />
+            <span>Rochester, New York</span>
+          </PageHeaderEyebrow>
           <PageHeaderTitle>{service.pageHeading}</PageHeaderTitle>
           <PageHeaderDescription>{service.intro}</PageHeaderDescription>
         </PageHeaderContent>

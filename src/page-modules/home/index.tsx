@@ -1,4 +1,3 @@
-import { Container } from "@/components/container";
 import Image from "next/image";
 import { ActionGroup } from "@/components/action-group";
 import { CircularPortrait } from "@/components/circular-portrait";
@@ -10,7 +9,6 @@ import {
   ContentHeaderTitle,
 } from "@/components/content-header";
 import { CtaSection } from "@/components/cta-section";
-import { DividerGrid } from "@/components/divider-grid";
 import { GridContainer } from "@/components/grid";
 import { HeroBadge } from "@/components/hero-badge";
 import { HeaderSentinel } from "@/components/header-sentinel";
@@ -21,18 +19,17 @@ import {
   ImmersivePageHeaderNavigation,
 } from "@/components/immersive-page-header";
 import { PageShell } from "@/components/page-shell";
-import { SpecialtyCard } from "@/components/specialty-card";
 import { Section } from "@/components/section";
 import { TextLink } from "@/components/text-link";
 import { CtaLink } from "@/components/cta-link";
 import { imageBlurData, imageSrc } from "@/config/cms-images";
-import { isServiceSlug, serviceHref } from "@/config/services";
 import {
   getAvailabilityBadgeMessages,
   getAvailabilityContext,
   getAvailabilityCtaContent,
 } from "@/config/availability";
 import type { HomePageContent, SiteSettings } from "@/data/cms";
+import { HomeSpecialties } from "./specialties";
 import styles from "./styles.module.css";
 import { Sunlight } from "./sunlight";
 
@@ -141,38 +138,7 @@ export function HomePage({
       </ImmersivePageHeader>
       <HeaderSentinel />
 
-      {/* specialties — quadrant layout */}
-      <Section id="home-specialties" size="spacious">
-        <Container size="xl">
-          <ContentHeader>
-            <ContentHeaderEyebrow>
-              {home.specialties.eyebrow}
-            </ContentHeaderEyebrow>
-            <ContentHeaderTitle>{home.specialties.heading}</ContentHeaderTitle>
-          </ContentHeader>
-          <DividerGrid>
-            {home.specialties.items.map((s) => {
-              const href =
-                s.pageStatus === "published" && isServiceSlug(s.slug)
-                  ? serviceHref(s.slug)
-                  : undefined;
-              return (
-                <SpecialtyCard
-                  key={s._key ?? s.slug}
-                  title={s.title}
-                  summary={s.summary}
-                  icon={s.icon}
-                  glyphSize={38}
-                  href={href}
-                />
-              );
-            })}
-          </DividerGrid>
-          <div className={styles.centeredAction}>
-            <TextLink href="/specialties">View all specialties</TextLink>
-          </div>
-        </Container>
-      </Section>
+      <HomeSpecialties specialties={home.specialties} />
 
       {/* about preview */}
       <Section size="spacious" tone="feature">

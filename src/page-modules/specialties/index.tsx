@@ -68,6 +68,7 @@ export function SpecialtiesPage({
                 summary={s.summary}
                 icon={s.icon}
                 headingAs="h2"
+                variant="botanical-compact"
                 href={href}
                 note={href ? undefined : "Offered periodically"}
                 dataServiceSlug={href ? s.slug : undefined}

@@ -3,5 +3,6 @@ declare const styles: {
   readonly ctaBodyText: string;
   readonly ctaSupportLinks: string;
   readonly faqList: string;
+  readonly serviceIdentity: string;
 };
 export = styles;
