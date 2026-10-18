@@ -4,12 +4,42 @@ import {
   getAvailabilityContext,
   getAvailabilityCtaContent,
   getAvailabilityStateCopy,
+  getInquiryCtaLabel,
   initialAvailabilityBadgeMessages,
   initialAvailabilityMessaging,
   normalizeAvailabilityStatus,
 } from "./availability";
 
 describe("availability helpers", () => {
+  it("keeps inquiry labels consistent despite legacy placement-specific copy", () => {
+    const messaging = {
+      waitlist: {
+        ...initialAvailabilityMessaging.waitlist,
+        heroCta: "Hero label",
+        homeCtaLabel: "Ask to join the waitlist",
+        pricingCtaLabel: "Pricing label",
+      },
+    };
+    for (const placement of ["standard", "pricing"] as const) {
+      expect(
+        getAvailabilityCtaContent({
+          status: "waitlist",
+          messaging,
+          defaults: {},
+          placement,
+        }).label,
+      ).toBe(getInquiryCtaLabel("waitlist", messaging));
+    }
+    expect(
+      getInquiryCtaLabel("accepting", null, "Request a consultation"),
+    ).toBe("Request a consultation");
+    expect(getInquiryCtaLabel("accepting", null, "Ask about therapy")).toBe(
+      "Ask about therapy",
+    );
+    expect(getInquiryCtaLabel("accepting", null)).toBeUndefined();
+    expect(getInquiryCtaLabel("waitlist", null)).toBeUndefined();
+    expect(getInquiryCtaLabel("closed", messaging)).toBeUndefined();
+  });
   it("normalizes accepting values without falling through to waitlist", () => {
     expect(normalizeAvailabilityStatus("accepting")).toBe("accepting");
     expect(normalizeAvailabilityStatus("Accepting new patients")).toBe(
@@ -66,10 +96,11 @@ describe("availability helpers", () => {
     expect(
       getAvailabilityCtaContent({
         status: "accepting",
+        consultationLabel: "Request a consultation",
         messaging: initialAvailabilityMessaging,
         defaults,
       }),
-    ).toEqual(defaults);
+    ).toEqual({ ...defaults, label: "Request a consultation" });
     expect(
       getAvailabilityCtaContent({
         status: "waitlist",

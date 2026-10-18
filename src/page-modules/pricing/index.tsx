@@ -45,10 +45,10 @@ export function PricingPage({
   const cta = getAvailabilityCtaContent({
     status: site?.availabilityStatus,
     messaging: site?.availabilityMessaging,
+    consultationLabel: site?.consultationCtaLabel,
     defaults: {
       heading: pricing.cta?.heading,
       body: pricing.cta?.body,
-      label: pricing.cta?.cta,
     },
     placement: "pricing",
   });

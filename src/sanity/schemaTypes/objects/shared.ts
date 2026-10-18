@@ -85,9 +85,13 @@ export const cta = defineType({
     }),
     defineField({
       name: "label",
-      title: "Button label",
+      title: "Legacy button label",
       type: "string",
-      validation: (rule) => rule.required(),
+      hidden: true,
+      deprecated: {
+        reason:
+          "Use Practice Settings → Availability → Shared consultation button label.",
+      },
     }),
   ],
 });

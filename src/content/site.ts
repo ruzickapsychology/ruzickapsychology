@@ -26,6 +26,7 @@ export const site = {
     "Evenings by request",
   ],
   portalUrl: "https://christina-ruzicka.clientsecure.me",
+  consultationCtaLabel: "Request a consultation",
   availabilityStatus: DEFAULT_AVAILABILITY_STATUS,
   availabilityBadgeMessages: initialAvailabilityBadgeMessages,
   availabilityMessaging: initialAvailabilityMessaging,

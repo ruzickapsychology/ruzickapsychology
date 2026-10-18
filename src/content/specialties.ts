@@ -78,7 +78,7 @@ export const specialties = {
       title: "Couples Counseling",
       slug: "couples-therapy",
       pageStatus: "published",
-      body: "Using Imago Relationship Therapy—a structured, respected method that sees conflict not as failure but as a blueprint for growth and healing. Cultivate a deeper, lasting connection together.",
+      body: "Using Imago Relationship Therapy, a structured, respected method that sees conflict not as failure but as a blueprint for growth and healing. Cultivate a deeper, lasting connection together.",
       details: [
         "Couples work creates a structured space to interrupt familiar cycles and practice a different way of hearing one another. The goal is not to decide who is right, but to understand what happens between you.",
         "Sessions can support couples who feel caught in repeated arguments, emotional distance, communication breakdowns, or major transitions that have shifted the relationship.",

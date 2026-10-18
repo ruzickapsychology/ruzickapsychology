@@ -32,10 +32,10 @@ export function FAQPage({
       ? getAvailabilityCtaContent({
           status: site.availabilityStatus,
           messaging: site.availabilityMessaging,
+          consultationLabel: site.consultationCtaLabel,
           defaults: {
             heading: faq.cta.heading,
             body: faq.cta.body,
-            label: faq.cta.cta,
           },
         })
       : null;

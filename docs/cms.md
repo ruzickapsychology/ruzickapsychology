@@ -35,7 +35,7 @@ Use `defineType`, `defineField`, and `defineArrayMember`. Prefer editor-friendly
 Good CMS fields:
 
 - Page headings, intros, body copy.
-- CTA labels and copy.
+- Shared CTA labels, headings, and supporting copy.
 - Practice facts.
 - Practice availability status.
 - Therapy specialties and detailed descriptions.
@@ -71,9 +71,40 @@ truth for non-default availability copy, including separate fields for the home
 hero CTA, home bottom CTA, pricing bottom CTA, contact page header, and closed
 contact panel.
 
+All consultation inquiry actions share `siteSettings.consultationCtaLabel` when
+accepting clients. Edit **Practice Settings → Availability → Shared consultation
+button label** to update navigation, the home hero, and every consultation band.
+Waitlist actions share **Shared waitlist button label** at
+`availabilityMessaging.waitlist.homeCtaLabel`. Missing labels render no inquiry
+button; there is no code or seed-copy fallback.
+
+Legacy per-page consultation labels and the separate waitlist hero/pricing labels
+are hidden and deprecated in Studio, with stored content preserved. The closed-state
+hero still uses `closed.heroCta` for its separate specialties link; navigation shows
+“Current availability”. Headings, supporting copy, images, availability status, and
+the client portal URL retain their existing CMS controls.
+
+`npm run sanity:migrate-shared-cta -- -- --plan /private/tmp/shared-cta-plan.json`
+previews initialization of only `siteSettings.consultationCtaLabel`. It preserves
+an existing nonblank label, rejects an active settings draft, and uses a saved
+plan, revision guard, and private backup. Review the preview, then apply the same
+plan with `--apply --backup /private/tmp/shared-cta-backup.json`. Run this before
+deploying the shared-label code; it does not reseed or replace other content.
+
 `siteSettings.availabilityBadgeMessages` contains the two rotating hero badge
 lines for each availability state. Keep each line short, uppercase, and 24
 characters or fewer so the circular text spacing remains balanced.
+
+## Copy punctuation
+
+`npm run sanity:migrate-copy-punctuation -- -- --plan /private/tmp/punctuation-plan.json`
+previews the reviewed em-dash replacements in public website document types.
+Apply the saved plan with `--apply --backup /private/tmp/punctuation-backup.json`.
+The runner changes only string leaves, preserves rich-text marks and array keys,
+checks document revisions, saves a private backup, and rejects unreviewed dash
+contexts. Drafts are patched in place without publishing them; release versions
+are excluded. Seed fixtures and code-owned public copy should use the same
+punctuation conventions so later seeds do not restore em dashes.
 
 If the field is missing on an older `siteSettings` document, the frontend treats
 it as `accepting`.

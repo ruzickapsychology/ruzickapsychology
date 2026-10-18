@@ -45,10 +45,10 @@ export function AboutPage({
   const cta = getAvailabilityCtaContent({
     status: availability.status,
     messaging: site?.availabilityMessaging,
+    consultationLabel: site?.consultationCtaLabel,
     defaults: {
       heading: "Ready to see whether working together feels like a fit?",
       body: "Request a consultation to share what brings you to therapy and ask questions about the process.",
-      label: "Request a consultation",
     },
   });
 
@@ -170,7 +170,7 @@ export function AboutPage({
                 tone="inverse"
                 className={styles.quoteAttribution}
               >
-                —{about.philosophy.attribution}
+                {about.philosophy.attribution}
               </Eyebrow>
             </div>
           </GridContainer>

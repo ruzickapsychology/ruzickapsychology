@@ -21,7 +21,7 @@ describe("pageMetadata", () => {
       { url: "/opengraph-image", width: 1200, height: 630 },
     ]);
     expect(metadata.twitter?.images).toEqual(["/opengraph-image"]);
-    expect(metadata.title).toBe("About — Ruzicka Psychology");
+    expect(metadata.title).toBe("About | Ruzicka Psychology");
     expect(metadata.openGraph?.title).toBe(metadata.title);
     expect(metadata.twitter?.title).toBe(metadata.title);
     expect(metadata.alternates?.canonical).toBe("/about");
@@ -120,7 +120,7 @@ describe("article previews", () => {
     };
     const metadata = blogPostMetadata(post);
     expect(metadata.title).toBe(
-      'What Does "Doing the Work" Mean in Therapy? — Ruzicka Psychology',
+      'What Does "Doing the Work" Mean in Therapy? | Ruzicka Psychology',
     );
     expect(metadata.openGraph?.title).toBe(metadata.title);
     expect(metadata.twitter?.title).toBe(metadata.title);

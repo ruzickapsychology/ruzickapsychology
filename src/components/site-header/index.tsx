@@ -4,7 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CtaLink } from "@/components/cta-link";
-import { normalizeAvailabilityStatus } from "@/config/availability";
+import {
+  getInquiryCtaLabel,
+  normalizeAvailabilityStatus,
+} from "@/config/availability";
 import { Container } from "@/components/container";
 import { HEADER_SENTINEL_ID } from "@/components/header-sentinel";
 import { ArrowUpRight } from "@/components/arrow-up-right";
@@ -213,11 +216,13 @@ export function SiteHeader({
   );
   const contactLabel = !siteSettings
     ? "Contact"
-    : {
-        accepting: "Send an inquiry",
-        waitlist: "Join the waitlist",
-        closed: "Current availability",
-      }[availability];
+    : availability === "closed"
+      ? "Current availability"
+      : getInquiryCtaLabel(
+          availability,
+          siteSettings.availabilityMessaging,
+          siteSettings.consultationCtaLabel,
+        );
   const mobileUtilityLinks = [
     { label: "Blog", href: "/blog" },
     { label: "FAQ", href: "/faq" },
@@ -277,18 +282,20 @@ export function SiteHeader({
               </Link>
             );
           })}
-          <CtaLink
-            href="/contact"
-            event="consultation_cta_click"
-            variant={light ? "secondary" : "primary"}
-            tone={light ? "inverse" : "default"}
-            size="compact"
-            aria-current={
-              normalizedPathname === "/contact" ? "page" : undefined
-            }
-          >
-            {contactLabel}
-          </CtaLink>
+          {contactLabel ? (
+            <CtaLink
+              href="/contact"
+              event="consultation_cta_click"
+              variant={light ? "secondary" : "primary"}
+              tone={light ? "inverse" : "default"}
+              size="compact"
+              aria-current={
+                normalizedPathname === "/contact" ? "page" : undefined
+              }
+            >
+              {contactLabel}
+            </CtaLink>
+          ) : null}
         </nav>
 
         <button
@@ -361,19 +368,21 @@ export function SiteHeader({
                   </Link>
                 );
               })}
-              <CtaLink
-                href="/contact"
-                event="consultation_cta_click"
-                variant={light ? "secondary" : "primary"}
-                tone={light ? "inverse" : "default"}
-                aria-current={
-                  normalizedPathname === "/contact" ? "page" : undefined
-                }
-                onClick={closeMobileMenu}
-                className={styles.item}
-              >
-                {contactLabel}
-              </CtaLink>
+              {contactLabel ? (
+                <CtaLink
+                  href="/contact"
+                  event="consultation_cta_click"
+                  variant={light ? "secondary" : "primary"}
+                  tone={light ? "inverse" : "default"}
+                  aria-current={
+                    normalizedPathname === "/contact" ? "page" : undefined
+                  }
+                  onClick={closeMobileMenu}
+                  className={styles.item}
+                >
+                  {contactLabel}
+                </CtaLink>
+              ) : null}
             </nav>
 
             <nav

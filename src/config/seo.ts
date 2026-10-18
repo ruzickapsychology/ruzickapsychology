@@ -51,7 +51,7 @@ export function pageMetadata({
   description?: string;
   path?: string;
 }): Metadata {
-  const fullTitle = title ? `${title} — ${titleBrand}` : titleBrand;
+  const fullTitle = title ? `${title} | ${titleBrand}` : titleBrand;
   return {
     title: fullTitle,
     description,

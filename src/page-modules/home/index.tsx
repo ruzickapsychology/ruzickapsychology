@@ -31,6 +31,7 @@ import {
   getAvailabilityBadgeMessages,
   getAvailabilityContext,
   getAvailabilityCtaContent,
+  getInquiryCtaLabel,
 } from "@/config/availability";
 import type { HomePageContent, SiteSettings } from "@/data/cms";
 import styles from "./styles.module.css";
@@ -54,16 +55,20 @@ export function HomePage({
   const heroCtaEvent = availability.isClosed
     ? "specialties_cta_click"
     : "consultation_cta_click";
-  const heroCtaLabel = availability.isDefault
-    ? home.hero.cta
-    : availability.copy?.heroCta;
+  const heroCtaLabel = availability.isClosed
+    ? availability.copy?.heroCta
+    : getInquiryCtaLabel(
+        availability.status,
+        site?.availabilityMessaging,
+        site?.consultationCtaLabel,
+      );
   const cta = getAvailabilityCtaContent({
     status: availability.status,
     messaging: site?.availabilityMessaging,
+    consultationLabel: site?.consultationCtaLabel,
     defaults: {
       heading: home.cta.heading,
       body: home.cta.body,
-      label: home.cta.cta,
     },
   });
 

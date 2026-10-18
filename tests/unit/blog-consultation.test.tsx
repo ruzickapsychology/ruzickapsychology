@@ -34,6 +34,7 @@ const site: SiteSettings = {
     addressCountry: "US",
   },
   hours: [],
+  consultationCtaLabel: "Request a consultation",
   availabilityStatus: "accepting",
   areaServed: [],
   availabilityMessaging: {
@@ -69,12 +70,12 @@ describe("blog consultation path", () => {
       <BlogPostPage
         post={post}
         olderPost={null}
-        site={site}
+        site={{ ...site, consultationCtaLabel: "Ask about therapy" }}
         ctaContent={ctaContent}
       />,
     );
     expect(
-      screen.getByRole("link", { name: "Request a consultation" }),
+      screen.getByRole("link", { name: "Ask about therapy" }),
     ).toHaveAttribute("href", "/contact");
   });
 

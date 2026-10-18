@@ -52,7 +52,8 @@ test("a visitor can compare couples therapy fees and recover from a failed inqui
     .filter({ hasText: "Call your insurance company" })
     .click();
   await page
-    .getByRole("link", { name: "Book a consultation", exact: true })
+    .locator('[data-slot="cta-section"]')
+    .getByRole("link", { name: "Request a consultation", exact: true })
     .click();
   await expect(page).toHaveURL(/\/contact$/);
   await page.getByRole("button", { name: "Submit →" }).click();

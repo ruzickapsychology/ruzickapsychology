@@ -38,6 +38,7 @@ export type SiteSettings = {
   };
   hours: readonly string[];
   portalUrl?: string;
+  consultationCtaLabel?: string | null;
   availabilityStatus: AvailabilityStatus;
   availabilityBadgeMessages?: AvailabilityBadgeMessages | null;
   availabilityMessaging?: AvailabilityMessaging | null;
@@ -277,6 +278,7 @@ const siteSettingsQuery = defineQuery(/* groq */ `
     },
     hours,
     portalUrl,
+    consultationCtaLabel,
     "availabilityStatus": coalesce(availabilityStatus, "accepting"),
     availabilityBadgeMessages,
     availabilityMessaging{

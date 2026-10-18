@@ -28,6 +28,7 @@ const site: SiteSettings = {
     addressCountry: "US",
   },
   hours: [],
+  consultationCtaLabel: "Request a consultation",
   availabilityStatus: "accepting",
   areaServed: [],
   availabilityMessaging: {
