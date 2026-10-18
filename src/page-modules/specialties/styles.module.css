@@ -1,9 +1,3 @@
-.modalityContent {
-  grid-column: 1 / -1;
-  justify-self: center;
-  width: 100%;
-}
-
 .modalitySection {
   position: relative;
   overflow: hidden;
@@ -15,9 +9,7 @@
 }
 
 .modalityContent {
-  max-width: var(--measure-xl);
-  padding-block: 3rem;
-  text-align: left;
+  min-width: 0;
 }
 
 .modalityBody {
@@ -27,10 +19,4 @@
 
 .modalityLink {
   margin-top: var(--space-6);
-}
-
-@media (min-width: 640px) {
-  .modalityContent {
-    padding-block: 3.5rem;
-  }
 }

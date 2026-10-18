@@ -18,6 +18,7 @@ import {
 import { PageShell } from "@/components/page-shell";
 import { SpecialtyCard } from "@/components/specialty-card";
 import { PortableContent } from "@/components/portable-content";
+import { SeasonalGarden } from "@/components/seasonal-garden";
 import { Section } from "@/components/section";
 import { TextLink } from "@/components/text-link";
 import { getAvailabilityCtaContent } from "@/config/availability";
@@ -86,8 +87,9 @@ export function SpecialtiesPage({
       {/* modality band */}
       {specialties.modality ? (
         <Section
+          id="seasonal-modality"
           tone="feature"
-          size="default"
+          size="spacious"
           className={styles.modalitySection}
         >
           <BackgroundImageLayer
@@ -95,7 +97,13 @@ export function SpecialtiesPage({
             readability="light"
             sizes="100vw"
           />
-          <GridContainer size="xl" className={styles.modalityContainer}>
+          <GridContainer
+            size="xl"
+            layout="editorial"
+            align="center"
+            gap="lg"
+            className={styles.modalityContainer}
+          >
             <div className={styles.modalityContent}>
               <ContentHeader align="left" gap="none">
                 {specialties.modality.eyebrow ? (
@@ -120,6 +128,7 @@ export function SpecialtiesPage({
                 </TextLink>
               ) : null}
             </div>
+            <SeasonalGarden />
           </GridContainer>
         </Section>
       ) : null}
