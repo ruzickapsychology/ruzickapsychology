@@ -21,6 +21,7 @@ import {
   ImmersivePageHeaderNavigation,
 } from "@/components/immersive-page-header";
 import { PageShell } from "@/components/page-shell";
+import { PrintStudio } from "@/components/print-studio";
 import { SpecialtyCard } from "@/components/specialty-card";
 import { Section } from "@/components/section";
 import { TextLink } from "@/components/text-link";
@@ -32,15 +33,21 @@ import {
   getAvailabilityContext,
   getAvailabilityCtaContent,
 } from "@/config/availability";
-import type { HomePageContent, SiteSettings } from "@/data/cms";
+import type {
+  AboutPageContent,
+  HomePageContent,
+  SiteSettings,
+} from "@/data/cms";
 import styles from "./styles.module.css";
 
 export function HomePage({
   home,
   site,
+  philosophy,
 }: {
   home: HomePageContent;
   site: SiteSettings | null;
+  philosophy?: AboutPageContent["philosophy"];
 }) {
   const availability = getAvailabilityContext(
     site?.availabilityStatus,
@@ -219,6 +226,8 @@ export function HomePage({
           </GridContainer>
         </Section>
       ) : null}
+
+      <PrintStudio philosophy={philosophy} />
 
       {/* CTA band */}
       <CtaSection

@@ -1,0 +1,288 @@
+.controls {
+  max-width: 29rem;
+}
+.fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.legend {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  font: 500 var(--text-sm)/var(--leading-compact) var(--font-sans);
+  color: var(--color-fg);
+}
+.legend > span {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+.botanicalOptions {
+  display: flex;
+  gap: var(--space-3);
+}
+.botanicalOption {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+  text-align: center;
+}
+.botanicalOption input,
+.paperOption input,
+.formatOptions input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+.botanicalTile {
+  display: block;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 24%, transparent);
+  background: color-mix(in srgb, var(--color-surface) 45%, transparent);
+  transition:
+    background var(--transition-surface),
+    border-color var(--transition-surface);
+}
+.botanicalTile svg {
+  display: block;
+  width: 100%;
+  height: 6.5rem;
+  color: var(--color-accent);
+}
+.botanicalOption input:checked + .botanicalTile {
+  background: var(--color-surface);
+  border-color: var(--color-accent);
+  box-shadow: inset 0 0 0 1px var(--color-accent);
+}
+.choiceName {
+  display: block;
+  padding-top: var(--space-2);
+  font: var(--text-xs)/var(--leading-compact) var(--font-sans);
+}
+.paperOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+.paperOption {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--touch-target);
+  cursor: pointer;
+  font: var(--text-sm)/var(--leading-compact) var(--font-sans);
+}
+.swatch {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--paper-color);
+  border: 1px solid color-mix(in srgb, var(--color-fg) 25%, transparent);
+}
+.paperOption input:checked + .swatch {
+  outline: 1px solid var(--color-accent);
+  outline-offset: 4px;
+}
+.formatOptions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+.formatOptions label {
+  position: relative;
+  cursor: pointer;
+}
+.formatOptions label > span {
+  display: block;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-accent) 25%, transparent);
+  font: var(--text-xs)/var(--leading-compact) var(--font-mono);
+}
+.formatOptions input:checked + span {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-surface) 50%, transparent);
+}
+.botanicalOption input:focus-visible + span,
+.paperOption input:focus-visible + span,
+.formatOptions input:focus-visible + span {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 5px;
+}
+.noteOption {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  min-height: var(--touch-target);
+  margin-top: var(--space-2);
+  font: var(--text-xs)/var(--leading-compact) var(--font-sans);
+  cursor: pointer;
+}
+.noteOption input {
+  accent-color: var(--color-accent);
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+.download {
+  align-self: start;
+  gap: var(--space-8);
+}
+.status {
+  min-height: 2.6em;
+  max-width: 30rem;
+}
+.display {
+  min-width: 0;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.previewMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-accent) 20%, transparent);
+  padding-bottom: var(--space-4);
+}
+.paperStage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 38rem;
+  padding: var(--space-10) var(--space-4);
+}
+.paperStage::before {
+  content: "";
+  position: absolute;
+  inset: 11% 10%;
+  transform: rotate(7deg);
+  background: color-mix(in srgb, var(--color-surface) 24%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 8%, transparent);
+}
+.print {
+  position: relative;
+  width: min(100%, 22.5rem);
+  aspect-ratio: 5 / 7;
+  background: var(--paper-color);
+  color: var(--color-accent);
+  box-shadow:
+    0 2px 3px color-mix(in srgb, var(--color-fg) 9%, transparent),
+    0 22px 40px -13px color-mix(in srgb, var(--color-fg) 24%, transparent);
+  container-type: inline-size;
+  transform: rotate(-2deg);
+  transition: background 350ms ease;
+}
+.print[data-format="wallpaper"] {
+  width: min(100%, 18rem);
+  aspect-ratio: 9 / 16;
+}
+.edition,
+.colophon {
+  position: absolute;
+  left: 8%;
+  width: 84%;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 2cqw;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+}
+.edition {
+  top: 6%;
+}
+.colophon {
+  bottom: 5%;
+  font-size: 1.8cqw;
+  letter-spacing: 0.1em;
+}
+.artwork {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: auto;
+}
+.printWords {
+  position: absolute;
+  top: 70%;
+  left: 10%;
+  width: 80%;
+  text-align: center;
+}
+.quote {
+  font-family: var(--font-heading);
+  font-size: 4.3cqw;
+  line-height: 1.5;
+  text-wrap: pretty;
+  color: var(--color-fg);
+}
+.attribution {
+  margin-top: 3cqw;
+  font: 2.3cqw/1.5 var(--font-sans);
+  color: var(--color-accent);
+}
+.quote[data-long="true"] {
+  font-size: 3.4cqw;
+}
+.specimenName {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 6cqw;
+  line-height: 1.5;
+}
+.print[data-format="wallpaper"] .edition {
+  top: 27%;
+}
+.print[data-format="wallpaper"] .artwork {
+  top: 29%;
+}
+.print[data-format="wallpaper"] .printWords {
+  top: 75%;
+}
+.print[data-format="wallpaper"] .colophon {
+  bottom: 3%;
+}
+.caption {
+  text-align: center;
+}
+@media (max-width: 1023px) {
+  .controls {
+    max-width: none;
+    display: contents;
+  }
+  .controls > :first-child {
+    order: -2;
+  }
+  .display {
+    max-width: 36rem;
+    width: 100%;
+    margin-inline: auto;
+    order: -1;
+  }
+}
+@media (max-width: 479px) {
+  .paperStage {
+    min-height: 31rem;
+    padding-inline: var(--space-3);
+  }
+  .paperOptions {
+    gap: var(--space-5);
+  }
+  .previewMeta {
+    gap: var(--space-2);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .print,
+  .botanicalTile {
+    transition: none;
+  }
+}
