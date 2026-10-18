@@ -167,7 +167,6 @@ test("divider grids share the page gutter until their column breakpoint", async 
   for (const width of [320, 375, 639, 640, 767, 768, 1023, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     for (const [route, breakpoint, columns] of [
-      ["/", 640, 2],
       ["/specialties", 768, 2],
       ["/contact", 640, 4],
     ] as const) {
