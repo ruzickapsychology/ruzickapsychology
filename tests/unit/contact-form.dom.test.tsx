@@ -18,10 +18,6 @@ function fillRequired() {
   fireEvent.change(screen.getByLabelText("Email address (required)"), {
     target: { value: "test@example.com" },
   });
-  fireEvent.change(
-    screen.getByLabelText("Scheduling or general question (required)"),
-    { target: { value: "Scheduling question" } },
-  );
 }
 function submit() {
   fireEvent.submit(
@@ -38,24 +34,22 @@ describe("contact form delivery", () => {
     vi.restoreAllMocks();
   });
 
-  it("keeps labels, prefilled interest and privacy guidance available", () => {
-    render(
-      <ContactForm
-        initialInterest="Couples therapy"
-        note="Keep your message brief."
-      />,
-    );
+  it("keeps labels and privacy guidance available, and asks only for contact details", () => {
+    render(<ContactForm note="Keep your message brief." />);
     expect(screen.getByLabelText("First name (required)")).toHaveAttribute(
       "autocomplete",
       "given-name",
     );
-    expect(screen.getByDisplayValue("Couples therapy")).toBeInTheDocument();
+    expect(
+      screen.queryByLabelText(/therapy interest/i),
+    ).not.toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: "Read the privacy notice" }),
     ).toHaveAttribute("href", "/privacy");
+    expect(screen.getByText(/Keep your message brief/)).toBeInTheDocument();
     expect(
-      screen.getByLabelText("Scheduling or general question (required)"),
-    ).toHaveAccessibleDescription(/Keep your message brief/);
+      screen.queryByRole("textbox", { name: /question/i }),
+    ).not.toBeInTheDocument();
   });
 
   it("tracks once after successful delivery and preserves a focused success confirmation", async () => {

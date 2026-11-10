@@ -36,9 +36,27 @@ import { TextLink } from "@/components/text-link";
 import { Text } from "@/components/typography";
 import { getAvailabilityCtaContent } from "@/config/availability";
 import type { ServicePageContent, SiteSettings } from "@/data/cms";
-import { faqPageJsonLd, serviceJsonLd } from "@/config/seo";
+import {
+  faqPageJsonLd,
+  serviceEventsJsonLd,
+  serviceJsonLd,
+  upcomingSessions,
+} from "@/config/seo";
 import { serviceContactHref } from "@/config/services";
 import styles from "./styles.module.css";
+
+const sessionDate = new Intl.DateTimeFormat("en-US", {
+  weekday: "long",
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "America/New_York",
+});
+const sessionTime = new Intl.DateTimeFormat("en-US", {
+  hour: "numeric",
+  minute: "2-digit",
+  timeZone: "America/New_York",
+});
 
 export function ServicePage({
   service,
@@ -53,6 +71,7 @@ export function ServicePage({
       answer: faq.answerText,
     })),
   );
+  const sessions = upcomingSessions(service);
   const cta = getAvailabilityCtaContent({
     status: site.availabilityStatus,
     messaging: site.availabilityMessaging,
@@ -66,6 +85,9 @@ export function ServicePage({
     <PageShell>
       <JsonLd data={serviceJsonLd(service, site)} />
       <JsonLd data={faqJsonLd} />
+      {serviceEventsJsonLd(service, site).map((event) => (
+        <JsonLd key={String(event.startDate)} data={event} />
+      ))}
 
       <PageHeader>
         <PageHeaderBreadcrumbs>
@@ -91,6 +113,28 @@ export function ServicePage({
       <ContentSection size="compact" containerSize="md">
         <PortableContent value={service.overview} variant="article" />
       </ContentSection>
+
+      {sessions.length ? (
+        <ContentSection size="compact" containerSize="md">
+          <ContentHeader align="left" gap="none">
+            <ContentHeaderEyebrow variant="overline">
+              Upcoming dates
+            </ContentHeaderEyebrow>
+            <ContentHeaderTitle>Next meetings</ContentHeaderTitle>
+          </ContentHeader>
+          <ul className={styles.concernList}>
+            {sessions.map((session) => (
+              <li key={session._key ?? session.startsAt}>
+                <Text>
+                  {sessionDate.format(new Date(session.startsAt))},{" "}
+                  {sessionTime.format(new Date(session.startsAt))} to{" "}
+                  {sessionTime.format(new Date(session.endsAt))}
+                </Text>
+              </li>
+            ))}
+          </ul>
+        </ContentSection>
+      ) : null}
 
       <ContentSection
         tone="feature"

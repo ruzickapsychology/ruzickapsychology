@@ -24,7 +24,7 @@ describe("service route definitions", () => {
       "Perinatal or postpartum therapy",
     );
     expect(getContactInterestLabel("group-therapy")).toBe(
-      "Group therapy or workshop",
+      "Stronger Together workshop",
     );
     expect(getContactInterestLabel("anything-else")).toBeUndefined();
   });

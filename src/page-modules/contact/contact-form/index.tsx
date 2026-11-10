@@ -13,7 +13,6 @@ import {
   FieldDescription,
   FieldError,
   Input,
-  Textarea,
 } from "@/components/form-field";
 import { Eyebrow, Text } from "@/components/typography";
 import { cn } from "@/lib/class-names";
@@ -53,32 +52,7 @@ function ContactInputField({
   );
 }
 
-function ContactTextareaField({
-  id,
-  label,
-  ...props
-}: {
-  id: string;
-  label: string;
-} & Omit<ComponentProps<typeof Textarea>, "id">) {
-  return (
-    <Field>
-      <FieldLabel htmlFor={id}>
-        {label}
-        {props.required ? " (required)" : " (optional)"}
-      </FieldLabel>
-      <Textarea id={id} tone="inverse" {...props} />
-    </Field>
-  );
-}
-
-export function ContactForm({
-  note,
-  initialInterest,
-}: {
-  note?: string;
-  initialInterest?: string;
-}) {
+export function ContactForm({ note }: { note?: string }) {
   const [state, setState] = useState<InquiryState>(initialState);
   const [pending, setPending] = useState(false);
   const [animationRun, setAnimationRun] = useState(0);
@@ -151,12 +125,11 @@ export function ContactForm({
     const firstName = String(formData.get("firstName") ?? "").trim();
     const lastName = String(formData.get("lastName") ?? "").trim();
     const email = String(formData.get("email") ?? "").trim();
-    const message = String(formData.get("message") ?? "").trim();
 
-    if (!firstName || !email || !message) {
+    if (!firstName || !email) {
       setState({
         status: "error",
-        message: "Please share your name, email, and a short message.",
+        message: "Please share your name and email.",
       });
       return;
     }
@@ -190,13 +163,7 @@ export function ContactForm({
         name: `${firstName} ${lastName}`.trim(),
         email,
         phone: String(formData.get("phone") ?? "").trim() || "-",
-        message: [
-          message,
-          "",
-          `Interested in: ${String(formData.get("therapyType") ?? "").trim() || "-"}`,
-          `Format: ${String(formData.get("format") ?? "").trim() || "-"}`,
-          `City: ${String(formData.get("city") ?? "").trim() || "-"}`,
-        ].join("\n"),
+        message: "Consultation inquiry from the website contact form.",
       };
 
       const res = await fetch("https://api.web3forms.com/submit", {
@@ -320,43 +287,12 @@ export function ContactForm({
                   placeholder="Email address*"
                 />
                 <ContactInputField
-                  id="contact-therapy-type"
-                  name="therapyType"
-                  label="Therapy interest"
-                  defaultValue={initialInterest}
-                  placeholder="What type of therapy are you interested in?"
-                />
-                <ContactInputField
-                  id="contact-format"
-                  name="format"
-                  label="Preferred appointment format"
-                  placeholder="Would you prefer in-person or virtual therapy?"
-                />
-                <div className={styles.fieldGrid}>
-                  <ContactInputField
-                    id="contact-city"
-                    name="city"
-                    autoComplete="address-level2"
-                    label="City"
-                    placeholder="What city are you based in?"
-                  />
-                  <ContactInputField
-                    id="contact-phone"
-                    type="tel"
-                    name="phone"
-                    autoComplete="tel"
-                    label="Phone number"
-                    placeholder="Phone number"
-                  />
-                </div>
-                <ContactTextareaField
-                  id="contact-message"
-                  name="message"
-                  rows={6}
-                  required
-                  label="Scheduling or general question"
-                  aria-describedby={safetyNoteId}
-                  placeholder="Share a scheduling question or general note.*"
+                  id="contact-phone"
+                  type="tel"
+                  name="phone"
+                  autoComplete="tel"
+                  label="Phone number"
+                  placeholder="Phone number"
                 />
               </div>
               <FieldDescription

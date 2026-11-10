@@ -151,12 +151,8 @@ test("service consultation links prefill an editable therapy interest", async ({
     .last()
     .click();
 
-  const therapyInterest = page.getByLabel("Therapy interest");
-  await expect(therapyInterest).toHaveValue("Couples therapy");
-  await therapyInterest.fill("Couples therapy for communication");
-  await expect(therapyInterest).toHaveValue(
-    "Couples therapy for communication",
-  );
+  await expect(page).toHaveURL(/\/contact/);
+  await expect(page.getByLabel("Therapy interest")).toHaveCount(0);
 });
 
 test("every specialty card links to its detail page", async ({ page }) => {
@@ -221,29 +217,6 @@ test("blog post headers use the editorial measure and a single-underline author 
   await expect(header).toHaveCSS("max-width", "1120px");
   await expect(author).toHaveCSS("text-decoration-line", "underline");
   await expect(author).toHaveCSS("border-bottom-width", "0px");
-});
-
-const supportedContactInterests = [
-  ["individual-therapy", "Individual therapy"],
-  ["couples-therapy", "Couples therapy"],
-  ["perinatal-postpartum-therapy", "Perinatal or postpartum therapy"],
-  ["group-therapy", "Group therapy or workshop"],
-] as const;
-
-for (const [interest, expectedLabel] of supportedContactInterests) {
-  test(`contact prefills the allow-listed ${interest} interest`, async ({
-    page,
-  }) => {
-    await page.goto(`/contact?interest=${interest}`);
-    await expect(page.getByLabel("Therapy interest")).toHaveValue(
-      expectedLabel,
-    );
-  });
-}
-
-test("contact ignores unsupported interest query values", async ({ page }) => {
-  await page.goto("/contact?interest=not-a-real-service");
-  await expect(page.getByLabel("Therapy interest")).toHaveValue("");
 });
 
 test("unknown specialty routes return not found", async ({ request }) => {
@@ -460,9 +433,6 @@ test("contact success bloom renders without submitting externally", async ({
   await page.goto("/contact");
   await page.getByLabel("First name").fill("Test");
   await page.getByLabel("Email address").fill("test@example.com");
-  await page
-    .getByLabel("Scheduling or general question")
-    .fill("Testing the success animation.");
   await page.getByRole("button", { name: "Submit →" }).click();
 
   await expect(
@@ -485,9 +455,6 @@ test("contact delivery errors are announced and focused", async ({ page }) => {
   await page.goto("/contact");
   await page.getByLabel("First name").fill("Test");
   await page.getByLabel("Email address").fill("test@example.com");
-  await page
-    .getByLabel("Scheduling or general question")
-    .fill("Testing the error state.");
   await page.getByRole("button", { name: "Submit →" }).click();
 
   const alert = page.getByRole("alert").filter({

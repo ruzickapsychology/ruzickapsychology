@@ -72,9 +72,6 @@ test("successful inquiry preserves the form footprint and shows confirmation", a
   await page.goto("/contact");
   await page.getByLabel("First name").fill("UX Test");
   await page.getByLabel("Email address").fill("ux-test@example.com");
-  await page
-    .getByLabel("Scheduling or general question")
-    .fill("Local mocked test; no inquiry will be sent.");
   const form = page.locator("form");
   const before = await form.boundingBox();
   await page.screenshot({

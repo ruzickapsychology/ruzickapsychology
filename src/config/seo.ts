@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import type {
   BlogPosting,
   BreadcrumbList,
+  DayOfWeek,
+  Event,
   FAQPage,
   Graph,
   Service,
@@ -109,6 +111,42 @@ export function blogPostMetadata(post: {
 export const practiceId = `${SITE_URL}/#practice`;
 export const practitionerId = `${SITE_URL}/about#christina-ruzicka`;
 
+const schemaDays: Record<string, DayOfWeek> = {
+  mon: "https://schema.org/Monday",
+  tue: "https://schema.org/Tuesday",
+  wed: "https://schema.org/Wednesday",
+  thu: "https://schema.org/Thursday",
+  fri: "https://schema.org/Friday",
+  sat: "https://schema.org/Saturday",
+  sun: "https://schema.org/Sunday",
+};
+
+function to24Hour(time: string) {
+  const match = /^(\d{1,2}):(\d{2})\s*(am|pm)$/i.exec(time.trim());
+  if (!match) return null;
+  const hour = (Number(match[1]) % 12) + (/pm/i.test(match[3]) ? 12 : 0);
+  return `${String(hour).padStart(2, "0")}:${match[2]}`;
+}
+
+/** Build schema hours only from CMS lines with a real time range, like "Mon · 9:00am – 6:00pm". */
+export function openingHoursSpecification(hours: readonly string[] = []) {
+  return hours.flatMap((line) => {
+    const [day, range] = line.split("·").map((part) => part.trim());
+    const dayOfWeek = schemaDays[day?.slice(0, 3).toLowerCase() ?? ""];
+    const [opens, closes] = (range ?? "").split(/[-–]/).map(to24Hour);
+    return dayOfWeek && opens && closes
+      ? [
+          {
+            "@type": "OpeningHoursSpecification" as const,
+            dayOfWeek,
+            opens,
+            closes,
+          },
+        ]
+      : [];
+  });
+}
+
 export function practiceJsonLd(settings: SiteSettings): Graph {
   return {
     "@context": "https://schema.org",
@@ -132,6 +170,7 @@ export function practiceJsonLd(settings: SiteSettings): Graph {
           addressCountry: settings.address.addressCountry,
         },
         areaServed: settings.areaServed,
+        openingHoursSpecification: openingHoursSpecification(settings.hours),
         sameAs: settings.externalProfiles?.map((profile) => profile.url),
         founder: { "@id": practitionerId },
       },
@@ -162,6 +201,10 @@ export function practiceJsonLd(settings: SiteSettings): Graph {
           "Couples therapy",
           "Perinatal mental health",
           "Postpartum mental health",
+          "Anxiety",
+          "Disordered eating",
+          "Self-esteem",
+          "Relationship issues",
         ],
         sameAs: settings.externalProfiles?.map((profile) => profile.url),
       },
@@ -189,6 +232,58 @@ export function serviceJsonLd(
       suggestedMinAge: 18,
     },
   };
+}
+
+export function upcomingSessions(
+  service: Pick<ServicePageContent, "upcomingSessions">,
+  now = new Date(),
+) {
+  return service.upcomingSessions
+    .filter((session) => new Date(session.endsAt) > now)
+    .sort((a, b) => a.startsAt.localeCompare(b.startsAt));
+}
+
+/** Event markup for real dated sessions that are also visible on the page. */
+export function serviceEventsJsonLd(
+  service: ServicePageContent,
+  settings: SiteSettings,
+  now = new Date(),
+): Array<WithContext<Event>> {
+  const url = `${SITE_URL}/specialties/${service.slug}`;
+  return upcomingSessions(service, now).map((session) => ({
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: service.title,
+    description: service.intro,
+    url,
+    startDate: session.startsAt,
+    endDate: session.endsAt,
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    organizer: { "@id": practiceId },
+    location: {
+      "@type": "Place",
+      name: settings.name,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: settings.address.streetAddress,
+        addressLocality: settings.address.addressLocality,
+        addressRegion: settings.address.addressRegion,
+        postalCode: settings.address.postalCode,
+        addressCountry: settings.address.addressCountry,
+      },
+    },
+    ...(session.priceUsd
+      ? {
+          offers: {
+            "@type": "Offer" as const,
+            price: session.priceUsd,
+            priceCurrency: "USD",
+            url,
+          },
+        }
+      : {}),
+  }));
 }
 
 export function breadcrumbJsonLd(

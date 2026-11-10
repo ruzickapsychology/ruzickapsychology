@@ -28,11 +28,9 @@ import styles from "./styles.module.css";
 export function ContactPage({
   contact,
   site,
-  initialInterest,
 }: {
   contact: ContactPageContent;
   site: SiteSettings;
-  initialInterest?: string;
 }) {
   const availability = getAvailabilityContext(
     site.availabilityStatus,
@@ -133,10 +131,7 @@ export function ContactPage({
                 ) : null}
               </div>
             ) : (
-              <ContactForm
-                note={contact.formNote}
-                initialInterest={initialInterest}
-              />
+              <ContactForm note={contact.formNote} />
             )}
           </div>
         </ImmersivePageHeaderContent>

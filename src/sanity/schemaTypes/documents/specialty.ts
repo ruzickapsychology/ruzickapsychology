@@ -150,6 +150,40 @@ export const specialty = defineType({
         ),
     }),
     defineField({
+      name: "upcomingSessions",
+      title: "Upcoming dated sessions",
+      description:
+        "Real scheduled dates only, such as workshop meetings. Past dates hide automatically.",
+      type: "array",
+      hidden: ({ document }) => document?.pageStatus !== "published",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "upcomingSession",
+          fields: [
+            defineField({
+              name: "startsAt",
+              title: "Starts",
+              type: "datetime",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "endsAt",
+              title: "Ends",
+              type: "datetime",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "priceUsd",
+              title: "Price in US dollars",
+              type: "number",
+            }),
+          ],
+          preview: { select: { title: "startsAt" } },
+        }),
+      ],
+    }),
+    defineField({
       name: "relatedPosts",
       title: "Related blog posts",
       type: "array",
