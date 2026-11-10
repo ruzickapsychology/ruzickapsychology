@@ -27,8 +27,10 @@
   height: auto;
 }
 
+/* The form's inline min-height keeps the filled footprint after success, so
+   the spacer adds no height of its own (a fixed 56px overshot the button). */
 .actionSpacer {
-  min-height: 56px;
+  min-height: 0;
 }
 
 .formActive {

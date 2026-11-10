@@ -61,9 +61,6 @@ test("a visitor can compare couples therapy fees and recover from a failed inqui
   expect(attempts).toBe(0);
   await page.getByLabel("First name").fill("UX Test");
   await page.getByLabel("Email address").fill("ux-test@example.com");
-  await page
-    .getByLabel("Scheduling or general question")
-    .fill("Local mocked inquiry; no email will be sent.");
   await page.getByRole("button", { name: "Submit →" }).click();
   await expect(
     page.getByRole("alert").filter({ hasText: "Something went wrong" }),

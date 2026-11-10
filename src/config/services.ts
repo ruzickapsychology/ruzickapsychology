@@ -49,11 +49,11 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
   {
     slug: "group-therapy",
     documentId: "specialty-group-therapy",
-    title: "Group Therapy",
-    pageTitle: "Group Therapy in Rochester, NY",
+    title: "Stronger Together Couples Workshop",
+    pageTitle: "Stronger Together Couples Workshop in Rochester, NY",
     description:
-      "Periodic, skills-based group therapy in Rochester, NY for couples seeking practical communication tools, guided practice, and stronger connection.",
-    contactLabel: "Group therapy or workshop",
+      "Stronger Together is a monthly, skills-based couples workshop in Rochester, NY. Learn practical communication tools with guided partner exercises. $175 per couple, up to 6 couples.",
+    contactLabel: "Stronger Together workshop",
   },
 ] as const;
 

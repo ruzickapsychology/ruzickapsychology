@@ -79,6 +79,12 @@ export type ServicePageContent = SpecialtyContent & {
     answer: RichText;
     answerText: string;
   }>;
+  upcomingSessions: ReadonlyArray<{
+    _key?: string;
+    startsAt: string;
+    endsAt: string;
+    priceUsd?: number;
+  }>;
   relatedPosts: ReadonlyArray<{
     _key?: string;
     slug: string;
@@ -574,6 +580,7 @@ const servicePageQuery = defineQuery(/* groq */ `
       "legacyAnswer": answer,
       "answerText": coalesce(pt::text(answerRichText), array::join(answer, " "))
     },
+    upcomingSessions[]{_key, startsAt, endsAt, priceUsd},
     relatedPosts[]->{
       "_key": _id,
       title,
@@ -889,6 +896,12 @@ export async function getServicePage(
         legacyAnswer?: string[];
         answerText?: string;
       }>;
+      upcomingSessions?: Array<{
+        _key?: string;
+        startsAt?: string;
+        endsAt?: string;
+        priceUsd?: number | null;
+      }> | null;
       relatedPosts?: ServicePageContent["relatedPosts"];
     }
   >(servicePageQuery, { documentId: definition.documentId });
@@ -937,6 +950,18 @@ export async function getServicePage(
         };
       })
       .filter((item) => item.answer.length),
+    upcomingSessions: (doc.upcomingSessions ?? []).flatMap((session) =>
+      session.startsAt && session.endsAt
+        ? [
+            {
+              _key: session._key,
+              startsAt: session.startsAt,
+              endsAt: session.endsAt,
+              priceUsd: session.priceUsd ?? undefined,
+            },
+          ]
+        : [],
+    ),
     relatedPosts: doc.relatedPosts ?? [],
   };
 }
