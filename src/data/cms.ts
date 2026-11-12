@@ -92,6 +92,12 @@ export type ServicePageContent = SpecialtyContent & {
     excerpt: string;
     publishedAt: string;
   }>;
+  sources: ReadonlyArray<{
+    _key?: string;
+    title: string;
+    citation: string;
+    url: string;
+  }>;
 };
 
 export type HomePageContent = {
@@ -581,6 +587,7 @@ const servicePageQuery = defineQuery(/* groq */ `
       "answerText": coalesce(pt::text(answerRichText), array::join(answer, " "))
     },
     upcomingSessions[]{_key, startsAt, endsAt, priceUsd},
+    sources[]{_key, title, citation, url},
     relatedPosts[]->{
       "_key": _id,
       title,
@@ -668,6 +675,16 @@ const contactPageQuery = defineQuery(/* groq */ `
   }
 `);
 
+const resourcesPageQuery = defineQuery(/* groq */ `
+  *[_type == "resourcesPage" && _id == "resourcesPage"][0]{
+    header,
+    note,
+    sections[]{_key, heading, body},
+    moreHeading,
+    moreBody
+  }
+`);
+
 const faqPageQuery = defineQuery(/* groq */ `
   *[_type == "faqPage" && _id == "faqPage"][0]{
     heading,
@@ -731,7 +748,7 @@ export const blogPostSlugsQuery = defineQuery(/* groq */ `
 
 export const sitemapEntriesQuery = defineQuery(/* groq */ `
   {
-    "pages": *[_id in ["homePage", "aboutPage", "specialtiesPage", "pricingPage", "contactPage", "faqPage"]]{
+    "pages": *[_id in ["homePage", "aboutPage", "specialtiesPage", "pricingPage", "contactPage", "faqPage", "resourcesPage"]]{
       _id,
       _updatedAt
     },
@@ -792,6 +809,7 @@ const specialtyIconBySlug: Record<string, SpecialtyIcon> = {
   "perinatal-postpartum-support": "bud",
   "perinatal-and-postpartum-support": "bud",
   "group-therapy": "quatrefoil",
+  "imago-relationship-therapy": "leaves",
 };
 
 function getSpecialtyIcon(slug: string, title: string): SpecialtyIcon {
@@ -903,6 +921,12 @@ export async function getServicePage(
         priceUsd?: number | null;
       }> | null;
       relatedPosts?: ServicePageContent["relatedPosts"];
+      sources?: Array<{
+        _key?: string;
+        title?: string;
+        citation?: string;
+        url?: string;
+      }> | null;
     }
   >(servicePageQuery, { documentId: definition.documentId });
 
@@ -963,6 +987,18 @@ export async function getServicePage(
         : [],
     ),
     relatedPosts: doc.relatedPosts ?? [],
+    sources: (doc.sources ?? []).flatMap((source) =>
+      source.title && source.citation && source.url?.startsWith("https://")
+        ? [
+            {
+              _key: source._key,
+              title: source.title,
+              citation: source.citation,
+              url: source.url,
+            },
+          ]
+        : [],
+    ),
   };
 }
 
@@ -1248,4 +1284,40 @@ export async function getSitemapEntries() {
 
 export async function getSanityPost(slug: string) {
   return fetchCms<RawPost>(blogPostQuery, { slug });
+}
+
+export type ResourcesPageContent = {
+  eyebrow?: string;
+  heading: string;
+  intro?: string;
+  note?: string;
+  sections: Array<{ _key?: string; heading: string; body: RichText }>;
+  moreHeading?: string;
+  moreBody?: RichText;
+};
+
+export async function getResourcesPage(): Promise<ResourcesPageContent | null> {
+  const doc = await fetchCms<{
+    header?: { eyebrow?: string; heading?: string; intro?: string };
+    note?: string;
+    sections?: Array<{ _key?: string; heading?: string; body?: RichText }>;
+    moreHeading?: string;
+    moreBody?: RichText;
+  }>(resourcesPageQuery);
+
+  if (!doc?.header?.heading) return null;
+
+  return {
+    eyebrow: doc.header.eyebrow,
+    heading: doc.header.heading,
+    intro: doc.header.intro,
+    note: doc.note,
+    sections: (doc.sections ?? []).flatMap((section) =>
+      section.heading && section.body?.length
+        ? [{ _key: section._key, heading: section.heading, body: section.body }]
+        : [],
+    ),
+    moreHeading: doc.moreHeading,
+    moreBody: doc.moreBody,
+  };
 }

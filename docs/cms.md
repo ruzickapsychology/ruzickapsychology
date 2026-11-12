@@ -13,6 +13,7 @@ Singleton IDs:
 - `pricingPage`
 - `contactPage`
 - `faqPage`
+- `resourcesPage` (crisis and pregnancy support lines at `/resources`)
 
 Repeatable documents:
 

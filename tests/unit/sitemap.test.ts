@@ -27,4 +27,26 @@ describe("sitemap archive discovery", () => {
       expect(urls.some((url) => url.endsWith("/privacy"))).toBe(true);
     },
   );
+
+  it("lists the resources page and new specialty pages only when published", async () => {
+    vi.mocked(getSitemapEntries).mockResolvedValue({
+      pages: [{ _id: "resourcesPage", _updatedAt: "2026-11-11T00:00:00Z" }],
+      services: [
+        {
+          _id: "specialty-postpartum-depression-therapy",
+          _updatedAt: "2026-11-11T00:00:00Z",
+        },
+        { _id: "specialty-unknown", _updatedAt: "2026-11-11T00:00:00Z" },
+      ],
+      posts: [],
+    });
+    const urls = (await sitemap()).map((entry) => entry.url);
+    expect(urls.some((url) => url.endsWith("/resources"))).toBe(true);
+    expect(
+      urls.some((url) =>
+        url.endsWith("/specialties/postpartum-depression-therapy"),
+      ),
+    ).toBe(true);
+    expect(urls.some((url) => url.includes("specialty-unknown"))).toBe(false);
+  });
 });

@@ -52,6 +52,7 @@ export function buildMigrationPlan(
             "pricingPage",
             "faqPage",
             "contactPage",
+            "resourcesPage",
           ].includes(publishedId)
         ? publishedId
         : "post";

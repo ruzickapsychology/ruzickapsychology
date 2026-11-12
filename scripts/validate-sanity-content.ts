@@ -18,6 +18,7 @@ const requiredSingletons = [
   "pricingPage",
   "contactPage",
   "faqPage",
+  "resourcesPage",
 ];
 
 const requiredServiceIds = [
@@ -25,6 +26,10 @@ const requiredServiceIds = [
   "specialty-couples-counseling",
   "specialty-perinatal-postpartum-support",
   "specialty-group-therapy",
+  "specialty-anxiety-therapy",
+  "specialty-imago-relationship-therapy",
+  "specialty-postpartum-anxiety-therapy",
+  "specialty-postpartum-depression-therapy",
 ];
 
 const query = /* groq */ `
@@ -60,6 +65,7 @@ const query = /* groq */ `
     select(!defined(*[_id == "siteSettings"][0].availabilityMessaging.closed.panelBody) => "siteSettings.availabilityMessaging.closed.panelBody", null),
     select(!defined(*[_id == "siteSettings"][0].availabilityMessaging.closed.contactMethodsLabel) => "siteSettings.availabilityMessaging.closed.contactMethodsLabel", null),
     select(!defined(*[_id == "contactPage"][0].header.heading) => "contactPage.header.heading", null),
+    select(!defined(*[_id == "resourcesPage"][0].header.heading) || count(*[_id == "resourcesPage"][0].sections) == 0 => "resourcesPage.header.heading-and-sections", null),
     select(count(*[_id in $requiredServiceIds && pageStatus == "published"]) != count($requiredServiceIds) => "published service pages", null),
     select(count(*[_id in $requiredServiceIds && defined(pageHeading) && defined(intro) && count(overview) > 0 && count(commonConcerns) > 0 && defined(approachHeading) && count(approachBody) > 0 && count(whatToExpect) > 0 && count(faqs) >= 3]) != count($requiredServiceIds) => "published service page content", null)
   ][@ != null],

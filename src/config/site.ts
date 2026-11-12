@@ -21,6 +21,7 @@ export const FOOTER_NAV = [
   { label: "Pricing", href: "/pricing" },
   { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/faq" },
+  { label: "Resources", href: "/resources" },
   { label: "Contact", href: "/contact" },
   { label: "Privacy", href: "/privacy" },
 ] as const;

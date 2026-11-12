@@ -10,6 +10,10 @@ describe("service route definitions", () => {
   it("recognizes only approved public service slugs", () => {
     expect(isServiceSlug("individual-therapy")).toBe(true);
     expect(isServiceSlug("group-therapy")).toBe(true);
+    expect(isServiceSlug("anxiety-therapy")).toBe(true);
+    expect(isServiceSlug("imago-relationship-therapy")).toBe(true);
+    expect(isServiceSlug("postpartum-anxiety-therapy")).toBe(true);
+    expect(isServiceSlug("postpartum-depression-therapy")).toBe(true);
     expect(getServiceDefinition("couples-counseling")).toBeUndefined();
   });
 

@@ -208,6 +208,29 @@ export function ServicePage({
         </DisclosureList>
       </ContentSection>
 
+      {service.sources.length ? (
+        <ContentSection size="compact" containerSize="md">
+          <ContentHeader align="left" gap="none">
+            <ContentHeaderEyebrow variant="overline">
+              Sources
+            </ContentHeaderEyebrow>
+            <ContentHeaderTitle>Research and sources</ContentHeaderTitle>
+          </ContentHeader>
+          <ul className={styles.sourcesList}>
+            {service.sources.map((source) => (
+              <li key={source._key ?? source.url}>
+                <a href={source.url} target="_blank" rel="noopener noreferrer">
+                  {source.title}
+                </a>
+                <Text as="span" variant="detail">
+                  {source.citation}
+                </Text>
+              </li>
+            ))}
+          </ul>
+        </ContentSection>
+      ) : null}
+
       {service.relatedPosts.length ? (
         <ContentSection size="spacious" containerSize="xl">
           <ContentHeader align="left" gap="none">

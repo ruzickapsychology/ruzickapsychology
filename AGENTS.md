@@ -149,7 +149,7 @@ See `docs/performance.md`.
 ## CMS
 
 - Sanity config lives in `sanity.config.ts`; schema lives in `src/sanity/schemaTypes/`.
-- Singleton document IDs are `siteSettings`, `homePage`, `aboutPage`, `specialtiesPage`, `pricingPage`, `contactPage`, and `faqPage`.
+- Singleton document IDs are `siteSettings`, `homePage`, `aboutPage`, `specialtiesPage`, `pricingPage`, `contactPage`, `faqPage`, and `resourcesPage`.
 - Repeatable content currently includes `specialty` and `post`.
 - Seed logic lives in `scripts/seed-sanity.ts`; array-key repair lives in `scripts/repair-sanity-array-keys.ts`.
 - Singletons are replaced by the seed script. Repeatable documents use `createIfNotExists` unless `SANITY_SEED_OVERWRITE_REPEATABLES=1` is set.

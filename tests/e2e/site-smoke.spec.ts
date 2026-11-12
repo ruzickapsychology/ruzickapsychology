@@ -9,6 +9,11 @@ const routes = [
   "/specialties/couples-therapy",
   "/specialties/perinatal-postpartum-therapy",
   "/specialties/group-therapy",
+  "/specialties/anxiety-therapy",
+  "/specialties/imago-relationship-therapy",
+  "/specialties/postpartum-anxiety-therapy",
+  "/specialties/postpartum-depression-therapy",
+  "/resources",
   "/pricing",
   "/contact",
   "/faq",
@@ -164,6 +169,10 @@ test("every specialty card links to its detail page", async ({ page }) => {
     "couples-therapy",
     "perinatal-postpartum-therapy",
     "group-therapy",
+    "anxiety-therapy",
+    "imago-relationship-therapy",
+    "postpartum-anxiety-therapy",
+    "postpartum-depression-therapy",
   ]) {
     await expect(
       main.locator(

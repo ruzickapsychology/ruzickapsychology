@@ -8,6 +8,7 @@ const singletonTypes = new Set([
   "pricingPage",
   "contactPage",
   "faqPage",
+  "resourcesPage",
   "specialty",
   "post",
 ]);
@@ -41,6 +42,7 @@ export const structure: StructureResolver = (S) =>
               singletonListItem(S, "pricingPage", "Pricing & Insurance"),
               singletonListItem(S, "contactPage", "Contact Page"),
               singletonListItem(S, "faqPage", "FAQ Page"),
+              singletonListItem(S, "resourcesPage", "Resources Page"),
             ]),
         ),
       S.divider(),

@@ -28,6 +28,7 @@ const singletonTypes = new Set([
   "pricingPage",
   "contactPage",
   "faqPage",
+  "resourcesPage",
 ]);
 
 const studioPlugins = [

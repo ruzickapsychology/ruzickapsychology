@@ -7,7 +7,7 @@ import { SpecialtiesPage } from "@/page-modules/specialties";
 export const metadata: Metadata = pageMetadata({
   title: "Therapy Services in Rochester, NY",
   description:
-    "Individual therapy, Imago couples counseling, perinatal and postpartum support, and group therapy in Rochester, NY.",
+    "Individual and anxiety therapy, Imago couples therapy, postpartum anxiety and depression support, and a couples workshop in Rochester, NY.",
   path: "/specialties",
 });
 

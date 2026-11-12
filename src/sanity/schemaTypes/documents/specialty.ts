@@ -192,6 +192,44 @@ export const specialty = defineType({
       validation: (rule) => rule.unique(),
     }),
     defineField({
+      name: "sources",
+      title: "Research sources",
+      description:
+        "Primary research or authoritative clinical sources supporting substantive claims on this page.",
+      type: "array",
+      hidden: ({ document }) => document?.pageStatus !== "published",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "researchSource",
+          fields: [
+            defineField({
+              name: "title",
+              title: "Source title",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "citation",
+              title: "Citation",
+              type: "text",
+              rows: 2,
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "url",
+              title: "Source URL",
+              type: "url",
+              validation: (rule) => rule.required().uri({ scheme: ["https"] }),
+            }),
+          ],
+          preview: {
+            select: { title: "title", subtitle: "citation" },
+          },
+        }),
+      ],
+    }),
+    defineField({
       name: "details",
       title: "Specialties-page details (Deprecated)",
       description:

@@ -37,6 +37,7 @@
     "sanity:repair-keys": "sanity exec scripts/repair-sanity-array-keys.ts --with-user-token",
     "sanity:migrate-ready-website": "sanity exec scripts/migrate-ready-website-content.ts --with-user-token",
     "sanity:migrate-christina-answers": "sanity exec scripts/migrate-christina-answers.ts --with-user-token",
+    "sanity:migrate-specialty-pages": "sanity exec scripts/migrate-specialty-pages-nov11.ts --with-user-token",
     "sanity:migrate-shared-cta": "sanity exec scripts/migrate-shared-cta.ts --with-user-token",
     "sanity:migrate-copy-punctuation": "sanity exec scripts/migrate-copy-punctuation.ts --with-user-token"
   },
