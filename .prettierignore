@@ -6,3 +6,6 @@ test-results
 schema.json
 sanity.types.ts
 outputs/*.inspect.ndjson
+
+# Google Search Console verification files must stay byte-exact
+public/google*.html
