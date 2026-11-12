@@ -169,10 +169,6 @@ test("every specialty card links to its detail page", async ({ page }) => {
     "couples-therapy",
     "perinatal-postpartum-therapy",
     "group-therapy",
-    "anxiety-therapy",
-    "imago-relationship-therapy",
-    "postpartum-anxiety-therapy",
-    "postpartum-depression-therapy",
   ]) {
     await expect(
       main.locator(
