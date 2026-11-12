@@ -324,3 +324,64 @@ export const faqPage = defineType({
   ],
   preview: singletonPreview("FAQ Page"),
 });
+
+export const resourcesPage = defineType({
+  name: "resourcesPage",
+  title: "Resources Page",
+  type: "document",
+  icon: HelpCircleIcon,
+  fields: [
+    defineField({
+      name: "header",
+      title: "Header",
+      type: "pageHeader",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "sections",
+      title: "Resource sections",
+      description:
+        "Recheck every phone number, text line and service description against the organization's own website before publishing a change.",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "resourceSection",
+          fields: [
+            defineField({
+              name: "heading",
+              title: "Heading",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "body",
+              title: "Body",
+              type: "simplePortableText",
+              validation: (rule) => rule.required(),
+            }),
+          ],
+          preview: { select: { title: "heading" } },
+        }),
+      ],
+      validation: (rule) => rule.required().min(1),
+    }),
+    defineField({
+      name: "note",
+      title: "Safety note",
+      type: "text",
+      rows: 3,
+    }),
+    defineField({
+      name: "moreHeading",
+      title: "Closing heading",
+      type: "string",
+    }),
+    defineField({
+      name: "moreBody",
+      title: "Closing text",
+      type: "simplePortableText",
+    }),
+  ],
+  preview: singletonPreview("Resources Page"),
+});

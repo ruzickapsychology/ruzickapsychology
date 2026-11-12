@@ -4,5 +4,6 @@ declare const styles: {
   readonly ctaSupportLinks: string;
   readonly faqList: string;
   readonly serviceIdentity: string;
+  readonly sourcesList: string;
 };
 export = styles;

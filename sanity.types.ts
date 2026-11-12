@@ -100,9 +100,41 @@ export type Specialty = {
       _key: string;
     } & PostReference
   >;
+  sources?: Array<{
+    title: string;
+    citation: string;
+    url: string;
+    _type: "researchSource";
+    _key: string;
+  }>;
   details?: Array<string>;
   order: number;
   active?: boolean;
+};
+
+export type ResourcesPage = {
+  _id: string;
+  _type: "resourcesPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  header: PageHeader;
+  sections: Array<{
+    heading: string;
+    body: SimplePortableText;
+    _type: "resourceSection";
+    _key: string;
+  }>;
+  note?: string;
+  moreHeading?: string;
+  moreBody?: SimplePortableText;
+};
+
+export type PageHeader = {
+  _type: "pageHeader";
+  eyebrow?: string;
+  heading: string;
+  intro?: string;
 };
 
 export type FaqPage = {
@@ -163,13 +195,6 @@ export type ContactPage = {
       } & ProcessStep
     >;
   };
-};
-
-export type PageHeader = {
-  _type: "pageHeader";
-  eyebrow?: string;
-  heading: string;
-  intro?: string;
 };
 
 export type PricingPage = {
@@ -554,12 +579,13 @@ export type AllSanitySchemaTypes =
   | Slug
   | PostReference
   | Specialty
+  | ResourcesPage
+  | PageHeader
   | FaqPage
   | SanityImageAssetReference
   | ImageWithAlt
   | Cta
   | ContactPage
-  | PageHeader
   | PricingPage
   | SpecialtyReference
   | SpecialtiesPage
@@ -890,7 +916,7 @@ export type SpecialtiesPageQueryResult = {
 
 // Source: src/data/cms.ts
 // Variable: servicePageQuery
-// Query: *[    _type == "specialty" &&    _id == $documentId &&    active != false &&    pageStatus == "published" &&    defined(pageHeading) &&    defined(intro) &&    count(overview) > 0 &&    count(commonConcerns) > 0 &&    defined(approachHeading) &&    count(approachBody) > 0 &&    count(whatToExpect) > 0 &&    count(faqs) >= 3  ][0]{    _id,    "_key": _id,    title,    "slug": slug.current,    pageStatus,    summary,    details,    pageHeading,    intro,    overview,    commonConcerns,    approachHeading,    approachBody,    whatToExpect,    faqs[]{      _key,      question,      "answer": coalesce(answerRichText, []),      "legacyAnswer": answer,      "answerText": coalesce(pt::text(answerRichText), array::join(answer, " "))    },    upcomingSessions[]{_key, startsAt, endsAt, priceUsd},    relatedPosts[]->{      "_key": _id,      title,      "slug": slug.current,      excerpt,      publishedAt    }  }
+// Query: *[    _type == "specialty" &&    _id == $documentId &&    active != false &&    pageStatus == "published" &&    defined(pageHeading) &&    defined(intro) &&    count(overview) > 0 &&    count(commonConcerns) > 0 &&    defined(approachHeading) &&    count(approachBody) > 0 &&    count(whatToExpect) > 0 &&    count(faqs) >= 3  ][0]{    _id,    "_key": _id,    title,    "slug": slug.current,    pageStatus,    summary,    details,    pageHeading,    intro,    overview,    commonConcerns,    approachHeading,    approachBody,    whatToExpect,    faqs[]{      _key,      question,      "answer": coalesce(answerRichText, []),      "legacyAnswer": answer,      "answerText": coalesce(pt::text(answerRichText), array::join(answer, " "))    },    upcomingSessions[]{_key, startsAt, endsAt, priceUsd},    sources[]{_key, title, citation, url},    relatedPosts[]->{      "_key": _id,      title,      "slug": slug.current,      excerpt,      publishedAt    }  }
 export type ServicePageQueryResult = {
   _id: string;
   _key: string;
@@ -918,6 +944,12 @@ export type ServicePageQueryResult = {
     startsAt: string;
     endsAt: string;
     priceUsd: number | null;
+  }> | null;
+  sources: Array<{
+    _key: string;
+    title: string;
+    citation: string;
+    url: string;
   }> | null;
   relatedPosts: Array<{
     _key: string;
@@ -1019,6 +1051,21 @@ export type ContactPageQueryResult = {
 } | null;
 
 // Source: src/data/cms.ts
+// Variable: resourcesPageQuery
+// Query: *[_type == "resourcesPage" && _id == "resourcesPage"][0]{    header,    note,    sections[]{_key, heading, body},    moreHeading,    moreBody  }
+export type ResourcesPageQueryResult = {
+  header: PageHeader;
+  note: string | null;
+  sections: Array<{
+    _key: string;
+    heading: string;
+    body: SimplePortableText;
+  }>;
+  moreHeading: string | null;
+  moreBody: SimplePortableText | null;
+} | null;
+
+// Source: src/data/cms.ts
 // Variable: faqPageQuery
 // Query: *[_type == "faqPage" && _id == "faqPage"][0]{    heading,    intro,    items[]{      _key,      question,      answerRichText,      answer,      "answerText": coalesce(        pt::text(answerRichText),        array::join(answer, " ")      )    },    cta,    ctaBackgroundImage{      asset->{        _id,        url,        metadata {          dimensions {width, height},            lqip        }      },      alt,      crop,      hotspot    }  }
 export type FaqPageQueryResult = {
@@ -1090,7 +1137,7 @@ export type BlogPostSlugsQueryResult = Array<{
 
 // Source: src/data/cms.ts
 // Variable: sitemapEntriesQuery
-// Query: {    "pages": *[_id in ["homePage", "aboutPage", "specialtiesPage", "pricingPage", "contactPage", "faqPage"]]{      _id,      _updatedAt    },    "posts": *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {      _updatedAt,      "slug": slug.current    },    "services": *[      _type == "specialty" &&      _id in $serviceDocumentIds &&      active != false &&      pageStatus == "published" &&      defined(pageHeading) &&      defined(intro) &&      count(overview) > 0 &&      count(commonConcerns) > 0 &&      defined(approachHeading) &&      count(approachBody) > 0 &&      count(whatToExpect) > 0 &&      count(faqs) >= 3    ]{      _id,      _updatedAt    }  }
+// Query: {    "pages": *[_id in ["homePage", "aboutPage", "specialtiesPage", "pricingPage", "contactPage", "faqPage", "resourcesPage"]]{      _id,      _updatedAt    },    "posts": *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {      _updatedAt,      "slug": slug.current    },    "services": *[      _type == "specialty" &&      _id in $serviceDocumentIds &&      active != false &&      pageStatus == "published" &&      defined(pageHeading) &&      defined(intro) &&      count(overview) > 0 &&      count(commonConcerns) > 0 &&      defined(approachHeading) &&      count(approachBody) > 0 &&      count(whatToExpect) > 0 &&      count(faqs) >= 3    ]{      _id,      _updatedAt    }  }
 export type SitemapEntriesQueryResult = {
   pages: Array<{
     _id: string;
@@ -1115,14 +1162,15 @@ declare module "@sanity/client" {
     '\n  *[_type == "homePage" && _id == "homePage"][0]{\n    hero{\n      kicker,\n      heading,\n      body,\n      ctaLabel,\n      backgroundImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      }\n    },\n    specialtiesSection{\n      eyebrow,\n      heading,\n      specialties[]{\n        _key,\n        "_id": @->_id,\n        "title": @->title,\n        "slug": @->slug.current,\n        "pageStatus": coalesce(@->pageStatus, "hubOnly"),\n        "pageReady":\n          @->pageStatus == "published" &&\n          defined(@->pageHeading) &&\n          defined(@->intro) &&\n          count(@->overview) > 0 &&\n          count(@->commonConcerns) > 0 &&\n          defined(@->approachHeading) &&\n          count(@->approachBody) > 0 &&\n          count(@->whatToExpect) > 0 &&\n          count(@->faqs) >= 3,\n        "summary": @->summary,\n        "details": @->details\n      }\n    },\n    aboutPreview{\n      eyebrow,\n      heading,\n      body,\n      ctaLabel,\n      portraitImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      }\n    },\n    ctaSection{\n      heading,\n      body,\n      ctaLabel,\n      backgroundImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      }\n    }\n  }\n': HomePageQueryResult;
     '\n  *[_type == "aboutPage" && _id == "aboutPage"][0]{\n    credentials,\n    heading,\n    portraitImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {width, height},\n            lqip\n        }\n      },\n      alt,\n      crop,\n      hotspot\n    },\n    intro,\n    credentialGroups[]{\n      _key,\n      heading,\n      items[]{_key, title, detail},\n      license\n    },\n    space{\n      eyebrow,\n      heading,\n      body,\n      exteriorImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      },\n      interiorImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      }\n    },\n    philosophy{\n      eyebrow,\n      quote,\n      attribution,\n      backgroundImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      }\n    }\n  }\n': AboutPageQueryResult;
     '\n  *[_type == "specialtiesPage" && _id == "specialtiesPage"][0]{\n    header,\n    specialties[]{\n      _key,\n      "_id": @->_id,\n      "title": @->title,\n      "slug": @->slug.current,\n      "pageStatus": coalesce(@->pageStatus, "hubOnly"),\n      "pageReady":\n        @->pageStatus == "published" &&\n        defined(@->pageHeading) &&\n        defined(@->intro) &&\n        count(@->overview) > 0 &&\n        count(@->commonConcerns) > 0 &&\n        defined(@->approachHeading) &&\n        count(@->approachBody) > 0 &&\n        count(@->whatToExpect) > 0 &&\n        count(@->faqs) >= 3,\n      "summary": @->summary,\n      "details": @->details\n    },\n    modality{\n      eyebrow,\n      heading,\n      body,\n      backgroundImage{\n        asset->{\n          _id,\n          url,\n          metadata {\n            dimensions {width, height},\n            lqip\n          }\n        },\n        alt,\n        crop,\n        hotspot\n      }\n    }\n  }\n': SpecialtiesPageQueryResult;
-    '\n  *[\n    _type == "specialty" &&\n    _id == $documentId &&\n    active != false &&\n    pageStatus == "published" &&\n    defined(pageHeading) &&\n    defined(intro) &&\n    count(overview) > 0 &&\n    count(commonConcerns) > 0 &&\n    defined(approachHeading) &&\n    count(approachBody) > 0 &&\n    count(whatToExpect) > 0 &&\n    count(faqs) >= 3\n  ][0]{\n    _id,\n    "_key": _id,\n    title,\n    "slug": slug.current,\n    pageStatus,\n    summary,\n    details,\n    pageHeading,\n    intro,\n    overview,\n    commonConcerns,\n    approachHeading,\n    approachBody,\n    whatToExpect,\n    faqs[]{\n      _key,\n      question,\n      "answer": coalesce(answerRichText, []),\n      "legacyAnswer": answer,\n      "answerText": coalesce(pt::text(answerRichText), array::join(answer, " "))\n    },\n    upcomingSessions[]{_key, startsAt, endsAt, priceUsd},\n    relatedPosts[]->{\n      "_key": _id,\n      title,\n      "slug": slug.current,\n      excerpt,\n      publishedAt\n    }\n  }\n': ServicePageQueryResult;
+    '\n  *[\n    _type == "specialty" &&\n    _id == $documentId &&\n    active != false &&\n    pageStatus == "published" &&\n    defined(pageHeading) &&\n    defined(intro) &&\n    count(overview) > 0 &&\n    count(commonConcerns) > 0 &&\n    defined(approachHeading) &&\n    count(approachBody) > 0 &&\n    count(whatToExpect) > 0 &&\n    count(faqs) >= 3\n  ][0]{\n    _id,\n    "_key": _id,\n    title,\n    "slug": slug.current,\n    pageStatus,\n    summary,\n    details,\n    pageHeading,\n    intro,\n    overview,\n    commonConcerns,\n    approachHeading,\n    approachBody,\n    whatToExpect,\n    faqs[]{\n      _key,\n      question,\n      "answer": coalesce(answerRichText, []),\n      "legacyAnswer": answer,\n      "answerText": coalesce(pt::text(answerRichText), array::join(answer, " "))\n    },\n    upcomingSessions[]{_key, startsAt, endsAt, priceUsd},\n    sources[]{_key, title, citation, url},\n    relatedPosts[]->{\n      "_key": _id,\n      title,\n      "slug": slug.current,\n      excerpt,\n      publishedAt\n    }\n  }\n': ServicePageQueryResult;
     '\n  *[\n    _type == "specialty" &&\n    _id in $serviceDocumentIds &&\n    active != false &&\n    pageStatus == "published" &&\n    defined(pageHeading) &&\n    defined(intro) &&\n    count(overview) > 0 &&\n    count(commonConcerns) > 0 &&\n    defined(approachHeading) &&\n    count(approachBody) > 0 &&\n    count(whatToExpect) > 0 &&\n    count(faqs) >= 3\n  ]{_id}\n': ServiceSlugsQueryResult;
     '\n  *[_type == "pricingPage" && _id == "pricingPage"][0]{\n    header,\n    fees{\n      heading,\n      items[]{_key, label, detail, price},\n      note\n    },\n    insurance{\n      heading,\n      body\n    },\n    reimbursementGuide{\n      eyebrow,\n      heading,\n      intro,\n      items[]{_key, eyebrow, title, body}\n    },\n    cta,\n    ctaBackgroundImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {width, height},\n            lqip\n        }\n      },\n      alt,\n      crop,\n      hotspot\n    }\n  }\n': PricingPageQueryResult;
     '\n  *[_type == "contactPage" && _id == "contactPage"][0]{\n    header,\n    formNote,\n    headerBackgroundImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {width, height},\n            lqip\n        }\n      },\n      alt,\n      crop,\n      hotspot\n    },\n    process{\n      eyebrow,\n      heading,\n      steps[]{_key, number, title, body}\n    }\n  }\n': ContactPageQueryResult;
+    '\n  *[_type == "resourcesPage" && _id == "resourcesPage"][0]{\n    header,\n    note,\n    sections[]{_key, heading, body},\n    moreHeading,\n    moreBody\n  }\n': ResourcesPageQueryResult;
     '\n  *[_type == "faqPage" && _id == "faqPage"][0]{\n    heading,\n    intro,\n    items[]{\n      _key,\n      question,\n      answerRichText,\n      answer,\n      "answerText": coalesce(\n        pt::text(answerRichText),\n        array::join(answer, " ")\n      )\n    },\n    cta,\n    ctaBackgroundImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {width, height},\n            lqip\n        }\n      },\n      alt,\n      crop,\n      hotspot\n    }\n  }\n': FaqPageQueryResult;
     '\n  *[_type == "post" && slug.current == $slug][0] {\n    _updatedAt,\n    title,\n    "slug": slug.current,\n    publishedAt,\n    excerpt,\n    body,\n    sources[]{_key, title, citation, url},\n    "bodyText": body[].children[].text\n  }\n': BlogPostQueryResult;
     '\n  *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {\n    _updatedAt,\n    title,\n    "slug": slug.current,\n    publishedAt,\n    excerpt,\n    "bodyText": body[].children[].text\n  }\n': BlogPostMetaQueryResult;
     '\n  *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {\n    "slug": slug.current\n  }\n': BlogPostSlugsQueryResult;
-    '\n  {\n    "pages": *[_id in ["homePage", "aboutPage", "specialtiesPage", "pricingPage", "contactPage", "faqPage"]]{\n      _id,\n      _updatedAt\n    },\n    "posts": *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {\n      _updatedAt,\n      "slug": slug.current\n    },\n    "services": *[\n      _type == "specialty" &&\n      _id in $serviceDocumentIds &&\n      active != false &&\n      pageStatus == "published" &&\n      defined(pageHeading) &&\n      defined(intro) &&\n      count(overview) > 0 &&\n      count(commonConcerns) > 0 &&\n      defined(approachHeading) &&\n      count(approachBody) > 0 &&\n      count(whatToExpect) > 0 &&\n      count(faqs) >= 3\n    ]{\n      _id,\n      _updatedAt\n    }\n  }\n': SitemapEntriesQueryResult;
+    '\n  {\n    "pages": *[_id in ["homePage", "aboutPage", "specialtiesPage", "pricingPage", "contactPage", "faqPage", "resourcesPage"]]{\n      _id,\n      _updatedAt\n    },\n    "posts": *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {\n      _updatedAt,\n      "slug": slug.current\n    },\n    "services": *[\n      _type == "specialty" &&\n      _id in $serviceDocumentIds &&\n      active != false &&\n      pageStatus == "published" &&\n      defined(pageHeading) &&\n      defined(intro) &&\n      count(overview) > 0 &&\n      count(commonConcerns) > 0 &&\n      defined(approachHeading) &&\n      count(approachBody) > 0 &&\n      count(whatToExpect) > 0 &&\n      count(faqs) >= 3\n    ]{\n      _id,\n      _updatedAt\n    }\n  }\n': SitemapEntriesQueryResult;
   }
 }

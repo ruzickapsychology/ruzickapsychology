@@ -6,6 +6,7 @@ import {
   faqPage,
   homePage,
   pricingPage,
+  resourcesPage,
   specialtiesPage,
 } from "./documents/pages";
 import { post } from "./documents/post";
@@ -53,6 +54,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     pricingPage,
     contactPage,
     faqPage,
+    resourcesPage,
     specialty,
     post,
   ],

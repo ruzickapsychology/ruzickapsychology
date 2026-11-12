@@ -5,6 +5,10 @@ export const SERVICE_SLUGS = [
   "couples-therapy",
   "perinatal-postpartum-therapy",
   "group-therapy",
+  "anxiety-therapy",
+  "imago-relationship-therapy",
+  "postpartum-anxiety-therapy",
+  "postpartum-depression-therapy",
 ] as const;
 
 export type ServiceSlug = (typeof SERVICE_SLUGS)[number];
@@ -54,6 +58,42 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
     description:
       "Stronger Together is a monthly, skills-based couples workshop in Rochester, NY. Learn practical communication tools with guided partner exercises. $175 per couple, up to 6 couples.",
     contactLabel: "Stronger Together workshop",
+  },
+  {
+    slug: "anxiety-therapy",
+    documentId: "specialty-anxiety-therapy",
+    title: "Anxiety Therapy",
+    pageTitle: "Anxiety Therapy in Rochester, NY",
+    description:
+      "Anxiety therapy in Rochester, NY and virtually across New York with Dr. Christina Ruzicka, for adults caught in worry, overthinking or constant tension.",
+    contactLabel: "Anxiety therapy",
+  },
+  {
+    slug: "imago-relationship-therapy",
+    documentId: "specialty-imago-relationship-therapy",
+    title: "Imago Relationship Therapy",
+    pageTitle: "Imago Relationship Therapy in Rochester, NY",
+    description:
+      "What Imago Relationship Therapy is, how the Imago Dialogue works, and couples therapy with a Certified Imago Relationship Therapist in Rochester, NY.",
+    contactLabel: "Imago Relationship Therapy",
+  },
+  {
+    slug: "postpartum-anxiety-therapy",
+    documentId: "specialty-postpartum-anxiety-therapy",
+    title: "Postpartum Anxiety Therapy",
+    pageTitle: "Postpartum Anxiety Therapy in Rochester, NY",
+    description:
+      "Therapy in Rochester, NY and virtually across New York for new and expecting parents dealing with constant worry, checking or frightening thoughts.",
+    contactLabel: "Postpartum anxiety therapy",
+  },
+  {
+    slug: "postpartum-depression-therapy",
+    documentId: "specialty-postpartum-depression-therapy",
+    title: "Postpartum Depression Therapy",
+    pageTitle: "Postpartum Depression Therapy in Rochester, NY",
+    description:
+      "Therapy in Rochester, NY and virtually across New York for new parents who feel low, numb or disconnected during pregnancy or after birth.",
+    contactLabel: "Postpartum depression therapy",
   },
 ] as const;
 

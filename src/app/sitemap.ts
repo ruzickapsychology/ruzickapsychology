@@ -14,6 +14,7 @@ const pagePaths: Record<string, string> = {
   pricingPage: "/pricing",
   faqPage: "/faq",
   contactPage: "/contact",
+  resourcesPage: "/resources",
 };
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
