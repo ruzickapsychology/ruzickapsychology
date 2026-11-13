@@ -1,3 +1,4 @@
+import monroeCountyDivorceCouples from "./research/monroe-county-divorce-couples.json";
 import monroeCountyPostpartumDepression from "./research/monroe-county-postpartum-depression.json";
 import monroeCountyTherapists from "./research/monroe-county-therapists.json";
 
@@ -90,6 +91,7 @@ export type ResearchPageContent = {
 const researchPages: readonly ResearchPageContent[] = [
   monroeCountyTherapists as ResearchPageContent,
   monroeCountyPostpartumDepression as ResearchPageContent,
+  monroeCountyDivorceCouples as ResearchPageContent,
 ];
 
 export const RESEARCH_HUB_PATH = "/research";
