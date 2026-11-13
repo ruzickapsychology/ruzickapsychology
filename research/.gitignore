@@ -1,0 +1,4 @@
+# Large public files are not committed: each study's fetch.sh downloads them and
+# build.py checks them against the SHA-256 in sources.json.
+co-est2025-alldata.csv
+__pycache__/

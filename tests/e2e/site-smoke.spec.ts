@@ -14,6 +14,8 @@ const routes = [
   "/specialties/postpartum-anxiety-therapy",
   "/specialties/postpartum-depression-therapy",
   "/resources",
+  "/research",
+  "/research/monroe-county-therapists",
   "/pricing",
   "/contact",
   "/faq",

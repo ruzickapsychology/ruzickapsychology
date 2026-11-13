@@ -9,3 +9,8 @@ outputs/*.inspect.ndjson
 
 # Google Search Console verification files must stay byte-exact
 public/google*.html
+
+# Research data: raw source files, script outputs and generated page JSON stay exactly as the build scripts write them
+research/
+src/data/research/*.json
+public/research/

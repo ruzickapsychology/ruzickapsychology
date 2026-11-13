@@ -1,0 +1,28 @@
+.cards {
+  margin-top: var(--space-8);
+}
+
+.cardValue {
+  color: var(--color-accent);
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.sources {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.sources li > span {
+  display: block;
+  margin-top: var(--space-1);
+}
+
+.sourceLink {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

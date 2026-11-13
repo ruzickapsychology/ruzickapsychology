@@ -1,0 +1,45 @@
+{
+ "retrieved": "2026-11-13",
+ "files": [
+  {
+   "file": "nysed-psychology.html",
+   "name": "NYSED Office of the Professions, License Statistics: Psychology",
+   "url": "https://www.op.nysed.gov/professions/psychology/license-statistics",
+   "period": "Licensees by county of primary mailing address, as of July 1, 2026; licenses issued 2021-2025",
+   "bytes": 42129,
+   "sha256": "d5374905ae6c338f92279b7cec85ab5c08ff1a04f9258f2422d64b0a0dce50a0"
+  },
+  {
+   "file": "nysed-licensed-clinical-social-worker.html",
+   "name": "NYSED Office of the Professions, License Statistics: Licensed Clinical Social Worker",
+   "url": "https://www.op.nysed.gov/professions/licensed-clinical-social-worker/license-statistics",
+   "period": "Licensees by county of primary mailing address, as of July 1, 2026; licenses issued 2021-2025",
+   "bytes": 43603,
+   "sha256": "9389e1a30076dbe1453c13c6a18e75d60edb3fcf394486bbcdcae3254b4e4d4c"
+  },
+  {
+   "file": "nysed-mental-health-counselors.html",
+   "name": "NYSED Office of the Professions, License Statistics: Mental Health Counselors",
+   "url": "https://www.op.nysed.gov/professions/mental-health-counselors/license-statistics",
+   "period": "Licensees by county of primary mailing address, as of July 1, 2026; licenses issued 2021-2025",
+   "bytes": 43014,
+   "sha256": "91573f61850d5a5c4908f3b50d54a6c8aa90e30ad14bb6c7e6d474f2770a89ad"
+  },
+  {
+   "file": "nysed-marriage-and-family-therapists.html",
+   "name": "NYSED Office of the Professions, License Statistics: Marriage and Family Therapists",
+   "url": "https://www.op.nysed.gov/professions/marriage-and-family-therapists/license-statistics",
+   "period": "Licensees by county of primary mailing address, as of July 1, 2026; licenses issued 2021-2025",
+   "bytes": 43578,
+   "sha256": "97a654dd41b24d45baacee787133ba9705bf23b73eee777fb7c53ca16e2ff8c1"
+  },
+  {
+   "file": "co-est2025-alldata.csv",
+   "name": "U.S. Census Bureau, Vintage 2025 county population estimates (co-est2025-alldata.csv)",
+   "url": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/counties/totals/co-est2025-alldata.csv",
+   "period": "July 1, 2025 estimates (field POPESTIMATE2025, STATE=36)",
+   "bytes": 2071735,
+   "sha256": "4f5a499d851e2cb48fd7a5405e5a9235453a8a66933657aacd10df0e264f35d5"
+  }
+ ]
+}

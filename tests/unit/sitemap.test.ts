@@ -49,4 +49,17 @@ describe("sitemap archive discovery", () => {
     ).toBe(true);
     expect(urls.some((url) => url.includes("specialty-unknown"))).toBe(false);
   });
+
+  it("lists the research hub and every research page", async () => {
+    vi.mocked(getSitemapEntries).mockResolvedValue({
+      pages: [],
+      services: [],
+      posts: [],
+    });
+    const urls = (await sitemap()).map((entry) => entry.url);
+    expect(urls.some((url) => url.endsWith("/research"))).toBe(true);
+    expect(
+      urls.some((url) => url.endsWith("/research/monroe-county-therapists")),
+    ).toBe(true);
+  });
 });
