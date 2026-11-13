@@ -1,6 +1,7 @@
 import monroeCountyDivorceCouples from "./research/monroe-county-divorce-couples.json";
 import monroeCountyPostpartumDepression from "./research/monroe-county-postpartum-depression.json";
 import monroeCountyTherapists from "./research/monroe-county-therapists.json";
+import rochesterMonroeCountyMentalHealthStatistics from "./research/rochester-monroe-county-mental-health-statistics.json";
 import rochesterLonelinessMap from "./research/rochester-loneliness-map.json";
 
 /**
@@ -99,8 +100,9 @@ export type ResearchPageContent = {
   related?: Array<{ label: string; href: string }>;
 };
 
-/** Published research pages, newest first on the hub. */
+/** Published research pages, in hub order: the statistics overview, then the studies. */
 const researchPages: readonly ResearchPageContent[] = [
+  rochesterMonroeCountyMentalHealthStatistics as ResearchPageContent,
   monroeCountyTherapists as ResearchPageContent,
   monroeCountyPostpartumDepression as ResearchPageContent,
   monroeCountyDivorceCouples as ResearchPageContent,

@@ -1,0 +1,277 @@
+{
+  "slug": "rochester-monroe-county-mental-health-statistics",
+  "kind": "statistics",
+  "title": "Mental Health in Rochester and Monroe County: Statistics",
+  "metaTitle": "Rochester and Monroe County Mental Health Statistics (2026)",
+  "metaDescription": "Monroe County mental health statistics: 2,291 licensed clinicians, 32.5% of adults lonely, 21.9% ever told they have depression, new parents, divorce and 988 data, with sources.",
+  "eyebrow": "Statistics · Rochester and Monroe County",
+  "headline": "Monroe County has 2,291 licensed mental health clinicians, 305.3 per 100,000 residents. An estimated 32.5% of adults feel lonely at least some of the time (37.2% in the City of Rochester), and the city's Medicaid-eligible population of 129,319 is a federal mental health shortage area.",
+  "datePublished": "2026-11-13",
+  "dateModified": "2026-11-13",
+  "card": {
+    "value": "2,291",
+    "label": "licensed mental health clinicians in Monroe County",
+    "summary": "Key figures on therapists, loneliness, depression, new parents, divorce and 988 for Rochester and Monroe County, each with its source."
+  },
+  "blocks": [
+    {
+      "type": "keyNumbers",
+      "heading": "At a glance",
+      "items": [
+        {
+          "value": "2,291",
+          "label": "licensed psychologists, social workers, counselors and marriage and family therapists in Monroe County (305.3 per 100,000 residents)",
+          "source": "NYSED, as of July 1, 2026"
+        },
+        {
+          "value": "32.5%",
+          "label": "of Monroe County adults estimated to feel lonely at least some of the time (37.2% in the City of Rochester)",
+          "source": "CDC PLACES 2025 release"
+        },
+        {
+          "value": "21.9%",
+          "label": "of Monroe County adults estimated to have ever been told they have depression, tied with two other counties for the 6th highest share among New York's 62 counties",
+          "source": "CDC PLACES 2025 release"
+        },
+        {
+          "value": "129,319",
+          "label": "Medicaid-eligible City of Rochester residents in a federal mental health shortage area (score 19)",
+          "source": "HRSA"
+        },
+        {
+          "value": "About 890",
+          "label": "Monroe County mothers a year estimated to have symptoms of postpartum depression",
+          "source": "Ruzicka Psychology estimate from NYS DOH data"
+        },
+        {
+          "value": "89%",
+          "label": "of 988 calls routed to New York centers answered in state in July 2026 (52,475 calls)",
+          "source": "988 Lifeline In-State KPI report"
+        }
+      ]
+    },
+    {
+      "type": "notice",
+      "text": "If you are in crisis or thinking about harming yourself, call or text 988 (Suicide & Crisis Lifeline, free, 24/7). If you or anyone else is in immediate danger, call 911. Local crisis and support lines are on our [resources page](/resources)."
+    },
+    {
+      "type": "statGroup",
+      "eyebrow": "Access",
+      "heading": "Therapists and access to care",
+      "items": [
+        {
+          "text": "Monroe County has 2,291 licensed psychologists, clinical social workers, mental health counselors and marriage and family therapists: 423 psychologists, 990 LCSWs, 734 LMHCs and 144 LMFTs, counted by mailing address as of July 1, 2026. [See the study](/research/monroe-county-therapists).",
+          "source": "NYSED Office of the Professions, license statistics",
+          "url": "https://www.op.nysed.gov/professions/psychology/license-statistics"
+        },
+        {
+          "text": "That is 305.3 clinicians per 100,000 residents, against 285.9 statewide and 193.4 in the five neighboring counties (Genesee, Livingston, Ontario, Orleans and Wayne).",
+          "source": "NYSED license statistics; U.S. Census Bureau 2025 population estimates",
+          "url": "https://www.op.nysed.gov/professions/psychology/license-statistics"
+        },
+        {
+          "text": "Monroe ranks 13th of New York's 62 counties for these clinicians per resident, and 8th for psychologists (56.4 per 100,000).",
+          "source": "NYSED license statistics",
+          "url": "https://www.op.nysed.gov/professions/psychology/license-statistics"
+        },
+        {
+          "text": "Monroe has 144 licensed marriage and family therapists, 9.5% of New York's 1,518 and the second-highest count of any county after Manhattan. [See the study](/research/monroe-county-divorce-couples).",
+          "source": "NYSED license statistics, marriage and family therapists",
+          "url": "https://www.op.nysed.gov/professions/marriage-and-family-therapists/license-statistics"
+        },
+        {
+          "text": "New York issued 5,611 new licenses in these four professions in 2025, up 25% from 4,485 in 2024.",
+          "source": "NYSED license statistics, licenses issued by year",
+          "url": "https://www.op.nysed.gov/professions/psychology/license-statistics"
+        },
+        {
+          "text": "The federal government designates the Medicaid-eligible population of the City of Rochester as a mental health professional shortage area: 129,319 people, with a shortage score of 19 (higher scores mean greater need). The designation dates from June 28, 2022.",
+          "source": "HRSA, Health Professional Shortage Areas (mental health), designation \"ME-City of Rochester\"",
+          "url": "https://data.hrsa.gov/topics/health-workforce/shortage-areas"
+        }
+      ]
+    },
+    {
+      "type": "statGroup",
+      "eyebrow": "Wellbeing",
+      "heading": "Loneliness, distress and depression",
+      "items": [
+        {
+          "text": "An estimated 32.5% of Monroe County adults feel lonely always, usually or sometimes, close to the median for New York's 62 counties (32.3%). [See the map](/research/rochester-loneliness-map).",
+          "source": "CDC PLACES 2025 release, county estimates (BRFSS 2023)",
+          "url": "https://data.cdc.gov/d/swc5-untb"
+        },
+        {
+          "text": "In the City of Rochester the estimate is 37.2%, against 28.3% to 32.6% in 18 of the county's 20 suburban towns. 23 of the 25 census tracts where 40% or more of adults are estimated to be lonely are in the city.",
+          "source": "CDC PLACES 2025 release, place and census tract estimates",
+          "url": "https://data.cdc.gov/d/eav7-hnsx"
+        },
+        {
+          "text": "An estimated 22.9% of Monroe County adults lack the social and emotional support they need; in the City of Rochester, 28.7%.",
+          "source": "CDC PLACES 2025 release",
+          "url": "https://data.cdc.gov/d/swc5-untb"
+        },
+        {
+          "text": "An estimated 15.3% of Monroe County adults have frequent mental distress (14 or more poor mental health days in the past month), below the median for New York's 62 counties (16.2%); in the City of Rochester, 18.8%.",
+          "source": "CDC PLACES 2025 release",
+          "url": "https://data.cdc.gov/d/swc5-untb"
+        },
+        {
+          "text": "An estimated 21.9% of Monroe County adults have ever been told they have depression, tied with two other counties for the 6th highest share among New York's 62 counties.",
+          "source": "CDC PLACES 2025 release",
+          "url": "https://data.cdc.gov/d/swc5-untb"
+        }
+      ]
+    },
+    {
+      "type": "statGroup",
+      "eyebrow": "Perinatal",
+      "heading": "New parents",
+      "items": [
+        {
+          "text": "Monroe County residents had 7,151 babies in 2023, down 18% from 8,707 in 2008.",
+          "source": "NYS Department of Health, Vital Statistics of New York State 2023, Table 7",
+          "url": "https://www.health.ny.gov/statistics/vital_statistics/2023/table07.htm"
+        },
+        {
+          "text": "In 2022, 12.4% of mothers in New York State outside New York City reported symptoms of postpartum depression after giving birth (11.9% statewide).",
+          "source": "NYS Department of Health, from CDC PRAMS 2022 survey data",
+          "url": "https://www.health.ny.gov/community/pregnancy/health_care/perinatal/maternal_depression/providers/what_is_maternial_depression.htm"
+        },
+        {
+          "text": "Applied to Monroe County births, that rate suggests about 890 mothers a year with symptoms of postpartum depression. This is an estimate, not a count. [See the study](/research/monroe-county-postpartum-depression).",
+          "source": "Ruzicka Psychology calculation from NYS DOH Table 7 and PRAMS",
+          "url": "https://www.health.ny.gov/statistics/vital_statistics/2023/table07.htm"
+        },
+        {
+          "text": "82.4% of New York mothers who had a postpartum checkup were asked about depression in 2020, up from 76.1% in 2016.",
+          "source": "NYS Department of Health, from New York PRAMS data",
+          "url": "https://www.health.ny.gov/community/pregnancy/health_care/perinatal/maternal_depression/providers/what_is_maternial_depression.htm"
+        }
+      ]
+    },
+    {
+      "type": "statGroup",
+      "eyebrow": "Relationships",
+      "heading": "Couples and families",
+      "items": [
+        {
+          "text": "3,008 couples married in Monroe County in 2023, and county courts granted 1,387 divorces. [See the study](/research/monroe-county-divorce-couples).",
+          "source": "NYS Department of Health, Vital Statistics of New York State 2023, Tables 47 and 48",
+          "url": "https://www.health.ny.gov/statistics/vital_statistics/2023/table48.htm"
+        },
+        {
+          "text": "39% of those divorces involved at least one child under 18, and 59% ended a marriage of 10 years or more.",
+          "source": "NYS Department of Health, Vital Statistics 2023, Tables 51 and 52",
+          "url": "https://www.health.ny.gov/statistics/vital_statistics/2023/table52.htm"
+        }
+      ]
+    },
+    {
+      "type": "statGroup",
+      "eyebrow": "Crisis",
+      "heading": "Crisis lines",
+      "items": [
+        {
+          "text": "In July 2026, 52,475 calls to 988 were routed to New York's crisis centers, and 89% (46,892) were answered in state. 1,040 went to the national backup network. These are statewide figures; the report does not break them down by county.",
+          "source": "988 Suicide & Crisis Lifeline, In-State KPI Report, July 2026",
+          "url": "https://988lifeline.org/wp-content/uploads/2026/08/July-26-988-In-State-Monthly-Report.pdf"
+        },
+        {
+          "text": "Calls answered in New York were picked up in an average of 35.8 seconds.",
+          "source": "988 Suicide & Crisis Lifeline, In-State KPI Report, July 2026",
+          "url": "https://988lifeline.org/wp-content/uploads/2026/08/July-26-988-In-State-Monthly-Report.pdf"
+        }
+      ]
+    },
+    {
+      "type": "prose",
+      "eyebrow": "Notes",
+      "heading": "About these statistics",
+      "paragraphs": [
+        "Each figure links to its public source. Figures marked as studies come from our own research pages, where the method, the limits and a downloadable table are set out in full.",
+        "Loneliness, support, distress and depression figures are CDC model-based estimates, not counts. Licensed clinicians are counted by mailing address and include people who are not currently practicing. Divorces are counted where the court granted them. The postpartum figure is an estimate that applies a regional survey rate to county births.",
+        "These statistics describe how common things are in the area. They are not medical advice and say nothing about any one person."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "name": "NYSED Office of the Professions, license statistics (psychology, clinical social work, mental health counseling, marriage and family therapy)",
+      "period": "As of July 1, 2026",
+      "url": "https://www.op.nysed.gov/professions/psychology/license-statistics"
+    },
+    {
+      "name": "CDC PLACES: Local Data for Better Health, County Data 2025 release",
+      "period": "BRFSS 2023 model-based estimates",
+      "url": "https://data.cdc.gov/d/swc5-untb"
+    },
+    {
+      "name": "CDC PLACES: Local Data for Better Health, Place Data 2025 release",
+      "period": "BRFSS 2023 model-based estimates",
+      "url": "https://data.cdc.gov/d/eav7-hnsx"
+    },
+    {
+      "name": "HRSA Data Warehouse, Health Professional Shortage Areas: mental health (HPSA ID 7368573260, \"ME-City of Rochester\")",
+      "period": "Designated June 28, 2022; data downloaded November 13, 2026",
+      "url": "https://data.hrsa.gov/topics/health-workforce/shortage-areas"
+    },
+    {
+      "name": "988 Suicide & Crisis Lifeline, In-State KPI Report, July 2026",
+      "period": "July 2026",
+      "url": "https://988lifeline.org/wp-content/uploads/2026/08/July-26-988-In-State-Monthly-Report.pdf"
+    },
+    {
+      "name": "NYS Department of Health, Vital Statistics of New York State 2023, Table 7 (births)",
+      "period": "2023",
+      "url": "https://www.health.ny.gov/statistics/vital_statistics/2023/table07.htm"
+    },
+    {
+      "name": "NYS Department of Health, \"What is Maternal Depression?\" (PRAMS figures)",
+      "period": "PRAMS 2022; screening 2020",
+      "url": "https://www.health.ny.gov/community/pregnancy/health_care/perinatal/maternal_depression/providers/what_is_maternial_depression.htm"
+    },
+    {
+      "name": "NYS Department of Health, Vital Statistics of New York State 2023, Table 48 (dissolutions of marriage)",
+      "period": "2023 (provisional)",
+      "url": "https://www.health.ny.gov/statistics/vital_statistics/2023/table48.htm"
+    }
+  ],
+  "citation": "Ruzicka Psychology. \"Mental Health in Rochester and Monroe County: Statistics.\" November 13, 2026. https://www.ruzickapsychology.com/research/rochester-monroe-county-mental-health-statistics.",
+  "csv": {
+    "href": "/research/rochester-monroe-county-mental-health-statistics.csv",
+    "rows": 19,
+    "label": "Every statistic on this page with its value, unit, place, period and source (CSV, 19 rows)"
+  },
+  "dataset": {
+    "name": "Mental health statistics for Rochester and Monroe County, New York",
+    "description": "Licensed clinicians (NYSED), CDC PLACES estimates, HRSA shortage designation, births and PRAMS postpartum depression, marriages and divorces, and New York 988 performance, with sources.",
+    "temporalCoverage": "2022/2026",
+    "spatialCoverage": "Monroe County, New York, United States",
+    "variableMeasured": [
+      "Licensed mental health clinicians",
+      "Loneliness",
+      "Lack of social and emotional support",
+      "Frequent mental distress",
+      "Depression",
+      "Births",
+      "Postpartum depression symptoms",
+      "Divorces",
+      "988 in-state answer rate"
+    ]
+  },
+  "related": [
+    {
+      "label": "How many therapists does Monroe County have?",
+      "href": "/research/monroe-county-therapists"
+    },
+    {
+      "label": "Loneliness in Rochester and its suburbs, mapped",
+      "href": "/research/rochester-loneliness-map"
+    },
+    {
+      "label": "Local support and crisis lines",
+      "href": "/resources"
+    }
+  ]
+}

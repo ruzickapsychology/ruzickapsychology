@@ -1,0 +1,726 @@
+{
+ "checked": "2026-11-13",
+ "fails": [],
+ "checks": [
+  {
+   "check": "NY counties per measure",
+   "expected": [
+    62,
+    62,
+    62,
+    62
+   ],
+   "source": [
+    62,
+    62,
+    62,
+    62
+   ],
+   "ok": true
+  },
+  {
+   "check": "Monroe loneliness / support / distress / depression",
+   "expected": {
+    "LONELINESS": 32.5,
+    "EMOTIONSPT": 22.9,
+    "MHLTH": 15.3,
+    "DEPRESSION": 21.9
+   },
+   "source": {
+    "LONELINESS": 32.5,
+    "EMOTIONSPT": 22.9,
+    "MHLTH": 15.3,
+    "DEPRESSION": 21.9
+   },
+   "ok": true
+  },
+  {
+   "check": "county medians: loneliness / distress",
+   "expected": [
+    32.3,
+    16.2
+   ],
+   "source": [
+    32.3,
+    16.2
+   ],
+   "ok": true
+  },
+  {
+   "check": "depression: counties strictly higher / tied at 21.9",
+   "expected": [
+    5,
+    3
+   ],
+   "source": [
+    5,
+    3
+   ],
+   "ok": true
+  },
+  {
+   "check": "HPSA 7368573260 rows found",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "HPSA name / status / discipline / type",
+   "expected": [
+    "ME-City of Rochester",
+    "Designated",
+    "Mental Health",
+    "Medicaid Eligible Population HPSA"
+   ],
+   "source": [
+    "ME-City of Rochester",
+    "Designated",
+    "Mental Health",
+    "Medicaid Eligible Population HPSA"
+   ],
+   "ok": true
+  },
+  {
+   "check": "HPSA score / population / designation date",
+   "expected": [
+    19,
+    129319,
+    "06/28/2022"
+   ],
+   "source": [
+    19,
+    129319,
+    "06/28/2022"
+   ],
+   "ok": true
+  },
+  {
+   "check": "one designated \"ME-City of Rochester\" HPSA in the file",
+   "expected": 1,
+   "source": 1,
+   "ok": true
+  },
+  {
+   "check": "988 PDF: one \"NY\" label",
+   "expected": 1,
+   "source": 1,
+   "ok": true
+  },
+  {
+   "check": "988 NY row (routed, answered, rate, abandoned, flowout, speed, talk)",
+   "expected": [
+    "52,475",
+    "46,892",
+    "89%",
+    "4,543",
+    "1,040",
+    "35.8 sec",
+    "13.5 min"
+   ],
+   "source": [
+    "52,475",
+    "46,892",
+    "89%",
+    "4,543",
+    "1,040",
+    "35.8 sec",
+    "13.5 min"
+   ],
+   "ok": true
+  },
+  {
+   "check": "988 NY answer rate recomputed",
+   "expected": 89,
+   "source": 89,
+   "ok": true
+  },
+  {
+   "check": "monroe-county-therapists: its own check passed",
+   "expected": [],
+   "source": [],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-therapists: \"2,291\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-therapists: \"423\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-therapists: \"990\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-therapists: \"734\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-therapists: \"144\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-therapists: \"305.3\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-therapists: \"285.9\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-therapists: \"193.4\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-therapists: \"56.4\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-therapists: \"5,611\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-therapists: \"4,485\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-therapists: \"25%\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-postpartum-depression: its own check passed",
+   "expected": [],
+   "source": [],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-postpartum-depression: \"7,151\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-postpartum-depression: \"8,707\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-postpartum-depression: \"down 18%\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-postpartum-depression: \"12.4%\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-postpartum-depression: \"11.9%\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-postpartum-depression: \"About 890\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-postpartum-depression: \"82.4%\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-postpartum-depression: \"76.1%\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-divorce-couples: its own check passed",
+   "expected": [],
+   "source": [],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-divorce-couples: \"144\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-divorce-couples: \"9.5%\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-divorce-couples: \"1,518\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-divorce-couples: \"3,008\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-divorce-couples: \"1,387\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-divorce-couples: \"39%\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "monroe-county-divorce-couples: \"59%\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "rochester-loneliness-map: its own check passed",
+   "expected": [],
+   "source": [],
+   "ok": true
+  },
+  {
+   "check": "rochester-loneliness-map: \"37.2%\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "rochester-loneliness-map: \"28.3% to 32.6%\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "rochester-loneliness-map: \"18 of\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "rochester-loneliness-map: \"23 of\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "rochester-loneliness-map: \"25\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "rochester-loneliness-map: \"28.7%\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "rochester-loneliness-map: \"18.8%\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "rochester-loneliness-map: \"32.5%\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "rochester-loneliness-map: \"22.9%\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "rochester-loneliness-map: \"15.3%\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "rochester-loneliness-map: \"21.9%\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "therapists study: rank 13 / psychologist rank 8",
+   "expected": [
+    13,
+    8
+   ],
+   "source": [
+    13,
+    8
+   ],
+   "ok": true
+  },
+  {
+   "check": "page text contains \"2,291 licensed mental health clinicians, 305.3 per 100,000\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"Monroe ranks 13th of New York's 62 counties\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"8th for psychologists (56.4 per 100,000)\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"second-highest count of any county after Manhattan\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"129,319 people, with a shortage score of 19\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"June 28, 2022\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"close to the median for New York's 62 counties (32.3%)\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"below the median for New York's 62 counties (16.2%)\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"tied with two other counties for the 6th highest share\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"In July 2026, 52,475 calls to 988\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"89% (46,892) were answered in state\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"1,040 went to the national backup network\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"average of 35.8 seconds\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"In 2022, 12.4% of mothers\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"about 890 mothers a year\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"3,008 couples married in Monroe County in 2023, and county courts granted 1,387 divorces\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  }
+ ]
+}

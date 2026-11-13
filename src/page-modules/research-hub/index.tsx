@@ -103,10 +103,11 @@ export function ResearchHubPage({
           </ContentHeader>
           <Text>
             Every number on these pages is calculated by a script from files
-            published by government agencies, such as the New York State
-            Education Department, the New York State Department of Health, the
-            U.S. Census Bureau and the CDC. Each page lists its sources, the
-            period the data covers and the limits of what the data can show.
+            published by public bodies, such as the New York State Education
+            Department, the New York State Department of Health, the U.S. Census
+            Bureau, the CDC, HRSA and the 988 Suicide &amp; Crisis Lifeline.
+            Each page lists its sources, the period the data covers and the
+            limits of what the data can show.
           </Text>
           <Text>
             The studies describe populations and services. They are not medical

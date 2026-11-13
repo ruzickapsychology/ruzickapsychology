@@ -1,0 +1,35 @@
+{
+ "retrieved": "2026-11-13",
+ "also_uses": [
+  "../monroe-county-therapists/results.json",
+  "../monroe-county-postpartum-depression/results.json",
+  "../monroe-county-divorce-couples/results.json",
+  "../rochester-loneliness-map/results.json"
+ ],
+ "files": [
+  {
+   "file": "places-county-ny-2025.json",
+   "name": "CDC PLACES County Data 2025 release (swc5-untb): all 62 New York counties, 4 measures, crude prevalence",
+   "url": "https://data.cdc.gov/d/swc5-untb",
+   "period": "BRFSS 2023 model-based",
+   "bytes": 41683,
+   "sha256": "8304f46186b5268f9d0c87b34f5986e5c773b8673e0e68419df25d3f7c88f27e"
+  },
+  {
+   "file": "988-in-state-kpi-2026-07.pdf",
+   "name": "988 Suicide & Crisis Lifeline, In-State KPI Report, July 2026 (Vibrant Emotional Health / SAMHSA)",
+   "url": "https://988lifeline.org/wp-content/uploads/2026/08/July-26-988-In-State-Monthly-Report.pdf",
+   "period": "July 2026, Eastern Time",
+   "bytes": 49920,
+   "sha256": "d37d3351ce4f4a8d4e7d4870924442484ff2cd86df81d3c727ea7f483f6c41c8"
+  },
+  {
+   "file": "hrsa-mh-hpsa-monroe.json",
+   "name": "HRSA Data Warehouse, HPSA detail file for mental health (BCD_HPSA_FCT_DET_MH.csv), rows with Common County Name = \"Monroe County, NY\"; extract written by fetch.sh (the full file is rewritten daily and not committed)",
+   "url": "https://data.hrsa.gov/DataDownload/DD_Files/BCD_HPSA_FCT_DET_MH.csv",
+   "period": "Downloaded 2026-11-13",
+   "bytes": 171900,
+   "sha256": "01176ded670aac2f3c804be7abd9b57bc67c9f5c1dc00849341ab520aab431d2"
+  }
+ ]
+}
