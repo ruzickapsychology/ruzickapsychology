@@ -1,0 +1,41 @@
+{
+ "retrieved": "2026-11-13",
+ "period": "PLACES 2025 release, BRFSS 2023 (field year = 2023); Census 2020 boundaries",
+ "files": [
+  {
+   "file": "places-place-2025.json",
+   "name": "CDC PLACES Place Data 2025 release (eav7-hnsx): New York places in a box around Monroe County, 4 measures, crude and age-adjusted",
+   "url": "https://data.cdc.gov/d/eav7-hnsx",
+   "bytes": 83516,
+   "sha256": "a86bd33628b5c585fe912d4900b6d0119861bb2e2f4d59f566a3785b12c8ab1f"
+  },
+  {
+   "file": "places-tract-2025.json",
+   "name": "CDC PLACES Census Tract Data 2025 release (cwsq-ngmh): Monroe County tracts, 4 measures",
+   "url": "https://data.cdc.gov/d/cwsq-ngmh",
+   "bytes": 242351,
+   "sha256": "7c23505fe5ca7ae92f52b5f2bbc9426cf8957e593f7826d9f55332918934f3c6"
+  },
+  {
+   "file": "places-county-2025.json",
+   "name": "CDC PLACES County Data 2025 release (swc5-untb): Monroe County, 4 measures",
+   "url": "https://data.cdc.gov/d/swc5-untb",
+   "bytes": 2123,
+   "sha256": "84f058365fc36eb6feeef221b9102d8e9744bad53fda7b6c739dc5a456531c15"
+  },
+  {
+   "file": "tiger2020-tracts-monroe.geojson",
+   "name": "Census TIGERweb Tracts_Blocks layer 10 (Census 2020 Census Tracts), STATE 36 COUNTY 055 (not committed: re-run fetch.sh)",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Tracts_Blocks/MapServer/10",
+   "bytes": 572932,
+   "sha256": "1b059eb79c54b1c10739d4c27e50a36870432bb9121d12294456915bad1f87b9"
+  },
+  {
+   "file": "tiger2020-cousub-monroe.geojson",
+   "name": "Census TIGERweb Places_CouSub_ConCity_SubMCD layer 22 (Census 2020 County Subdivisions), STATE 36 COUNTY 055 (not committed: re-run fetch.sh)",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/22",
+   "bytes": 194427,
+   "sha256": "707e354b0d30d59ea900c3e3909fbd6cc3fb7b5f5e01ad2b88eabbfddcd63ce2"
+  }
+ ]
+}

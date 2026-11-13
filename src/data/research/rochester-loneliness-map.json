@@ -1,0 +1,499 @@
+{
+  "slug": "rochester-loneliness-map",
+  "kind": "study",
+  "title": "Loneliness in Rochester and Its Suburbs, Mapped",
+  "metaTitle": "Loneliness in Rochester, NY vs the Suburbs: Neighborhood Map",
+  "metaDescription": "An estimated 37.2% of Rochester adults feel lonely, against 28.3% to 32.6% in most suburban towns. Census tract map from CDC PLACES 2025 data.",
+  "eyebrow": "Data study · Rochester and Monroe County",
+  "headline": "An estimated 37.2% of adults in the City of Rochester feel lonely at least some of the time, against 28.3% to 32.6% in 18 of Monroe County's 20 suburban towns. Of the 25 census tracts where 40% or more of adults are estimated to be lonely, 23 are in the city.",
+  "datePublished": "2026-11-13",
+  "dateModified": "2026-11-13",
+  "card": {
+    "value": "37.2%",
+    "label": "of City of Rochester adults estimated to feel lonely",
+    "summary": "23 of the 25 loneliest census tracts in Monroe County are in the city. Most suburban towns are between 28.3% and 32.6%."
+  },
+  "blocks": [
+    {
+      "type": "keyNumbers",
+      "heading": "Key numbers",
+      "items": [
+        {
+          "value": "37.2%",
+          "label": "of adults in the City of Rochester are estimated to feel lonely always, usually or sometimes (likely range 32.7% to 41.5%)",
+          "source": "CDC PLACES 2025 release, place estimates"
+        },
+        {
+          "value": "28.3% to 32.6%",
+          "label": "the estimate in 18 of the 20 suburban towns; the other two are Sweden (36.0%) and Henrietta (35.1%)",
+          "source": "Ruzicka Psychology, from CDC PLACES tract estimates"
+        },
+        {
+          "value": "23 of 25",
+          "label": "census tracts where 40% or more of adults are estimated to be lonely are in the City of Rochester",
+          "source": "CDC PLACES 2025 release, census tract estimates"
+        },
+        {
+          "value": "28.7%",
+          "label": "of Rochester adults are estimated to lack the social and emotional support they need, against 22.9% countywide",
+          "source": "CDC PLACES 2025 release"
+        },
+        {
+          "value": "18.8%",
+          "label": "of Rochester adults are estimated to have frequent mental distress (14 or more poor mental health days a month), against 15.3% countywide",
+          "source": "CDC PLACES 2025 release"
+        },
+        {
+          "value": "32.5%",
+          "label": "of all Monroe County adults are estimated to feel lonely, roughly one in three",
+          "source": "CDC PLACES 2025 release, county estimate"
+        }
+      ]
+    },
+    {
+      "type": "notice",
+      "text": "If you are in crisis or thinking about harming yourself, call or text 988 (Suicide & Crisis Lifeline, free, 24/7). If you or anyone else is in immediate danger, call 911. Local lines are on our [resources page](/resources)."
+    },
+    {
+      "type": "map",
+      "heading": "Loneliness by census tract",
+      "description": "Each shape is a census tract, a neighborhood of a few thousand people. Darker tracts have a higher estimated share of adults who feel lonely. The thick line is the City of Rochester.",
+      "src": "/research/rochester-loneliness-map.svg",
+      "width": 900,
+      "height": 1045,
+      "alt": "Map of Monroe County, New York, shaded by census tract. 57 of the City of Rochester's 80 tracts are in the two darkest shades (36% or more of adults lonely), including 23 at 40% or more. Most suburban tracts are under 33%; the lightest (under 30%) are mostly in Perinton, Webster, Penfield and Pittsford. Outside the city, tracts in Henrietta and Sweden also reach 40% or more.",
+      "note": "Source: CDC PLACES 2025 release (estimates from BRFSS 2023); Census 2020 boundaries. 3 city tracts with few or no residents have no estimate. The tract-by-tract figures are in the CSV below."
+    },
+    {
+      "type": "chart",
+      "heading": "Estimated share of adults who feel lonely, by town",
+      "description": "Average of the census tract estimates in each town, weighted by number of adults. The City of Rochester is highest at 37.2%.",
+      "unit": "percent of adults",
+      "bars": [
+        {
+          "label": "City of Rochester",
+          "value": 37.2,
+          "display": "37.2%",
+          "tone": "highlight"
+        },
+        {
+          "label": "Sweden",
+          "value": 36.0,
+          "display": "36.0%",
+          "tone": "default"
+        },
+        {
+          "label": "Henrietta",
+          "value": 35.1,
+          "display": "35.1%",
+          "tone": "default"
+        },
+        {
+          "label": "East Rochester",
+          "value": 32.6,
+          "display": "32.6%",
+          "tone": "default"
+        },
+        {
+          "label": "Gates",
+          "value": 32.6,
+          "display": "32.6%",
+          "tone": "default"
+        },
+        {
+          "label": "Greece",
+          "value": 32.3,
+          "display": "32.3%",
+          "tone": "default"
+        },
+        {
+          "label": "Clarkson",
+          "value": 32.1,
+          "display": "32.1%",
+          "tone": "default"
+        },
+        {
+          "label": "Chili",
+          "value": 32.1,
+          "display": "32.1%",
+          "tone": "default"
+        },
+        {
+          "label": "Hamlin",
+          "value": 31.6,
+          "display": "31.6%",
+          "tone": "default"
+        },
+        {
+          "label": "Ogden",
+          "value": 31.5,
+          "display": "31.5%",
+          "tone": "default"
+        },
+        {
+          "label": "Irondequoit",
+          "value": 31.2,
+          "display": "31.2%",
+          "tone": "default"
+        },
+        {
+          "label": "Parma",
+          "value": 31.1,
+          "display": "31.1%",
+          "tone": "default"
+        },
+        {
+          "label": "Brighton",
+          "value": 30.5,
+          "display": "30.5%",
+          "tone": "default"
+        },
+        {
+          "label": "Wheatland",
+          "value": 30.5,
+          "display": "30.5%",
+          "tone": "default"
+        },
+        {
+          "label": "Riga",
+          "value": 30.2,
+          "display": "30.2%",
+          "tone": "default"
+        },
+        {
+          "label": "Webster",
+          "value": 30.0,
+          "display": "30.0%",
+          "tone": "default"
+        },
+        {
+          "label": "Pittsford",
+          "value": 29.8,
+          "display": "29.8%",
+          "tone": "default"
+        },
+        {
+          "label": "Penfield",
+          "value": 29.1,
+          "display": "29.1%",
+          "tone": "default"
+        },
+        {
+          "label": "Rush",
+          "value": 29.0,
+          "display": "29.0%",
+          "tone": "default"
+        },
+        {
+          "label": "Perinton",
+          "value": 28.5,
+          "display": "28.5%",
+          "tone": "default"
+        },
+        {
+          "label": "Mendon",
+          "value": 28.3,
+          "display": "28.3%",
+          "tone": "default"
+        }
+      ],
+      "note": "Source: Ruzicka Psychology calculation from CDC PLACES 2025 tract estimates. For Rochester, Brighton, Irondequoit and East Rochester, whose boundaries match a CDC place, the result is within 0.1 percentage point of CDC's own estimate."
+    },
+    {
+      "type": "table",
+      "heading": "Every Monroe County place in the CDC data",
+      "caption": "CDC PLACES 2025 estimates for adults, with the likely range (95% confidence interval) for loneliness. Places are as the Census defines them, so some cover only part of a town.",
+      "columns": [
+        "Place",
+        "Residents",
+        "Lonely (likely range)",
+        "Lack support",
+        "Frequent mental distress",
+        "Ever told they have depression"
+      ],
+      "rows": [
+        [
+          "City of Rochester",
+          "211,328",
+          "37.2% (32.7 to 41.5)",
+          "28.7%",
+          "18.8%",
+          "22.3%"
+        ],
+        [
+          "Nazareth College campus (Town of Pittsford)",
+          "1,182",
+          "46.2% (38.8 to 53.5)",
+          "22.8%",
+          "22.6%",
+          "30.4%"
+        ],
+        [
+          "Rochester Institute of Technology campus (Town of Henrietta)",
+          "7,322",
+          "45.5% (39.3 to 51.1)",
+          "28.0%",
+          "22.1%",
+          "25.2%"
+        ],
+        [
+          "St. John Fisher College campus (Town of Pittsford)",
+          "1,307",
+          "44.9% (37.4 to 52.8)",
+          "22.6%",
+          "21.7%",
+          "29.0%"
+        ],
+        [
+          "Village of Brockport (Town of Sweden)",
+          "7,104",
+          "39.0% (34.3 to 43.4)",
+          "24.1%",
+          "21.1%",
+          "27.3%"
+        ],
+        [
+          "North Gates (part of the Town of Gates)",
+          "9,458",
+          "33.1% (28.7 to 37.3)",
+          "24.3%",
+          "15.3%",
+          "21.6%"
+        ],
+        [
+          "Greece (part of the Town of Greece)",
+          "14,429",
+          "32.9% (28.4 to 37.2)",
+          "23.5%",
+          "15.6%",
+          "22.4%"
+        ],
+        [
+          "Gates (part of the Town of Gates)",
+          "4,956",
+          "32.8% (28.4 to 37.1)",
+          "24.0%",
+          "16.0%",
+          "22.3%"
+        ],
+        [
+          "Village of Webster (Town of Webster)",
+          "5,651",
+          "32.8% (28.6 to 37.1)",
+          "22.6%",
+          "15.7%",
+          "23.0%"
+        ],
+        [
+          "Clarkson (part of the Town of Clarkson)",
+          "4,694",
+          "32.6% (28.1 to 37.0)",
+          "22.4%",
+          "15.8%",
+          "23.2%"
+        ],
+        [
+          "East Rochester (village; same area as the town)",
+          "6,334",
+          "32.6% (28.2 to 36.9)",
+          "22.6%",
+          "16.1%",
+          "23.7%"
+        ],
+        [
+          "Village of Hilton (Town of Parma)",
+          "6,027",
+          "32.5% (28.2 to 36.8)",
+          "22.5%",
+          "16.3%",
+          "23.9%"
+        ],
+        [
+          "Hamlin (part of the Town of Hamlin)",
+          "5,177",
+          "32.1% (27.8 to 36.4)",
+          "22.2%",
+          "16.7%",
+          "24.4%"
+        ],
+        [
+          "Irondequoit (same area as the Town of Irondequoit)",
+          "51,043",
+          "31.2% (26.9 to 35.3)",
+          "21.7%",
+          "14.7%",
+          "22.0%"
+        ],
+        [
+          "Village of Spencerport (Town of Ogden)",
+          "3,685",
+          "31.2% (26.5 to 35.7)",
+          "20.9%",
+          "15.0%",
+          "23.2%"
+        ],
+        [
+          "Brighton (same area as the Town of Brighton)",
+          "37,137",
+          "30.5% (26.4 to 34.5)",
+          "20.1%",
+          "12.9%",
+          "20.2%"
+        ],
+        [
+          "Village of Scottsville (Town of Wheatland)",
+          "2,009",
+          "30.4% (25.9 to 34.4)",
+          "20.4%",
+          "14.4%",
+          "22.5%"
+        ],
+        [
+          "Village of Churchville (Town of Riga)",
+          "2,091",
+          "30.3% (25.6 to 34.5)",
+          "20.2%",
+          "14.2%",
+          "22.7%"
+        ],
+        [
+          "Village of Fairport (Town of Perinton)",
+          "5,501",
+          "29.9% (25.8 to 34.3)",
+          "19.8%",
+          "13.9%",
+          "22.3%"
+        ],
+        [
+          "Village of Honeoye Falls (Town of Mendon)",
+          "2,706",
+          "29.5% (25.2 to 34.0)",
+          "18.9%",
+          "13.6%",
+          "22.3%"
+        ],
+        [
+          "Village of Pittsford (Town of Pittsford)",
+          "1,419",
+          "28.0% (23.8 to 32.0)",
+          "17.5%",
+          "11.9%",
+          "20.9%"
+        ],
+        [
+          "Monroe County",
+          "759,395",
+          "32.5% (28.2 to 36.9)",
+          "22.9%",
+          "15.3%",
+          "21.9%"
+        ]
+      ]
+    },
+    {
+      "type": "prose",
+      "eyebrow": "Findings",
+      "heading": "What the data shows",
+      "paragraphs": [
+        "Loneliness is common across Monroe County: CDC estimates that 32.5% of adults feel lonely at least some of the time, roughly one in three. It is most common in the City of Rochester, at an estimated 37.2%.",
+        "Most suburban towns sit well below the city, between 28.3% and 32.6%. The lowest are Mendon (28.3%), Perinton (28.5%) and Rush (29.0%). Two towns are closer to the city: Sweden (36.0%) and Henrietta (35.1%).",
+        "Neighborhood by neighborhood, estimates range from 26.2% in a tract in Perinton to 47.6% in a tract in Sweden. Inside the city they range from 27.7% to 43.4%. 23 of the 25 tracts at 40% or more are in the city; the other 2 are in Henrietta and Sweden.",
+        "The highest estimates of all are for the three college campuses the Census counts as their own places (Census names): Nazareth College (46.2%), Rochester Institute of Technology (45.5%), St. John Fisher College (44.9%).",
+        "Among the county's towns, the city also has the highest estimated share of adults who lack the social and emotional support they need (28.7%, against 20.1% in Brighton and 21.7% in Irondequoit). It ties with Sweden for the highest share with frequent mental distress (18.8%, against 12.9% in Brighton and 14.7% in Irondequoit).",
+        "The gaps hold after CDC adjusts for differences in age: Rochester's age-adjusted loneliness estimate is 36.4%, against 31.0% in Brighton and 32.9% in Irondequoit.",
+        "Diagnosed depression follows a different pattern. The share of adults ever told they have depression differs much less: 22.3% in the city, 20.2% in Brighton, 22.0% in Irondequoit and 21.9% countywide."
+      ]
+    },
+    {
+      "type": "points",
+      "eyebrow": "For Rochester-area adults",
+      "heading": "What this means",
+      "items": [
+        "Feeling lonely is common here. About one in three Monroe County adults reports feeling lonely at least some of the time, so it is not unusual and not a personal failing.",
+        "Loneliness is not only a city experience. Even the least lonely neighborhood in the county has an estimated 26.2% of adults who feel lonely at least some of the time.",
+        "Loneliness and depression are different measures, and in this data they follow different patterns across the county.",
+        "Ruzicka Psychology offers [individual therapy](/specialties/individual-therapy) and [group therapy](/specialties/group-therapy) in Rochester. Local support lines are listed on our [resources page](/resources)."
+      ]
+    },
+    {
+      "type": "prose",
+      "eyebrow": "Method",
+      "heading": "How we built the map",
+      "paragraphs": [
+        "Estimates: CDC PLACES, 2025 release, which estimates the share of adults with each measure in every county, place and census tract from the 2023 Behavioral Risk Factor Surveillance System (BRFSS). Loneliness counts adults who say they feel lonely always, usually or sometimes. Lack of social and emotional support counts adults who say they get the support they need sometimes, rarely or never. Frequent mental distress counts adults who say their mental health was not good on 14 or more of the past 30 days. Figures are crude prevalence (the actual share of adults) unless marked age-adjusted.",
+        "Towns: each census tract is assigned to the town (or the City of Rochester) that contains its Census internal point, using Census 2020 boundaries. A town's figure is the average of its tracts' estimates, weighted by the number of adults in each tract.",
+        "Places: CDC also publishes estimates for Census places. Some places, such as Rochester, Brighton and Irondequoit, cover a whole town or city. Others, such as the villages and the Greece and Gates Census-designated places, cover only part of a town, so their figures can differ from the town averages."
+      ]
+    },
+    {
+      "type": "prose",
+      "eyebrow": "Limits",
+      "heading": "What these estimates cannot tell you",
+      "paragraphs": [
+        "These are model-based estimates, not counts from a survey of each neighborhood. CDC predicts survey answers for each area from statewide BRFSS responses and the characteristics of the people who live there, such as age, sex, and race and ethnicity. Two areas with similar populations will get similar estimates even if their residents feel differently.",
+        "Each estimate has a likely range (95% confidence interval), and most of them overlap. Rochester's range for loneliness (32.7% to 41.5%) overlaps with the ranges for 16 of the 17 other places in the county that are not college campuses; only the Village of Pittsford's range sits entirely below it. The city-suburb pattern is consistent on the map and across loneliness, support and distress, but the gap between the city and any single suburb is less certain than the single numbers suggest.",
+        "Loneliness was asked in an optional BRFSS module, so the estimates rest on fewer survey answers than common measures.",
+        "The data shows where loneliness is more common. It does not show why, and it does not say anything about what helps."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "name": "CDC PLACES: Local Data for Better Health, Place Data 2025 release",
+      "period": "BRFSS 2023 model-based estimates",
+      "url": "https://data.cdc.gov/d/eav7-hnsx"
+    },
+    {
+      "name": "CDC PLACES: Local Data for Better Health, Census Tract Data 2025 release",
+      "period": "BRFSS 2023 model-based estimates",
+      "url": "https://data.cdc.gov/d/cwsq-ngmh"
+    },
+    {
+      "name": "CDC PLACES: Local Data for Better Health, County Data 2025 release",
+      "period": "BRFSS 2023 model-based estimates",
+      "url": "https://data.cdc.gov/d/swc5-untb"
+    },
+    {
+      "name": "CDC PLACES measure definitions: health-related social needs",
+      "period": "2025 release",
+      "url": "https://www.cdc.gov/places/measure-definitions/health-related-social-needs.html"
+    },
+    {
+      "name": "U.S. Census Bureau, TIGERweb: Census 2020 tracts and county subdivisions",
+      "period": "Census 2020 boundaries",
+      "url": "https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_main.html"
+    }
+  ],
+  "citation": "Ruzicka Psychology. \"Loneliness in Rochester and Its Suburbs, Mapped.\" November 13, 2026. https://www.ruzickapsychology.com/research/rochester-loneliness-map. Data: CDC PLACES 2025 release; U.S. Census Bureau.",
+  "csv": {
+    "href": "/research/rochester-loneliness-map.csv",
+    "rows": 210,
+    "label": "Every Monroe County census tract with its town and the CDC estimates for loneliness, lack of support, frequent mental distress and depression, with likely ranges (CSV, 210 rows)"
+  },
+  "dataset": {
+    "name": "Loneliness, social and emotional support and mental distress by census tract, Monroe County, New York",
+    "description": "CDC PLACES 2025 model-based estimates (BRFSS 2023) for every Monroe County census tract, with each tract assigned to its town, and adult-weighted town averages.",
+    "temporalCoverage": "2023",
+    "spatialCoverage": "Monroe County, New York, United States",
+    "variableMeasured": [
+      "Feelings of loneliness among adults",
+      "Lack of social and emotional support among adults",
+      "Frequent mental distress among adults",
+      "Depression among adults"
+    ]
+  },
+  "related": [
+    {
+      "label": "Individual therapy",
+      "href": "/specialties/individual-therapy"
+    },
+    {
+      "label": "Group therapy",
+      "href": "/specialties/group-therapy"
+    },
+    {
+      "label": "How many therapists does Monroe County have?",
+      "href": "/research/monroe-county-therapists"
+    }
+  ]
+}

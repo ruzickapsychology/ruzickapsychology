@@ -18,6 +18,7 @@ const routes = [
   "/research/monroe-county-therapists",
   "/research/monroe-county-postpartum-depression",
   "/research/monroe-county-divorce-couples",
+  "/research/rochester-loneliness-map",
   "/pricing",
   "/contact",
   "/faq",

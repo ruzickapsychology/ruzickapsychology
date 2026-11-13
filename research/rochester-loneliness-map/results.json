@@ -1,0 +1,1411 @@
+{
+ "slug": "rochester-loneliness-map",
+ "brfss_year": 2023,
+ "county": {
+  "DEPRESSION_AgeAdjPrv": [
+   22.6,
+   19.9,
+   25.7
+  ],
+  "DEPRESSION_CrdPrv": [
+   21.9,
+   19.2,
+   24.9
+  ],
+  "EMOTIONSPT_AgeAdjPrv": [
+   23.6,
+   20.2,
+   27.3
+  ],
+  "EMOTIONSPT_CrdPrv": [
+   22.9,
+   19.7,
+   26.5
+  ],
+  "LONELINESS_AgeAdjPrv": [
+   33.4,
+   29.0,
+   38.0
+  ],
+  "LONELINESS_CrdPrv": [
+   32.5,
+   28.2,
+   36.9
+  ],
+  "MHLTH_AgeAdjPrv": [
+   16.2,
+   14.2,
+   18.3
+  ],
+  "MHLTH_CrdPrv": [
+   15.3,
+   13.4,
+   17.3
+  ]
+ },
+ "places": {
+  "3608257": {
+   "name": "Brighton",
+   "type": "CDP",
+   "town": "Brighton town",
+   "pop": 37137,
+   "LONELINESS_CrdPrv": [
+    30.5,
+    26.4,
+    34.5
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    31.0,
+    26.9,
+    35.0
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    20.1,
+    17.3,
+    22.9
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    20.8,
+    17.9,
+    23.6
+   ],
+   "MHLTH_CrdPrv": [
+    12.9,
+    11.4,
+    14.4
+   ],
+   "MHLTH_AgeAdjPrv": [
+    13.7,
+    12.1,
+    15.3
+   ],
+   "DEPRESSION_CrdPrv": [
+    20.2,
+    17.6,
+    23.0
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    21.1,
+    18.4,
+    24.0
+   ]
+  },
+  "3608466": {
+   "name": "Brockport",
+   "type": "village",
+   "town": "Sweden town",
+   "pop": 7104,
+   "LONELINESS_CrdPrv": [
+    39.0,
+    34.3,
+    43.4
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    33.5,
+    28.9,
+    37.9
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    24.1,
+    20.6,
+    27.6
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    23.1,
+    19.6,
+    26.6
+   ],
+   "MHLTH_CrdPrv": [
+    21.1,
+    18.7,
+    23.6
+   ],
+   "MHLTH_AgeAdjPrv": [
+    18.0,
+    15.9,
+    20.2
+   ],
+   "DEPRESSION_CrdPrv": [
+    27.3,
+    23.8,
+    30.8
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    25.2,
+    22.0,
+    28.5
+   ]
+  },
+  "3615638": {
+   "name": "Churchville",
+   "type": "village",
+   "town": "Riga town",
+   "pop": 2091,
+   "LONELINESS_CrdPrv": [
+    30.3,
+    25.6,
+    34.5
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    32.4,
+    27.6,
+    36.9
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    20.2,
+    16.5,
+    23.7
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    21.1,
+    17.5,
+    24.8
+   ],
+   "MHLTH_CrdPrv": [
+    14.2,
+    12.2,
+    16.3
+   ],
+   "MHLTH_AgeAdjPrv": [
+    15.9,
+    13.6,
+    18.3
+   ],
+   "DEPRESSION_CrdPrv": [
+    22.7,
+    19.7,
+    25.9
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    24.2,
+    21.0,
+    27.6
+   ]
+  },
+  "3615946": {
+   "name": "Clarkson",
+   "type": "CDP",
+   "town": "Clarkson town",
+   "pop": 4694,
+   "LONELINESS_CrdPrv": [
+    32.6,
+    28.1,
+    37.0
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    33.7,
+    29.0,
+    38.1
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    22.4,
+    18.8,
+    25.9
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    23.1,
+    19.4,
+    26.8
+   ],
+   "MHLTH_CrdPrv": [
+    15.8,
+    13.7,
+    18.0
+   ],
+   "MHLTH_AgeAdjPrv": [
+    17.0,
+    14.7,
+    19.2
+   ],
+   "DEPRESSION_CrdPrv": [
+    23.2,
+    20.3,
+    26.4
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    24.3,
+    21.2,
+    27.6
+   ]
+  },
+  "3622865": {
+   "name": "East Rochester",
+   "type": "village",
+   "town": "East Rochester town",
+   "pop": 6334,
+   "LONELINESS_CrdPrv": [
+    32.6,
+    28.2,
+    36.9
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    33.4,
+    28.9,
+    37.8
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    22.6,
+    19.2,
+    26.0
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    23.0,
+    19.6,
+    26.5
+   ],
+   "MHLTH_CrdPrv": [
+    16.1,
+    14.3,
+    18.2
+   ],
+   "MHLTH_AgeAdjPrv": [
+    16.8,
+    14.9,
+    18.9
+   ],
+   "DEPRESSION_CrdPrv": [
+    23.7,
+    20.8,
+    26.9
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    24.1,
+    21.1,
+    27.3
+   ]
+  },
+  "3625076": {
+   "name": "Fairport",
+   "type": "village",
+   "town": "Perinton town",
+   "pop": 5501,
+   "LONELINESS_CrdPrv": [
+    29.9,
+    25.8,
+    34.3
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    31.8,
+    27.5,
+    36.3
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    19.8,
+    16.5,
+    23.3
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    20.7,
+    17.4,
+    24.5
+   ],
+   "MHLTH_CrdPrv": [
+    13.9,
+    12.0,
+    16.0
+   ],
+   "MHLTH_AgeAdjPrv": [
+    15.4,
+    13.3,
+    17.8
+   ],
+   "DEPRESSION_CrdPrv": [
+    22.3,
+    19.5,
+    25.4
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    23.6,
+    20.7,
+    26.8
+   ]
+  },
+  "3628453": {
+   "name": "Gates",
+   "type": "CDP",
+   "town": "Gates town",
+   "pop": 4956,
+   "LONELINESS_CrdPrv": [
+    32.8,
+    28.4,
+    37.1
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    34.4,
+    29.9,
+    38.7
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    24.0,
+    20.5,
+    27.3
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    25.0,
+    21.5,
+    28.4
+   ],
+   "MHLTH_CrdPrv": [
+    16.0,
+    14.3,
+    18.0
+   ],
+   "MHLTH_AgeAdjPrv": [
+    17.5,
+    15.6,
+    19.7
+   ],
+   "DEPRESSION_CrdPrv": [
+    22.3,
+    19.6,
+    25.2
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    23.5,
+    20.6,
+    26.6
+   ]
+  },
+  "3630279": {
+   "name": "Greece",
+   "type": "CDP",
+   "town": "Greece town",
+   "pop": 14429,
+   "LONELINESS_CrdPrv": [
+    32.9,
+    28.4,
+    37.2
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    34.5,
+    29.9,
+    38.8
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    23.5,
+    20.1,
+    26.7
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    24.7,
+    21.2,
+    28.0
+   ],
+   "MHLTH_CrdPrv": [
+    15.6,
+    13.9,
+    17.4
+   ],
+   "MHLTH_AgeAdjPrv": [
+    17.2,
+    15.3,
+    19.2
+   ],
+   "DEPRESSION_CrdPrv": [
+    22.4,
+    19.7,
+    25.4
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    23.7,
+    20.8,
+    26.9
+   ]
+  },
+  "3631786": {
+   "name": "Hamlin",
+   "type": "CDP",
+   "town": "Hamlin town",
+   "pop": 5177,
+   "LONELINESS_CrdPrv": [
+    32.1,
+    27.8,
+    36.4
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    33.2,
+    28.8,
+    37.5
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    22.2,
+    19.0,
+    25.6
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    22.8,
+    19.5,
+    26.2
+   ],
+   "MHLTH_CrdPrv": [
+    16.7,
+    14.7,
+    18.7
+   ],
+   "MHLTH_AgeAdjPrv": [
+    17.5,
+    15.4,
+    19.7
+   ],
+   "DEPRESSION_CrdPrv": [
+    24.4,
+    21.4,
+    27.6
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    25.0,
+    21.9,
+    28.2
+   ]
+  },
+  "3634847": {
+   "name": "Hilton",
+   "type": "village",
+   "town": "Parma town",
+   "pop": 6027,
+   "LONELINESS_CrdPrv": [
+    32.5,
+    28.2,
+    36.8
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    34.0,
+    29.7,
+    38.3
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    22.5,
+    19.4,
+    25.9
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    23.4,
+    20.2,
+    26.7
+   ],
+   "MHLTH_CrdPrv": [
+    16.3,
+    14.5,
+    18.4
+   ],
+   "MHLTH_AgeAdjPrv": [
+    17.9,
+    15.8,
+    20.2
+   ],
+   "DEPRESSION_CrdPrv": [
+    23.9,
+    21.1,
+    27.1
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    25.2,
+    22.2,
+    28.7
+   ]
+  },
+  "3635364": {
+   "name": "Honeoye Falls",
+   "type": "village",
+   "town": "Mendon town",
+   "pop": 2706,
+   "LONELINESS_CrdPrv": [
+    29.5,
+    25.2,
+    34.0
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    31.0,
+    26.5,
+    35.6
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    18.9,
+    15.6,
+    22.4
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    19.7,
+    16.3,
+    23.2
+   ],
+   "MHLTH_CrdPrv": [
+    13.6,
+    11.6,
+    15.6
+   ],
+   "MHLTH_AgeAdjPrv": [
+    14.8,
+    12.6,
+    17.2
+   ],
+   "DEPRESSION_CrdPrv": [
+    22.3,
+    19.4,
+    25.4
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    23.5,
+    20.4,
+    26.7
+   ]
+  },
+  "3637737": {
+   "name": "Irondequoit",
+   "type": "CDP",
+   "town": "Irondequoit town",
+   "pop": 51043,
+   "LONELINESS_CrdPrv": [
+    31.2,
+    26.9,
+    35.3
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    32.9,
+    28.5,
+    37.1
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    21.7,
+    18.7,
+    24.7
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    22.7,
+    19.6,
+    25.7
+   ],
+   "MHLTH_CrdPrv": [
+    14.7,
+    13.0,
+    16.3
+   ],
+   "MHLTH_AgeAdjPrv": [
+    16.1,
+    14.3,
+    17.9
+   ],
+   "DEPRESSION_CrdPrv": [
+    22.0,
+    19.2,
+    24.9
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    23.1,
+    20.2,
+    26.2
+   ]
+  },
+  "3649715": {
+   "name": "Nazareth College",
+   "type": "CDP",
+   "town": "Pittsford town",
+   "pop": 1182,
+   "LONELINESS_CrdPrv": [
+    46.2,
+    38.8,
+    53.5
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    20.2,
+    17.2,
+    23.0
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    22.8,
+    17.1,
+    29.6
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    11.9,
+    9.5,
+    14.4
+   ],
+   "MHLTH_CrdPrv": [
+    22.6,
+    16.8,
+    28.0
+   ],
+   "MHLTH_AgeAdjPrv": [
+    9.7,
+    7.9,
+    11.5
+   ],
+   "DEPRESSION_CrdPrv": [
+    30.4,
+    25.4,
+    35.5
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    13.9,
+    12.0,
+    15.9
+   ]
+  },
+  "3652040": {
+   "name": "North Gates",
+   "type": "CDP",
+   "town": "Gates town",
+   "pop": 9458,
+   "LONELINESS_CrdPrv": [
+    33.1,
+    28.7,
+    37.3
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    34.6,
+    30.0,
+    38.8
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    24.3,
+    20.8,
+    27.5
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    25.3,
+    21.8,
+    28.5
+   ],
+   "MHLTH_CrdPrv": [
+    15.3,
+    13.6,
+    17.1
+   ],
+   "MHLTH_AgeAdjPrv": [
+    16.6,
+    14.8,
+    18.6
+   ],
+   "DEPRESSION_CrdPrv": [
+    21.6,
+    18.8,
+    24.6
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    22.5,
+    19.7,
+    25.6
+   ]
+  },
+  "3658354": {
+   "name": "Pittsford",
+   "type": "village",
+   "town": "Pittsford town",
+   "pop": 1419,
+   "LONELINESS_CrdPrv": [
+    28.0,
+    23.8,
+    32.0
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    30.1,
+    25.6,
+    34.3
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    17.5,
+    14.6,
+    20.5
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    18.6,
+    15.6,
+    21.7
+   ],
+   "MHLTH_CrdPrv": [
+    11.9,
+    10.2,
+    13.7
+   ],
+   "MHLTH_AgeAdjPrv": [
+    13.4,
+    11.5,
+    15.4
+   ],
+   "DEPRESSION_CrdPrv": [
+    20.9,
+    18.2,
+    23.9
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    22.4,
+    19.5,
+    25.4
+   ]
+  },
+  "3663000": {
+   "name": "Rochester",
+   "type": "city",
+   "town": "Rochester city",
+   "pop": 211328,
+   "LONELINESS_CrdPrv": [
+    37.2,
+    32.7,
+    41.5
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    36.4,
+    31.9,
+    40.6
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    28.7,
+    25.1,
+    32.0
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    28.6,
+    25.1,
+    31.9
+   ],
+   "MHLTH_CrdPrv": [
+    18.8,
+    16.9,
+    20.8
+   ],
+   "MHLTH_AgeAdjPrv": [
+    18.4,
+    16.5,
+    20.4
+   ],
+   "DEPRESSION_CrdPrv": [
+    22.3,
+    19.5,
+    25.3
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    21.8,
+    19.1,
+    24.7
+   ]
+  },
+  "3663014": {
+   "name": "Rochester Institute of Technology",
+   "type": "CDP",
+   "town": "Henrietta town",
+   "pop": 7322,
+   "LONELINESS_CrdPrv": [
+    45.5,
+    39.3,
+    51.1
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    34.2,
+    29.6,
+    38.5
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    28.0,
+    22.7,
+    32.8
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    27.1,
+    23.5,
+    30.6
+   ],
+   "MHLTH_CrdPrv": [
+    22.1,
+    17.9,
+    25.3
+   ],
+   "MHLTH_AgeAdjPrv": [
+    16.6,
+    14.7,
+    18.5
+   ],
+   "DEPRESSION_CrdPrv": [
+    25.2,
+    21.5,
+    28.7
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    21.0,
+    18.3,
+    23.8
+   ]
+  },
+  "3664606": {
+   "name": "St. John Fisher College",
+   "type": "CDP",
+   "town": "Pittsford town",
+   "pop": 1307,
+   "LONELINESS_CrdPrv": [
+    44.9,
+    37.4,
+    52.8
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    13.9,
+    11.9,
+    16.0
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    22.6,
+    16.4,
+    30.1
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    7.8,
+    6.0,
+    9.7
+   ],
+   "MHLTH_CrdPrv": [
+    21.7,
+    15.8,
+    27.1
+   ],
+   "MHLTH_AgeAdjPrv": [
+    7.3,
+    5.7,
+    8.9
+   ],
+   "DEPRESSION_CrdPrv": [
+    29.0,
+    24.2,
+    33.8
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    9.9,
+    8.5,
+    11.3
+   ]
+  },
+  "3665959": {
+   "name": "Scottsville",
+   "type": "village",
+   "town": "Wheatland town",
+   "pop": 2009,
+   "LONELINESS_CrdPrv": [
+    30.4,
+    25.9,
+    34.4
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    31.8,
+    27.0,
+    36.0
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    20.4,
+    16.9,
+    23.7
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    21.0,
+    17.3,
+    24.5
+   ],
+   "MHLTH_CrdPrv": [
+    14.4,
+    12.6,
+    16.5
+   ],
+   "MHLTH_AgeAdjPrv": [
+    15.5,
+    13.5,
+    17.9
+   ],
+   "DEPRESSION_CrdPrv": [
+    22.5,
+    19.7,
+    25.5
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    23.4,
+    20.5,
+    26.7
+   ]
+  },
+  "3670189": {
+   "name": "Spencerport",
+   "type": "village",
+   "town": "Ogden town",
+   "pop": 3685,
+   "LONELINESS_CrdPrv": [
+    31.2,
+    26.5,
+    35.7
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    32.6,
+    27.9,
+    37.2
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    20.9,
+    17.3,
+    24.6
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    21.6,
+    18.0,
+    25.5
+   ],
+   "MHLTH_CrdPrv": [
+    15.0,
+    12.9,
+    17.4
+   ],
+   "MHLTH_AgeAdjPrv": [
+    16.2,
+    13.9,
+    18.8
+   ],
+   "DEPRESSION_CrdPrv": [
+    23.2,
+    20.0,
+    26.4
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    24.2,
+    21.0,
+    27.6
+   ]
+  },
+  "3678960": {
+   "name": "Webster",
+   "type": "village",
+   "town": "Webster town",
+   "pop": 5651,
+   "LONELINESS_CrdPrv": [
+    32.8,
+    28.6,
+    37.1
+   ],
+   "LONELINESS_AgeAdjPrv": [
+    33.4,
+    29.0,
+    37.7
+   ],
+   "EMOTIONSPT_CrdPrv": [
+    22.6,
+    19.3,
+    25.9
+   ],
+   "EMOTIONSPT_AgeAdjPrv": [
+    23.0,
+    19.8,
+    26.4
+   ],
+   "MHLTH_CrdPrv": [
+    15.7,
+    13.9,
+    17.7
+   ],
+   "MHLTH_AgeAdjPrv": [
+    16.3,
+    14.5,
+    18.4
+   ],
+   "DEPRESSION_CrdPrv": [
+    23.0,
+    20.1,
+    26.1
+   ],
+   "DEPRESSION_AgeAdjPrv": [
+    23.4,
+    20.5,
+    26.5
+   ]
+  }
+ },
+ "towns": {
+  "Rochester city": {
+   "adults": 164463,
+   "pop": 211096,
+   "tracts": 80,
+   "LONELINESS": 37.207,
+   "EMOTIONSPT": 28.664,
+   "MHLTH": 18.802,
+   "DEPRESSION": 22.317
+  },
+  "Irondequoit town": {
+   "adults": 41364,
+   "pop": 51227,
+   "tracts": 13,
+   "LONELINESS": 31.191,
+   "EMOTIONSPT": 21.705,
+   "MHLTH": 14.667,
+   "DEPRESSION": 21.98
+  },
+  "Webster town": {
+   "adults": 36221,
+   "pop": 45327,
+   "tracts": 12,
+   "LONELINESS": 30.012,
+   "EMOTIONSPT": 20.161,
+   "MHLTH": 13.745,
+   "DEPRESSION": 21.795
+  },
+  "Penfield town": {
+   "adults": 30919,
+   "pop": 39438,
+   "tracts": 9,
+   "LONELINESS": 29.079,
+   "EMOTIONSPT": 19.236,
+   "MHLTH": 12.758,
+   "DEPRESSION": 20.945
+  },
+  "Perinton town": {
+   "adults": 37965,
+   "pop": 47477,
+   "tracts": 11,
+   "LONELINESS": 28.52,
+   "EMOTIONSPT": 18.513,
+   "MHLTH": 12.272,
+   "DEPRESSION": 20.717
+  },
+  "East Rochester town": {
+   "adults": 5119,
+   "pop": 6336,
+   "tracts": 2,
+   "LONELINESS": 32.618,
+   "EMOTIONSPT": 22.536,
+   "MHLTH": 16.159,
+   "DEPRESSION": 23.664
+  },
+  "Pittsford town": {
+   "adults": 23889,
+   "pop": 30617,
+   "tracts": 7,
+   "LONELINESS": 29.755,
+   "EMOTIONSPT": 18.785,
+   "MHLTH": 12.361,
+   "DEPRESSION": 20.378
+  },
+  "Mendon town": {
+   "adults": 7093,
+   "pop": 9095,
+   "tracts": 2,
+   "LONELINESS": 28.272,
+   "EMOTIONSPT": 18.137,
+   "MHLTH": 12.538,
+   "DEPRESSION": 21.304
+  },
+  "Brighton town": {
+   "adults": 30271,
+   "pop": 37137,
+   "tracts": 9,
+   "LONELINESS": 30.514,
+   "EMOTIONSPT": 20.121,
+   "MHLTH": 12.852,
+   "DEPRESSION": 20.228
+  },
+  "Henrietta town": {
+   "adults": 39522,
+   "pop": 47096,
+   "tracts": 8,
+   "LONELINESS": 35.066,
+   "EMOTIONSPT": 24.238,
+   "MHLTH": 16.355,
+   "DEPRESSION": 22.177
+  },
+  "Rush town": {
+   "adults": 2877,
+   "pop": 3490,
+   "tracts": 1,
+   "LONELINESS": 29.0,
+   "EMOTIONSPT": 19.7,
+   "MHLTH": 13.1,
+   "DEPRESSION": 21.3
+  },
+  "Greece town": {
+   "adults": 77674,
+   "pop": 96926,
+   "tracts": 23,
+   "LONELINESS": 32.339,
+   "EMOTIONSPT": 22.954,
+   "MHLTH": 15.374,
+   "DEPRESSION": 22.318
+  },
+  "Gates town": {
+   "adults": 23875,
+   "pop": 29167,
+   "tracts": 7,
+   "LONELINESS": 32.557,
+   "EMOTIONSPT": 23.616,
+   "MHLTH": 15.174,
+   "DEPRESSION": 21.694
+  },
+  "Chili town": {
+   "adults": 23244,
+   "pop": 29123,
+   "tracts": 6,
+   "LONELINESS": 32.053,
+   "EMOTIONSPT": 22.341,
+   "MHLTH": 14.924,
+   "DEPRESSION": 22.182
+  },
+  "Wheatland town": {
+   "adults": 3904,
+   "pop": 4897,
+   "tracts": 1,
+   "LONELINESS": 30.5,
+   "EMOTIONSPT": 20.4,
+   "MHLTH": 14.4,
+   "DEPRESSION": 22.4
+  },
+  "Parma town": {
+   "adults": 12550,
+   "pop": 16217,
+   "tracts": 4,
+   "LONELINESS": 31.051,
+   "EMOTIONSPT": 21.48,
+   "MHLTH": 15.045,
+   "DEPRESSION": 22.864
+  },
+  "Ogden town": {
+   "adults": 16035,
+   "pop": 20270,
+   "tracts": 4,
+   "LONELINESS": 31.501,
+   "EMOTIONSPT": 21.213,
+   "MHLTH": 15.199,
+   "DEPRESSION": 23.251
+  },
+  "Riga town": {
+   "adults": 4589,
+   "pop": 5586,
+   "tracts": 1,
+   "LONELINESS": 30.2,
+   "EMOTIONSPT": 20.4,
+   "MHLTH": 14.1,
+   "DEPRESSION": 22.2
+  },
+  "Hamlin town": {
+   "adults": 6874,
+   "pop": 8725,
+   "tracts": 2,
+   "LONELINESS": 31.576,
+   "EMOTIONSPT": 21.976,
+   "MHLTH": 16.284,
+   "DEPRESSION": 24.138
+  },
+  "Clarkson town": {
+   "adults": 5443,
+   "pop": 6904,
+   "tracts": 1,
+   "LONELINESS": 32.1,
+   "EMOTIONSPT": 22.3,
+   "MHLTH": 15.4,
+   "DEPRESSION": 22.8
+  },
+  "Sweden town": {
+   "adults": 11197,
+   "pop": 13244,
+   "tracts": 4,
+   "LONELINESS": 35.954,
+   "EMOTIONSPT": 22.957,
+   "MHLTH": 18.845,
+   "DEPRESSION": 25.716
+  }
+ },
+ "tracts_with_estimates": 207,
+ "tracts_without": [
+  "36055980000",
+  "36055980100",
+  "36055980200",
+  "36055990000"
+ ],
+ "high_tracts_40plus": [
+  "36055015301",
+  "36055013103",
+  "36055009403",
+  "36055003807",
+  "36055001300",
+  "36055002700",
+  "36055006500",
+  "36055005200",
+  "36055006400",
+  "36055009605",
+  "36055002200",
+  "36055005100",
+  "36055005000",
+  "36055006900",
+  "36055004100",
+  "36055005900",
+  "36055001600",
+  "36055009602",
+  "36055002400",
+  "36055007500",
+  "36055004000",
+  "36055004900",
+  "36055002300",
+  "36055005700",
+  "36055006600"
+ ],
+ "high_in_city": 23,
+ "high_outside_city": {
+  "36055015301": "Sweden town",
+  "36055013103": "Henrietta town"
+ },
+ "tract_min": [
+  "36055011708",
+  26.2,
+  "Perinton town"
+ ],
+ "tract_max": [
+  "36055015301",
+  47.6,
+  "Sweden town"
+ ],
+ "city_tract_range": [
+  27.7,
+  43.4
+ ],
+ "suburban_towns_under_33": 18,
+ "suburban_range_under_33": [
+  28.272494008177073,
+  32.61810900566517
+ ],
+ "suburban_order": [
+  "Sweden town",
+  "Henrietta town",
+  "East Rochester town",
+  "Gates town",
+  "Greece town",
+  "Clarkson town",
+  "Chili town",
+  "Hamlin town",
+  "Ogden town",
+  "Irondequoit town",
+  "Parma town",
+  "Brighton town",
+  "Wheatland town",
+  "Riga town",
+  "Webster town",
+  "Pittsford town",
+  "Penfield town",
+  "Rush town",
+  "Perinton town",
+  "Mendon town"
+ ],
+ "county_adults_lonely_est": 199306.966,
+ "no_overlap_places": [
+  "3658354"
+ ],
+ "overlap_places": [
+  "3637737",
+  "3608257",
+  "3630279",
+  "3652040",
+  "3608466",
+  "3622865",
+  "3634847",
+  "3678960",
+  "3625076",
+  "3631786",
+  "3628453",
+  "3615946",
+  "3670189",
+  "3635364",
+  "3615638",
+  "3665959"
+ ],
+ "city_dark_tracts": 57,
+ "light_towns": [
+  "Perinton town",
+  "Webster town",
+  "Penfield town",
+  "Pittsford town",
+  "Brighton town",
+  "Irondequoit town",
+  "Greece town",
+  "Mendon town",
+  "Parma town",
+  "Rochester city",
+  "Rush town"
+ ],
+ "town_vs_cdc_place_gaps": [
+  [
+   "3663000",
+   "LONELINESS",
+   0.01
+  ],
+  [
+   "3663000",
+   "EMOTIONSPT",
+   -0.04
+  ],
+  [
+   "3663000",
+   "MHLTH",
+   0.0
+  ],
+  [
+   "3663000",
+   "DEPRESSION",
+   0.02
+  ],
+  [
+   "3608257",
+   "LONELINESS",
+   0.01
+  ],
+  [
+   "3608257",
+   "EMOTIONSPT",
+   0.02
+  ],
+  [
+   "3608257",
+   "MHLTH",
+   -0.05
+  ],
+  [
+   "3608257",
+   "DEPRESSION",
+   0.03
+  ],
+  [
+   "3637737",
+   "LONELINESS",
+   -0.01
+  ],
+  [
+   "3637737",
+   "EMOTIONSPT",
+   0.01
+  ],
+  [
+   "3637737",
+   "MHLTH",
+   -0.03
+  ],
+  [
+   "3637737",
+   "DEPRESSION",
+   -0.02
+  ],
+  [
+   "3622865",
+   "LONELINESS",
+   0.02
+  ],
+  [
+   "3622865",
+   "EMOTIONSPT",
+   -0.06
+  ],
+  [
+   "3622865",
+   "MHLTH",
+   0.06
+  ],
+  [
+   "3622865",
+   "DEPRESSION",
+   -0.04
+  ]
+ ],
+ "bin_counts": [
+  47,
+  68,
+  29,
+  38,
+  25
+ ],
+ "svg_kb": 67
+}

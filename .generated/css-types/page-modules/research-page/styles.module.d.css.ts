@@ -2,10 +2,12 @@ declare const styles: {
   readonly byline: string;
   readonly caption: string;
   readonly citation: string;
+  readonly figure: string;
   readonly inlineLink: string;
   readonly keyNumber: string;
   readonly keyNumbers: string;
   readonly keyValue: string;
+  readonly mapImage: string;
   readonly note: string;
   readonly notice: string;
   readonly points: string;

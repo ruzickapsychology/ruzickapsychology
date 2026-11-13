@@ -49,6 +49,15 @@ describe("research pages", () => {
         const lines = readFileSync(file, "utf8").trim().split("\n");
         expect(lines.length - 1).toBe(page.csv.rows);
       }
+      for (const block of page.blocks) {
+        if (block.type !== "map") continue;
+        const file = join(process.cwd(), "public", block.src);
+        expect(existsSync(file)).toBe(true);
+        expect(readFileSync(file, "utf8")).toContain(
+          `viewBox="0 0 ${block.width} ${block.height}"`,
+        );
+        expect(block.alt.length).toBeGreaterThan(40);
+      }
     },
   );
 

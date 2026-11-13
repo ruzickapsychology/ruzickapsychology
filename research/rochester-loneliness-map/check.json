@@ -1,0 +1,544 @@
+{
+ "checked": "2026-11-13",
+ "fails": [],
+ "checks": [
+  {
+   "check": "PLACES Monroe tracts with estimates",
+   "expected": 207,
+   "source": 207,
+   "ok": true
+  },
+  {
+   "check": "every tract with an estimate falls in exactly one town",
+   "expected": 207,
+   "source": 207,
+   "ok": true
+  },
+  {
+   "check": "towns (incl. city)",
+   "expected": 21,
+   "source": 21,
+   "ok": true
+  },
+  {
+   "check": "suburban towns under 33% / range",
+   "expected": [
+    18,
+    28.3,
+    32.6
+   ],
+   "source": [
+    18,
+    28.3,
+    32.6
+   ],
+   "ok": true
+  },
+  {
+   "check": "two highest suburban towns",
+   "expected": [
+    [
+     "Sweden town",
+     36.0
+    ],
+    [
+     "Henrietta town",
+     35.1
+    ]
+   ],
+   "source": [
+    [
+     "Sweden town",
+     36.0
+    ],
+    [
+     "Henrietta town",
+     35.1
+    ]
+   ],
+   "ok": true
+  },
+  {
+   "check": "three lowest suburban towns",
+   "expected": [
+    [
+     "Mendon town",
+     28.3
+    ],
+    [
+     "Perinton town",
+     28.5
+    ],
+    [
+     "Rush town",
+     29.0
+    ]
+   ],
+   "source": [
+    [
+     "Mendon town",
+     28.3
+    ],
+    [
+     "Perinton town",
+     28.5
+    ],
+    [
+     "Rush town",
+     29.0
+    ]
+   ],
+   "ok": true
+  },
+  {
+   "check": "city town-average loneliness",
+   "expected": 37.2,
+   "source": 37.2,
+   "ok": true
+  },
+  {
+   "check": "city highest lack of support among towns",
+   "expected": "Rochester city",
+   "source": "Rochester city",
+   "ok": true
+  },
+  {
+   "check": "frequent mental distress: city ties Sweden at the top",
+   "expected": [
+    18.8,
+    18.8,
+    true
+   ],
+   "source": [
+    18.8,
+    18.8,
+    true
+   ],
+   "ok": true
+  },
+  {
+   "check": "tracts at 40%+ / in city",
+   "expected": [
+    25,
+    23
+   ],
+   "source": [
+    25,
+    23
+   ],
+   "ok": true
+  },
+  {
+   "check": "tracts at 40%+ outside city",
+   "expected": [
+    "Henrietta town",
+    "Sweden town"
+   ],
+   "source": [
+    "Henrietta town",
+    "Sweden town"
+   ],
+   "ok": true
+  },
+  {
+   "check": "tract minimum / maximum",
+   "expected": [
+    [
+     26.2,
+     "Perinton town"
+    ],
+    [
+     47.6,
+     "Sweden town"
+    ]
+   ],
+   "source": [
+    [
+     26.2,
+     "Perinton town"
+    ],
+    [
+     47.6,
+     "Sweden town"
+    ]
+   ],
+   "ok": true
+  },
+  {
+   "check": "city tract range / count",
+   "expected": [
+    27.7,
+    43.4,
+    80
+   ],
+   "source": [
+    27.7,
+    43.4,
+    80
+   ],
+   "ok": true
+  },
+  {
+   "check": "city tracts in the two darkest shades (36%+)",
+   "expected": 57,
+   "source": 57,
+   "ok": true
+  },
+  {
+   "check": "tracts per map shade",
+   "expected": [
+    47,
+    68,
+    29,
+    38,
+    25
+   ],
+   "source": [
+    47,
+    68,
+    29,
+    38,
+    25
+   ],
+   "ok": true
+  },
+  {
+   "check": "SVG: shaded tracts per color",
+   "expected": [
+    47,
+    68,
+    29,
+    38,
+    25
+   ],
+   "source": [
+    47,
+    68,
+    29,
+    38,
+    25
+   ],
+   "ok": true
+  },
+  {
+   "check": "SVG: no-estimate tracts",
+   "expected": 3,
+   "source": 3,
+   "ok": true
+  },
+  {
+   "check": "Rochester loneliness (CI)",
+   "expected": [
+    37.2,
+    32.7,
+    41.5
+   ],
+   "source": [
+    37.2,
+    32.7,
+    41.5
+   ],
+   "ok": true
+  },
+  {
+   "check": "Rochester support / distress / depression",
+   "expected": [
+    28.7,
+    18.8,
+    22.3
+   ],
+   "source": [
+    28.7,
+    18.8,
+    22.3
+   ],
+   "ok": true
+  },
+  {
+   "check": "Brighton / Irondequoit support",
+   "expected": [
+    20.1,
+    21.7
+   ],
+   "source": [
+    20.1,
+    21.7
+   ],
+   "ok": true
+  },
+  {
+   "check": "Brighton / Irondequoit distress",
+   "expected": [
+    12.9,
+    14.7
+   ],
+   "source": [
+    12.9,
+    14.7
+   ],
+   "ok": true
+  },
+  {
+   "check": "Brighton / Irondequoit depression",
+   "expected": [
+    20.2,
+    22.0
+   ],
+   "source": [
+    20.2,
+    22.0
+   ],
+   "ok": true
+  },
+  {
+   "check": "Age-adjusted loneliness Rochester / Brighton / Irondequoit",
+   "expected": [
+    36.4,
+    31.0,
+    32.9
+   ],
+   "source": [
+    36.4,
+    31.0,
+    32.9
+   ],
+   "ok": true
+  },
+  {
+   "check": "Campus places loneliness (Nazareth, RIT, Fisher)",
+   "expected": [
+    46.2,
+    45.5,
+    44.9
+   ],
+   "source": [
+    46.2,
+    45.5,
+    44.9
+   ],
+   "ok": true
+  },
+  {
+   "check": "town average within 0.1 of CDC place estimate: Rochester",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "town average within 0.1 of CDC place estimate: Brighton",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "town average within 0.1 of CDC place estimate: Irondequoit",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "town average within 0.1 of CDC place estimate: East Rochester",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "non-campus places whose range sits below Rochester's",
+   "expected": [
+    [
+     "Pittsford"
+    ],
+    17
+   ],
+   "source": [
+    [
+     "Pittsford"
+    ],
+    17
+   ],
+   "ok": true
+  },
+  {
+   "check": "place types: villages",
+   "expected": [
+    "3608466",
+    "3615638",
+    "3622865",
+    "3625076",
+    "3634847",
+    "3635364",
+    "3658354",
+    "3665959",
+    "3670189",
+    "3678960"
+   ],
+   "source": [
+    "3608466",
+    "3615638",
+    "3622865",
+    "3625076",
+    "3634847",
+    "3635364",
+    "3658354",
+    "3665959",
+    "3670189",
+    "3678960"
+   ],
+   "ok": true
+  },
+  {
+   "check": "place types: CDPs",
+   "expected": 10,
+   "source": 10,
+   "ok": true
+  },
+  {
+   "check": "Monroe County loneliness / support / distress / depression",
+   "expected": [
+    32.5,
+    22.9,
+    15.3,
+    21.9
+   ],
+   "source": [
+    32.5,
+    22.9,
+    15.3,
+    21.9
+   ],
+   "ok": true
+  },
+  {
+   "check": "page text contains \"An estimated 37.2% of adults in the City of Rochester\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"28.3% to 32.6% in 18 of Monroe County's 20 suburban towns\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"25 census tracts\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"23 are in the city\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"Sweden (36.0%) and Henrietta (35.1%)\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"Mendon (28.3%), Perinton (28.5%) and Rush (29.0%)\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"26.2% in a tract in Perinton to 47.6% in a tract in Sweden\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"from 27.7% to 43.4%\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"Nazareth College (46.2%), Rochester Institute of Technology (45.5%), St. John Fisher College (44.9%)\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"28.7%, against 20.1% in Brighton and 21.7% in Irondequoit\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"ties with Sweden\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"18.8%, against 12.9% in Brighton and 14.7% in Irondequoit\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"36.4%, against 31.0% in Brighton and 32.9% in Irondequoit\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"22.3% in the city, 20.2% in Brighton, 22.0% in Irondequoit and 21.9% countywide\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"32.5%\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"22.9% countywide\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"15.3% countywide\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"likely range 32.7% to 41.5%\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"16 of the 17 other places\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"only the Village of Pittsford\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"57 of the City of Rochester's 80 tracts\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"least lonely neighborhood in the county has an estimated 26.2%\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  }
+ ]
+}

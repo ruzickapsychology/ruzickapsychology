@@ -26,6 +26,7 @@ import type { HomePageContent, SiteSettings } from "@/data/cms";
 import type { ResearchBlock, ResearchPageContent } from "@/data/research";
 import { formatResearchDate } from "@/lib/research-text";
 import type { Route } from "next";
+import Image from "next/image";
 import { BarChart } from "./bar-chart";
 import { ResearchText } from "./research-text";
 import styles from "./styles.module.css";
@@ -203,6 +204,37 @@ function Block({
           <div className={styles.notice}>
             <ResearchText text={block.text} variant="supporting" />
           </div>
+        </ContentSection>
+      );
+    case "map":
+      return (
+        <ContentSection size="spacious" containerSize="xl">
+          <BlockHeader
+            heading={block.heading}
+            description={block.description}
+          />
+          <figure data-slot="research-map" className={styles.figure}>
+            <Image
+              src={block.src}
+              alt={block.alt}
+              width={block.width}
+              height={block.height}
+              sizes="(min-width: 1280px) 1200px, 100vw"
+              className={styles.mapImage}
+            />
+            <figcaption className={styles.note}>
+              {block.note ? (
+                <Text variant="detail" tone="subdued">
+                  {block.note}
+                </Text>
+              ) : null}
+              <Text variant="detail" tone="subdued">
+                <a href={block.src} className={styles.inlineLink}>
+                  Open the full-size map (SVG)
+                </a>
+              </Text>
+            </figcaption>
+          </figure>
         </ContentSection>
       );
   }
