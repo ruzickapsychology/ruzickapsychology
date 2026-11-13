@@ -1,0 +1,277 @@
+{
+  "slug": "monroe-county-postpartum-depression",
+  "kind": "study",
+  "title": "New Parents and Postpartum Depression in Monroe County",
+  "metaTitle": "Postpartum Depression in Monroe County, NY: New Parent Data",
+  "metaDescription": "About 890 Monroe County mothers a year are likely to report postpartum depression symptoms: 12.4% of 7,151 births in 2023. NYS DOH and PRAMS data.",
+  "eyebrow": "Data study · Rochester and Monroe County",
+  "headline": "About 890 Monroe County mothers a year are likely to report symptoms of postpartum depression. That estimate applies the 12.4% rate reported by mothers in New York State outside New York City in 2022 to the 7,151 babies born to Monroe County residents in 2023.",
+  "datePublished": "2026-11-13",
+  "dateModified": "2026-11-13",
+  "card": {
+    "value": "About 890",
+    "label": "Monroe County mothers a year likely to report postpartum depression symptoms (estimate)",
+    "summary": "12.4% of new mothers in New York outside New York City reported symptoms in 2022; Monroe County had 7,151 births in 2023."
+  },
+  "blocks": [
+    {
+      "type": "keyNumbers",
+      "heading": "Key numbers",
+      "items": [
+        {
+          "value": "7,151",
+          "label": "babies born to Monroe County residents in 2023, down 18% from 8,707 in 2008",
+          "source": "NYS Department of Health, Vital Statistics of New York State 2023, Table 7"
+        },
+        {
+          "value": "12.4%",
+          "label": "of mothers in New York State outside New York City reported symptoms of postpartum depression after giving birth, about one in eight (statewide: 11.9%; New York City: 11.5%)",
+          "source": "NYS Department of Health, from CDC PRAMS 2022 survey data"
+        },
+        {
+          "value": "About 890",
+          "label": "Monroe County mothers a year likely to report symptoms, if the 12.4% rate applies to the county's 7,151 births (an estimate, not a count)",
+          "source": "Ruzicka Psychology calculation from the two sources above"
+        },
+        {
+          "value": "About 380",
+          "label": "more in Genesee, Livingston, Ontario, Orleans and Wayne counties, which had 3,090 births between them in 2023 (same method)",
+          "source": "Ruzicka Psychology calculation from the two sources above"
+        },
+        {
+          "value": "82.4%",
+          "label": "of New York mothers who had a postpartum checkup were asked about depression in 2020, up from 76.1% in 2016",
+          "source": "NYS Department of Health, from New York PRAMS data"
+        }
+      ]
+    },
+    {
+      "type": "notice",
+      "text": "If you are in crisis or thinking about harming yourself, call or text 988 (Suicide & Crisis Lifeline, free, 24/7). If you or anyone else is in immediate danger, call 911. The National Maternal Mental Health Hotline, 1-833-TLC-MAMA (1-833-852-6262), offers free, confidential support before, during and after pregnancy, 24/7; it is not a crisis line. Local lines are on our [resources page](/resources)."
+    },
+    {
+      "type": "chart",
+      "heading": "Monroe County births by mother's age, 2023",
+      "description": "7,151 live births to Monroe County residents. Most were to mothers aged 25 to 34 (4,251).",
+      "unit": "births",
+      "bars": [
+        {
+          "label": "Under 15",
+          "value": 3,
+          "display": "3",
+          "tone": "default"
+        },
+        {
+          "label": "15 to 17",
+          "value": 62,
+          "display": "62",
+          "tone": "default"
+        },
+        {
+          "label": "18 to 19",
+          "value": 159,
+          "display": "159",
+          "tone": "default"
+        },
+        {
+          "label": "20 to 24",
+          "value": 967,
+          "display": "967",
+          "tone": "default"
+        },
+        {
+          "label": "25 to 29",
+          "value": 1692,
+          "display": "1,692",
+          "tone": "default"
+        },
+        {
+          "label": "30 to 34",
+          "value": 2559,
+          "display": "2,559",
+          "tone": "highlight"
+        },
+        {
+          "label": "35 to 39",
+          "value": 1452,
+          "display": "1,452",
+          "tone": "default"
+        },
+        {
+          "label": "40 to 44",
+          "value": 246,
+          "display": "246",
+          "tone": "default"
+        },
+        {
+          "label": "45 and older",
+          "value": 11,
+          "display": "11",
+          "tone": "default"
+        }
+      ],
+      "note": "Source: NYS Department of Health, Vital Statistics of New York State 2023, Table 7. Mother's age not stated: 0."
+    },
+    {
+      "type": "table",
+      "heading": "Estimated mothers with symptoms, by area",
+      "caption": "Births in 2023 and the 2022 PRAMS rate applied to them. Estimates rounded to the nearest 10.",
+      "columns": [
+        "Area",
+        "Births (2023)",
+        "PRAMS rate applied",
+        "Estimated mothers with symptoms"
+      ],
+      "rows": [
+        [
+          "Monroe County",
+          "7,151",
+          "12.4%",
+          "890"
+        ],
+        [
+          "Ontario County",
+          "929",
+          "12.4%",
+          "120"
+        ],
+        [
+          "Wayne County",
+          "853",
+          "12.4%",
+          "110"
+        ],
+        [
+          "Livingston County",
+          "479",
+          "12.4%",
+          "60"
+        ],
+        [
+          "Genesee County",
+          "475",
+          "12.4%",
+          "60"
+        ],
+        [
+          "Orleans County",
+          "354",
+          "12.4%",
+          "40"
+        ],
+        [
+          "Five neighboring counties combined",
+          "3,090",
+          "12.4%",
+          "380"
+        ],
+        [
+          "New York State excluding New York City",
+          "111,798",
+          "12.4%",
+          "13,860"
+        ],
+        [
+          "New York State",
+          "202,667",
+          "11.9%",
+          "24,120"
+        ]
+      ],
+      "csv": true
+    },
+    {
+      "type": "prose",
+      "eyebrow": "Findings",
+      "heading": "What the data shows",
+      "paragraphs": [
+        "In 2022, 12.4% of mothers in New York State outside New York City told the PRAMS survey they had symptoms of postpartum depression after giving birth, according to the New York State Department of Health. That is about one mother in eight. The statewide figure was 11.9%, and across the states and territories in the 2022 survey it was about 12.7%.",
+        "Monroe County residents had 7,151 babies in 2023. If Monroe mothers report symptoms at the same rate as mothers elsewhere in upstate and suburban New York, about 890 of them would have symptoms of postpartum depression each year. Using the statewide rate of 11.9% instead gives about 850.",
+        "NYS Department of Health also cites a wider clinical range: postpartum depression affects 10 to 20 percent of new mothers. Applied to Monroe County births, that would be roughly 720 to 1,430 mothers a year.",
+        "Most Monroe County babies are born to mothers in their late twenties and early thirties: 4,251 of the 7,151 births in 2023 were to mothers aged 25 to 34. 224 were to mothers under 20 and 1,709 to mothers 35 or older.",
+        "Births in the county have been falling, from 8,707 in 2008 to 7,151 in 2023."
+      ]
+    },
+    {
+      "type": "points",
+      "eyebrow": "For new and expecting parents",
+      "heading": "What this means for new and expecting parents",
+      "items": [
+        "Postpartum depression symptoms are common. About one in eight new mothers in New York outside New York City reported them. Feeling this way is not a personal failing.",
+        "Symptoms can begin during pregnancy or at any point in the first year after birth, and they can look different from the short-lived \"baby blues\" that many parents have in the first two weeks.",
+        "Asking about mood is now a routine part of postpartum care in New York: 82.4% of mothers who had a postpartum checkup were asked about depression in 2020. You can raise it with your obstetrician, midwife or your baby's pediatrician at any visit.",
+        "Support exists between appointments too. Free lines for new and expecting parents, such as the National Maternal Mental Health Hotline (1-833-TLC-MAMA), are listed on our [resources page](/resources). Ruzicka Psychology offers [postpartum depression therapy](/specialties/postpartum-depression-therapy) in Rochester and virtually across New York."
+      ]
+    },
+    {
+      "type": "prose",
+      "eyebrow": "Method",
+      "heading": "How we estimated it",
+      "paragraphs": [
+        "Births: the number of live births to mothers living in each county in 2023, from the New York State Department of Health's Vital Statistics of New York State 2023, Table 7. Counties are where the mother lives, not where the baby was born. The 2008 figure for the trend comes from the same series on Health Data NY.",
+        "Rate: the share of mothers who reported symptoms of postpartum depression in the 2022 Pregnancy Risk Assessment Monitoring System (PRAMS) survey, as published by the New York State Department of Health. PRAMS surveys a sample of new mothers a few months after birth. In New York, the State Health Department runs the survey outside New York City, so the \"New York State excluding New York City\" rate of 12.4% is the closest published rate for Monroe County.",
+        "Estimate: births multiplied by the rate, rounded to the nearest 10. For Monroe County: 7,151 x 12.4% = 887, shown as about 890."
+      ]
+    },
+    {
+      "type": "prose",
+      "eyebrow": "Limits",
+      "heading": "What this estimate cannot tell you",
+      "paragraphs": [
+        "This is an estimate, not a count. PRAMS does not publish rates for single counties, and Monroe County's true rate may be higher or lower than the regional one.",
+        "Births are not exactly mothers: twins and triplets count as separate births, so the number of mothers is a little lower than the number of births.",
+        "The years differ: births are from 2023 and the survey rate from 2022.",
+        "PRAMS measures symptoms that mothers report on a short survey, not a diagnosis. It covers mothers only, so it says nothing about fathers or partners, who can also have depression after a baby arrives.",
+        "This page describes how common symptoms are. It is not a screening tool and it is not medical advice."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "name": "NYS Department of Health, Vital Statistics of New York State 2023, Table 7: Live Births by Mother's Age and Resident County",
+      "period": "2023 births (table revised January 2026)",
+      "url": "https://www.health.ny.gov/statistics/vital_statistics/2023/table07.htm"
+    },
+    {
+      "name": "NYS Department of Health, Maternal Depression: Information for Health Care Providers, \"What is Maternal Depression?\"",
+      "period": "PRAMS 2022 survey data; screening data 2020; page revised November 2025",
+      "url": "https://www.health.ny.gov/community/pregnancy/health_care/perinatal/maternal_depression/providers/what_is_maternial_depression.htm"
+    },
+    {
+      "name": "Health Data NY, Vital Statistics Live Births by Mother's Age and Resident County: Beginning 2008",
+      "period": "2008-2023",
+      "url": "https://health.data.ny.gov/d/i7yg-w5rg"
+    }
+  ],
+  "citation": "Ruzicka Psychology. \"New Parents and Postpartum Depression in Monroe County.\" November 13, 2026. https://www.ruzickapsychology.com/research/monroe-county-postpartum-depression. Data: NYS Department of Health; CDC PRAMS.",
+  "csv": {
+    "href": "/research/monroe-county-postpartum-depression.csv",
+    "rows": 9,
+    "label": "Births by mother's age in 2023 for Monroe County, its five neighboring counties, New York State excluding New York City and New York State, with the PRAMS rate applied and the estimate (CSV, 9 rows)"
+  },
+  "dataset": {
+    "name": "Estimated mothers with postpartum depression symptoms, Monroe County and neighboring counties, New York",
+    "description": "Live births by mother's age and resident county in 2023 (NYS DOH Vital Statistics Table 7) with the 2022 PRAMS rate of self-reported postpartum depression symptoms for New York State excluding New York City (12.4%) applied as an estimate.",
+    "temporalCoverage": "2022/2023",
+    "spatialCoverage": "Monroe, Genesee, Livingston, Ontario, Orleans and Wayne counties, New York, United States",
+    "variableMeasured": [
+      "Live births by mother's age",
+      "Share of mothers reporting postpartum depression symptoms (PRAMS)",
+      "Estimated mothers with postpartum depression symptoms"
+    ]
+  },
+  "related": [
+    {
+      "label": "Postpartum depression therapy",
+      "href": "/specialties/postpartum-depression-therapy"
+    },
+    {
+      "label": "Perinatal and postpartum therapy",
+      "href": "/specialties/perinatal-postpartum-therapy"
+    },
+    {
+      "label": "Crisis and pregnancy support resources",
+      "href": "/resources"
+    }
+  ]
+}

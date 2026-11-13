@@ -1,0 +1,29 @@
+{
+ "retrieved": "2026-11-13",
+ "files": [
+  {
+   "file": "nysdoh-2023-table07.htm",
+   "name": "NYS DOH, Vital Statistics of New York State 2023, Table 7: Live Births by Mother's Age and Resident County",
+   "url": "https://www.health.ny.gov/statistics/vital_statistics/2023/table07.htm",
+   "period": "2023 (page revised January 2026); fetched from the healthweb-back.health.ny.gov mirror of the same page",
+   "bytes": 50847,
+   "sha256": "169a407ac4d5372049a4142ed3793e4ee526bae21aef28f7a99efcefbdaab51c"
+  },
+  {
+   "file": "nysdoh-maternal-depression.htm",
+   "name": "NYS DOH, Maternal Depression: Information for Health Care Providers, \"What is Maternal Depression?\"",
+   "url": "https://www.health.ny.gov/community/pregnancy/health_care/perinatal/maternal_depression/providers/what_is_maternial_depression.htm",
+   "period": "PRAMS 2022 survey data as reported on the page (revised November 2025)",
+   "bytes": 37311,
+   "sha256": "c4944066e0ad060be2a7ef65ef5ffce7f3c2109aee2ad3f5fba6c8d019029d37"
+  },
+  {
+   "file": "births-by-age-monroe-region-2008-2023.json",
+   "name": "NYS DOH via Health Data NY, Vital Statistics Live Births by Mother's Age and Resident County: Beginning 2008 (i7yg-w5rg)",
+   "url": "https://health.data.ny.gov/d/i7yg-w5rg",
+   "period": "2008-2023, rows with mother_s_age_range = Total for Monroe and its five neighboring counties",
+   "bytes": 8765,
+   "sha256": "ffcbdbb44f1108184d1c127098c03ebfe443e8b10d09971aef83556563ccc8ba"
+  }
+ ]
+}

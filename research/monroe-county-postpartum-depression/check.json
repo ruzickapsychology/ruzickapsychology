@@ -1,0 +1,242 @@
+{
+ "checked": "2026-11-13",
+ "fails": [],
+ "checks": [
+  {
+   "check": "Monroe births 2023 (open data)",
+   "expected": 7151,
+   "source": 7151,
+   "ok": true
+  },
+  {
+   "check": "Five neighboring counties births 2023",
+   "expected": 3090,
+   "source": 3090,
+   "ok": true
+  },
+  {
+   "check": "Orleans / Genesee / Livingston / Wayne / Ontario",
+   "expected": [
+    354,
+    475,
+    479,
+    853,
+    929
+   ],
+   "source": [
+    354,
+    475,
+    479,
+    853,
+    929
+   ],
+   "ok": true
+  },
+  {
+   "check": "Monroe births to mothers 25-34",
+   "expected": 4251,
+   "source": 4251,
+   "ok": true
+  },
+  {
+   "check": "NYS excluding NYC births 2023",
+   "expected": 111798,
+   "source": 111798,
+   "ok": true
+  },
+  {
+   "check": "NYS births 2023",
+   "expected": 202667,
+   "source": 202667,
+   "ok": true
+  },
+  {
+   "check": "Monroe births 2008 (2008 Table 7)",
+   "expected": 8707,
+   "source": 8707,
+   "ok": true
+  },
+  {
+   "check": "NY PRAMS sentence: [NYS, NYC, NYS excl NYC]",
+   "expected": [
+    11.9,
+    11.5,
+    12.4
+   ],
+   "source": [
+    11.9,
+    11.5,
+    12.4
+   ],
+   "ok": true
+  },
+  {
+   "check": "PRAMS survey year stated before the NY figures",
+   "expected": "2022",
+   "source": "2022",
+   "ok": true
+  },
+  {
+   "check": "All 2022 PRAMS sites (approximately)",
+   "expected": 12.7,
+   "source": 12.7,
+   "ok": true
+  },
+  {
+   "check": "Screening rate 2020",
+   "expected": 82.4,
+   "source": 82.4,
+   "ok": true
+  },
+  {
+   "check": "10 to 20 percent clinical range present",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "Monroe estimate (exact)",
+   "expected": 886.7,
+   "source": 886.7,
+   "ok": true
+  },
+  {
+   "check": "Monroe estimate shown (nearest 10)",
+   "expected": 890,
+   "source": 890,
+   "ok": true
+  },
+  {
+   "check": "Neighbors estimate shown",
+   "expected": 380,
+   "source": 380,
+   "ok": true
+  },
+  {
+   "check": "Monroe at statewide 11.9%",
+   "expected": 850,
+   "source": 850,
+   "ok": true
+  },
+  {
+   "check": "Monroe 10-20% range",
+   "expected": [
+    720,
+    1430
+   ],
+   "source": [
+    720,
+    1430
+   ],
+   "ok": true
+  },
+  {
+   "check": "Births change 2008-2023 (%)",
+   "expected": -18,
+   "source": -18,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"About 890\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"7,151\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"12.4%\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"11.9%\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"11.5%\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"12.7%\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"About 380\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"3,090\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"82.4%\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"76.1%\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"8,707\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"down 18%\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"about 850\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"720 to 1,430\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"4,251\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"one in eight\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"7,151 x 12.4% = 887\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  }
+ ]
+}

@@ -61,8 +61,8 @@ def write_csv(slug, header, rows):
 def write_page(page):
     """Write the page JSON. Fails if any text still holds a template placeholder."""
     blob = json.dumps(page, ensure_ascii=False, indent=2) + '\n'
-    for bad in ('{n(', '{d1(', '{pct(', 'None', 'nan'):
-        assert bad not in blob, f'placeholder or empty value in page text: {bad}'
+    for bad in (r'\{n\(', r'\{d1\(', r'\{pct\(', r'\bNone\b', r'\bnan\b', r'\binf\b'):
+        assert not re.search(bad, blob), f'placeholder or empty value in page text: {bad}'
     out = os.path.join(REPO, 'src', 'data', 'research', f'{page["slug"]}.json')
     os.makedirs(os.path.dirname(out), exist_ok=True)
     open(out, 'w', encoding='utf-8').write(blob)

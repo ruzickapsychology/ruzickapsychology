@@ -16,6 +16,7 @@ const routes = [
   "/resources",
   "/research",
   "/research/monroe-county-therapists",
+  "/research/monroe-county-postpartum-depression",
   "/pricing",
   "/contact",
   "/faq",
