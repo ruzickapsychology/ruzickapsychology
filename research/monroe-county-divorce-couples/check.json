@@ -1,0 +1,546 @@
+{
+ "checked": "2026-11-13",
+ "fails": [],
+ "checks": [
+  {
+   "check": "Monroe divorces 2023 (Table 48 total)",
+   "expected": 1387,
+   "source": 1387,
+   "ok": true
+  },
+  {
+   "check": "Table 48 divorce column = Table 51 total = Table 52 total",
+   "expected": [
+    1387,
+    1387,
+    1387
+   ],
+   "source": [
+    1387,
+    1387,
+    1387
+   ],
+   "ok": true
+  },
+  {
+   "check": "Monroe marriages 2023 (Table 47 = Table 47a)",
+   "expected": [
+    3008,
+    3008
+   ],
+   "source": [
+    3008,
+    3008
+   ],
+   "ok": true
+  },
+  {
+   "check": "NYS divorces / marriages 2023",
+   "expected": [
+    51332,
+    124301
+   ],
+   "source": [
+    51332,
+    124301
+   ],
+   "ok": true
+  },
+  {
+   "check": "Erie / Onondaga / Jefferson divorces 2023",
+   "expected": [
+    2303,
+    6138,
+    2226
+   ],
+   "source": [
+    2303,
+    6138,
+    2226
+   ],
+   "ok": true
+  },
+  {
+   "check": "Manhattan (\"New York\") divorces 2023",
+   "expected": 1390,
+   "source": 1390,
+   "ok": true
+  },
+  {
+   "check": "Five neighbors divorces / marriages 2023",
+   "expected": [
+    843,
+    1952
+   ],
+   "source": [
+    843,
+    1952
+   ],
+   "ok": true
+  },
+  {
+   "check": "Monroe divorces by duration (<5,5-9,10-14,15-19,20-29,30+,NS)",
+   "expected": [
+    240,
+    325,
+    254,
+    174,
+    225,
+    165,
+    4
+   ],
+   "source": [
+    240,
+    325,
+    254,
+    174,
+    225,
+    165,
+    4
+   ],
+   "ok": true
+  },
+  {
+   "check": "Monroe divorces, marriage of 10+ years",
+   "expected": [
+    818,
+    59
+   ],
+   "source": [
+    818,
+    59
+   ],
+   "ok": true
+  },
+  {
+   "check": "Monroe divorces with a child under 18",
+   "expected": [
+    542,
+    39
+   ],
+   "source": [
+    542,
+    39
+   ],
+   "ok": true
+  },
+  {
+   "check": "Monroe trend 2015-2023 (marriages, divorces, NYS-outside-NYC divorces)",
+   "expected": {
+    "2015": [
+     3587,
+     1871,
+     29276
+    ],
+    "2016": [
+     3612,
+     1814,
+     28882
+    ],
+    "2017": [
+     3491,
+     1739,
+     28278
+    ],
+    "2018": [
+     3307,
+     1665,
+     29387
+    ],
+    "2019": [
+     3224,
+     653,
+     18701
+    ],
+    "2020": [
+     2525,
+     1178,
+     22677
+    ],
+    "2021": [
+     3072,
+     1031,
+     26719
+    ],
+    "2022": [
+     3093,
+     1262,
+     27724
+    ],
+    "2023": [
+     3008,
+     1387,
+     32842
+    ]
+   },
+   "source": {
+    "2015": [
+     3587,
+     1871,
+     29276
+    ],
+    "2016": [
+     3612,
+     1814,
+     28882
+    ],
+    "2017": [
+     3491,
+     1739,
+     28278
+    ],
+    "2018": [
+     3307,
+     1665,
+     29387
+    ],
+    "2019": [
+     3224,
+     653,
+     18701
+    ],
+    "2020": [
+     2525,
+     1178,
+     22677
+    ],
+    "2021": [
+     3072,
+     1031,
+     26719
+    ],
+    "2022": [
+     3093,
+     1262,
+     27724
+    ],
+    "2023": [
+     3008,
+     1387,
+     32842
+    ]
+   },
+   "ok": true
+  },
+  {
+   "check": "Marriage change 2015-2023 (%)",
+   "expected": -16,
+   "source": -16,
+   "ok": true
+  },
+  {
+   "check": "Onondaga / Jefferson / Manhattan divorces 2015",
+   "expected": [
+    1220,
+    619,
+    10452
+   ],
+   "source": [
+    1220,
+    619,
+    10452
+   ],
+   "ok": true
+  },
+  {
+   "check": "Monroe / NYS population 2023",
+   "expected": [
+    748957,
+    19786543
+   ],
+   "source": [
+    748957,
+    19786543
+   ],
+   "ok": true
+  },
+  {
+   "check": "Monroe divorces / marriages per 1,000 (2023)",
+   "expected": [
+    1.9,
+    4.0
+   ],
+   "source": [
+    1.9,
+    4.0
+   ],
+   "ok": true
+  },
+  {
+   "check": "NYS divorces per 1,000 (2023)",
+   "expected": 2.6,
+   "source": 2.6,
+   "ok": true
+  },
+  {
+   "check": "Erie / Onondaga / neighbors divorces per 1,000",
+   "expected": [
+    2.4,
+    13.1,
+    2.3
+   ],
+   "source": [
+    2.4,
+    13.1,
+    2.3
+   ],
+   "ok": true
+  },
+  {
+   "check": "NYSED LMFT counties matched to population",
+   "expected": 62,
+   "source": 62,
+   "ok": true
+  },
+  {
+   "check": "Monroe / NYS / Erie LMFTs",
+   "expected": [
+    144,
+    1518,
+    51
+   ],
+   "source": [
+    144,
+    1518,
+    51
+   ],
+   "ok": true
+  },
+  {
+   "check": "Five neighbors LMFTs",
+   "expected": 28,
+   "source": 28,
+   "ok": true
+  },
+  {
+   "check": "LMFT per 100,000: Monroe / NYS / neighbors",
+   "expected": [
+    19.2,
+    7.6,
+    7.7
+   ],
+   "source": [
+    19.2,
+    7.6,
+    7.7
+   ],
+   "ok": true
+  },
+  {
+   "check": "Monroe rank by LMFT count (1st is Manhattan)",
+   "expected": [
+    2,
+    "New York",
+    191
+   ],
+   "source": [
+    2,
+    "New York",
+    191
+   ],
+   "ok": true
+  },
+  {
+   "check": "Monroe rank by LMFT per resident (1st is Onondaga)",
+   "expected": [
+    2,
+    "Onondaga",
+    27.4
+   ],
+   "source": [
+    2,
+    "Onondaga",
+    27.4
+   ],
+   "ok": true
+  },
+  {
+   "check": "Monroe share of NYS LMFTs / of population / ratio",
+   "expected": [
+    9.5,
+    3.8,
+    2.5
+   ],
+   "source": [
+    9.5,
+    3.8,
+    2.5
+   ],
+   "ok": true
+  },
+  {
+   "check": "page text contains \"second-highest number of licensed marriage and family therapists in New York (144)\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"19.2 per 100,000, against 7.6 statewide\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"granted 1,387 divorces in 2023\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"3,008 couples married\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"9.5% of New York\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"about 1.9 per 1,000 residents\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"(statewide: 2.6)\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"down 16% from 3,587 in 2015\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"542 of 1,387\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"818 of 1,387\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"59%\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"39%\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"Only Manhattan has more (191)\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"(27.4 per 100,000)\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"Erie County, with more people than Monroe, has 51\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"have 28 between them\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"about 2.5 times\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"Onondaga County granted 6,138 in 2023 (up from 1,220 in 2015)\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"Jefferson County 2,226 (up from 619)\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"Manhattan fell from 10,452 to 1,390\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"29,387 in 2018, 18,701 in 2019\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"between 1,665 and 1,871\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"7.7 marriage and family therapists per 100,000\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"3.8% of the state\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"13.1\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"2.4\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"2.3\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"1,952\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"843\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  }
+ ]
+}

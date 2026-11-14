@@ -1,0 +1,290 @@
+{
+ "checked": "2026-11-13",
+ "fails": [],
+ "checks": [
+  {
+   "check": "psych: page says \"as of July 1, 2026\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "psych: counties in table",
+   "expected": 62,
+   "source": 62,
+   "ok": true
+  },
+  {
+   "check": "lcsw: page says \"as of July 1, 2026\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "lcsw: counties in table",
+   "expected": 62,
+   "source": 62,
+   "ok": true
+  },
+  {
+   "check": "lmhc: page says \"as of July 1, 2026\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "lmhc: counties in table",
+   "expected": 62,
+   "source": 62,
+   "ok": true
+  },
+  {
+   "check": "lmft: page says \"as of July 1, 2026\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "lmft: counties in table",
+   "expected": 62,
+   "source": 62,
+   "ok": true
+  },
+  {
+   "check": "population rows (62 counties + state)",
+   "expected": 63,
+   "source": 63,
+   "ok": true
+  },
+  {
+   "check": "Monroe total, four professions",
+   "expected": 2291,
+   "source": 2291,
+   "ok": true
+  },
+  {
+   "check": "Monroe psychologists",
+   "expected": 423,
+   "source": 423,
+   "ok": true
+  },
+  {
+   "check": "Monroe LCSW / LMHC / LMFT",
+   "expected": [
+    990,
+    734,
+    144
+   ],
+   "source": [
+    990,
+    734,
+    144
+   ],
+   "ok": true
+  },
+  {
+   "check": "Monroe population 2025 (NYS table)",
+   "expected": 750506,
+   "source": 750506,
+   "ok": true
+  },
+  {
+   "check": "Monroe per 100,000",
+   "expected": 305.3,
+   "source": 305.3,
+   "ok": true
+  },
+  {
+   "check": "Five neighboring counties total",
+   "expected": 704,
+   "source": 704,
+   "ok": true
+  },
+  {
+   "check": "Five neighboring counties population",
+   "expected": 364059,
+   "source": 364059,
+   "ok": true
+  },
+  {
+   "check": "Five neighboring counties per 100,000",
+   "expected": 193.4,
+   "source": 193.4,
+   "ok": true
+  },
+  {
+   "check": "Five neighboring counties psychologists",
+   "expected": 74,
+   "source": 74,
+   "ok": true
+  },
+  {
+   "check": "NYS total (NYSED \"NYS TOTAL\" lines)",
+   "expected": 57196,
+   "source": 57196,
+   "ok": true
+  },
+  {
+   "check": "NYS per 100,000",
+   "expected": 285.9,
+   "source": 285.9,
+   "ok": true
+  },
+  {
+   "check": "Monroe rank of 62",
+   "expected": 13,
+   "source": 13,
+   "ok": true
+  },
+  {
+   "check": "Monroe psychologist rank of 62",
+   "expected": 8,
+   "source": 8,
+   "ok": true
+  },
+  {
+   "check": "Monroe psychologists per 100,000",
+   "expected": 56.4,
+   "source": 56.4,
+   "ok": true
+  },
+  {
+   "check": "Neighbors psychologists per 100,000",
+   "expected": 20.3,
+   "source": 20.3,
+   "ok": true
+  },
+  {
+   "check": "Erie psychologists",
+   "expected": 347,
+   "source": 347,
+   "ok": true
+  },
+  {
+   "check": "Orleans total",
+   "expected": 38,
+   "source": 38,
+   "ok": true
+  },
+  {
+   "check": "New licenses, four professions, 2024",
+   "expected": 4485,
+   "source": 4485,
+   "ok": true
+  },
+  {
+   "check": "New licenses, four professions, 2025",
+   "expected": 5611,
+   "source": 5611,
+   "ok": true
+  },
+  {
+   "check": "Change 2024 to 2025 (%)",
+   "expected": 25,
+   "source": 25,
+   "ok": true
+  },
+  {
+   "check": "Psychologist licenses 2024 / 2025",
+   "expected": [
+    706,
+    915
+   ],
+   "source": [
+    706,
+    915
+   ],
+   "ok": true
+  },
+  {
+   "check": "Monroe / neighbors ratio",
+   "expected": 1.6,
+   "source": 1.6,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"2,291\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"305.3\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"193.4\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"704\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"364,059\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"285.9\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"13 of 62\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"5,611\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"4,485\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"56.4\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"20.3\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"423\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"347\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"1.6 times\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  }
+ ]
+}

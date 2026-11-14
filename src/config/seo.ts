@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type {
   BlogPosting,
   BreadcrumbList,
+  CollectionPage,
   DayOfWeek,
   Event,
   FAQPage,
@@ -10,6 +11,7 @@ import type {
   WithContext,
 } from "schema-dts";
 import type { ServicePageContent, SiteSettings } from "@/data/cms";
+import type { ResearchPageContent } from "@/data/research";
 import {
   SITE_DEFAULT_DESCRIPTION,
   SITE_LEGAL_NAME,
@@ -337,6 +339,80 @@ export function blogPostJsonLd(post: {
     dateModified: post.updatedAt ?? post.date,
     author: { "@id": practitionerId },
     publisher: { "@id": practiceId },
+  };
+}
+
+/** Article + Dataset for a /research page. Author and publisher are the practice node from the site layout. */
+export function researchPageJsonLd(page: ResearchPageContent): Graph {
+  const url = `${SITE_URL}/research/${page.slug}`;
+  const nodes: Array<Graph["@graph"][number]> = [
+    {
+      "@type": "Article",
+      "@id": `${url}#article`,
+      headline: page.title,
+      description: page.metaDescription,
+      url,
+      mainEntityOfPage: url,
+      datePublished: page.datePublished,
+      dateModified: page.dateModified,
+      inLanguage: "en-US",
+      author: { "@id": practiceId },
+      publisher: { "@id": practiceId },
+      isPartOf: { "@id": `${SITE_URL}/research#collection` },
+      citation: page.sources.map((source) => source.url),
+      ...(page.dataset ? { about: { "@id": `${url}#dataset` } } : {}),
+    },
+  ];
+  if (page.dataset) {
+    nodes.push({
+      "@type": "Dataset",
+      "@id": `${url}#dataset`,
+      name: page.dataset.name,
+      description: page.dataset.description,
+      url,
+      temporalCoverage: page.dataset.temporalCoverage,
+      spatialCoverage: { "@type": "Place", name: page.dataset.spatialCoverage },
+      variableMeasured: page.dataset.variableMeasured,
+      license: "https://creativecommons.org/licenses/by/4.0/",
+      isAccessibleForFree: true,
+      creator: { "@id": practiceId },
+      publisher: { "@id": practiceId },
+      datePublished: page.datePublished,
+      dateModified: page.dateModified,
+      isBasedOn: page.sources.map((source) => source.url),
+      ...(page.csv
+        ? {
+            distribution: {
+              "@type": "DataDownload",
+              encodingFormat: "text/csv",
+              contentUrl: `${SITE_URL}${page.csv.href}`,
+            },
+          }
+        : {}),
+    });
+  }
+  return { "@context": "https://schema.org", "@graph": nodes };
+}
+
+export function researchHubJsonLd(
+  pages: readonly ResearchPageContent[],
+): WithContext<CollectionPage> {
+  const url = `${SITE_URL}/research`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${url}#collection`,
+    name: "Research: Mental Health Data for Rochester and Monroe County",
+    url,
+    inLanguage: "en-US",
+    publisher: { "@id": practiceId },
+    hasPart: pages.map((page) => ({
+      "@type": "Article" as const,
+      "@id": `${url}/${page.slug}#article`,
+      headline: page.title,
+      url: `${url}/${page.slug}`,
+      datePublished: page.datePublished,
+    })),
   };
 }
 

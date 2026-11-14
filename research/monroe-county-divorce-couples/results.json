@@ -1,0 +1,167 @@
+{
+ "slug": "monroe-county-divorce-couples",
+ "year": 2023,
+ "monroe": {
+  "divorces": 1387,
+  "marriages": 3008,
+  "div_per_1000": 1.851908721061423,
+  "mar_per_1000": 4.016251934356712,
+  "pop2023": 748957,
+  "marriages_2015": 3587,
+  "marriage_change_pct": -16,
+  "duration": {
+   "Under 5": 240,
+   "5-9": 325,
+   "10-14": 254,
+   "15-19": 174,
+   "20-29": 225,
+   "30+": 165,
+   "Not stated": 4
+  },
+  "ten_plus": 818,
+  "ten_plus_pct": 59,
+  "children": {
+   "None": 804,
+   "One": 236,
+   "Two": 217,
+   "Three": 67,
+   "Four": 18,
+   "Five or more": 4,
+   "Not stated": 41
+  },
+  "with_children": 542,
+  "with_children_pct": 39,
+  "lmft": 144,
+  "lmft_per_100k": 19.18705513346995,
+  "lmft_share_pct": 9.486166007905137,
+  "pop_share_pct": 3.752074685736886,
+  "share_ratio": 2.528245518130487,
+  "lmft_count_rank": 2,
+  "lmft_rate_rank": 2
+ },
+ "nys": {
+  "divorces": 51332,
+  "marriages": 124301,
+  "div_per_1000": 2.5942884514995876,
+  "mar_per_1000": 6.28209788844873,
+  "lmft": 1518,
+  "lmft_per_100k": 7.589079065255431
+ },
+ "ring": {
+  "divorces": 843,
+  "marriages": 1952,
+  "pop2023": 361862,
+  "lmft": 28,
+  "lmft_per_100k": 7.691061064278044
+ },
+ "erie": {
+  "divorces": 2303,
+  "marriages": 4161,
+  "lmft": 51
+ },
+ "trend": {
+  "2015": {
+   "monroe_marriages": 3587,
+   "monroe_dissolutions": 1871,
+   "rest_of_state_dissolutions": 29276,
+   "nys_dissolutions": 55528
+  },
+  "2016": {
+   "monroe_marriages": 3612,
+   "monroe_dissolutions": 1814,
+   "rest_of_state_dissolutions": 28882,
+   "nys_dissolutions": 56865
+  },
+  "2017": {
+   "monroe_marriages": 3491,
+   "monroe_dissolutions": 1739,
+   "rest_of_state_dissolutions": 28278,
+   "nys_dissolutions": 54336
+  },
+  "2018": {
+   "monroe_marriages": 3307,
+   "monroe_dissolutions": 1665,
+   "rest_of_state_dissolutions": 29387,
+   "nys_dissolutions": 55602
+  },
+  "2019": {
+   "monroe_marriages": 3224,
+   "monroe_dissolutions": 653,
+   "rest_of_state_dissolutions": 18701,
+   "nys_dissolutions": 35855
+  },
+  "2020": {
+   "monroe_marriages": 2525,
+   "monroe_dissolutions": 1178,
+   "rest_of_state_dissolutions": 22677,
+   "nys_dissolutions": 35892
+  },
+  "2021": {
+   "monroe_marriages": 3072,
+   "monroe_dissolutions": 1031,
+   "rest_of_state_dissolutions": 26719,
+   "nys_dissolutions": 44235
+  },
+  "2022": {
+   "monroe_marriages": 3093,
+   "monroe_dissolutions": 1262,
+   "rest_of_state_dissolutions": 27724,
+   "nys_dissolutions": 44313
+  },
+  "2023": {
+   "monroe_marriages": 3008,
+   "monroe_dissolutions": 1387,
+   "rest_of_state_dissolutions": 32842,
+   "nys_dissolutions": 51332
+  }
+ },
+ "decree_hubs": {
+  "Onondaga": [
+   1220,
+   6138
+  ],
+  "Jefferson": [
+   619,
+   2226
+  ],
+  "New York": [
+   10452,
+   1390
+  ]
+ },
+ "provisional_years": [
+  2021,
+  2022,
+  2023
+ ],
+ "published_total_gaps": [
+  {
+   "year": 2015,
+   "table": 47,
+   "column": 0,
+   "region": "New York State",
+   "published_minus_sum": 1
+  },
+  {
+   "year": 2015,
+   "table": 47,
+   "column": 0,
+   "region": "Rest of State",
+   "published_minus_sum": 1
+  },
+  {
+   "year": 2015,
+   "table": 47,
+   "column": 10,
+   "region": "New York State",
+   "published_minus_sum": 1
+  },
+  {
+   "year": 2015,
+   "table": 47,
+   "column": 10,
+   "region": "Rest of State",
+   "published_minus_sum": 1
+  }
+ ]
+}

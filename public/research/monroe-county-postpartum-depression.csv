@@ -1,0 +1,10 @@
+area,level,births_2023,births_mother_age_10_14,births_mother_age_15_17,births_mother_age_18_19,births_mother_age_20_24,births_mother_age_25_29,births_mother_age_30_34,births_mother_age_35_39,births_mother_age_40_44,births_mother_age_45plus,births_mother_age_NS,prams_2022_rate_pct_applied,estimated_mothers_likely_to_report_symptoms
+Monroe County,county,7151,3,62,159,967,1692,2559,1452,246,11,0,12.4,886.7
+Genesee County,county,475,0,5,10,59,164,169,56,12,0,0,12.4,58.9
+Livingston County,county,479,0,4,6,58,161,162,68,20,0,0,12.4,59.4
+Ontario County,county,929,0,5,13,115,263,329,180,23,1,0,12.4,115.2
+Orleans County,county,354,0,0,19,71,110,105,43,6,0,0,12.4,43.9
+Wayne County,county,853,2,2,23,137,247,280,132,30,0,0,12.4,105.8
+Five neighboring counties combined,sum,3090,2,16,71,440,945,1045,479,91,1,0,12.4,383.2
+New York State excluding New York City,region,111798,42,704,2286,15436,26840,37834,22841,5376,437,2,12.4,13863.0
+New York State,state,202667,76,1201,3790,28281,47597,66031,43312,11350,1027,2,11.9,24117.4

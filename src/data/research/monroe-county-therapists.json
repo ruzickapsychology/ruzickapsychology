@@ -1,0 +1,337 @@
+{
+  "slug": "monroe-county-therapists",
+  "kind": "study",
+  "title": "How Many Therapists Does Monroe County Have?",
+  "metaTitle": "How Many Therapists Does Monroe County, NY Have?",
+  "metaDescription": "Monroe County has 2,291 licensed psychologists and therapists, 305.3 per 100,000 residents, vs 193.4 in the five counties around it. NYSED data, July 2026.",
+  "eyebrow": "Data study · Rochester and Monroe County",
+  "headline": "As of July 1, 2026, Monroe County had 2,291 licensed psychologists, clinical social workers, mental health counselors and marriage and family therapists on New York's licensing rolls: 305.3 per 100,000 residents, compared with 193.4 per 100,000 in the five counties around it.",
+  "datePublished": "2026-11-13",
+  "dateModified": "2026-11-13",
+  "card": {
+    "value": "305.3",
+    "label": "licensed psychologists and therapists per 100,000 Monroe County residents",
+    "summary": "Monroe County vs the five counties around it (193.4 per 100,000), from New York State licensing data."
+  },
+  "blocks": [
+    {
+      "type": "keyNumbers",
+      "heading": "Key numbers",
+      "items": [
+        {
+          "value": "2,291",
+          "label": "licensed psychologists (423), LCSWs (990), LMHCs (734) and LMFTs (144) with a Monroe County mailing address",
+          "source": "NYSED Office of the Professions, as of July 1, 2026"
+        },
+        {
+          "value": "305.3",
+          "label": "per 100,000 Monroe County residents, about one for every 328 people; New York State: 285.9",
+          "source": "NYSED Office of the Professions, as of July 1, 2026; population: U.S. Census Bureau, July 1, 2025"
+        },
+        {
+          "value": "193.4",
+          "label": "per 100,000 residents in Genesee, Livingston, Ontario, Orleans and Wayne counties combined (704 clinicians for 364,059 people)",
+          "source": "NYSED Office of the Professions, as of July 1, 2026; population: U.S. Census Bureau, July 1, 2025"
+        },
+        {
+          "value": "13 of 62",
+          "label": "Monroe County's rank among New York's 62 counties by licensed psychologists and therapists per resident (8 of 62 for psychologists alone)",
+          "source": "NYSED Office of the Professions, as of July 1, 2026; population: U.S. Census Bureau, July 1, 2025"
+        },
+        {
+          "value": "5,611",
+          "label": "new licenses issued statewide in these four professions in 2025, up 25% from 4,485 in 2024 (psychologists: 915, up from 706)",
+          "source": "NYSED Office of the Professions, licenses issued by calendar year"
+        }
+      ]
+    },
+    {
+      "type": "chart",
+      "heading": "Licensed psychologists and therapists per 100,000 residents",
+      "description": "Psychologists, LCSWs, LMHCs and LMFTs combined, by county of mailing address, as of July 1, 2026. Monroe County is highlighted.",
+      "unit": "per 100,000 residents",
+      "bars": [
+        {
+          "label": "Monroe County",
+          "value": 305.3,
+          "display": "305.3",
+          "tone": "highlight"
+        },
+        {
+          "label": "Ontario County",
+          "value": 253.7,
+          "display": "253.7",
+          "tone": "default"
+        },
+        {
+          "label": "Livingston County",
+          "value": 193.7,
+          "display": "193.7",
+          "tone": "default"
+        },
+        {
+          "label": "Wayne County",
+          "value": 178.6,
+          "display": "178.6",
+          "tone": "default"
+        },
+        {
+          "label": "Genesee County",
+          "value": 166.1,
+          "display": "166.1",
+          "tone": "default"
+        },
+        {
+          "label": "Orleans County",
+          "value": 95.4,
+          "display": "95.4",
+          "tone": "default"
+        },
+        {
+          "label": "Five neighboring counties combined",
+          "value": 193.4,
+          "display": "193.4",
+          "tone": "muted"
+        },
+        {
+          "label": "Erie County (Buffalo)",
+          "value": 257.2,
+          "display": "257.2",
+          "tone": "compare"
+        },
+        {
+          "label": "Onondaga County (Syracuse)",
+          "value": 280.3,
+          "display": "280.3",
+          "tone": "compare"
+        },
+        {
+          "label": "New York State",
+          "value": 285.9,
+          "display": "285.9",
+          "tone": "compare"
+        }
+      ],
+      "note": "Sources: NYSED Office of the Professions license statistics (July 1, 2026); U.S. Census Bureau Vintage 2025 population estimates."
+    },
+    {
+      "type": "table",
+      "heading": "The numbers behind the chart",
+      "caption": "Licensees by county of mailing address, as of July 1, 2026, and population on July 1, 2025",
+      "columns": [
+        "Area",
+        "Population (2025)",
+        "Psychologists",
+        "LCSWs",
+        "LMHCs",
+        "LMFTs",
+        "Total",
+        "Per 100,000"
+      ],
+      "rows": [
+        [
+          "Monroe County",
+          "750,506",
+          "423",
+          "990",
+          "734",
+          "144",
+          "2,291",
+          "305.3"
+        ],
+        [
+          "Ontario County",
+          "113,130",
+          "40",
+          "150",
+          "88",
+          "9",
+          "287",
+          "253.7"
+        ],
+        [
+          "Livingston County",
+          "61,438",
+          "15",
+          "55",
+          "46",
+          "3",
+          "119",
+          "193.7"
+        ],
+        [
+          "Wayne County",
+          "91,250",
+          "11",
+          "78",
+          "62",
+          "12",
+          "163",
+          "178.6"
+        ],
+        [
+          "Genesee County",
+          "58,416",
+          "6",
+          "57",
+          "31",
+          "3",
+          "97",
+          "166.1"
+        ],
+        [
+          "Orleans County",
+          "39,825",
+          "2",
+          "20",
+          "15",
+          "1",
+          "38",
+          "95.4"
+        ],
+        [
+          "Five neighboring counties",
+          "364,059",
+          "74",
+          "360",
+          "242",
+          "28",
+          "704",
+          "193.4"
+        ],
+        [
+          "Erie County (Buffalo)",
+          "946,741",
+          "347",
+          "1,177",
+          "860",
+          "51",
+          "2,435",
+          "257.2"
+        ],
+        [
+          "Onondaga County (Syracuse)",
+          "466,584",
+          "186",
+          "627",
+          "367",
+          "128",
+          "1,308",
+          "280.3"
+        ],
+        [
+          "New York State",
+          "20,002,427",
+          "11,551",
+          "31,553",
+          "12,574",
+          "1,518",
+          "57,196",
+          "285.9"
+        ]
+      ],
+      "csv": true
+    },
+    {
+      "type": "prose",
+      "eyebrow": "Findings",
+      "heading": "What the data shows",
+      "paragraphs": [
+        "Monroe County has more licensed psychologists and therapists per resident than New York State as a whole: 305.3 per 100,000 residents against 285.9 statewide. It ranks 13 of New York's 62 counties on this measure.",
+        "Step outside the county line and the number drops. The five counties that border Monroe (Genesee, Livingston, Ontario, Orleans and Wayne) have 704 licensed clinicians in these four professions for 364,059 residents: 193.4 per 100,000. Monroe's rate is 1.6 times theirs.",
+        "The gap is widest for psychologists. Monroe County has 423 licensed psychologists, 56.4 per 100,000 residents. The five neighboring counties have 74 between them, 20.3 per 100,000. Erie County, home to Buffalo, has 347 psychologists for a larger population (36.7 per 100,000).",
+        "Orleans County has the fewest per resident of the five: 38 licensed clinicians in these professions for 39,825 residents (95.4 per 100,000), including 2 psychologists.",
+        "More people are entering these professions. New York issued 5,611 new licenses in the four professions in 2025, up from 4,485 in 2024. NYSED publishes these statewide, not by county."
+      ]
+    },
+    {
+      "type": "points",
+      "eyebrow": "For people looking for a therapist",
+      "heading": "What this means if you are looking for therapy",
+      "items": [
+        "A license count is not the same as an open appointment. These numbers show how many licensed clinicians list a mailing address in each county. They do not show who is taking new clients, which insurance they accept or how long the wait is.",
+        "If you live in Genesee, Livingston, Ontario, Orleans or Wayne County, you may have fewer local choices. Video sessions are one way to widen them: Ruzicka Psychology sees adults in person in Rochester and [virtually across New York](/specialties).",
+        "You can check any New York clinician's license, and its current registration, on [NYSED's free online verification search](https://eservices.nysed.gov/professions/verification-search).",
+        "If you are deciding whether to start, a short consultation call can help you ask about fit, fees and availability before you commit. You can [request a free 15-minute phone consultation](/contact)."
+      ]
+    },
+    {
+      "type": "prose",
+      "eyebrow": "Method",
+      "heading": "How we counted",
+      "paragraphs": [
+        "We took the number of licensees in four professions from the New York State Education Department (NYSED) Office of the Professions license statistics pages: psychology, licensed clinical social work (LCSW), mental health counseling (LMHC) and marriage and family therapy (LMFT). NYSED lists licensees by the county of their primary mailing address on record, as of July 1, 2026.",
+        "We divided each county's total by its population on July 1, 2025, from the U.S. Census Bureau's Vintage 2025 county estimates, and multiplied by 100,000. The five neighboring counties are the five that share a border with Monroe County. The New York State row uses NYSED's own \"NYS TOTAL\" line.",
+        "The new-license figures come from the \"Licenses Issued, Past 5 Calendar Years\" table on the same NYSED pages. They are statewide totals."
+      ]
+    },
+    {
+      "type": "prose",
+      "eyebrow": "Limits",
+      "heading": "What this data cannot tell you",
+      "paragraphs": [
+        "NYSED counts people by mailing address, which may be a home rather than an office. A clinician who lives in Ontario County and practices in Rochester is counted in Ontario County, and the reverse.",
+        "NYSED notes that being registered \"does not necessarily mean the licensee is actively engaged in practice.\" The counts include people who are retired from practice, work in hospitals, schools or research, see only children, or do not provide therapy at all. They do not include psychiatrists or psychiatric nurse practitioners, who are licensed separately.",
+        "NYSED's county rows do not always add up to its statewide line: on the LCSW page the counties sum to 7 fewer than the \"NYS TOTAL\", and on the LMFT page to 1 more. We show the figures as NYSED publishes them.",
+        "This study measures supply only. It does not measure wait times, insurance acceptance, quality of care or need."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "name": "NYSED Office of the Professions, License Statistics: Psychology",
+      "period": "As of July 1, 2026; licenses issued 2021-2025",
+      "url": "https://www.op.nysed.gov/professions/psychology/license-statistics"
+    },
+    {
+      "name": "NYSED Office of the Professions, License Statistics: Licensed Clinical Social Worker",
+      "period": "As of July 1, 2026; licenses issued 2021-2025",
+      "url": "https://www.op.nysed.gov/professions/licensed-clinical-social-worker/license-statistics"
+    },
+    {
+      "name": "NYSED Office of the Professions, License Statistics: Mental Health Counselors",
+      "period": "As of July 1, 2026; licenses issued 2021-2025",
+      "url": "https://www.op.nysed.gov/professions/mental-health-counselors/license-statistics"
+    },
+    {
+      "name": "NYSED Office of the Professions, License Statistics: Marriage and Family Therapists",
+      "period": "As of July 1, 2026; licenses issued 2021-2025",
+      "url": "https://www.op.nysed.gov/professions/marriage-and-family-therapists/license-statistics"
+    },
+    {
+      "name": "U.S. Census Bureau, County Population Totals, Vintage 2025 (co-est2025-alldata)",
+      "period": "July 1, 2025 estimates",
+      "url": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/counties/totals/co-est2025-alldata.csv"
+    }
+  ],
+  "citation": "Ruzicka Psychology. \"How Many Therapists Does Monroe County Have?\" November 13, 2026. https://www.ruzickapsychology.com/research/monroe-county-therapists. Data: NYSED Office of the Professions; U.S. Census Bureau.",
+  "csv": {
+    "href": "/research/monroe-county-therapists.csv",
+    "rows": 63,
+    "label": "Licensed psychologists, LCSWs, LMHCs and LMFTs for all 62 New York counties, with 2025 population, rate per 100,000 and rank (CSV, 63 rows)"
+  },
+  "dataset": {
+    "name": "Licensed psychologists and therapists per 100,000 residents, New York counties, July 2026",
+    "description": "Licensees in four NYSED-licensed professions (psychology, LCSW, LMHC, LMFT) by county of primary mailing address as of July 1, 2026, with U.S. Census Bureau July 1, 2025 county population and rate per 100,000, for all 62 New York counties and New York State.",
+    "temporalCoverage": "2025-07-01/2026-07-01",
+    "spatialCoverage": "New York State, United States (62 counties; focus on Monroe County and Genesee, Livingston, Ontario, Orleans and Wayne counties)",
+    "variableMeasured": [
+      "Licensed psychologists",
+      "Licensed clinical social workers",
+      "Licensed mental health counselors",
+      "Licensed marriage and family therapists",
+      "Population",
+      "Licensees per 100,000 residents"
+    ]
+  },
+  "related": [
+    {
+      "label": "Therapy specialties",
+      "href": "/specialties"
+    },
+    {
+      "label": "Crisis and support resources",
+      "href": "/resources"
+    }
+  ]
+}

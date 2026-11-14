@@ -1,0 +1,226 @@
+{
+ "slug": "monroe-county-therapists",
+ "as_of": "July 1, 2026",
+ "population_year": 2025,
+ "monroe": {
+  "name": "Monroe County",
+  "counties": [
+   "Monroe"
+  ],
+  "pop": 750506,
+  "counts": {
+   "psych": 423,
+   "lcsw": 990,
+   "lmhc": 734,
+   "lmft": 144
+  },
+  "total": 2291,
+  "rate": 305.3,
+  "psych_rate": 56.4,
+  "per_clinician": 328
+ },
+ "ring": {
+  "name": "Five neighboring counties",
+  "counties": [
+   "Genesee",
+   "Livingston",
+   "Ontario",
+   "Orleans",
+   "Wayne"
+  ],
+  "pop": 364059,
+  "counts": {
+   "psych": 74,
+   "lcsw": 360,
+   "lmhc": 242,
+   "lmft": 28
+  },
+  "total": 704,
+  "rate": 193.4,
+  "psych_rate": 20.3,
+  "per_clinician": 517
+ },
+ "ring_each": [
+  {
+   "name": "Genesee County",
+   "counties": [
+    "Genesee"
+   ],
+   "pop": 58416,
+   "counts": {
+    "psych": 6,
+    "lcsw": 57,
+    "lmhc": 31,
+    "lmft": 3
+   },
+   "total": 97,
+   "rate": 166.1,
+   "psych_rate": 10.3,
+   "per_clinician": 602
+  },
+  {
+   "name": "Livingston County",
+   "counties": [
+    "Livingston"
+   ],
+   "pop": 61438,
+   "counts": {
+    "psych": 15,
+    "lcsw": 55,
+    "lmhc": 46,
+    "lmft": 3
+   },
+   "total": 119,
+   "rate": 193.7,
+   "psych_rate": 24.4,
+   "per_clinician": 516
+  },
+  {
+   "name": "Ontario County",
+   "counties": [
+    "Ontario"
+   ],
+   "pop": 113130,
+   "counts": {
+    "psych": 40,
+    "lcsw": 150,
+    "lmhc": 88,
+    "lmft": 9
+   },
+   "total": 287,
+   "rate": 253.7,
+   "psych_rate": 35.4,
+   "per_clinician": 394
+  },
+  {
+   "name": "Orleans County",
+   "counties": [
+    "Orleans"
+   ],
+   "pop": 39825,
+   "counts": {
+    "psych": 2,
+    "lcsw": 20,
+    "lmhc": 15,
+    "lmft": 1
+   },
+   "total": 38,
+   "rate": 95.4,
+   "psych_rate": 5.0,
+   "per_clinician": 1048
+  },
+  {
+   "name": "Wayne County",
+   "counties": [
+    "Wayne"
+   ],
+   "pop": 91250,
+   "counts": {
+    "psych": 11,
+    "lcsw": 78,
+    "lmhc": 62,
+    "lmft": 12
+   },
+   "total": 163,
+   "rate": 178.6,
+   "psych_rate": 12.1,
+   "per_clinician": 560
+  }
+ ],
+ "peers": [
+  {
+   "name": "Erie County (Buffalo)",
+   "counties": [
+    "Erie"
+   ],
+   "pop": 946741,
+   "counts": {
+    "psych": 347,
+    "lcsw": 1177,
+    "lmhc": 860,
+    "lmft": 51
+   },
+   "total": 2435,
+   "rate": 257.2,
+   "psych_rate": 36.7,
+   "per_clinician": 389
+  },
+  {
+   "name": "Onondaga County (Syracuse)",
+   "counties": [
+    "Onondaga"
+   ],
+   "pop": 466584,
+   "counts": {
+    "psych": 186,
+    "lcsw": 627,
+    "lmhc": 367,
+    "lmft": 128
+   },
+   "total": 1308,
+   "rate": 280.3,
+   "psych_rate": 39.9,
+   "per_clinician": 357
+  }
+ ],
+ "nys": {
+  "name": "New York State",
+  "pop": 20002427,
+  "counts": {
+   "psych": 11551,
+   "lcsw": 31553,
+   "lmhc": 12574,
+   "lmft": 1518
+  },
+  "total": 57196,
+  "rate": 285.9,
+  "psych_rate": 57.7,
+  "per_clinician": 350
+ },
+ "monroe_rank_of_62": 13,
+ "monroe_psych_rank_of_62": 8,
+ "ratio_monroe_ring": 1.6,
+ "psych_ratio_monroe_ring": 2.8,
+ "issued_statewide": {
+  "psych": {
+   "2021": 598,
+   "2022": 696,
+   "2023": 774,
+   "2024": 706,
+   "2025": 915
+  },
+  "lcsw": {
+   "2021": 1907,
+   "2022": 2063,
+   "2023": 2095,
+   "2024": 2419,
+   "2025": 2636
+  },
+  "lmhc": {
+   "2021": 1009,
+   "2022": 1050,
+   "2023": 1209,
+   "2024": 1212,
+   "2025": 1768
+  },
+  "lmft": {
+   "2021": 139,
+   "2022": 169,
+   "2023": 177,
+   "2024": 148,
+   "2025": 292
+  }
+ },
+ "issued_four": {
+  "2021": 3653,
+  "2022": 3978,
+  "2023": 4255,
+  "2024": 4485,
+  "2025": 5611
+ },
+ "issued_change_2024_2025_pct": 25,
+ "nysed_table_gaps": {
+  "lcsw": 7,
+  "lmft": -1
+ }
+}

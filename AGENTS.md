@@ -73,6 +73,8 @@ content through `src/data/cms.ts` and pass it to render-only page modules.
 
 If Sanity data is missing, a page may render nothing rather than falling back to stale local content. Fix the content or seed data instead of adding redundancy.
 
+Exception: `/research` pages are generated data, not CMS copy. `research/<slug>/build.py` writes `src/data/research/<slug>.json` and `public/research/<slug>.csv` from public source files, so every figure can be re-derived. Do not edit those outputs by hand or move them into Sanity; see `research/README.md`.
+
 ## Routes And Page Modules
 
 - `src/app/` is the framework boundary. Public `page.tsx` files own metadata,

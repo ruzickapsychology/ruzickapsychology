@@ -1,0 +1,335 @@
+{
+  "slug": "monroe-county-divorce-couples",
+  "kind": "study",
+  "title": "Marriage, Divorce and Couples Therapists in Monroe County",
+  "metaTitle": "Monroe County, NY Divorce and Marriage Data, With Couples Therapists",
+  "metaDescription": "Monroe County courts granted 1,387 divorces in 2023 and 3,008 couples married there. The county has 144 licensed marriage and family therapists, 9.5% of New York's 1,518.",
+  "eyebrow": "Data study · Rochester and Monroe County",
+  "headline": "Monroe County has the second-highest number of licensed marriage and family therapists in New York (144) and the second-highest per resident: 19.2 per 100,000, against 7.6 statewide. Its courts granted 1,387 divorces in 2023, the same year 3,008 couples married in the county.",
+  "datePublished": "2026-11-13",
+  "dateModified": "2026-11-13",
+  "card": {
+    "value": "1,387",
+    "label": "divorces granted in Monroe County in 2023",
+    "summary": "Monroe also has 144 licensed marriage and family therapists, 9.5% of the state total and the second-highest count of any county."
+  },
+  "blocks": [
+    {
+      "type": "keyNumbers",
+      "heading": "Key numbers",
+      "items": [
+        {
+          "value": "144",
+          "label": "licensed marriage and family therapists with a Monroe County address, 9.5% of New York's 1,518 (Erie County: 51)",
+          "source": "NYSED Office of the Professions, license statistics (as of July 1, 2026)"
+        },
+        {
+          "value": "19.2",
+          "label": "marriage and family therapists per 100,000 Monroe residents, against 7.6 statewide and 7.7 in the five neighboring counties",
+          "source": "NYSED Office of the Professions, license statistics (as of July 1, 2026); U.S. Census Bureau 2025 population estimates"
+        },
+        {
+          "value": "1,387",
+          "label": "divorces granted in Monroe County in 2023, about 1.9 per 1,000 residents (statewide: 2.6)",
+          "source": "NYS Department of Health, Vital Statistics of New York State 2023, Table 48"
+        },
+        {
+          "value": "3,008",
+          "label": "marriages in Monroe County in 2023, down 16% from 3,587 in 2015",
+          "source": "NYS Department of Health, Vital Statistics of New York State 2023, Table 47"
+        },
+        {
+          "value": "39%",
+          "label": "of Monroe County divorces in 2023 (542 of 1,387) involved at least one child under 18",
+          "source": "NYS Department of Health, Vital Statistics of New York State 2023, Table 52"
+        },
+        {
+          "value": "59%",
+          "label": "ended a marriage that had lasted 10 years or more (818 of 1,387)",
+          "source": "NYS Department of Health, Vital Statistics of New York State 2023, Table 51"
+        }
+      ]
+    },
+    {
+      "type": "notice",
+      "text": "If you are in crisis or thinking about harming yourself, call or text 988 (Suicide & Crisis Lifeline, free, 24/7). If you or anyone else is in immediate danger, call 911. If you feel unsafe in your relationship, Willow Domestic Violence Center's 24-hour hotline is (585) 222-SAFE, call or text. Local lines are on our [resources page](/resources)."
+    },
+    {
+      "type": "chart",
+      "heading": "How long Monroe County marriages lasted before divorce, 2023",
+      "description": "1,387 divorces granted in Monroe County, by length of the marriage. The most common length was 5 to 9 years.",
+      "unit": "divorces",
+      "bars": [
+        {
+          "label": "Under 5 years",
+          "value": 240,
+          "display": "240",
+          "tone": "default"
+        },
+        {
+          "label": "5 to 9 years",
+          "value": 325,
+          "display": "325",
+          "tone": "highlight"
+        },
+        {
+          "label": "10 to 14 years",
+          "value": 254,
+          "display": "254",
+          "tone": "default"
+        },
+        {
+          "label": "15 to 19 years",
+          "value": 174,
+          "display": "174",
+          "tone": "default"
+        },
+        {
+          "label": "20 to 29 years",
+          "value": 225,
+          "display": "225",
+          "tone": "default"
+        },
+        {
+          "label": "30 years or more",
+          "value": 165,
+          "display": "165",
+          "tone": "default"
+        }
+      ],
+      "note": "Source: NYS Department of Health, Vital Statistics of New York State 2023, Table 51 (provisional). Length not stated: 4."
+    },
+    {
+      "type": "table",
+      "heading": "Marriages, divorces and marriage and family therapists by area",
+      "caption": "Marriages and divorces in 2023 (where the ceremony or decree took place); licensed marriage and family therapists as of July 1, 2026 (mailing address). Onondaga's divorce count reflects where decrees were granted, not where couples lived.",
+      "columns": [
+        "Area",
+        "Marriages (2023)",
+        "Divorces (2023)",
+        "Divorces per 1,000 residents",
+        "Licensed MFTs",
+        "MFTs per 100,000"
+      ],
+      "rows": [
+        [
+          "Monroe County",
+          "3,008",
+          "1,387",
+          "1.9",
+          "144",
+          "19.2"
+        ],
+        [
+          "Five neighboring counties",
+          "1,952",
+          "843",
+          "2.3",
+          "28",
+          "7.7"
+        ],
+        [
+          "Erie County (Buffalo)",
+          "4,161",
+          "2,303",
+          "2.4",
+          "51",
+          "5.4"
+        ],
+        [
+          "Onondaga County (Syracuse)",
+          "1,868",
+          "6,138",
+          "13.1",
+          "128",
+          "27.4"
+        ],
+        [
+          "New York State",
+          "124,301",
+          "51,332",
+          "2.6",
+          "1,518",
+          "7.6"
+        ]
+      ],
+      "csv": true
+    },
+    {
+      "type": "prose",
+      "eyebrow": "Findings",
+      "heading": "What the data shows",
+      "paragraphs": [
+        "Monroe County has 144 licensed marriage and family therapists (LMFTs), 9.5% of the 1,518 in New York State. The county has 3.8% of the state's residents, so it has about 2.5 times its population share of LMFTs. Only Manhattan has more (191), and only Onondaga County has more per resident (27.4 per 100,000). Erie County, with more people than Monroe, has 51. The five neighboring counties have 28 between them.",
+        "Monroe County courts granted 1,387 divorces in 2023, about 1.9 for every 1,000 residents. Across New York State the figure was 2.6. In the same year 3,008 couples married in Monroe County, about 4.0 per 1,000 residents.",
+        "Most divorces ended long marriages: 59% of Monroe County divorces in 2023 ended a marriage of 10 years or more, and 165 ended a marriage of 30 years or more. About four in ten (39%) involved at least one child under 18.",
+        "Marriages in the county have declined, from 3,587 in 2015 to 3,008 in 2023. Divorce counts were between 1,665 and 1,871 a year from 2015 to 2018. They fell sharply in 2019, as they did across New York outside New York City (29,387 in 2018, 18,701 in 2019), and have risen each year since 2021."
+      ]
+    },
+    {
+      "type": "table",
+      "heading": "Monroe County marriages and divorces, 2023 back to 2015",
+      "caption": "Marriages by county of ceremony and divorces (all dissolutions of marriage) by county of decree, with New York State outside New York City for comparison.",
+      "columns": [
+        "Year",
+        "Monroe marriages",
+        "Monroe divorces",
+        "Divorces, NYS outside NYC"
+      ],
+      "rows": [
+        [
+          "2023 (provisional)",
+          "3,008",
+          "1,387",
+          "32,842"
+        ],
+        [
+          "2022 (provisional)",
+          "3,093",
+          "1,262",
+          "27,724"
+        ],
+        [
+          "2021 (provisional)",
+          "3,072",
+          "1,031",
+          "26,719"
+        ],
+        [
+          "2020",
+          "2,525",
+          "1,178",
+          "22,677"
+        ],
+        [
+          "2019",
+          "3,224",
+          "653",
+          "18,701"
+        ],
+        [
+          "2018",
+          "3,307",
+          "1,665",
+          "29,387"
+        ],
+        [
+          "2017",
+          "3,491",
+          "1,739",
+          "28,278"
+        ],
+        [
+          "2016",
+          "3,612",
+          "1,814",
+          "28,882"
+        ],
+        [
+          "2015",
+          "3,587",
+          "1,871",
+          "29,276"
+        ]
+      ]
+    },
+    {
+      "type": "points",
+      "eyebrow": "For couples",
+      "heading": "What this means for couples",
+      "items": [
+        "Rochester-area couples have more licensed marriage and family therapists nearby than most of New York: 19.2 per 100,000 residents against 7.6 statewide.",
+        "Marriage and family therapists are one of several license types that see couples. Psychologists, clinical social workers and mental health counselors may also offer couples therapy, so it is reasonable to ask any clinician about their training and experience with couples.",
+        "The five counties around Monroe have 7.7 marriage and family therapists per 100,000 residents, close to the statewide level and well below Monroe's 19.2.",
+        "Ruzicka Psychology offers [couples therapy](/specialties/couples-therapy) in Rochester. If you feel unsafe in your relationship, local help, including Willow Domestic Violence Center, is listed on our [resources page](/resources)."
+      ]
+    },
+    {
+      "type": "prose",
+      "eyebrow": "Method",
+      "heading": "How we counted",
+      "paragraphs": [
+        "Marriages and divorces: New York State Department of Health, Vital Statistics of New York State, Table 47 (marriages by county where the ceremony took place) and Table 48 (dissolutions of marriage by county where the decree was granted), 2015 to 2023. \"Divorces\" on this page means all dissolutions in Table 48; in Monroe County in 2023 every one was a divorce. Length of marriage and children under 18 come from Tables 51 and 52.",
+        "Marriage and family therapists: New York State Education Department license statistics, which count licensees by the county of their mailing address as of July 1, 2026. The same counts appear in our [study of therapist supply in Monroe County](/research/monroe-county-therapists).",
+        "Rates: divorces and marriages per 1,000 residents use U.S. Census Bureau population estimates for 2023 (Vintage 2025); therapists per 100,000 use the 2025 estimates."
+      ]
+    },
+    {
+      "type": "prose",
+      "eyebrow": "Limits",
+      "heading": "What these numbers cannot tell you",
+      "paragraphs": [
+        "Divorces are counted in the county where the court granted the decree, not where the couple lived. Some counties grant far more divorces than their own population would explain: Onondaga County granted 6,138 in 2023 (up from 1,220 in 2015) and Jefferson County 2,226 (up from 619), while Manhattan fell from 10,452 to 1,390. Some Monroe County couples may have divorced elsewhere, so county divorce rates are rough.",
+        "Marriages are counted where the ceremony took place, so wedding destinations count marriages of couples who live elsewhere.",
+        "Counts for 2021, 2022 and 2023 are marked provisional by the Department of Health. The tables do not explain the 2019 drop in divorce counts, and this page does not try to.",
+        "Licensed marriage and family therapists are counted by mailing address, which may be a home rather than an office, and a license does not mean the person is currently seeing couples.",
+        "These numbers describe how often marriages begin and end. They say nothing about why, and nothing about what helps."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "name": "NYS Department of Health, Vital Statistics of New York State 2023, Table 48: Dissolutions of Marriage by County of Decree and Type of Decree",
+      "period": "2015-2023 (2021-2023 provisional); one table per year",
+      "url": "https://www.health.ny.gov/statistics/vital_statistics/2023/table48.htm"
+    },
+    {
+      "name": "NYS Department of Health, Vital Statistics of New York State 2023, Table 47: Marriages by County of Occurrence and Month of Ceremony",
+      "period": "2015-2023 (2021-2023 provisional); one table per year",
+      "url": "https://www.health.ny.gov/statistics/vital_statistics/2023/table47.htm"
+    },
+    {
+      "name": "NYS Department of Health, Vital Statistics of New York State 2023, Table 51: Divorces by County of Decree and Duration of Marriage",
+      "period": "2023 (provisional)",
+      "url": "https://www.health.ny.gov/statistics/vital_statistics/2023/table51.htm"
+    },
+    {
+      "name": "NYS Department of Health, Vital Statistics of New York State 2023, Table 52: Divorces by County of Decree and Number of Children Under 18",
+      "period": "2023 (provisional)",
+      "url": "https://www.health.ny.gov/statistics/vital_statistics/2023/table52.htm"
+    },
+    {
+      "name": "NYSED Office of the Professions, Marriage and Family Therapists: License Statistics",
+      "period": "As of July 1, 2026",
+      "url": "https://www.op.nysed.gov/professions/marriage-and-family-therapists/license-statistics"
+    },
+    {
+      "name": "U.S. Census Bureau, County Population Totals and Components of Change: 2020-2025 (Vintage 2025)",
+      "period": "July 1, 2023 and July 1, 2025 estimates",
+      "url": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/counties/totals/co-est2025-alldata.csv"
+    }
+  ],
+  "citation": "Ruzicka Psychology. \"Marriage, Divorce and Couples Therapists in Monroe County.\" November 13, 2026. https://www.ruzickapsychology.com/research/monroe-county-divorce-couples. Data: NYS Department of Health; NYSED; U.S. Census Bureau.",
+  "csv": {
+    "href": "/research/monroe-county-divorce-couples.csv",
+    "rows": 65,
+    "label": "Marriages, divorces and licensed marriage and family therapists for all 62 New York counties, New York City, the rest of the state and New York State, with divorces for 2015 to 2023 (CSV, 65 rows)"
+  },
+  "dataset": {
+    "name": "Marriages, divorces and licensed marriage and family therapists by New York county",
+    "description": "Marriages by county of occurrence and dissolutions of marriage by county of decree (NYS DOH Vital Statistics, 2015-2023), with NYSED licensed marriage and family therapists by county (July 1, 2026) and rates per resident.",
+    "temporalCoverage": "2015/2026",
+    "spatialCoverage": "New York State, United States (all 62 counties)",
+    "variableMeasured": [
+      "Marriages",
+      "Dissolutions of marriage",
+      "Divorces by duration of marriage",
+      "Divorces by number of children under 18",
+      "Licensed marriage and family therapists"
+    ]
+  },
+  "related": [
+    {
+      "label": "Couples therapy",
+      "href": "/specialties/couples-therapy"
+    },
+    {
+      "label": "How many therapists does Monroe County have?",
+      "href": "/research/monroe-county-therapists"
+    },
+    {
+      "label": "Local support and crisis lines",
+      "href": "/resources"
+    }
+  ]
+}

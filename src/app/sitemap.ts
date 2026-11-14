@@ -6,6 +6,11 @@ import {
   serviceHref,
 } from "@/config/services";
 import { SITE_URL } from "@/config/site";
+import {
+  getResearchLastModified,
+  getResearchPages,
+  researchPath,
+} from "@/data/research";
 
 const pagePaths: Record<string, string> = {
   homePage: "",
@@ -89,5 +94,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
   });
 
-  return [...routes, ...services, ...posts];
+  // Research pages are code-owned: their content is generated from public
+  // data by research/<slug>/build.py, not stored in Sanity.
+  const researchLastModified = getResearchLastModified();
+  const research = [
+    {
+      url: `${SITE_URL}/research`,
+      ...(researchLastModified
+        ? { lastModified: new Date(`${researchLastModified}T00:00:00Z`) }
+        : {}),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    },
+    ...getResearchPages().map((page) => ({
+      url: `${SITE_URL}${researchPath(page.slug)}`,
+      lastModified: new Date(`${page.dateModified}T00:00:00Z`),
+      changeFrequency: "yearly" as const,
+      priority: 0.6,
+    })),
+  ];
+
+  return [...routes, ...services, ...research, ...posts];
 }

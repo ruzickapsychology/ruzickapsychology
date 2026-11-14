@@ -1,0 +1,47 @@
+{
+ "slug": "rochester-monroe-county-mental-health-statistics",
+ "places_county_rank_highest_first": {
+  "DEPRESSION": 6,
+  "EMOTIONSPT": 43,
+  "LONELINESS": 24,
+  "MHLTH": 45
+ },
+ "places_county_ties": {
+  "DEPRESSION": 3,
+  "EMOTIONSPT": 1,
+  "LONELINESS": 4,
+  "MHLTH": 2
+ },
+ "places_county_median": {
+  "DEPRESSION": 20.65,
+  "EMOTIONSPT": 23.2,
+  "LONELINESS": 32.3,
+  "MHLTH": 16.2
+ },
+ "monroe_places": {
+  "DEPRESSION": 21.9,
+  "EMOTIONSPT": 22.9,
+  "LONELINESS": 32.5,
+  "MHLTH": 15.3
+ },
+ "hpsa": {
+  "id": "7368573260",
+  "score": 19,
+  "population": 129319,
+  "type": "Medicaid Eligible Population HPSA",
+  "discipline": "Mental Health",
+  "designated": "06/28/2022",
+  "updated": "06/28/2022",
+  "tracts": 88,
+  "tracts_city_2010": 79
+ },
+ "ny988_october_2026": {
+  "routed": 44679,
+  "answered": 40544,
+  "rate_pct": 91,
+  "abandoned": 3288,
+  "flowout": 847,
+  "speed_sec": 30.9,
+  "talk_min": 15.1
+ }
+}
