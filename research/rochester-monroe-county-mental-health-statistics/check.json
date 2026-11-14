@@ -95,6 +95,18 @@
    "ok": true
   },
   {
+   "check": "HPSA tract components / of them 2020 city tracts (\"most of them in the City\")",
+   "expected": [
+    88,
+    69
+   ],
+   "source": [
+    88,
+    69
+   ],
+   "ok": true
+  },
+  {
    "check": "one designated \"ME-City of Rochester\" HPSA in the file",
    "expected": 1,
    "source": 1,
@@ -658,6 +670,18 @@
   },
   {
    "check": "page text contains \"June 28, 2022\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"residents of 88 census tracts, most of them in the City of Rochester\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"129,319 Medicaid-eligible residents, mostly in the city, live in a federal mental health shortage area\"",
    "expected": true,
    "source": true,
    "ok": true

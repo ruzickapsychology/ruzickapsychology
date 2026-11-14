@@ -5,7 +5,7 @@
   "metaTitle": "Rochester and Monroe County Mental Health Statistics (2026)",
   "metaDescription": "Monroe County mental health statistics: 2,291 licensed clinicians, 32.5% of adults lonely, 21.9% ever told they have depression, new parents, divorce and 988 data, with sources.",
   "eyebrow": "Statistics · Rochester and Monroe County",
-  "headline": "Monroe County has 2,291 licensed mental health clinicians, 305.3 per 100,000 residents. An estimated 32.5% of adults feel lonely at least some of the time (37.2% in the City of Rochester), and the city's Medicaid-eligible population of 129,319 is a federal mental health shortage area.",
+  "headline": "Monroe County has 2,291 licensed mental health clinicians, 305.3 per 100,000 residents. An estimated 32.5% of adults feel lonely at least some of the time (37.2% in the City of Rochester), and 129,319 Medicaid-eligible residents, mostly in the city, live in a federal mental health shortage area.",
   "datePublished": "2026-11-13",
   "dateModified": "2026-11-13",
   "card": {
@@ -35,7 +35,7 @@
         },
         {
           "value": "129,319",
-          "label": "Medicaid-eligible City of Rochester residents in a federal mental health shortage area (score 19)",
+          "label": "Medicaid-eligible residents, mostly in the City of Rochester, in a federal mental health shortage area (score 19)",
           "source": "HRSA"
         },
         {
@@ -85,7 +85,7 @@
           "url": "https://www.op.nysed.gov/professions/psychology/license-statistics"
         },
         {
-          "text": "The federal government designates the Medicaid-eligible population of the City of Rochester as a mental health professional shortage area: 129,319 people, with a shortage score of 19 (higher scores mean greater need). The designation dates from June 28, 2022.",
+          "text": "The federal government designates a mental health professional shortage area for Medicaid-eligible residents of 88 census tracts, most of them in the City of Rochester (HRSA's name for it is \"ME-City of Rochester\"): 129,319 people, with a shortage score of 19 (higher scores mean greater need). The designation dates from June 28, 2022.",
           "source": "HRSA, Health Professional Shortage Areas (mental health), designation \"ME-City of Rochester\"",
           "url": "https://data.hrsa.gov/topics/health-workforce/shortage-areas"
         }

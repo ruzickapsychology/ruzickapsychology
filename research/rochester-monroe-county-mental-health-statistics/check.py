@@ -57,6 +57,9 @@ r = h[0]
 check('HPSA name / status / discipline / type', ['ME-City of Rochester', 'Designated', 'Mental Health', 'Medicaid Eligible Population HPSA'],
       [r['HPSA Name'], r['HPSA Status'], r['HPSA Discipline Class'], r['HPSA Population Type']])
 check('HPSA score / population / designation date', [19, 129319, '06/28/2022'], [int(r['HPSA Score']), int(float(r['HPSA Designation Population'])), r['HPSA Designation Date']])
+comps = {re.match(r'Census Tract ([\d.]+),', x['HPSA Component Name']).group(1) for x in h}
+city2020 = {r['tract'] for r in csv.DictReader(open(os.path.join(REPO, 'public', 'research', 'rochester-loneliness-map.csv'))) if r['town'] == 'Rochester (city)'}
+check('HPSA tract components / of them 2020 city tracts ("most of them in the City")', [88, 69], [len(comps), len(comps & city2020)])
 check('one designated "ME-City of Rochester" HPSA in the file', 1, len({x['HPSA ID'] for x in csv.DictReader(io.StringIO(data)) if x['HPSA Name'] == 'ME-City of Rochester' and x['HPSA Status'] == 'Designated'}))
 
 # 988 PDF by text position
@@ -86,7 +89,8 @@ s1 = json.load(open(os.path.join(REPO, 'research', 'monroe-county-therapists', '
 check('therapists study: rank 13 / psychologist rank 8', [13, 8], [s1['monroe_rank_of_62'], s1['monroe_psych_rank_of_62']])
 
 for s in ['2,291 licensed mental health clinicians, 305.3 per 100,000', 'Monroe ranks 13th of New York\'s 62 counties', '8th for psychologists (56.4 per 100,000)',
-          'second-highest count of any county after Manhattan', '129,319 people, with a shortage score of 19', 'June 28, 2022',
+          'second-highest count of any county after Manhattan', '129,319 people, with a shortage score of 19', 'June 28, 2022', 'residents of 88 census tracts, most of them in the City of Rochester',
+          '129,319 Medicaid-eligible residents, mostly in the city, live in a federal mental health shortage area',
           'close to the median for New York\'s 62 counties (32.3%)', 'below the median for New York\'s 62 counties (16.2%)',
           'tied with two other counties for the 6th highest share', 'In July 2026, 52,475 calls to 988', '89% (46,892) were answered in state',
           '1,040 went to the national backup network', 'average of 35.8 seconds', 'In 2022, 12.4% of mothers', 'about 890 mothers a year',

@@ -49,6 +49,16 @@ h = hp[0]
 hpsa = {'id': h['HPSA ID'], 'score': int(h['HPSA Score']), 'population': int(float(h['HPSA Designation Population'])), 'type': h['HPSA Population Type'],
         'discipline': h['HPSA Discipline Class'], 'designated': h['HPSA Designation Date'], 'updated': h['HPSA Designation Last Update Date']}
 assert hpsa['type'] == 'Medicaid Eligible Population HPSA' and hpsa['discipline'] == 'Mental Health', hpsa
+# Components are census tracts named "Census Tract N, Monroe County, New York". Matched by tract number to the 2020 tracts on the
+# loneliness map: most are city tracts, a few are suburban, some numbers no longer exist (2010 numbering). Hence "mostly in the city".
+import csv as _csv  # noqa: E402
+tract_town = {r['tract']: r['town'] for r in _csv.DictReader(open(os.path.join(HERE, '..', '..', 'public', 'research', 'rochester-loneliness-map.csv')))}
+comp = sorted({re.fullmatch(r'Census Tract ([\d.]+), Monroe County, New York', r['HPSA Component Name']).group(1) for r in hp})
+hpsa['tracts'] = len(comp)
+hpsa['tracts_city_2020'] = sum(1 for c in comp if tract_town.get(c) == 'Rochester (city)')
+hpsa['tracts_suburban_2020'] = sum(1 for c in comp if c in tract_town and tract_town[c] != 'Rochester (city)')
+hpsa['tracts_not_in_2020'] = sum(1 for c in comp if c not in tract_town)
+assert hpsa['tracts_city_2020'] > hpsa['tracts'] / 2, hpsa
 MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 mm, dd, yy = hpsa['designated'].split('/')
 hpsa_date = f'{MONTHS[int(mm) - 1]} {int(dd)}, {yy}'
@@ -96,9 +106,9 @@ groups = [
          str(lmft['lmft']), 'licensed marriage and family therapists', 'Monroe County', 'July 1, 2026'),
         (f'New York issued {n(S1["issued_four"]["2025"])} new licenses in these four professions in 2025, up {S1["issued_change_2024_2025_pct"]}% from {n(S1["issued_four"]["2024"])} in 2024.',
          'NYSED license statistics, licenses issued by year', U_NYSED, n(S1['issued_four']['2025']), 'new licenses statewide', 'New York State', '2025'),
-        (f'The federal government designates the Medicaid-eligible population of the City of Rochester as a mental health professional shortage area: '
-         f'{n(hpsa["population"])} people, with a shortage score of {hpsa["score"]} (higher scores mean greater need). The designation dates from {hpsa_date}.',
-         'HRSA, Health Professional Shortage Areas (mental health), designation "ME-City of Rochester"', U_HRSA, n(hpsa['population']), 'people in the designation', 'City of Rochester (Medicaid-eligible population)', f'designated {hpsa_date}'),
+        (f'The federal government designates a mental health professional shortage area for Medicaid-eligible residents of {hpsa["tracts"]} census tracts, most of them in the City of Rochester '
+         f'(HRSA\'s name for it is "ME-City of Rochester"): {n(hpsa["population"])} people, with a shortage score of {hpsa["score"]} (higher scores mean greater need). The designation dates from {hpsa_date}.',
+         'HRSA, Health Professional Shortage Areas (mental health), designation "ME-City of Rochester"', U_HRSA, n(hpsa['population']), 'people in the designation', 'Rochester area: 88 census tracts, mostly in the City of Rochester (Medicaid-eligible population)', f'designated {hpsa_date}'),
     ]),
     ('Loneliness, distress and depression', 'Wellbeing', [
         (f'An estimated {mon["LONELINESS"]}% of Monroe County adults feel lonely always, usually or sometimes, close to the median for New York\'s 62 counties ({d1(median["LONELINESS"])}%). '
@@ -145,8 +155,8 @@ csv_rows = [[g[0], re.sub(r' \[See the (study|map)\]\([^)]+\)\.', '', it[0]), it
 csv_href, csv_n = write_csv(SLUG, ['topic', 'statistic', 'value', 'unit', 'geography', 'period', 'source', 'source_url'], csv_rows)
 
 headline = (f'Monroe County has {n(M1["total"])} licensed mental health clinicians, {d1(M1["rate"])} per 100,000 residents. An estimated {mon["LONELINESS"]}% of adults '
-            f'feel lonely at least some of the time ({roc["LONELINESS_CrdPrv"][0]}% in the City of Rochester), and the city\'s Medicaid-eligible population of {n(hpsa["population"])} '
-            f'is a federal mental health shortage area.')
+            f'feel lonely at least some of the time ({roc["LONELINESS_CrdPrv"][0]}% in the City of Rochester), and {n(hpsa["population"])} Medicaid-eligible residents, '
+            f'mostly in the city, live in a federal mental health shortage area.')
 page = {
     'slug': SLUG,
     'kind': 'statistics',
@@ -165,7 +175,7 @@ page = {
             {'value': n(M1['total']), 'label': f'licensed psychologists, social workers, counselors and marriage and family therapists in Monroe County ({d1(M1["rate"])} per 100,000 residents)', 'source': 'NYSED, as of July 1, 2026'},
             {'value': f'{mon["LONELINESS"]}%', 'label': f'of Monroe County adults estimated to feel lonely at least some of the time ({roc["LONELINESS_CrdPrv"][0]}% in the City of Rochester)', 'source': 'CDC PLACES 2025 release'},
             {'value': f'{mon["DEPRESSION"]}%', 'label': f'of Monroe County adults estimated to have ever been told they have depression, {dep_rank_text} among New York\'s 62 counties', 'source': 'CDC PLACES 2025 release'},
-            {'value': n(hpsa['population']), 'label': f'Medicaid-eligible City of Rochester residents in a federal mental health shortage area (score {hpsa["score"]})', 'source': 'HRSA'},
+            {'value': n(hpsa['population']), 'label': f'Medicaid-eligible residents, mostly in the City of Rochester, in a federal mental health shortage area (score {hpsa["score"]})', 'source': 'HRSA'},
             {'value': f'About {n(pp_est)}', 'label': f'Monroe County mothers a year estimated to have symptoms of postpartum depression', 'source': 'Ruzicka Psychology estimate from NYS DOH data'},
             {'value': f'{ny988["rate_pct"]}%', 'label': f'of 988 calls routed to New York centers answered in state in July 2026 ({n(ny988["routed"])} calls)', 'source': '988 Lifeline In-State KPI report'},
         ]},

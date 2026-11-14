@@ -31,7 +31,11 @@
   "type": "Medicaid Eligible Population HPSA",
   "discipline": "Mental Health",
   "designated": "06/28/2022",
-  "updated": "06/28/2022"
+  "updated": "06/28/2022",
+  "tracts": 88,
+  "tracts_city_2020": 69,
+  "tracts_suburban_2020": 8,
+  "tracts_not_in_2020": 11
  },
  "ny988_july_2026": {
   "routed": 52475,
