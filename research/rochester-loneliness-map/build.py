@@ -66,8 +66,10 @@ for r in load('places-tract-2025.json'):
     tr[r['locationname']]['adults'] = int(r['totalpop18plus'])
 assert len(tr) == 207 and all(all(m in v for m in MEAS) for v in tr.values())
 no_est = sorted(set(town_of) - set(tr))
-no_est_city = [g for g in no_est if town_of[g] == 'Rochester city']
-assert len(no_est_city) == 3, no_est
+AIRPORT = '36055980000'  # Greater Rochester International Airport: 0 residents in the 2020 Census (TIGERweb POP100); labeled as such, not as a city tract
+assert AIRPORT in no_est
+no_est_city = [g for g in no_est if town_of[g] == 'Rochester city' and g != AIRPORT]
+assert len(no_est_city) == 2, no_est
 assert all(town_of[g] in (None, 'Rochester city') for g in no_est), no_est
 pl = defaultdict(dict)
 for r in load('places-place-2025.json'):
@@ -136,7 +138,7 @@ noncampus = [p for p in pl if p not in CAMPUS and p != '3663000']
 no_overlap = sorted([p for p in noncampus if pl[p][('LONELINESS', 'CrdPrv')][2] < pl['3663000'][('LONELINESS', 'CrdPrv')][1]], key=lambda p: -pl[p]['pop'])
 overlap = sorted([p for p in noncampus if p not in no_overlap], key=lambda p: -pl[p]['pop'])
 city_dark = sum(1 for g in tr if town_of[g] == CITY and tr[g]['LONELINESS'][0] >= 36)
-light_towns = sorted({town_of[g] for g in tr if tr[g]['LONELINESS'][0] < 30}, key=lambda k: -sum(1 for g in tr if town_of[g] == k and tr[g]['LONELINESS'][0] < 30))
+light_towns = sorted({town_of[g] for g in tr if tr[g]['LONELINESS'][0] < 30}, key=lambda k: (-sum(1 for g in tr if town_of[g] == k and tr[g]['LONELINESS'][0] < 30), k))  # ties alphabetical, so rebuilds are stable
 rank_sup = sorted(tw, key=lambda k: -tw[k]['EMOTIONSPT'])
 rank_mh = sorted(tw, key=lambda k: -round(tw[k]['MHLTH'], 1))
 assert rank_sup[0] == CITY
@@ -259,7 +261,7 @@ for f in sorted(tiger_tracts, key=lambda f: f['properties']['GEOID']):
     if town_of[g] is None:
         continue
     v = tr.get(g)
-    town = town_of[g].replace(' town', '').replace(' city', ' (city)')
+    town = 'Airport (no residents)' if g == AIRPORT else town_of[g].replace(' town', '').replace(' city', ' (city)')
     if v:
         rows.append([g, f['properties']['BASENAME'], town, v['pop'], v['adults'], *[x for m in MEAS for x in v[m]]])
     else:
@@ -288,7 +290,9 @@ def place_label(pid):
 ci = lambda pid, m: f'{c(pid, m)}% ({pl[pid][(m, "CrdPrv")][1]} to {pl[pid][(m, "CrdPrv")][2]})'
 place_rows = [[place_label(pid), n(pl[pid]['pop']), ci(pid, 'LONELINESS'), f'{c(pid, "EMOTIONSPT")}%', f'{c(pid, "MHLTH")}%', f'{c(pid, "DEPRESSION")}%']
               for pid in sorted(pl, key=lambda p: (p != '3663000', -c(p, 'LONELINESS')))]
-place_rows.append(['Monroe County', n(sum(v['pop'] for v in tr.values())), f'{cty("LONELINESS")}% ({county[("LONELINESS", "CrdPrv")][1]} to {county[("LONELINESS", "CrdPrv")][2]})',
+county_pop_2020 = load('census2020-county-monroe.json')['features'][0]['attributes']['POP100']
+assert county_pop_2020 == 759443 and county_pop_2020 - sum(v['pop'] for v in tr.values()) == 48  # 48 = residents of the two city tracts without estimates (31 + 17)
+place_rows.append(['Monroe County', n(county_pop_2020), f'{cty("LONELINESS")}% ({county[("LONELINESS", "CrdPrv")][1]} to {county[("LONELINESS", "CrdPrv")][2]})',
                    f'{cty("EMOTIONSPT")}%', f'{cty("MHLTH")}%', f'{cty("DEPRESSION")}%'])
 town_bars = [{'label': TL(k), 'value': round(tw[k]['LONELINESS'], 1), 'display': f'{d1(tw[k]["LONELINESS"])}%', 'tone': 'highlight' if k == CITY else 'default'}
              for k in sorted(tw, key=lambda k: -tw[k]['LONELINESS'])]
@@ -308,7 +312,7 @@ page = {
     'datePublished': PUBLISHED,
     'dateModified': PUBLISHED,
     'card': {'value': f'{rl}%', 'label': 'of City of Rochester adults estimated to feel lonely',
-             'summary': f'{len(high_city)} of the {len(high)} loneliest census tracts in Monroe County are in the city. Most suburban towns are between {d1(sub_range[0])}% and {d1(sub_range[1])}%.'},
+             'summary': f'{len(high_city)} of the {len(high)} estimated loneliest census tracts in Monroe County are in the city. Most suburban towns are between {d1(sub_range[0])}% and {d1(sub_range[1])}%.'},
     'blocks': [
         {'type': 'keyNumbers', 'heading': 'Key numbers', 'items': [
             {'value': f'{rl}%', 'label': f'of adults in the City of Rochester are estimated to feel lonely always, usually or sometimes (likely range {rlo}% to {rhi}%)', 'source': 'CDC PLACES 2025 release, place estimates'},
@@ -324,13 +328,13 @@ page = {
          'alt': (f'Map of Monroe County, New York, shaded by census tract. {city_dark} of the City of Rochester\'s {len(city_tracts)} tracts are in the two darkest shades (36% or more of adults lonely), '
                  f'including {len(high_city)} at 40% or more. Most suburban tracts are under 33%; the lightest (under 30%) are mostly in {", ".join(TL(k) for k in light_towns[:3])} and {TL(light_towns[3])}. '
                  f'Outside the city, tracts in Henrietta and Sweden also reach 40% or more.'),
-         'note': f'Source: CDC PLACES 2025 release (estimates from BRFSS 2023); Census 2020 boundaries. {len(no_est_city)} city tracts with few or no residents have no estimate. The tract-by-tract figures are in the CSV below.'},
+         'note': f'Source: CDC PLACES 2025 release (estimates from BRFSS 2023); Census 2020 boundaries. Three tracts have no estimate: the airport, which has no residents, and two city tracts with 48 residents between them. The tract-by-tract figures are in the CSV below.'},
         {'type': 'chart', 'heading': 'Estimated share of adults who feel lonely, by town',
          'description': f'Average of the census tract estimates in each town, weighted by number of adults. The City of Rochester is highest at {d1(tw[CITY]["LONELINESS"])}%.',
          'unit': 'percent of adults', 'bars': town_bars,
          'note': 'Source: Ruzicka Psychology calculation from CDC PLACES 2025 tract estimates. For Rochester, Brighton, Irondequoit and East Rochester, whose boundaries match a CDC place, the result is within 0.1 percentage point of CDC\'s own estimate.'},
         {'type': 'table', 'heading': 'Every Monroe County place in the CDC data',
-         'caption': 'CDC PLACES 2025 estimates for adults, with the likely range (95% confidence interval) for loneliness. Places are as the Census defines them, so some cover only part of a town.',
+         'caption': 'CDC PLACES 2025 estimates for adults, with the likely range (95% confidence interval) for loneliness. Places are as the Census defines them, so some cover only part of a town. Residents are 2020 Census counts.',
          'columns': ['Place', 'Residents', 'Lonely (likely range)', 'Lack support', 'Frequent mental distress', 'Ever told they have depression'],
          'rows': place_rows},
         {'type': 'prose', 'eyebrow': 'Findings', 'heading': 'What the data shows', 'paragraphs': [
@@ -346,7 +350,7 @@ page = {
             f'Feeling lonely is common here. About one in three Monroe County adults reports feeling lonely at least some of the time, so it is not unusual and not a personal failing.',
             f'Loneliness is not only a city experience. Even the least lonely neighborhood in the county has an estimated {tr[lo_min]["LONELINESS"][0]}% of adults who feel lonely at least some of the time.',
             'Loneliness and depression are different measures, and in this data they follow different patterns across the county.',
-            'Ruzicka Psychology offers [individual therapy](/specialties/individual-therapy) and [group therapy](/specialties/group-therapy) in Rochester. Local support lines are listed on our [resources page](/resources).',
+            'Ruzicka Psychology offers [individual therapy](/specialties/individual-therapy) in Rochester and virtually across New York. Local support lines are listed on our [resources page](/resources).',
         ]},
         {'type': 'prose', 'eyebrow': 'Method', 'heading': 'How we built the map', 'paragraphs': [
             'Estimates: CDC PLACES, 2025 release, which estimates the share of adults with each measure in every county, place and census tract from the 2023 Behavioral Risk Factor Surveillance System (BRFSS). Loneliness counts adults who say they feel lonely always, usually or sometimes. Lack of social and emotional support counts adults who say they get the support they need sometimes, rarely or never. Frequent mental distress counts adults who say their mental health was not good on 14 or more of the past 30 days. Figures are crude prevalence (the actual share of adults) unless marked age-adjusted.',
@@ -354,7 +358,7 @@ page = {
             'Places: CDC also publishes estimates for Census places. Some places, such as Rochester, Brighton and Irondequoit, cover a whole town or city. Others, such as the villages and the Greece and Gates Census-designated places, cover only part of a town, so their figures can differ from the town averages.',
         ]},
         {'type': 'prose', 'eyebrow': 'Limits', 'heading': 'What these estimates cannot tell you', 'paragraphs': [
-            'These are model-based estimates, not counts from a survey of each neighborhood. CDC predicts survey answers for each area from statewide BRFSS responses and the characteristics of the people who live there, such as age, sex, and race and ethnicity. Two areas with similar populations will get similar estimates even if their residents feel differently.',
+            'These are model-based estimates, not counts from a survey of each neighborhood. CDC predicts survey answers for each area from BRFSS survey responses and the characteristics of the people who live there, such as age, sex, and race and ethnicity. Two areas with similar populations will get similar estimates even if their residents feel differently.',
             f'Each estimate has a likely range (95% confidence interval), and most of them overlap. Rochester\'s range for loneliness ({rlo}% to {rhi}%) overlaps with the ranges for {len(overlap)} of the {len(noncampus)} other places in the county that are not college campuses; only the {" and ".join(place_label(p).split(" (")[0] for p in no_overlap)}\'s range sits entirely below it. The city-suburb pattern is consistent on the map and across loneliness, support and distress, but the gap between the city and any single suburb is less certain than the single numbers suggest.',
             'Loneliness was asked in an optional BRFSS module, so the estimates rest on fewer survey answers than common measures.',
             'The data shows where loneliness is more common. It does not show why, and it does not say anything about what helps.',
@@ -378,8 +382,8 @@ page = {
     },
     'related': [
         {'label': 'Individual therapy', 'href': '/specialties/individual-therapy'},
-        {'label': 'Group therapy', 'href': '/specialties/group-therapy'},
         {'label': 'How many therapists does Monroe County have?', 'href': '/research/monroe-county-therapists'},
+        {'label': 'Mental health statistics for Rochester and Monroe County', 'href': '/research/rochester-monroe-county-mental-health-statistics'},
     ],
 }
 assert_text_has(page, f'{rl}%', f'{len(high_city)} of {len(high)}', f'{cty("LONELINESS")}%')

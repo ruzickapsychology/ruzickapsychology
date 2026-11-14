@@ -539,6 +539,78 @@
    "expected": true,
    "source": true,
    "ok": true
+  },
+  {
+   "check": "Monroe County 2020 Census count (places table county row)",
+   "expected": "759,443",
+   "source": "759,443",
+   "ok": true
+  },
+  {
+   "check": "places table county row shows the 2020 count",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "airport tract 36055980000 residents (2020 Census)",
+   "expected": 0,
+   "source": 0,
+   "ok": true
+  },
+  {
+   "check": "CSV labels the airport tract",
+   "expected": "Airport (no residents)",
+   "source": "Airport (no residents)",
+   "ok": true
+  },
+  {
+   "check": "page text contains \"in Rochester and virtually across New York\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"from BRFSS survey responses\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"two city tracts with 48 residents between them\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"Residents are 2020 Census counts\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text does not contain \"group-therapy\"",
+   "expected": false,
+   "source": false,
+   "ok": true
+  },
+  {
+   "check": "page text does not contain \"group therapy\"",
+   "expected": false,
+   "source": false,
+   "ok": true
+  },
+  {
+   "check": "page text does not contain \"statewide BRFSS\"",
+   "expected": false,
+   "source": false,
+   "ok": true
+  },
+  {
+   "check": "hub card wording",
+   "expected": true,
+   "source": true,
+   "ok": true
   }
  ]
 }

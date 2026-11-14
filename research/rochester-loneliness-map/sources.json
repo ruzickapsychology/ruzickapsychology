@@ -36,6 +36,14 @@
    "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/22",
    "bytes": 194427,
    "sha256": "707e354b0d30d59ea900c3e3909fbd6cc3fb7b5f5e01ad2b88eabbfddcd63ce2"
+  },
+  {
+   "file": "census2020-county-monroe.json",
+   "name": "Census TIGERweb, Census 2020 counties (tigerWMS_Census2020 layer 82): Monroe County, NY, POP100 (2020 Census count)",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Census2020/MapServer/82",
+   "period": "April 1, 2020",
+   "bytes": 402,
+   "sha256": "99d767b6e9f66b43bdec212cd0656beade924b1a14a3d8698197a46112fc202b"
   }
  ]
 }

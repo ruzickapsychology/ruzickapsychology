@@ -80,8 +80,11 @@ check('Monroe at statewide 11.9%', 850, r10(mon * 11.9 / 100))
 check('Monroe 10-20% range', [720, 1430], [r10(mon * 0.10), r10(mon * 0.20)])
 check('Births change 2008-2023 (%)', -18, round((mon - 8707) / 8707 * 100))
 for s in ['About 890', '7,151', '12.4%', '11.9%', '11.5%', '12.7%', 'About 380', '3,090', '82.4%', '76.1%', '8,707', 'down 18%',
-          'about 850', '720 to 1,430', '4,251', 'one in eight', '7,151 x 12.4% = 887']:
+          'about 850', '720 to 1,430', '4,251', 'one in eight', '7,151 x 12.4% = 887',
+          'would be likely to report symptoms of postpartum depression', 'Estimated mothers likely to report symptoms']:
     check(f'page text contains "{s}"', True, s in PAGE_TEXT)
+check('page text does not say "with symptoms" or "would have symptoms"', [False, False], ['mothers with symptoms' in PAGE_TEXT, 'would have symptoms' in PAGE_TEXT])
+check('Dataset temporalCoverage', '2008/2023', json.loads(PAGE_TEXT)['dataset']['temporalCoverage'])
 
 json.dump({'checked': __import__('datetime').date.today().isoformat(), 'fails': fails, 'checks': out},
           open(os.path.join(HERE, 'check.json'), 'w'), indent=1)

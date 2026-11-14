@@ -11,7 +11,7 @@
   "card": {
     "value": "37.2%",
     "label": "of City of Rochester adults estimated to feel lonely",
-    "summary": "23 of the 25 loneliest census tracts in Monroe County are in the city. Most suburban towns are between 28.3% and 32.6%."
+    "summary": "23 of the 25 estimated loneliest census tracts in Monroe County are in the city. Most suburban towns are between 28.3% and 32.6%."
   },
   "blocks": [
     {
@@ -61,8 +61,8 @@
       "src": "/research/rochester-loneliness-map.svg",
       "width": 900,
       "height": 1045,
-      "alt": "Map of Monroe County, New York, shaded by census tract. 57 of the City of Rochester's 80 tracts are in the two darkest shades (36% or more of adults lonely), including 23 at 40% or more. Most suburban tracts are under 33%; the lightest (under 30%) are mostly in Perinton, Webster, Penfield and Pittsford. Outside the city, tracts in Henrietta and Sweden also reach 40% or more.",
-      "note": "Source: CDC PLACES 2025 release (estimates from BRFSS 2023); Census 2020 boundaries. 3 city tracts with few or no residents have no estimate. The tract-by-tract figures are in the CSV below."
+      "alt": "Map of Monroe County, New York, shaded by census tract. 57 of the City of Rochester's 80 tracts are in the two darkest shades (36% or more of adults lonely), including 23 at 40% or more. Most suburban tracts are under 33%; the lightest (under 30%) are mostly in Perinton, Penfield, Webster and Pittsford. Outside the city, tracts in Henrietta and Sweden also reach 40% or more.",
+      "note": "Source: CDC PLACES 2025 release (estimates from BRFSS 2023); Census 2020 boundaries. Three tracts have no estimate: the airport, which has no residents, and two city tracts with 48 residents between them. The tract-by-tract figures are in the CSV below."
     },
     {
       "type": "chart",
@@ -202,7 +202,7 @@
     {
       "type": "table",
       "heading": "Every Monroe County place in the CDC data",
-      "caption": "CDC PLACES 2025 estimates for adults, with the likely range (95% confidence interval) for loneliness. Places are as the Census defines them, so some cover only part of a town.",
+      "caption": "CDC PLACES 2025 estimates for adults, with the likely range (95% confidence interval) for loneliness. Places are as the Census defines them, so some cover only part of a town. Residents are 2020 Census counts.",
       "columns": [
         "Place",
         "Residents",
@@ -382,7 +382,7 @@
         ],
         [
           "Monroe County",
-          "759,395",
+          "759,443",
           "32.5% (28.2 to 36.9)",
           "22.9%",
           "15.3%",
@@ -412,7 +412,7 @@
         "Feeling lonely is common here. About one in three Monroe County adults reports feeling lonely at least some of the time, so it is not unusual and not a personal failing.",
         "Loneliness is not only a city experience. Even the least lonely neighborhood in the county has an estimated 26.2% of adults who feel lonely at least some of the time.",
         "Loneliness and depression are different measures, and in this data they follow different patterns across the county.",
-        "Ruzicka Psychology offers [individual therapy](/specialties/individual-therapy) and [group therapy](/specialties/group-therapy) in Rochester. Local support lines are listed on our [resources page](/resources)."
+        "Ruzicka Psychology offers [individual therapy](/specialties/individual-therapy) in Rochester and virtually across New York. Local support lines are listed on our [resources page](/resources)."
       ]
     },
     {
@@ -430,7 +430,7 @@
       "eyebrow": "Limits",
       "heading": "What these estimates cannot tell you",
       "paragraphs": [
-        "These are model-based estimates, not counts from a survey of each neighborhood. CDC predicts survey answers for each area from statewide BRFSS responses and the characteristics of the people who live there, such as age, sex, and race and ethnicity. Two areas with similar populations will get similar estimates even if their residents feel differently.",
+        "These are model-based estimates, not counts from a survey of each neighborhood. CDC predicts survey answers for each area from BRFSS survey responses and the characteristics of the people who live there, such as age, sex, and race and ethnicity. Two areas with similar populations will get similar estimates even if their residents feel differently.",
         "Each estimate has a likely range (95% confidence interval), and most of them overlap. Rochester's range for loneliness (32.7% to 41.5%) overlaps with the ranges for 16 of the 17 other places in the county that are not college campuses; only the Village of Pittsford's range sits entirely below it. The city-suburb pattern is consistent on the map and across loneliness, support and distress, but the gap between the city and any single suburb is less certain than the single numbers suggest.",
         "Loneliness was asked in an optional BRFSS module, so the estimates rest on fewer survey answers than common measures.",
         "The data shows where loneliness is more common. It does not show why, and it does not say anything about what helps."
@@ -488,12 +488,12 @@
       "href": "/specialties/individual-therapy"
     },
     {
-      "label": "Group therapy",
-      "href": "/specialties/group-therapy"
-    },
-    {
       "label": "How many therapists does Monroe County have?",
       "href": "/research/monroe-county-therapists"
+    },
+    {
+      "label": "Mental health statistics for Rochester and Monroe County",
+      "href": "/research/rochester-monroe-county-mental-health-statistics"
     }
   ]
 }

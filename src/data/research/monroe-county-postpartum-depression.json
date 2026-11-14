@@ -114,13 +114,13 @@
     },
     {
       "type": "table",
-      "heading": "Estimated mothers with symptoms, by area",
+      "heading": "Estimated mothers likely to report symptoms, by area",
       "caption": "Births in 2023 and the 2022 PRAMS rate applied to them. Estimates rounded to the nearest 10.",
       "columns": [
         "Area",
         "Births (2023)",
         "PRAMS rate applied",
-        "Estimated mothers with symptoms"
+        "Estimated mothers likely to report symptoms"
       ],
       "rows": [
         [
@@ -186,7 +186,7 @@
       "heading": "What the data shows",
       "paragraphs": [
         "In 2022, 12.4% of mothers in New York State outside New York City told the PRAMS survey they had symptoms of postpartum depression after giving birth, according to the New York State Department of Health. That is about one mother in eight. The statewide figure was 11.9%, and across the states and territories in the 2022 survey it was about 12.7%.",
-        "Monroe County residents had 7,151 babies in 2023. If Monroe mothers report symptoms at the same rate as mothers elsewhere in upstate and suburban New York, about 890 of them would have symptoms of postpartum depression each year. Using the statewide rate of 11.9% instead gives about 850.",
+        "Monroe County residents had 7,151 babies in 2023. If Monroe mothers report symptoms at the same rate as mothers elsewhere in upstate and suburban New York, about 890 of them would be likely to report symptoms of postpartum depression each year. Using the statewide rate of 11.9% instead gives about 850.",
         "NYS Department of Health also cites a wider clinical range: postpartum depression affects 10 to 20 percent of new mothers. Applied to Monroe County births, that would be roughly 720 to 1,430 mothers a year.",
         "Most Monroe County babies are born to mothers in their late twenties and early thirties: 4,251 of the 7,151 births in 2023 were to mothers aged 25 to 34. 224 were to mothers under 20 and 1,709 to mothers 35 or older.",
         "Births in the county have been falling, from 8,707 in 2008 to 7,151 in 2023."
@@ -250,9 +250,9 @@
     "label": "Births by mother's age in 2023 for Monroe County, its five neighboring counties, New York State excluding New York City and New York State, with the PRAMS rate applied and the estimate (CSV, 9 rows)"
   },
   "dataset": {
-    "name": "Estimated mothers with postpartum depression symptoms, Monroe County and neighboring counties, New York",
+    "name": "Estimated mothers likely to report postpartum depression symptoms, Monroe County and neighboring counties, New York",
     "description": "Live births by mother's age and resident county in 2023 (NYS DOH Vital Statistics Table 7) with the 2022 PRAMS rate of self-reported postpartum depression symptoms for New York State excluding New York City (12.4%) applied as an estimate.",
-    "temporalCoverage": "2022/2023",
+    "temporalCoverage": "2008/2023",
     "spatialCoverage": "Monroe, Genesee, Livingston, Ontario, Orleans and Wayne counties, New York, United States",
     "variableMeasured": [
       "Live births by mother's age",

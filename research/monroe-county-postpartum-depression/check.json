@@ -237,6 +237,36 @@
    "expected": true,
    "source": true,
    "ok": true
+  },
+  {
+   "check": "page text contains \"would be likely to report symptoms of postpartum depression\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text contains \"Estimated mothers likely to report symptoms\"",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
+   "check": "page text does not say \"with symptoms\" or \"would have symptoms\"",
+   "expected": [
+    false,
+    false
+   ],
+   "source": [
+    false,
+    false
+   ],
+   "ok": true
+  },
+  {
+   "check": "Dataset temporalCoverage",
+   "expected": "2008/2023",
+   "source": "2008/2023",
+   "ok": true
   }
  ]
 }

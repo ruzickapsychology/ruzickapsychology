@@ -3,14 +3,14 @@
   "kind": "statistics",
   "title": "Mental Health in Rochester and Monroe County: Statistics",
   "metaTitle": "Rochester and Monroe County Mental Health Statistics (2026)",
-  "metaDescription": "Monroe County mental health statistics: 2,291 licensed clinicians, 32.5% of adults lonely, 21.9% ever told they have depression, new parents, divorce and 988 data, with sources.",
+  "metaDescription": "Monroe County mental health statistics: 2,291 licensed psychologists and therapists, 32.5% of adults lonely, 21.9% ever told they have depression, new parents, divorce and 988 data, with sources.",
   "eyebrow": "Statistics · Rochester and Monroe County",
-  "headline": "Monroe County has 2,291 licensed mental health clinicians, 305.3 per 100,000 residents. An estimated 32.5% of adults feel lonely at least some of the time (37.2% in the City of Rochester), and 129,319 Medicaid-eligible residents, mostly in the city, live in a federal mental health shortage area.",
+  "headline": "Monroe County has 2,291 licensed psychologists and therapists (four license types), 305.3 per 100,000 residents. An estimated 32.5% of adults feel lonely at least some of the time (37.2% in the City of Rochester), and 129,319 Medicaid-eligible residents, mostly in the city, live in a federal mental health shortage area.",
   "datePublished": "2026-11-13",
   "dateModified": "2026-11-13",
   "card": {
     "value": "2,291",
-    "label": "licensed mental health clinicians in Monroe County",
+    "label": "licensed psychologists and therapists in Monroe County (four license types)",
     "summary": "Key figures on therapists, loneliness, depression, new parents, divorce and 988 for Rochester and Monroe County, each with its source."
   },
   "blocks": [
@@ -40,12 +40,12 @@
         },
         {
           "value": "About 890",
-          "label": "Monroe County mothers a year estimated to have symptoms of postpartum depression",
+          "label": "Monroe County mothers a year likely to report symptoms of postpartum depression (estimate)",
           "source": "Ruzicka Psychology estimate from NYS DOH data"
         },
         {
-          "value": "89%",
-          "label": "of 988 calls routed to New York centers answered in state in July 2026 (52,475 calls)",
+          "value": "91%",
+          "label": "of 988 calls routed to New York centers answered in state in October 2026 (44,679 calls)",
           "source": "988 Lifeline In-State KPI report"
         }
       ]
@@ -139,7 +139,7 @@
           "url": "https://www.health.ny.gov/community/pregnancy/health_care/perinatal/maternal_depression/providers/what_is_maternial_depression.htm"
         },
         {
-          "text": "Applied to Monroe County births, that rate suggests about 890 mothers a year with symptoms of postpartum depression. This is an estimate, not a count. [See the study](/research/monroe-county-postpartum-depression).",
+          "text": "Applied to Monroe County births, that rate suggests about 890 mothers a year are likely to report symptoms of postpartum depression. This is an estimate, not a count. [See the study](/research/monroe-county-postpartum-depression).",
           "source": "Ruzicka Psychology calculation from NYS DOH Table 7 and PRAMS",
           "url": "https://www.health.ny.gov/statistics/vital_statistics/2023/table07.htm"
         },
@@ -173,14 +173,14 @@
       "heading": "Crisis lines",
       "items": [
         {
-          "text": "In July 2026, 52,475 calls to 988 were routed to New York's crisis centers, and 89% (46,892) were answered in state. 1,040 went to the national backup network. These are statewide figures; the report does not break them down by county.",
-          "source": "988 Suicide & Crisis Lifeline, In-State KPI Report, July 2026",
-          "url": "https://988lifeline.org/wp-content/uploads/2026/08/July-26-988-In-State-Monthly-Report.pdf"
+          "text": "In October 2026, 44,679 calls to 988 were routed to New York's crisis centers, and 91% (40,544) were answered in state. 847 went to the national backup network. These are statewide figures; the report does not break them down by county.",
+          "source": "988 Suicide & Crisis Lifeline, In-State KPI Report, October 2026",
+          "url": "https://988lifeline.org/wp-content/uploads/2026/11/10.26.988-In-State-Monthly-Report-5.pdf"
         },
         {
-          "text": "Calls answered in New York were picked up in an average of 35.8 seconds.",
-          "source": "988 Suicide & Crisis Lifeline, In-State KPI Report, July 2026",
-          "url": "https://988lifeline.org/wp-content/uploads/2026/08/July-26-988-In-State-Monthly-Report.pdf"
+          "text": "Calls answered in New York were picked up in an average of 30.9 seconds.",
+          "source": "988 Suicide & Crisis Lifeline, In-State KPI Report, October 2026",
+          "url": "https://988lifeline.org/wp-content/uploads/2026/11/10.26.988-In-State-Monthly-Report-5.pdf"
         }
       ]
     },
@@ -217,9 +217,14 @@
       "url": "https://data.hrsa.gov/topics/health-workforce/shortage-areas"
     },
     {
-      "name": "988 Suicide & Crisis Lifeline, In-State KPI Report, July 2026",
-      "period": "July 2026",
-      "url": "https://988lifeline.org/wp-content/uploads/2026/08/July-26-988-In-State-Monthly-Report.pdf"
+      "name": "988 Suicide & Crisis Lifeline, In-State KPI Report, October 2026",
+      "period": "October 2026",
+      "url": "https://988lifeline.org/wp-content/uploads/2026/11/10.26.988-In-State-Monthly-Report-5.pdf"
+    },
+    {
+      "name": "U.S. Census Bureau, TIGERweb: Census 2010 tracts and City of Rochester boundary (to place the shortage-area tracts)",
+      "period": "Census 2010 boundaries",
+      "url": "https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_main.html"
     },
     {
       "name": "NYS Department of Health, Vital Statistics of New York State 2023, Table 7 (births)",

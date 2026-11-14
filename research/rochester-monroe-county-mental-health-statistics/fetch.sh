@@ -6,8 +6,13 @@ cd "$(dirname "$0")" && mkdir -p raw && cd raw
 UA='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36'
 # CDC PLACES 2025 county data, every New York county (for Monroe's rank).
 curl -sf -o places-county-ny-2025.json "https://data.cdc.gov/resource/swc5-untb.json?\$select=locationid,locationname,measureid,data_value,low_confidence_limit,high_confidence_limit,year&\$where=stateabbr='NY'%20AND%20datavaluetypeid='CrdPrv'%20AND%20measureid%20in('LONELINESS','EMOTIONSPT','MHLTH','DEPRESSION')&\$order=locationid,measureid&\$limit=1000"
-# 988 Lifeline In-State KPI report, July 2026 (Vibrant Emotional Health).
-curl -sfL -A "$UA" -o 988-in-state-kpi-2026-07.pdf "https://988lifeline.org/wp-content/uploads/2026/08/July-26-988-In-State-Monthly-Report.pdf"
+# 988 Lifeline In-State KPI report, October 2026 (Vibrant Emotional Health).
+curl -sfL -A "$UA" -o 988-in-state-kpi-2026-10.pdf "https://988lifeline.org/wp-content/uploads/2026/11/10.26.988-In-State-Monthly-Report-5.pdf"
+# Census TIGERweb, Census 2010 vintage (HRSA's HPSA tracts use 2010 tract numbers): Monroe tracts with internal points (layer 14)
+# and the City of Rochester boundary (county subdivisions, layer 28).
+T10=https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Census2010/MapServer
+curl -sf -G "$T10/14/query" --data-urlencode "where=STATE='36' AND COUNTY='055'" --data-urlencode 'outFields=GEOID,BASENAME,INTPTLAT,INTPTLON' --data-urlencode 'returnGeometry=false' --data-urlencode 'orderByFields=GEOID' --data-urlencode 'f=json' -o tiger2010-tracts-monroe.json
+curl -sf -G "$T10/28/query" --data-urlencode "where=STATE='36' AND COUNTY='055' AND BASENAME='Rochester'" --data-urlencode 'outFields=GEOID,NAME' --data-urlencode 'returnGeometry=true' --data-urlencode 'outSR=4326' --data-urlencode 'geometryPrecision=6' --data-urlencode 'f=geojson' -o tiger2010-rochester-city.geojson
 # HRSA mental health HPSA detail file (25 MB, rewritten daily, not committed); keep the Monroe County, NY rows.
 curl -sfL -A "$UA" -o BCD_HPSA_FCT_DET_MH.csv "https://data.hrsa.gov/DataDownload/DD_Files/BCD_HPSA_FCT_DET_MH.csv"
 python3 - <<'PY'

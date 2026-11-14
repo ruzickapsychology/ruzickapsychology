@@ -16,20 +16,36 @@
    "sha256": "8304f46186b5268f9d0c87b34f5986e5c773b8673e0e68419df25d3f7c88f27e"
   },
   {
-   "file": "988-in-state-kpi-2026-07.pdf",
-   "name": "988 Suicide & Crisis Lifeline, In-State KPI Report, July 2026 (Vibrant Emotional Health / SAMHSA)",
-   "url": "https://988lifeline.org/wp-content/uploads/2026/08/July-26-988-In-State-Monthly-Report.pdf",
-   "period": "July 2026, Eastern Time",
-   "bytes": 49920,
-   "sha256": "d37d3351ce4f4a8d4e7d4870924442484ff2cd86df81d3c727ea7f483f6c41c8"
-  },
-  {
    "file": "hrsa-mh-hpsa-monroe.json",
    "name": "HRSA Data Warehouse, HPSA detail file for mental health (BCD_HPSA_FCT_DET_MH.csv), rows with Common County Name = \"Monroe County, NY\"; extract written by fetch.sh (the full file is rewritten daily and not committed)",
    "url": "https://data.hrsa.gov/DataDownload/DD_Files/BCD_HPSA_FCT_DET_MH.csv",
    "period": "Downloaded 2026-11-13",
    "bytes": 171900,
    "sha256": "01176ded670aac2f3c804be7abd9b57bc67c9f5c1dc00849341ab520aab431d2"
+  },
+  {
+   "file": "988-in-state-kpi-2026-10.pdf",
+   "name": "988 Suicide & Crisis Lifeline, In-State KPI Report, October 2026 (Vibrant Emotional Health / SAMHSA)",
+   "url": "https://988lifeline.org/wp-content/uploads/2026/11/10.26.988-In-State-Monthly-Report-5.pdf",
+   "period": "October 2026, Eastern Time",
+   "bytes": 51825,
+   "sha256": "4feb5ace9efc8965ae8cda8de551eb3b05b6508e3042a6ecd48448b338daebf0"
+  },
+  {
+   "file": "tiger2010-tracts-monroe.json",
+   "name": "Census TIGERweb, Census 2010 census tracts (tigerWMS_Census2010 layer 14), Monroe County: tract number and internal point",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Census2010/MapServer/14",
+   "period": "Census 2010 boundaries",
+   "bytes": 21348,
+   "sha256": "7e8d8e6b4be4b26ef2754daf108f4131d47465cc634edbf55d52df77ccb6158b"
+  },
+  {
+   "file": "tiger2010-rochester-city.geojson",
+   "name": "Census TIGERweb, Census 2010 county subdivisions (tigerWMS_Census2010 layer 28): Rochester city boundary",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Census2010/MapServer/28",
+   "period": "Census 2010 boundaries",
+   "bytes": 30004,
+   "sha256": "3da94353b0929c2fc29e6743c60e46c134289d4df0fde84a9f4a91b9d8763930"
   }
  ]
 }

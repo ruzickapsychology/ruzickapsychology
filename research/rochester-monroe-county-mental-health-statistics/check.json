@@ -95,14 +95,28 @@
    "ok": true
   },
   {
-   "check": "HPSA tract components / of them 2020 city tracts (\"most of them in the City\")",
+   "check": "HPSA tracts / found on 2010 tracts / in Rochester city on 2010 boundaries (\"most of them in the City\")",
    "expected": [
     88,
-    69
+    88,
+    79
    ],
    "source": [
     88,
-    69
+    88,
+    79
+   ],
+   "ok": true
+  },
+  {
+   "check": "results.json tracts / tracts_city_2010",
+   "expected": [
+    88,
+    79
+   ],
+   "source": [
+    88,
+    79
    ],
    "ok": true
   },
@@ -119,31 +133,43 @@
    "ok": true
   },
   {
+   "check": "988 report month",
+   "expected": true,
+   "source": true,
+   "ok": true
+  },
+  {
    "check": "988 NY row (routed, answered, rate, abandoned, flowout, speed, talk)",
    "expected": [
-    "52,475",
-    "46,892",
-    "89%",
-    "4,543",
-    "1,040",
-    "35.8 sec",
-    "13.5 min"
+    "44,679",
+    "40,544",
+    "91%",
+    "3,288",
+    "847",
+    "30.9 sec",
+    "15.1 min"
    ],
    "source": [
-    "52,475",
-    "46,892",
-    "89%",
-    "4,543",
-    "1,040",
-    "35.8 sec",
-    "13.5 min"
+    "44,679",
+    "40,544",
+    "91%",
+    "3,288",
+    "847",
+    "30.9 sec",
+    "15.1 min"
    ],
    "ok": true
   },
   {
-   "check": "988 NY answer rate recomputed",
-   "expected": 89,
-   "source": 89,
+   "check": "988 NY answer rate recomputed / legs add up",
+   "expected": [
+    91,
+    44679
+   ],
+   "source": [
+    91,
+    44679
+   ],
    "ok": true
   },
   {
@@ -399,6 +425,18 @@
    "ok": true
   },
   {
+   "check": "monroe-county-postpartum-depression: \"likely to report symptoms\" on both pages",
+   "expected": [
+    true,
+    true
+   ],
+   "source": [
+    true,
+    true
+   ],
+   "ok": true
+  },
+  {
    "check": "monroe-county-divorce-couples: its own check passed",
    "expected": [],
    "source": [],
@@ -639,7 +677,7 @@
    "ok": true
   },
   {
-   "check": "page text contains \"2,291 licensed mental health clinicians, 305.3 per 100,000\"",
+   "check": "page text contains \"2,291 licensed psychologists and therapists (four license types), 305.3 per 100,000\"",
    "expected": true,
    "source": true,
    "ok": true
@@ -705,25 +743,25 @@
    "ok": true
   },
   {
-   "check": "page text contains \"In July 2026, 52,475 calls to 988\"",
+   "check": "page text contains \"In October 2026, 44,679 calls to 988\"",
    "expected": true,
    "source": true,
    "ok": true
   },
   {
-   "check": "page text contains \"89% (46,892) were answered in state\"",
+   "check": "page text contains \"91% (40,544) were answered in state\"",
    "expected": true,
    "source": true,
    "ok": true
   },
   {
-   "check": "page text contains \"1,040 went to the national backup network\"",
+   "check": "page text contains \"847 went to the national backup network\"",
    "expected": true,
    "source": true,
    "ok": true
   },
   {
-   "check": "page text contains \"average of 35.8 seconds\"",
+   "check": "page text contains \"average of 30.9 seconds\"",
    "expected": true,
    "source": true,
    "ok": true
@@ -735,7 +773,7 @@
    "ok": true
   },
   {
-   "check": "page text contains \"about 890 mothers a year\"",
+   "check": "page text contains \"about 890 mothers a year are likely to report symptoms\"",
    "expected": true,
    "source": true,
    "ok": true

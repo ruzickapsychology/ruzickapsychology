@@ -95,7 +95,7 @@ rows.append(['Five neighboring counties combined', 'sum', ring_b, *[sum(births[c
 rows.append(['New York State excluding New York City', 'region', births['Rest of State']['total'], *[births['Rest of State']['by_age'][a] for a in AGES], rest_rate, f'{est(births["Rest of State"]["total"], rest_rate):.1f}'])
 rows.append(['New York State', 'state', births['New York State']['total'], *[births['New York State']['by_age'][a] for a in AGES], nys_rate, f'{est(births["New York State"]["total"], nys_rate):.1f}'])
 csv_href, csv_rows = write_csv(SLUG, ['area', 'level', 'births_2023', *[f'births_mother_age_{a.replace("+", "plus").replace(".", "").replace("-", "_")}' for a in AGES],
-                                      'prams_2022_rate_pct_applied', 'estimated_mothers_with_symptoms'], rows)
+                                      'prams_2022_rate_pct_applied', 'estimated_mothers_likely_to_report_symptoms'], rows)
 
 # ---------- Page ----------
 E, RE_ = r10(mon_est), r10(ring_est)
@@ -146,13 +146,13 @@ page = {
          'description': f'{n(mon)} live births to Monroe County residents. Most were to mothers aged 25 to 34 ({n(age25_34)}).',
          'unit': 'births', 'bars': age_bars,
          'note': f'Source: {doh}. Mother\'s age not stated: {births["Monroe"]["by_age"]["N.S."]}.'},
-        {'type': 'table', 'heading': 'Estimated mothers with symptoms, by area',
+        {'type': 'table', 'heading': 'Estimated mothers likely to report symptoms, by area',
          'caption': f'Births in 2023 and the {prams_year} PRAMS rate applied to them. Estimates rounded to the nearest 10.',
-         'columns': ['Area', 'Births (2023)', 'PRAMS rate applied', 'Estimated mothers with symptoms'],
+         'columns': ['Area', 'Births (2023)', 'PRAMS rate applied', 'Estimated mothers likely to report symptoms'],
          'rows': table_rows, 'csv': True},
         {'type': 'prose', 'eyebrow': 'Findings', 'heading': 'What the data shows', 'paragraphs': [
             f'In {prams_year}, {rest_rate}% of mothers in New York State outside New York City told the PRAMS survey they had symptoms of postpartum depression after giving birth, according to the New York State Department of Health. That is about one mother in {one_in}. The statewide figure was {nys_rate}%, and across the states and territories in the {prams_year} survey it was about {us_rate}%.',
-            f'Monroe County residents had {n(mon)} babies in 2023. If Monroe mothers report symptoms at the same rate as mothers elsewhere in upstate and suburban New York, about {n(E)} of them would have symptoms of postpartum depression each year. Using the statewide rate of {nys_rate}% instead gives about {n(r10(mon_nys))}.',
+            f'Monroe County residents had {n(mon)} babies in 2023. If Monroe mothers report symptoms at the same rate as mothers elsewhere in upstate and suburban New York, about {n(E)} of them would be likely to report symptoms of postpartum depression each year. Using the statewide rate of {nys_rate}% instead gives about {n(r10(mon_nys))}.',
             f'NYS Department of Health also cites a wider clinical range: postpartum depression affects 10 to 20 percent of new mothers. Applied to Monroe County births, that would be roughly {n(r10(mon_low))} to {n(r10(mon_high))} mothers a year.',
             f'Most Monroe County babies are born to mothers in their late twenties and early thirties: {n(age25_34)} of the {n(mon)} births in 2023 were to mothers aged 25 to 34. {n(under20)} were to mothers under 20 and {n(over35)} to mothers 35 or older.',
             f'Births in the county have been falling, from {n(m08)} in 2008 to {n(mon)} in 2023.',
@@ -184,9 +184,9 @@ page = {
     'citation': 'Ruzicka Psychology. "New Parents and Postpartum Depression in Monroe County." November 13, 2026. https://www.ruzickapsychology.com/research/monroe-county-postpartum-depression. Data: NYS Department of Health; CDC PRAMS.',
     'csv': {'href': csv_href, 'rows': csv_rows, 'label': f'Births by mother\'s age in 2023 for Monroe County, its five neighboring counties, New York State excluding New York City and New York State, with the PRAMS rate applied and the estimate (CSV, {csv_rows} rows)'},
     'dataset': {
-        'name': 'Estimated mothers with postpartum depression symptoms, Monroe County and neighboring counties, New York',
+        'name': 'Estimated mothers likely to report postpartum depression symptoms, Monroe County and neighboring counties, New York',
         'description': f'Live births by mother\'s age and resident county in 2023 (NYS DOH Vital Statistics Table 7) with the {prams_year} PRAMS rate of self-reported postpartum depression symptoms for New York State excluding New York City ({rest_rate}%) applied as an estimate.',
-        'temporalCoverage': f'{prams_year}/2023',
+        'temporalCoverage': '2008/2023',  # births trend 2008-2023; PRAMS rate 2022; screening 2016 and 2020
         'spatialCoverage': 'Monroe, Genesee, Livingston, Ontario, Orleans and Wayne counties, New York, United States',
         'variableMeasured': ['Live births by mother\'s age', 'Share of mothers reporting postpartum depression symptoms (PRAMS)', 'Estimated mothers with postpartum depression symptoms'],
     },

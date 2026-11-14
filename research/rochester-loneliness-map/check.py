@@ -8,7 +8,7 @@
   * The published SVG is re-read and its shaded tract count per color compared with the recomputed bins.
 Recomputes every town average, count, range and comparison and checks the page text holds them. Writes check.json.
 """
-import json, os, re, sys, urllib.parse, urllib.request
+import csv, json, os, re, sys, urllib.parse, urllib.request
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
 
@@ -138,6 +138,19 @@ for s in ['An estimated 37.2% of adults in the City of Rochester', '28.3% to 32.
           '32.5%', '22.9% countywide', '15.3% countywide', 'likely range 32.7% to 41.5%', '16 of the 17 other places', 'only the Village of Pittsford',
           '57 of the City of Rochester\'s 80 tracts', 'least lonely neighborhood in the county has an estimated 26.2%']:
     check(f'page text contains "{s}"', True, s in PAGE_TEXT)
+# fixes from the independent review (13 Nov)
+pop = get(f'{TW}/tigerWMS_Census2020/MapServer/82/query', {'where': "GEOID='36055'", 'outFields': 'POP100', 'returnGeometry': 'false', 'f': 'json'})['features'][0]['attributes']['POP100']
+check('Monroe County 2020 Census count (places table county row)', '759,443', f'{int(pop):,}')
+check('places table county row shows the 2020 count', True, '"Monroe County", "759,443"' in PAGE_TEXT)
+air = get(f'{TW}/tigerWMS_Census2020/MapServer/6/query', {'where': "GEOID='36055980000'", 'outFields': 'POP100', 'returnGeometry': 'false', 'f': 'json'})['features'][0]['attributes']['POP100']
+check('airport tract 36055980000 residents (2020 Census)', 0, int(air))
+csv_rows = {r['tract_geoid']: r for r in csv.DictReader(open(os.path.join(REPO, 'public', 'research', 'rochester-loneliness-map.csv')))}
+check('CSV labels the airport tract', 'Airport (no residents)', csv_rows['36055980000']['town'])
+for s in ['in Rochester and virtually across New York', 'from BRFSS survey responses', 'two city tracts with 48 residents between them', 'Residents are 2020 Census counts']:
+    check(f'page text contains "{s}"', True, s in PAGE_TEXT)
+for s in ['group-therapy', 'group therapy', 'statewide BRFSS']:
+    check(f'page text does not contain "{s}"', False, s in PAGE_TEXT)
+check('hub card wording', True, '23 of the 25 estimated loneliest census tracts' in PAGE_TEXT)
 
 json.dump({'checked': __import__('datetime').date.today().isoformat(), 'fails': fails, 'checks': out}, open(os.path.join(HERE, 'check.json'), 'w'), indent=1, default=str)
 print(f"\n{len(out) - len(fails)}/{len(out)} checks passed")

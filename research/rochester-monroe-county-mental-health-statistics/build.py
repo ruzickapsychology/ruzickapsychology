@@ -5,7 +5,8 @@ A statistics page that gathers figures from the four studies in ../ (their resul
 plus three sources of its own (raw/, fetch.sh; sources.json holds URL, retrieval date and SHA-256):
   * CDC PLACES 2025 county data for all 62 New York counties (Monroe's rank on four measures).
   * HRSA mental health HPSA detail file, Monroe County rows (the City of Rochester Medicaid-eligible designation).
-  * 988 Lifeline In-State KPI report for July 2026 (New York row). Needs pypdf (pip install pypdf).
+  * 988 Lifeline In-State KPI report for October 2026 (New York row). Needs pypdf (pip install pypdf).
+  * Census TIGERweb 2010 tracts and City of Rochester boundary (the HPSA lists 2010 tract numbers).
 Writes results.json, src/data/research/rochester-monroe-county-mental-health-statistics.json and the CSV (one row per statistic).
 """
 import json, os, re, sys
@@ -49,25 +50,38 @@ h = hp[0]
 hpsa = {'id': h['HPSA ID'], 'score': int(h['HPSA Score']), 'population': int(float(h['HPSA Designation Population'])), 'type': h['HPSA Population Type'],
         'discipline': h['HPSA Discipline Class'], 'designated': h['HPSA Designation Date'], 'updated': h['HPSA Designation Last Update Date']}
 assert hpsa['type'] == 'Medicaid Eligible Population HPSA' and hpsa['discipline'] == 'Mental Health', hpsa
-# Components are census tracts named "Census Tract N, Monroe County, New York". Matched by tract number to the 2020 tracts on the
-# loneliness map: most are city tracts, a few are suburban, some numbers no longer exist (2010 numbering). Hence "mostly in the city".
-import csv as _csv  # noqa: E402
-tract_town = {r['tract']: r['town'] for r in _csv.DictReader(open(os.path.join(HERE, '..', '..', 'public', 'research', 'rochester-loneliness-map.csv')))}
+# Components are census tracts named "Census Tract N, Monroe County, New York", numbered on 2010 boundaries. Each is placed by its
+# Census 2010 internal point inside or outside the 2010 City of Rochester boundary: most are in the city, a few in suburban towns.
+def in_ring(x, y, ring):
+    inside, j = False, len(ring) - 1
+    for i in range(len(ring)):
+        (xi, yi), (xj, yj) = ring[i], ring[j]
+        if (yi > y) != (yj > y) and x < (xj - xi) * (y - yi) / (yj - yi) + xi:
+            inside = not inside
+        j = i
+    return inside
+
+
+city = json.load(open(os.path.join(RAW, 'tiger2010-rochester-city.geojson')))['features']
+assert len(city) == 1 and city[0]['properties']['NAME'] == 'Rochester city'
+geom = city[0]['geometry']
+polys = geom['coordinates'] if geom['type'] == 'MultiPolygon' else [geom['coordinates']]
+in_city = lambda x, y: any(in_ring(x, y, p[0]) and not any(in_ring(x, y, h) for h in p[1:]) for p in polys)
+t10 = {f['attributes']['BASENAME']: f['attributes'] for f in json.load(open(os.path.join(RAW, 'tiger2010-tracts-monroe.json')))['features']}
 comp = sorted({re.fullmatch(r'Census Tract ([\d.]+), Monroe County, New York', r['HPSA Component Name']).group(1) for r in hp})
+assert all(c in t10 for c in comp), [c for c in comp if c not in t10]
 hpsa['tracts'] = len(comp)
-hpsa['tracts_city_2020'] = sum(1 for c in comp if tract_town.get(c) == 'Rochester (city)')
-hpsa['tracts_suburban_2020'] = sum(1 for c in comp if c in tract_town and tract_town[c] != 'Rochester (city)')
-hpsa['tracts_not_in_2020'] = sum(1 for c in comp if c not in tract_town)
-assert hpsa['tracts_city_2020'] > hpsa['tracts'] / 2, hpsa
+hpsa['tracts_city_2010'] = sum(1 for c in comp if in_city(float(t10[c]['INTPTLON']), float(t10[c]['INTPTLAT'])))
+assert hpsa['tracts_city_2010'] > hpsa['tracts'] / 2, hpsa
 MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 mm, dd, yy = hpsa['designated'].split('/')
 hpsa_date = f'{MONTHS[int(mm) - 1]} {int(dd)}, {yy}'
 
-# ---------- 988 (New York row, July 2026) ----------
+# ---------- 988 (New York row, October 2026) ----------
 import pypdf  # noqa: E402
-pdf = pypdf.PdfReader(os.path.join(RAW, '988-in-state-kpi-2026-07.pdf'))
+pdf = pypdf.PdfReader(os.path.join(RAW, '988-in-state-kpi-2026-10.pdf'))
 layout = pdf.pages[0].extract_text(extraction_mode='layout')
-assert 'In-State KPIs by Responsible State for July 2026' in layout.replace('\t', ' ')
+assert 'In-State KPIs by Responsible State for October 2026' in layout.replace('\t', ' ')
 m = re.search(r'^\s*NY\s+([\d,]+)\s+([\d,]+)\s+(\d+)%\s+([\d,]+)\s+([\d,]+)\s+([\d.]+)\s+sec\s+([\d.]+)\s+min', layout.replace('\t', ' '), re.M)
 assert m, 'NY row not found'
 k = [int(x.replace(',', '')) for x in m.groups()[:5]]
@@ -79,14 +93,14 @@ assert ny988['answered'] + ny988['abandoned'] + ny988['flowout'] == ny988['route
 M1 = S1['monroe']
 roc = S4['places']['3663000']
 mon_births = S2['births']['Monroe']['total']
-results = {'slug': SLUG, 'places_county_rank_highest_first': rank, 'places_county_ties': ties, 'places_county_median': median, 'monroe_places': mon, 'hpsa': hpsa, 'ny988_july_2026': ny988}
+results = {'slug': SLUG, 'places_county_rank_highest_first': rank, 'places_county_ties': ties, 'places_county_median': median, 'monroe_places': mon, 'hpsa': hpsa, 'ny988_october_2026': ny988}
 json.dump(results, open(os.path.join(HERE, 'results.json'), 'w'), indent=1)
 
 T1, T2, T3, T4 = ('/research/monroe-county-therapists', '/research/monroe-county-postpartum-depression', '/research/monroe-county-divorce-couples', '/research/rochester-loneliness-map')
 U_NYSED = 'https://www.op.nysed.gov/professions/psychology/license-statistics'
 U_PLACES_C, U_PLACES_P = 'https://data.cdc.gov/d/swc5-untb', 'https://data.cdc.gov/d/eav7-hnsx'
 U_HRSA = 'https://data.hrsa.gov/topics/health-workforce/shortage-areas'
-U_988 = 'https://988lifeline.org/wp-content/uploads/2026/08/July-26-988-In-State-Monthly-Report.pdf'
+U_988 = 'https://988lifeline.org/wp-content/uploads/2026/11/10.26.988-In-State-Monthly-Report-5.pdf'
 U_T7 = 'https://www.health.ny.gov/statistics/vital_statistics/2023/table07.htm'
 U_MD = 'https://www.health.ny.gov/community/pregnancy/health_care/perinatal/maternal_depression/providers/what_is_maternial_depression.htm'
 U_T48 = 'https://www.health.ny.gov/statistics/vital_statistics/2023/table48.htm'
@@ -128,8 +142,8 @@ groups = [
          'NYS Department of Health, Vital Statistics of New York State 2023, Table 7', U_T7, n(mon_births), 'births', 'Monroe County', '2023'),
         (f'In 2022, {S2["rates"]["nys_excl_nyc"]}% of mothers in New York State outside New York City reported symptoms of postpartum depression after giving birth ({S2["rates"]["nys"]}% statewide).',
          'NYS Department of Health, from CDC PRAMS 2022 survey data', U_MD, f'{S2["rates"]["nys_excl_nyc"]}%', 'of mothers', 'New York State excluding New York City', '2022'),
-        (f'Applied to Monroe County births, that rate suggests about {n(pp_est)} mothers a year with symptoms of postpartum depression. This is an estimate, not a count. [See the study]({T2}).',
-         'Ruzicka Psychology calculation from NYS DOH Table 7 and PRAMS', U_T7, f'about {n(pp_est)}', 'mothers a year (estimate)', 'Monroe County', '2023 births, 2022 rate'),
+        (f'Applied to Monroe County births, that rate suggests about {n(pp_est)} mothers a year are likely to report symptoms of postpartum depression. This is an estimate, not a count. [See the study]({T2}).',
+         'Ruzicka Psychology calculation from NYS DOH Table 7 and PRAMS', U_T7, f'about {n(pp_est)}', 'mothers a year likely to report symptoms (estimate)', 'Monroe County', '2023 births, 2022 rate'),
         (f'{S2["screening"]["rate"]}% of New York mothers who had a postpartum checkup were asked about depression in {S2["screening"]["year"]}, up from {S2["screening"]["prev_rate"]}% in {S2["screening"]["prev_year"]}.',
          'NYS Department of Health, from New York PRAMS data', U_MD, f'{S2["screening"]["rate"]}%', 'of mothers asked about depression', 'New York State', str(S2['screening']['year'])),
     ]),
@@ -140,11 +154,11 @@ groups = [
          'NYS Department of Health, Vital Statistics 2023, Tables 51 and 52', 'https://www.health.ny.gov/statistics/vital_statistics/2023/table52.htm', f'{S3["monroe"]["with_children_pct"]}%', 'of divorces', 'Monroe County', '2023 (provisional)'),
     ]),
     ('Crisis lines', 'Crisis', [
-        (f'In July 2026, {n(ny988["routed"])} calls to 988 were routed to New York\'s crisis centers, and {ny988["rate_pct"]}% ({n(ny988["answered"])}) were answered in state. '
+        (f'In October 2026, {n(ny988["routed"])} calls to 988 were routed to New York\'s crisis centers, and {ny988["rate_pct"]}% ({n(ny988["answered"])}) were answered in state. '
          f'{n(ny988["flowout"])} went to the national backup network. These are statewide figures; the report does not break them down by county.',
-         '988 Suicide & Crisis Lifeline, In-State KPI Report, July 2026', U_988, f'{ny988["rate_pct"]}%', 'of routed calls answered in state', 'New York State', 'July 2026'),
+         '988 Suicide & Crisis Lifeline, In-State KPI Report, October 2026', U_988, f'{ny988["rate_pct"]}%', 'of routed calls answered in state', 'New York State', 'October 2026'),
         (f'Calls answered in New York were picked up in an average of {ny988["speed_sec"]} seconds.',
-         '988 Suicide & Crisis Lifeline, In-State KPI Report, July 2026', U_988, f'{ny988["speed_sec"]} seconds', 'average speed to answer', 'New York State', 'July 2026'),
+         '988 Suicide & Crisis Lifeline, In-State KPI Report, October 2026', U_988, f'{ny988["speed_sec"]} seconds', 'average speed to answer', 'New York State', 'October 2026'),
     ]),
 ]
 for g in groups:
@@ -154,7 +168,7 @@ for g in groups:
 csv_rows = [[g[0], re.sub(r' \[See the (study|map)\]\([^)]+\)\.', '', it[0]), it[3], it[4], it[5], it[6], it[1], it[2]] for g in groups for it in g[2]]
 csv_href, csv_n = write_csv(SLUG, ['topic', 'statistic', 'value', 'unit', 'geography', 'period', 'source', 'source_url'], csv_rows)
 
-headline = (f'Monroe County has {n(M1["total"])} licensed mental health clinicians, {d1(M1["rate"])} per 100,000 residents. An estimated {mon["LONELINESS"]}% of adults '
+headline = (f'Monroe County has {n(M1["total"])} licensed psychologists and therapists (four license types), {d1(M1["rate"])} per 100,000 residents. An estimated {mon["LONELINESS"]}% of adults '
             f'feel lonely at least some of the time ({roc["LONELINESS_CrdPrv"][0]}% in the City of Rochester), and {n(hpsa["population"])} Medicaid-eligible residents, '
             f'mostly in the city, live in a federal mental health shortage area.')
 page = {
@@ -162,13 +176,13 @@ page = {
     'kind': 'statistics',
     'title': 'Mental Health in Rochester and Monroe County: Statistics',
     'metaTitle': 'Rochester and Monroe County Mental Health Statistics (2026)',
-    'metaDescription': (f'Monroe County mental health statistics: {n(M1["total"])} licensed clinicians, {mon["LONELINESS"]}% of adults lonely, '
+    'metaDescription': (f'Monroe County mental health statistics: {n(M1["total"])} licensed psychologists and therapists, {mon["LONELINESS"]}% of adults lonely, '
                         f'{mon["DEPRESSION"]}% ever told they have depression, new parents, divorce and 988 data, with sources.'),
     'eyebrow': 'Statistics · Rochester and Monroe County',
     'headline': headline,
     'datePublished': PUBLISHED,
     'dateModified': PUBLISHED,
-    'card': {'value': n(M1['total']), 'label': 'licensed mental health clinicians in Monroe County',
+    'card': {'value': n(M1['total']), 'label': 'licensed psychologists and therapists in Monroe County (four license types)',
              'summary': f'Key figures on therapists, loneliness, depression, new parents, divorce and 988 for Rochester and Monroe County, each with its source.'},
     'blocks': [
         {'type': 'keyNumbers', 'heading': 'At a glance', 'items': [
@@ -176,8 +190,8 @@ page = {
             {'value': f'{mon["LONELINESS"]}%', 'label': f'of Monroe County adults estimated to feel lonely at least some of the time ({roc["LONELINESS_CrdPrv"][0]}% in the City of Rochester)', 'source': 'CDC PLACES 2025 release'},
             {'value': f'{mon["DEPRESSION"]}%', 'label': f'of Monroe County adults estimated to have ever been told they have depression, {dep_rank_text} among New York\'s 62 counties', 'source': 'CDC PLACES 2025 release'},
             {'value': n(hpsa['population']), 'label': f'Medicaid-eligible residents, mostly in the City of Rochester, in a federal mental health shortage area (score {hpsa["score"]})', 'source': 'HRSA'},
-            {'value': f'About {n(pp_est)}', 'label': f'Monroe County mothers a year estimated to have symptoms of postpartum depression', 'source': 'Ruzicka Psychology estimate from NYS DOH data'},
-            {'value': f'{ny988["rate_pct"]}%', 'label': f'of 988 calls routed to New York centers answered in state in July 2026 ({n(ny988["routed"])} calls)', 'source': '988 Lifeline In-State KPI report'},
+            {'value': f'About {n(pp_est)}', 'label': 'Monroe County mothers a year likely to report symptoms of postpartum depression (estimate)', 'source': 'Ruzicka Psychology estimate from NYS DOH data'},
+            {'value': f'{ny988["rate_pct"]}%', 'label': f'of 988 calls routed to New York centers answered in state in October 2026 ({n(ny988["routed"])} calls)', 'source': '988 Lifeline In-State KPI report'},
         ]},
         {'type': 'notice', 'text': 'If you are in crisis or thinking about harming yourself, call or text 988 (Suicide & Crisis Lifeline, free, 24/7). If you or anyone else is in immediate danger, call 911. Local crisis and support lines are on our [resources page](/resources).'},
         *[{'type': 'statGroup', 'eyebrow': g[1], 'heading': g[0], 'items': [{'text': it[0], 'source': it[1], 'url': it[2]} for it in g[2]]} for g in groups],
@@ -192,7 +206,8 @@ page = {
         {'name': 'CDC PLACES: Local Data for Better Health, County Data 2025 release', 'period': 'BRFSS 2023 model-based estimates', 'url': U_PLACES_C},
         {'name': 'CDC PLACES: Local Data for Better Health, Place Data 2025 release', 'period': 'BRFSS 2023 model-based estimates', 'url': U_PLACES_P},
         {'name': 'HRSA Data Warehouse, Health Professional Shortage Areas: mental health (HPSA ID ' + hpsa['id'] + ', "ME-City of Rochester")', 'period': f'Designated {hpsa_date}; data downloaded November 13, 2026', 'url': U_HRSA},
-        {'name': '988 Suicide & Crisis Lifeline, In-State KPI Report, July 2026', 'period': 'July 2026', 'url': U_988},
+        {'name': '988 Suicide & Crisis Lifeline, In-State KPI Report, October 2026', 'period': 'October 2026', 'url': U_988},
+        {'name': 'U.S. Census Bureau, TIGERweb: Census 2010 tracts and City of Rochester boundary (to place the shortage-area tracts)', 'period': 'Census 2010 boundaries', 'url': 'https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_main.html'},
         {'name': 'NYS Department of Health, Vital Statistics of New York State 2023, Table 7 (births)', 'period': '2023', 'url': U_T7},
         {'name': 'NYS Department of Health, "What is Maternal Depression?" (PRAMS figures)', 'period': 'PRAMS 2022; screening 2020', 'url': U_MD},
         {'name': 'NYS Department of Health, Vital Statistics of New York State 2023, Table 48 (dissolutions of marriage)', 'period': '2023 (provisional)', 'url': U_T48},
