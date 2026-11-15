@@ -20,6 +20,12 @@ export type ServicePageDefinition = {
   pageTitle: string;
   description: string;
   contactLabel: string;
+  /**
+   * True only when Dr. Ruzicka has read the published page, which shows the
+   * "Reviewed by" line and reviewedBy markup. The 11 Nov 2026 pages went live on
+   * owner approval and still await her read-through.
+   */
+  practitionerReviewed: boolean;
 };
 
 export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
@@ -30,6 +36,7 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
     pageTitle: "Individual Therapy in Rochester, NY",
     description:
       "Individual therapy in Rochester, NY for anxiety, life transitions, grief, burnout, identity, body image, and recurring relationship patterns.",
+    practitionerReviewed: true,
     contactLabel: "Individual therapy",
   },
   {
@@ -39,6 +46,7 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
     pageTitle: "Couples Therapy in Rochester, NY",
     description:
       "Couples therapy and certified Imago Relationship Therapy in Rochester, NY for recurring conflict, communication struggles, and emotional disconnection.",
+    practitionerReviewed: true,
     contactLabel: "Couples therapy",
   },
   {
@@ -48,6 +56,7 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
     pageTitle: "Perinatal & Postpartum Therapy in Rochester, NY",
     description:
       "Perinatal and postpartum therapy in Rochester, NY for pregnancy, loss, early parenthood, anxiety, identity changes, depletion, and relationship strain.",
+    practitionerReviewed: true,
     contactLabel: "Perinatal or postpartum therapy",
   },
   {
@@ -57,6 +66,7 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
     pageTitle: "Stronger Together Couples Workshop in Rochester, NY",
     description:
       "Stronger Together is a monthly, skills-based couples workshop in Rochester, NY. Learn practical communication tools with guided partner exercises. $175 per couple, up to 6 couples.",
+    practitionerReviewed: true,
     contactLabel: "Stronger Together workshop",
   },
   {
@@ -66,6 +76,7 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
     pageTitle: "Anxiety Therapy in Rochester, NY",
     description:
       "Anxiety therapy in Rochester, NY and virtually across New York with Dr. Christina Ruzicka, for adults caught in worry, overthinking or constant tension.",
+    practitionerReviewed: false,
     contactLabel: "Anxiety therapy",
   },
   {
@@ -75,6 +86,7 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
     pageTitle: "Imago Relationship Therapy in Rochester, NY",
     description:
       "What Imago Relationship Therapy is, how the Imago Dialogue works, and couples therapy with a Certified Imago Relationship Therapist in Rochester, NY.",
+    practitionerReviewed: false,
     contactLabel: "Imago Relationship Therapy",
   },
   {
@@ -84,6 +96,7 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
     pageTitle: "Postpartum Anxiety Therapy in Rochester, NY",
     description:
       "Therapy in Rochester, NY and virtually across New York for new and expecting parents dealing with constant worry, checking or frightening thoughts.",
+    practitionerReviewed: false,
     contactLabel: "Postpartum anxiety therapy",
   },
   {
@@ -93,6 +106,7 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
     pageTitle: "Postpartum Depression Therapy in Rochester, NY",
     description:
       "Therapy in Rochester, NY and virtually across New York for new parents who feel low, numb or disconnected during pregnancy or after birth.",
+    practitionerReviewed: false,
     contactLabel: "Postpartum depression therapy",
   },
 ] as const;

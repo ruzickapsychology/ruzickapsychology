@@ -7,19 +7,25 @@ import type { SanityImageValue } from "@/config/cms-images";
 import { cn } from "@/lib/class-names";
 import styles from "./styles.module.css";
 
+/** Article author or page reviewer attribution, e.g. label "Reviewed by". */
 export function AuthorCard({
   name,
   credentials,
+  license,
   image,
   href,
+  label = "Written by",
   className,
   ...props
 }: {
   name: string;
   credentials?: string;
+  license?: string;
   image?: SanityImageValue;
-  href: ComponentProps<typeof TextLink>["href"];
+  href?: ComponentProps<typeof TextLink>["href"];
+  label?: string;
 } & Omit<ComponentProps<"aside">, "children">) {
+  const detail = [credentials, license].filter(Boolean).join(" · ");
   return (
     <aside
       data-slot="author-card"
@@ -36,15 +42,19 @@ export function AuthorCard({
         />
       ) : null}
       <Stack gap="xs">
-        <Eyebrow variant="meta">Written by</Eyebrow>
+        <Eyebrow variant="meta">{label}</Eyebrow>
         <Text variant="supporting">
-          <TextLink href={href} variant="inline">
-            {name}
-          </TextLink>
+          {href ? (
+            <TextLink href={href} variant="inline">
+              {name}
+            </TextLink>
+          ) : (
+            name
+          )}
         </Text>
-        {credentials ? (
+        {detail ? (
           <Text variant="detail" tone="subdued">
-            {credentials}
+            {detail}
           </Text>
         ) : null}
       </Stack>

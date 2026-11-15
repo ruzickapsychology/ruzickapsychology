@@ -14,6 +14,7 @@ declare const styles: {
   readonly quoteOverlay: string;
   readonly quoteSection: string;
   readonly quoteText: string;
+  readonly reviewer: string;
   readonly spaceGrid: string;
   readonly spaceImageFrame: string;
   readonly spaceImageShell: string;

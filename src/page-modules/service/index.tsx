@@ -1,5 +1,6 @@
 import { BotanicalStudy } from "@/components/botanical-study";
 import { ActionGroup } from "@/components/action-group";
+import { AuthorCard } from "@/components/author-card";
 import type { Route } from "next";
 import { BreadcrumbTrail } from "@/components/breadcrumb-trail";
 import {
@@ -32,10 +33,15 @@ import {
   PageHeaderTitle,
 } from "@/components/page-header";
 import { PageShell } from "@/components/page-shell";
+import { Stack } from "@/components/stack";
 import { TextLink } from "@/components/text-link";
 import { Text } from "@/components/typography";
 import { getAvailabilityCtaContent } from "@/config/availability";
-import type { ServicePageContent, SiteSettings } from "@/data/cms";
+import type {
+  AboutPageContent,
+  ServicePageContent,
+  SiteSettings,
+} from "@/data/cms";
 import {
   faqPageJsonLd,
   serviceEventsJsonLd,
@@ -43,6 +49,7 @@ import {
   upcomingSessions,
 } from "@/config/seo";
 import { serviceContactHref } from "@/config/services";
+import { PRACTITIONER_LICENSE } from "@/config/site";
 import styles from "./styles.module.css";
 
 const sessionDate = new Intl.DateTimeFormat("en-US", {
@@ -61,15 +68,21 @@ const sessionTime = new Intl.DateTimeFormat("en-US", {
 export function ServicePage({
   service,
   site,
+  about,
+  practitionerReviewed,
 }: {
   service: ServicePageContent;
   site: SiteSettings;
+  about: AboutPageContent | null;
+  practitionerReviewed: boolean;
 }) {
+  const reviewer = practitionerReviewed && about?.heading ? about : null;
   const faqJsonLd = faqPageJsonLd(
     service.faqs.map((faq) => ({
       question: faq.question,
       answer: faq.answerText,
     })),
+    { path: `/specialties/${service.slug}`, reviewed: Boolean(reviewer) },
   );
   const sessions = upcomingSessions(service);
   const cta = getAvailabilityCtaContent({
@@ -111,7 +124,20 @@ export function ServicePage({
       </PageHeader>
 
       <ContentSection size="compact" containerSize="md">
-        <PortableContent value={service.overview} variant="article" />
+        <Stack gap="lg">
+          {reviewer?.heading ? (
+            <AuthorCard
+              label="Reviewed by"
+              aria-label="Page reviewer"
+              name={reviewer.heading}
+              credentials={reviewer.credentials}
+              license={PRACTITIONER_LICENSE.label}
+              image={reviewer.portraitImage}
+              href="/about"
+            />
+          ) : null}
+          <PortableContent value={service.overview} variant="article" />
+        </Stack>
       </ContentSection>
 
       {sessions.length ? (

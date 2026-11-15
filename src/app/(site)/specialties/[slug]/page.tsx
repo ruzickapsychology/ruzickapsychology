@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { pageMetadata } from "@/config/seo";
 import {
+  getAboutPage,
   getServicePage,
   getServiceSlugsForBuild,
   getSiteSettings,
@@ -34,11 +35,19 @@ export default async function ServiceRoute(
   const definition = getServiceDefinition(slug);
   if (!definition) notFound();
 
-  const [service, site] = await Promise.all([
+  const [service, site, about] = await Promise.all([
     getServicePage(definition.slug),
     getSiteSettings(),
+    definition.practitionerReviewed ? getAboutPage() : null,
   ]);
   if (!service || !site) notFound();
 
-  return <ServicePage service={service} site={site} />;
+  return (
+    <ServicePage
+      service={service}
+      site={site}
+      about={about}
+      practitionerReviewed={definition.practitionerReviewed}
+    />
+  );
 }

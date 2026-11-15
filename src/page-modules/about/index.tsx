@@ -1,3 +1,4 @@
+import { AuthorCard } from "@/components/author-card";
 import { Container } from "@/components/container";
 import { BackgroundImageLayer } from "@/components/background-image-layer";
 import { CircularPortrait } from "@/components/circular-portrait";
@@ -15,12 +16,15 @@ import {
   DisclosureTitle,
   DisclosureTrigger,
 } from "@/components/disclosure-list";
+import { JsonLd } from "@/components/json-ld";
 import { PageShell } from "@/components/page-shell";
 import { Grid, GridContainer } from "@/components/grid";
 import { PortableContent } from "@/components/portable-content";
 import { Section } from "@/components/section";
 import { Eyebrow, Text } from "@/components/typography";
 import { imageSrc } from "@/config/cms-images";
+import { reviewedPageJsonLd } from "@/config/seo";
+import { PRACTITIONER_LICENSE } from "@/config/site";
 import type { AboutPageContent, SiteSettings } from "@/data/cms";
 import {
   getAvailabilityContext,
@@ -54,6 +58,15 @@ export function AboutPage({
 
   return (
     <PageShell>
+      {about.heading ? (
+        <JsonLd
+          data={reviewedPageJsonLd({
+            path: "/about",
+            name: about.heading,
+            type: "AboutPage",
+          })}
+        />
+      ) : null}
       {/* bio */}
       <Section size="page">
         <GridContainer size="xl" layout="portrait" gap="lg" align="start">
@@ -84,6 +97,17 @@ export function AboutPage({
                   />
                 ))}
               </DisclosureList>
+            ) : null}
+
+            {about.heading ? (
+              <AuthorCard
+                label="Reviewed by"
+                aria-label="Page reviewer"
+                name={about.heading}
+                credentials={about.credentials}
+                license={PRACTITIONER_LICENSE.label}
+                className={styles.reviewer}
+              />
             ) : null}
           </ContentHeader>
         </GridContainer>

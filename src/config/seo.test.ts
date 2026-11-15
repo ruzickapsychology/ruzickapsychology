@@ -7,6 +7,7 @@ import {
   faqPageJsonLd,
   pageMetadata,
   practiceJsonLd,
+  reviewedPageJsonLd,
 } from "./seo";
 
 describe("pageMetadata", () => {
@@ -63,9 +64,48 @@ describe("structured data", () => {
         expect.objectContaining({
           "@type": "Person",
           jobTitle: "Licensed Clinical Psychologist",
+          hasCredential: expect.objectContaining({
+            credentialCategory: "license",
+            identifier: "024357",
+            recognizedBy: expect.objectContaining({
+              "@type": "GovernmentOrganization",
+            }),
+          }),
         }),
       ]),
     );
+  });
+
+  it("names the licensed reviewer on reviewed pages only", () => {
+    const reviewer = expect.objectContaining({
+      "@type": "Person",
+      hasCredential: expect.objectContaining({ identifier: "024357" }),
+    });
+    const post = blogPostJsonLd({
+      title: "A useful article",
+      slug: "a-useful-article",
+      excerpt: "Description",
+      date: "2026-01-01",
+    });
+    const about = reviewedPageJsonLd({
+      path: "/about",
+      name: "Dr. Christina Ruzicka",
+      type: "AboutPage",
+    });
+    const items = [{ question: "How do I begin?", answer: "Reach out." }];
+
+    expect(post.mainEntityOfPage).toEqual(
+      expect.objectContaining({ "@type": "WebPage", reviewedBy: reviewer }),
+    );
+    expect(about).toEqual(
+      expect.objectContaining({ "@type": "AboutPage", reviewedBy: reviewer }),
+    );
+    expect(faqPageJsonLd(items, { path: "/faq", reviewed: true })).toEqual(
+      expect.objectContaining({ reviewedBy: reviewer }),
+    );
+    expect(
+      faqPageJsonLd(items, { path: "/specialties/x", reviewed: false }),
+    ).not.toHaveProperty("reviewedBy");
   });
 
   it("uses absolute breadcrumb URLs and article dates", () => {

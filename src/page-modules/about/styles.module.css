@@ -6,6 +6,10 @@
   margin-top: 2.75rem;
 }
 
+.reviewer {
+  margin-top: var(--space-7);
+}
+
 .spaceGrid {
   gap: var(--space-5);
 }

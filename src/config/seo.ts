@@ -4,15 +4,19 @@ import type {
   BreadcrumbList,
   CollectionPage,
   DayOfWeek,
+  EducationalOccupationalCredential,
   Event,
   FAQPage,
   Graph,
+  Person,
   Service,
+  WebPage,
   WithContext,
 } from "schema-dts";
 import type { ServicePageContent, SiteSettings } from "@/data/cms";
 import type { ResearchPageContent } from "@/data/research";
 import {
+  PRACTITIONER_LICENSE,
   SITE_DEFAULT_DESCRIPTION,
   SITE_LEGAL_NAME,
   SITE_URL,
@@ -113,6 +117,28 @@ export function blogPostMetadata(post: {
 export const practiceId = `${SITE_URL}/#practice`;
 export const practitionerId = `${SITE_URL}/about#christina-ruzicka`;
 
+const practitionerLicense: EducationalOccupationalCredential = {
+  "@type": "EducationalOccupationalCredential",
+  name: PRACTITIONER_LICENSE.name,
+  credentialCategory: "license",
+  identifier: PRACTITIONER_LICENSE.number,
+  recognizedBy: {
+    "@type": "GovernmentOrganization",
+    name: PRACTITIONER_LICENSE.issuer,
+    url: PRACTITIONER_LICENSE.issuerUrl,
+  },
+};
+
+/** Reviewer for pages Dr. Ruzicka has read; the full node is in the site layout graph. */
+const practitionerReviewer: Person = {
+  "@type": "Person",
+  "@id": practitionerId,
+  name: "Dr. Christina Ruzicka",
+  jobTitle: "Licensed Clinical Psychologist",
+  url: `${SITE_URL}/about`,
+  hasCredential: practitionerLicense,
+};
+
 const schemaDays: Record<string, DayOfWeek> = {
   mon: "https://schema.org/Monday",
   tue: "https://schema.org/Tuesday",
@@ -188,8 +214,8 @@ export function practiceJsonLd(settings: SiteSettings): Graph {
         identifier: [
           {
             "@type": "PropertyValue",
-            name: "New York Psychologist License",
-            value: "024357",
+            name: PRACTITIONER_LICENSE.name,
+            value: PRACTITIONER_LICENSE.number,
           },
           {
             "@type": "PropertyValue",
@@ -197,6 +223,7 @@ export function practiceJsonLd(settings: SiteSettings): Graph {
             value: "1831638501",
           },
         ],
+        hasCredential: practitionerLicense,
         knowsAbout: [
           "Individual psychotherapy",
           "Imago Relationship Therapy",
@@ -303,12 +330,36 @@ export function breadcrumbJsonLd(
   };
 }
 
+/** Page node naming Dr. Ruzicka as reviewer, for pages she has read. */
+export function reviewedPageJsonLd({
+  path,
+  name,
+  type = "WebPage",
+}: {
+  path: string;
+  name: string;
+  type?: "WebPage" | "AboutPage";
+}): WithContext<WebPage> {
+  const url = `${SITE_URL}${path}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": type,
+    "@id": `${url}#webpage`,
+    url,
+    name,
+    reviewedBy: practitionerReviewer,
+  };
+}
+
 export function faqPageJsonLd(
   items: ReadonlyArray<{ question: string; answer: string }>,
+  page?: { path: string; reviewed: boolean },
 ): WithContext<FAQPage> {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    ...(page ? { url: `${SITE_URL}${page.path}` } : {}),
+    ...(page?.reviewed ? { reviewedBy: practitionerReviewer } : {}),
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.question,
@@ -334,7 +385,12 @@ export function blogPostJsonLd(post: {
     headline: post.title,
     description: post.excerpt,
     url,
-    mainEntityOfPage: url,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+      url,
+      reviewedBy: practitionerReviewer,
+    },
     datePublished: post.date,
     dateModified: post.updatedAt ?? post.date,
     author: { "@id": practitionerId },
