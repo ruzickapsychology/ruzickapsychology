@@ -24,6 +24,7 @@ import { Stack } from "@/components/stack";
 import { TextLink } from "@/components/text-link";
 import { Heading, Text } from "@/components/typography";
 import { blogPostJsonLd } from "@/config/seo";
+import { PRACTITIONER_LICENSE } from "@/config/site";
 import type { Post, PostMeta } from "@/data/blog";
 import { formatPostDate } from "@/lib/format-post-date";
 import styles from "./styles.module.css";
@@ -90,17 +91,21 @@ export function BlogPostPage({
         <Stack gap="lg">
           {about?.heading ? (
             <AuthorCard
+              label="Written and reviewed by"
+              aria-label="Article author and reviewer"
               name={about.heading}
               credentials={about.credentials}
+              license={PRACTITIONER_LICENSE.label}
               image={about.portraitImage}
               href="/about"
             />
           ) : site?.practitioner ? (
             <Text variant="supporting">
-              Written by{" "}
+              Written and reviewed by{" "}
               <TextLink href="/about" variant="inline">
                 {site.practitioner}
               </TextLink>
+              {` · ${PRACTITIONER_LICENSE.label}`}
             </Text>
           ) : null}
           <PortableContent value={post.body} variant="article" />

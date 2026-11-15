@@ -60,7 +60,7 @@ const site: SiteSettings = {
 
 describe("FAQ consultation availability", () => {
   it("shows inquiry and phone options when accepting", () => {
-    render(<FAQPage faq={faq} site={site} />);
+    render(<FAQPage faq={faq} site={site} about={null} />);
     expect(
       screen.getByRole("link", { name: "Request a consultation" }),
     ).toHaveAttribute("href", "/contact");
@@ -70,7 +70,11 @@ describe("FAQ consultation availability", () => {
   });
   it("uses waitlist messaging without promising a consultation", () => {
     render(
-      <FAQPage faq={faq} site={{ ...site, availabilityStatus: "waitlist" }} />,
+      <FAQPage
+        faq={faq}
+        site={{ ...site, availabilityStatus: "waitlist" }}
+        about={null}
+      />,
     );
     expect(
       screen.getByRole("link", { name: "Join the waitlist" }),
@@ -81,7 +85,11 @@ describe("FAQ consultation availability", () => {
   });
   it("shows the closed notice with neither phone nor inquiry actions", () => {
     render(
-      <FAQPage faq={faq} site={{ ...site, availabilityStatus: "closed" }} />,
+      <FAQPage
+        faq={faq}
+        site={{ ...site, availabilityStatus: "closed" }}
+        about={null}
+      />,
     );
     expect(
       screen.getByRole("heading", { name: "Practice currently full" }),
@@ -89,7 +97,7 @@ describe("FAQ consultation availability", () => {
     expect(screen.queryByRole("link")).not.toBeInTheDocument();
   });
   it("does not infer availability without settings", () => {
-    render(<FAQPage faq={faq} site={null} />);
+    render(<FAQPage faq={faq} site={null} about={null} />);
     expect(screen.queryByRole("link")).not.toBeInTheDocument();
   });
 });

@@ -84,7 +84,7 @@ follow a shadcn-style composition contract while retaining CSS Modules.
 
 ## Domain Blocks
 
-- `author-card` — compact article attribution using the CMS author name, credentials, real portrait and profile link; composes CircularPortrait, Stack and typography.
+- `author-card` — compact attribution using the CMS author name, credentials, real portrait and profile link, with an optional license line and label ("Written by" by default; "Written and reviewed by" on posts, "Reviewed by" on pages Dr. Ruzicka has read); composes CircularPortrait, Stack and typography.
 - `cta-section` — consultation call-to-action band.
 - `status-page`, `error-content` — shared error and not-found presentation.
 
