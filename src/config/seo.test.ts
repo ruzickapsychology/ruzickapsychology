@@ -7,6 +7,7 @@ import {
   faqPageJsonLd,
   pageMetadata,
   practiceJsonLd,
+  researchHubJsonLd,
   reviewedPageJsonLd,
 } from "./seo";
 
@@ -106,6 +107,9 @@ describe("structured data", () => {
     expect(
       faqPageJsonLd(items, { path: "/specialties/x", reviewed: false }),
     ).not.toHaveProperty("reviewedBy");
+    expect(researchHubJsonLd([])).toEqual(
+      expect.objectContaining({ reviewedBy: reviewer }),
+    );
   });
 
   it("uses absolute breadcrumb URLs and article dates", () => {

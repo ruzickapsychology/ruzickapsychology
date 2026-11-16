@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { pageMetadata } from "@/config/seo";
-import { getHomePage, getSiteSettings } from "@/data/cms";
+import { getAboutPage, getHomePage, getSiteSettings } from "@/data/cms";
 import {
   getResearchPage,
   getResearchSlugsForBuild,
@@ -45,7 +45,18 @@ export default async function ResearchRoute(
   const page = getResearchPage(slug);
   if (!page) notFound();
 
-  const [home, site] = await Promise.all([getHomePage(), getSiteSettings()]);
+  const [home, site, about] = await Promise.all([
+    getHomePage(),
+    getSiteSettings(),
+    getAboutPage(),
+  ]);
 
-  return <ResearchPage page={page} ctaContent={home?.cta} site={site} />;
+  return (
+    <ResearchPage
+      page={page}
+      ctaContent={home?.cta}
+      site={site}
+      about={about}
+    />
+  );
 }

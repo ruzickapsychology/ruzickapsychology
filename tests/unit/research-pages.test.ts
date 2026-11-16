@@ -75,7 +75,7 @@ describe("research pages", () => {
     },
   );
 
-  it("never names a clinician as author or reviewer", () => {
+  it("keeps reviewer text out of the study data (the page module adds the stamp)", () => {
     const text = allText(pages).join(" ");
     expect(text).not.toMatch(/Reviewed by|Medically reviewed/i);
   });
