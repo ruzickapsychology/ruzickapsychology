@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { pageMetadata } from "@/config/seo";
-import { getResourcesPage } from "@/data/cms";
+import { getAboutPage, getResourcesPage } from "@/data/cms";
 import { ResourcesPage } from "@/page-modules/resources";
 
 export const metadata: Metadata = pageMetadata({
@@ -12,8 +12,11 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default async function ResourcesRoute() {
-  const resources = await getResourcesPage();
+  const [resources, about] = await Promise.all([
+    getResourcesPage(),
+    getAboutPage(),
+  ]);
   if (!resources) notFound();
 
-  return <ResourcesPage resources={resources} />;
+  return <ResourcesPage resources={resources} about={about} />;
 }

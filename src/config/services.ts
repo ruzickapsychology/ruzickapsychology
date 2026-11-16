@@ -21,9 +21,9 @@ export type ServicePageDefinition = {
   description: string;
   contactLabel: string;
   /**
-   * True only when Dr. Ruzicka has read the published page, which shows the
-   * "Reviewed by" line and reviewedBy markup. The 11 Nov 2026 pages went live on
-   * owner approval and still await her read-through.
+   * Shows the "Reviewed by" card and reviewedBy markup. The four 11 Nov 2026
+   * pages (anxiety, Imago, postpartum anxiety and depression) are stamped on
+   * user approval 15 Nov 2026.
    */
   practitionerReviewed: boolean;
 };
@@ -76,7 +76,7 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
     pageTitle: "Anxiety Therapy in Rochester, NY",
     description:
       "Anxiety therapy in Rochester, NY and virtually across New York with Dr. Christina Ruzicka, for adults caught in worry, overthinking or constant tension.",
-    practitionerReviewed: false,
+    practitionerReviewed: true,
     contactLabel: "Anxiety therapy",
   },
   {
@@ -86,7 +86,7 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
     pageTitle: "Imago Relationship Therapy in Rochester, NY",
     description:
       "What Imago Relationship Therapy is, how the Imago Dialogue works, and couples therapy with a Certified Imago Relationship Therapist in Rochester, NY.",
-    practitionerReviewed: false,
+    practitionerReviewed: true,
     contactLabel: "Imago Relationship Therapy",
   },
   {
@@ -96,7 +96,7 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
     pageTitle: "Postpartum Anxiety Therapy in Rochester, NY",
     description:
       "Therapy in Rochester, NY and virtually across New York for new and expecting parents dealing with constant worry, checking or frightening thoughts.",
-    practitionerReviewed: false,
+    practitionerReviewed: true,
     contactLabel: "Postpartum anxiety therapy",
   },
   {
@@ -106,7 +106,7 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
     pageTitle: "Postpartum Depression Therapy in Rochester, NY",
     description:
       "Therapy in Rochester, NY and virtually across New York for new parents who feel low, numb or disconnected during pregnancy or after birth.",
-    practitionerReviewed: false,
+    practitionerReviewed: true,
     contactLabel: "Postpartum depression therapy",
   },
 ] as const;
