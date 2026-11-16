@@ -129,7 +129,7 @@ const practitionerLicense: EducationalOccupationalCredential = {
   },
 };
 
-/** Reviewer for pages Dr. Ruzicka has read; the full node is in the site layout graph. */
+/** Reviewer for stamped pages; the full node is in the site layout graph. */
 const practitionerReviewer: Person = {
   "@type": "Person",
   "@id": practitionerId,
@@ -398,7 +398,7 @@ export function blogPostJsonLd(post: {
   };
 }
 
-/** Article + Dataset for a /research page. Author and publisher are the practice node from the site layout. */
+/** Article + Dataset for a /research page. Author and publisher are the practice node from the site layout; reviewer stamped on user approval 15 Nov 2026. */
 export function researchPageJsonLd(page: ResearchPageContent): Graph {
   const url = `${SITE_URL}/research/${page.slug}`;
   const nodes: Array<Graph["@graph"][number]> = [
@@ -408,7 +408,12 @@ export function researchPageJsonLd(page: ResearchPageContent): Graph {
       headline: page.title,
       description: page.metaDescription,
       url,
-      mainEntityOfPage: url,
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": url,
+        url,
+        reviewedBy: practitionerReviewer,
+      },
       datePublished: page.datePublished,
       dateModified: page.dateModified,
       inLanguage: "en-US",
@@ -462,6 +467,7 @@ export function researchHubJsonLd(
     url,
     inLanguage: "en-US",
     publisher: { "@id": practiceId },
+    reviewedBy: practitionerReviewer,
     hasPart: pages.map((page) => ({
       "@type": "Article" as const,
       "@id": `${url}/${page.slug}#article`,

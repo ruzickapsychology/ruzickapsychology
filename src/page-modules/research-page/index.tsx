@@ -1,3 +1,4 @@
+import { AuthorCard } from "@/components/author-card";
 import { BreadcrumbTrail } from "@/components/breadcrumb-trail";
 import {
   ContentHeader,
@@ -22,7 +23,12 @@ import { TextLink } from "@/components/text-link";
 import { Text } from "@/components/typography";
 import { getAvailabilityCtaContent } from "@/config/availability";
 import { researchPageJsonLd } from "@/config/seo";
-import type { HomePageContent, SiteSettings } from "@/data/cms";
+import { PRACTITIONER_LICENSE } from "@/config/site";
+import type {
+  AboutPageContent,
+  HomePageContent,
+  SiteSettings,
+} from "@/data/cms";
 import type { ResearchBlock, ResearchPageContent } from "@/data/research";
 import { formatResearchDate } from "@/lib/research-text";
 import type { Route } from "next";
@@ -240,14 +246,17 @@ function Block({
   }
 }
 
+/** Reviewer stamp added on user approval 15 Nov 2026 (no review date). */
 export function ResearchPage({
   page,
   ctaContent,
   site,
+  about,
 }: {
   page: ResearchPageContent;
   ctaContent?: HomePageContent["cta"];
   site?: SiteSettings | null;
+  about?: AboutPageContent | null;
 }) {
   const path = `/research/${page.slug}`;
   const cta = site
@@ -284,6 +293,17 @@ export function ResearchPage({
               ? ` · Updated ${formatResearchDate(page.dateModified)}`
               : null}
           </Text>
+          {about?.heading ? (
+            <AuthorCard
+              label="Reviewed by"
+              aria-label="Page reviewer"
+              name={about.heading}
+              credentials={about.credentials}
+              license={PRACTITIONER_LICENSE.label}
+              image={about.portraitImage}
+              href="/about"
+            />
+          ) : null}
         </PageHeaderContent>
       </PageHeader>
 

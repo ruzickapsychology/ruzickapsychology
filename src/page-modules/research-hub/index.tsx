@@ -1,4 +1,5 @@
 import type { Route } from "next";
+import { AuthorCard } from "@/components/author-card";
 import {
   ContentHeader,
   ContentHeaderEyebrow,
@@ -24,21 +25,29 @@ import { TextLink } from "@/components/text-link";
 import { Text } from "@/components/typography";
 import { getAvailabilityCtaContent } from "@/config/availability";
 import { researchHubJsonLd } from "@/config/seo";
-import type { HomePageContent, SiteSettings } from "@/data/cms";
+import { PRACTITIONER_LICENSE } from "@/config/site";
+import type {
+  AboutPageContent,
+  HomePageContent,
+  SiteSettings,
+} from "@/data/cms";
 import type { ResearchPageContent, ResearchSource } from "@/data/research";
 import { formatResearchDate } from "@/lib/research-text";
 import styles from "./styles.module.css";
 
+/** Reviewer stamp added on user approval 15 Nov 2026 (no review date). */
 export function ResearchHubPage({
   pages,
   sources,
   ctaContent,
   site,
+  about,
 }: {
   pages: readonly ResearchPageContent[];
   sources: ReadonlyArray<ResearchSource & { pages: string[] }>;
   ctaContent?: HomePageContent["cta"];
   site?: SiteSettings | null;
+  about?: AboutPageContent | null;
 }) {
   const cta = site
     ? getAvailabilityCtaContent({
@@ -66,6 +75,20 @@ export function ResearchHubPage({
           </PageHeaderDescription>
         </PageHeaderContent>
       </PageHeader>
+
+      {about?.heading ? (
+        <ContentSection size="compact" containerSize="md">
+          <AuthorCard
+            label="Reviewed by"
+            aria-label="Page reviewer"
+            name={about.heading}
+            credentials={about.credentials}
+            license={PRACTITIONER_LICENSE.label}
+            image={about.portraitImage}
+            href="/about"
+          />
+        </ContentSection>
+      ) : null}
 
       <ContentSection size="spacious" containerSize="xl">
         <ContentHeader align="left" gap="none">

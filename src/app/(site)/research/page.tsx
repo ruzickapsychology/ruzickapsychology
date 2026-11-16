@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/config/seo";
-import { getHomePage, getSiteSettings } from "@/data/cms";
+import { getAboutPage, getHomePage, getSiteSettings } from "@/data/cms";
 import { getResearchPages, getResearchSources } from "@/data/research";
 import { ResearchHubPage } from "@/page-modules/research-hub";
 
@@ -12,7 +12,11 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default async function ResearchHubRoute() {
-  const [home, site] = await Promise.all([getHomePage(), getSiteSettings()]);
+  const [home, site, about] = await Promise.all([
+    getHomePage(),
+    getSiteSettings(),
+    getAboutPage(),
+  ]);
 
   return (
     <ResearchHubPage
@@ -20,6 +24,7 @@ export default async function ResearchHubRoute() {
       sources={getResearchSources()}
       ctaContent={home?.cta}
       site={site}
+      about={about}
     />
   );
 }
