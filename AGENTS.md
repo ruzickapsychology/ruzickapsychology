@@ -75,6 +75,8 @@ If Sanity data is missing, a page may render nothing rather than falling back to
 
 Exception: `/research` pages are generated data, not CMS copy. `research/<slug>/build.py` writes `src/data/research/<slug>.json` and `public/research/<slug>.csv` from public source files, so every figure can be re-derived. Do not edit those outputs by hand or move them into Sanity; see `research/README.md`.
 
+Exception: `/guides/<guide>` pages (the postpartum guide) are code-owned JSON in `src/data/guides/<guide>.json`, so each page keeps its medical sources next to its text and the link checks in `src/data/guides.test.ts` can cover them. Medical facts on these pages must come from the primary sources listed on the page, and practice facts only from `docs/website-facts.md`. Guide pages carry no "Reviewed by" stamp until Dr. Ruzicka has read them.
+
 ## Routes And Page Modules
 
 - `src/app/` is the framework boundary. Public `page.tsx` files own metadata,

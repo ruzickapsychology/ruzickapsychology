@@ -1,0 +1,39 @@
+{
+  "slug": "postpartum",
+  "title": "Postpartum guide",
+  "metaTitle": "Postpartum and Pregnancy Mental Health Guide for Parents",
+  "metaDescription": "A plain-language guide for new and expecting parents in New York: postpartum depression, anxiety, scary thoughts, treatment options and how to get help.",
+  "eyebrow": "Postpartum guide",
+  "headline": "Postpartum and Pregnancy Mental Health: A Guide for New and Expecting Parents",
+  "intro": "Pregnancy and the first year with a baby can bring feelings nobody warned you about. This guide is for parents who want to understand what they are feeling, compare the kinds of help available, and know what starting therapy looks like. Read it in any order.",
+  "datePublished": "2026-11-18",
+  "stages": [
+    {
+      "stage": "learn",
+      "eyebrow": "Step 1 · Learn",
+      "heading": "Understand what you are feeling",
+      "description": "Signs, causes and what is common in pregnancy and the first year after birth, for mothers, fathers and partners."
+    },
+    {
+      "stage": "compare",
+      "eyebrow": "Step 2 · Compare",
+      "heading": "Compare the kinds of help",
+      "description": "Therapy, medication and support groups, what perinatal training means, and how paying for therapy works in Rochester."
+    },
+    {
+      "stage": "decide",
+      "eyebrow": "Step 3 · Decide",
+      "heading": "Take the next step",
+      "description": "What happens when you start therapy, and the questions worth asking any therapist before you book."
+    }
+  ],
+  "practiceNote": {
+    "heading": "About Ruzicka Psychology",
+    "paragraphs": [
+      "Ruzicka Psychology is the Rochester practice of Dr. Christina Ruzicka, Psy.D., a licensed clinical psychologist in New York. She has completed Postpartum Support International's perinatal mental health training and is approved to take the PMH-C exam. She sees adults in person at 1577 South Ave in Rochester and by video anywhere in New York.",
+      "Medical facts on each page link to their sources, such as the National Institute of Mental Health, the CDC and Postpartum Support International. For local numbers, see our study of [postpartum depression in Monroe County](/research/monroe-county-postpartum-depression).",
+      "If therapy feels like the right next step, read about [postpartum depression therapy](/specialties/postpartum-depression-therapy), [postpartum anxiety therapy](/specialties/postpartum-anxiety-therapy) or [perinatal and postpartum therapy](/specialties/perinatal-postpartum-therapy)."
+    ]
+  },
+  "pages": []
+}

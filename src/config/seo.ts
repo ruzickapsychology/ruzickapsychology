@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type {
+  Article,
   BlogPosting,
   BreadcrumbList,
   CollectionPage,
@@ -14,7 +15,9 @@ import type {
   WithContext,
 } from "schema-dts";
 import type { ServicePageContent, SiteSettings } from "@/data/cms";
+import type { GuideContent, GuidePageContent } from "@/data/guides";
 import type { ResearchPageContent } from "@/data/research";
+import { guidePath } from "@/lib/guides";
 import {
   PRACTICE_GEO,
   PRACTITIONER_LICENSE,
@@ -487,6 +490,57 @@ export function researchHubJsonLd(
       "@type": "Article" as const,
       "@id": `${url}/${page.slug}#article`,
       headline: page.title,
+      url: `${url}/${page.slug}`,
+      datePublished: page.datePublished,
+    })),
+  };
+}
+
+/**
+ * Article for a /guides page. Author and publisher are the practice node.
+ * No reviewedBy: guide pages are not stamped until Dr. Ruzicka has read them.
+ */
+export function guidePageJsonLd(
+  guide: GuideContent,
+  page: GuidePageContent,
+): WithContext<Article> {
+  const url = `${SITE_URL}${guidePath(guide.slug, page.slug)}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${url}#article`,
+    headline: page.headline,
+    description: page.metaDescription,
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url, url },
+    datePublished: page.datePublished,
+    dateModified: page.dateModified,
+    inLanguage: "en-US",
+    author: { "@id": practiceId },
+    publisher: { "@id": practiceId },
+    isPartOf: { "@id": `${SITE_URL}${guidePath(guide.slug)}#collection` },
+    citation: page.sources.map((source) => source.url),
+  };
+}
+
+export function guideHubJsonLd(
+  guide: GuideContent,
+  pages: readonly GuidePageContent[],
+): WithContext<CollectionPage> {
+  const url = `${SITE_URL}${guidePath(guide.slug)}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${url}#collection`,
+    name: guide.metaTitle,
+    description: guide.metaDescription,
+    url,
+    inLanguage: "en-US",
+    publisher: { "@id": practiceId },
+    hasPart: pages.map((page) => ({
+      "@type": "Article" as const,
+      "@id": `${url}/${page.slug}#article`,
+      headline: page.headline,
       url: `${url}/${page.slug}`,
       datePublished: page.datePublished,
     })),
