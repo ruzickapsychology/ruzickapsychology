@@ -61,6 +61,9 @@ describe("structured data", () => {
             streetAddress: "1577 South Avenue",
             postalCode: "14620",
           }),
+          geo: expect.objectContaining({ "@type": "GeoCoordinates" }),
+          hasMap: expect.stringContaining("1577%20South%20Avenue"),
+          priceRange: "$$",
         }),
         expect.objectContaining({
           "@type": "Person",

@@ -9,6 +9,8 @@ export const SERVICE_SLUGS = [
   "imago-relationship-therapy",
   "postpartum-anxiety-therapy",
   "postpartum-depression-therapy",
+  "marriage-counseling",
+  "online-therapy",
 ] as const;
 
 export type ServiceSlug = (typeof SERVICE_SLUGS)[number];
@@ -23,7 +25,8 @@ export type ServicePageDefinition = {
   /**
    * Shows the "Reviewed by" card and reviewedBy markup. The four 11 Nov 2026
    * pages (anxiety, Imago, postpartum anxiety and depression) are stamped on
-   * user approval 15 Nov 2026.
+   * user approval 15 Nov 2026. The 18 Nov 2026 pages (marriage counseling,
+   * online therapy) are not stamped yet.
    */
   practitionerReviewed: boolean;
 };
@@ -108,6 +111,28 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
       "Therapy in Rochester, NY and virtually across New York for new parents who feel low, numb or disconnected during pregnancy or after birth.",
     practitionerReviewed: true,
     contactLabel: "Postpartum depression therapy",
+  },
+  // Added 18 Nov 2026 without Christina's read-through: not stamped until she
+  // has read them.
+  {
+    slug: "marriage-counseling",
+    documentId: "specialty-marriage-counseling",
+    title: "Marriage Counseling",
+    pageTitle: "Marriage Counseling in Rochester, NY",
+    description:
+      "Marriage counseling in Rochester, NY with Dr. Christina Ruzicka, Psy.D., for spouses caught in the same arguments, growing distance or a hard season.",
+    practitionerReviewed: false,
+    contactLabel: "Marriage counseling",
+  },
+  {
+    slug: "online-therapy",
+    documentId: "specialty-online-therapy",
+    title: "Online Therapy",
+    pageTitle: "Online Therapy in New York",
+    description:
+      "Online therapy by secure video anywhere in New York with Dr. Christina Ruzicka, Psy.D.: individual, anxiety, couples and postpartum therapy.",
+    practitionerReviewed: false,
+    contactLabel: "Online therapy",
   },
 ] as const;
 

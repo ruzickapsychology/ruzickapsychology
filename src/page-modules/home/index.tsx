@@ -23,6 +23,8 @@ import { Section } from "@/components/section";
 import { TextLink } from "@/components/text-link";
 import { CtaLink } from "@/components/cta-link";
 import { imageBlurData, imageSrc } from "@/config/cms-images";
+import { serviceHref } from "@/config/services";
+import { PRACTICE_NEARBY } from "@/config/site";
 import {
   getAvailabilityBadgeMessages,
   getAvailabilityContext,
@@ -180,8 +182,11 @@ export function HomePage({
               </ContentHeaderTitle>
               <ContentHeaderDescription>
                 Meet with Dr. Christina Ruzicka at {site.address.streetAddress}{" "}
-                in Rochester, or ask about virtual appointments available to
-                clients located across New York.
+                in Rochester, or ask about{" "}
+                <TextLink href={serviceHref("online-therapy")} variant="inline">
+                  online therapy
+                </TextLink>{" "}
+                for clients located across New York. {PRACTICE_NEARBY}
               </ContentHeaderDescription>
               <ContentHeaderActions>
                 <TextLink href="/contact">

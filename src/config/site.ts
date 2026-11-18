@@ -17,6 +17,21 @@ export const PRACTITIONER_LICENSE = {
   issuerUrl: "https://www.op.nysed.gov/",
 } as const;
 
+/**
+ * Office location for structured data. OpenStreetMap geocode of 1577 South
+ * Avenue, Rochester, NY 14620 (Upper Mount Hope), checked 18 Nov 2026.
+ */
+export const PRACTICE_GEO = { latitude: 43.1245, longitude: -77.6147 } as const;
+
+/**
+ * Nearby areas named on the home and contact pages. Drive times are OSRM
+ * free-flow estimates from the office, checked 18 Nov 2026: Highland Park,
+ * the South Wedge, Swillburg, the University of Rochester and Brighton are
+ * 4-6 minutes away; Pittsford, Henrietta and Penfield 12-14 minutes.
+ */
+export const PRACTICE_NEARBY =
+  "The office is in the Upper Mount Hope neighborhood, a few minutes from Highland Park, the South Wedge, Swillburg, the University of Rochester and Brighton, and about 15 minutes from Pittsford, Henrietta and Penfield.";
+
 export const SITE_DEFAULT_DESCRIPTION =
   "Evidence-based psychotherapy in Rochester, New York for adults and couples.";
 

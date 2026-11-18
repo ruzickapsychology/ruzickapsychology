@@ -20,6 +20,7 @@ import { TextLink } from "@/components/text-link";
 import { TrackedExternalLink } from "@/components/tracked-external-link";
 import { Eyebrow, Heading, Text } from "@/components/typography";
 import { getAvailabilityContext } from "@/config/availability";
+import { PRACTICE_NEARBY } from "@/config/site";
 import type { ContactPageContent, SiteSettings } from "@/data/cms";
 import { cn } from "@/lib/class-names";
 import { ContactForm } from "./contact-form";
@@ -184,6 +185,9 @@ export function ContactPage({
               <Text as="span" variant="detail" tone="subdued">
                 {site.address.note}
               </Text>
+            </Text>
+            <Text variant="detail" tone="subdued" className={styles.nearbyNote}>
+              {PRACTICE_NEARBY}
             </Text>
           </div>
           <div aria-hidden className={styles.detailDivider} />
