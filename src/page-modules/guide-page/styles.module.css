@@ -50,3 +50,11 @@
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+.ctaBodyText {
+  display: block;
+}
+
+.ctaSupportLinks {
+  margin-top: var(--space-4);
+}

@@ -11,6 +11,7 @@ export const SERVICE_SLUGS = [
   "postpartum-depression-therapy",
   "marriage-counseling",
   "online-therapy",
+  "online-postpartum-therapy",
 ] as const;
 
 export type ServiceSlug = (typeof SERVICE_SLUGS)[number];
@@ -133,6 +134,16 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
       "Online therapy by secure video anywhere in New York with Dr. Christina Ruzicka, Psy.D.: individual, anxiety, couples and postpartum therapy.",
     practitionerReviewed: false,
     contactLabel: "Online therapy",
+  },
+  {
+    slug: "online-postpartum-therapy",
+    documentId: "specialty-online-postpartum-therapy",
+    title: "Online Postpartum Therapy",
+    pageTitle: "Online Postpartum Therapy in New York",
+    description:
+      "Postpartum and pregnancy therapy by secure video anywhere in New York with Dr. Christina Ruzicka, Psy.D. Your baby is welcome in sessions.",
+    practitionerReviewed: false,
+    contactLabel: "Online postpartum therapy",
   },
 ] as const;
 
