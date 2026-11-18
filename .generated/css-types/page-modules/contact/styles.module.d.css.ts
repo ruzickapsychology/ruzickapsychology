@@ -14,6 +14,7 @@ declare const styles: {
   readonly map: string;
   readonly mapOverlay: string;
   readonly mapShell: string;
+  readonly nearbyNote: string;
   readonly stepNumber: string;
   readonly stepTitle: string;
 };

@@ -32,7 +32,7 @@ export const site = {
   availabilityMessaging: initialAvailabilityMessaging,
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.example.com",
   tagline:
-    "Evidence-based psychotherapy tailored to your unique story. Specialized support for couples seeking connection, and women and parents navigating perinatal mental health and postpartum anxiety.",
+    "Evidence-based psychotherapy in Rochester, NY and by video across New York: individual and anxiety therapy, Imago-informed couples therapy and marriage counseling, a couples workshop, and perinatal and postpartum therapy for new and expecting parents.",
   areaServed: ["Rochester, NY", "Monroe County, NY"],
   externalProfiles: [
     {

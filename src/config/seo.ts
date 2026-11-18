@@ -16,6 +16,7 @@ import type {
 import type { ServicePageContent, SiteSettings } from "@/data/cms";
 import type { ResearchPageContent } from "@/data/research";
 import {
+  PRACTICE_GEO,
   PRACTITIONER_LICENSE,
   SITE_DEFAULT_DESCRIPTION,
   SITE_LEGAL_NAME,
@@ -197,6 +198,20 @@ export function practiceJsonLd(settings: SiteSettings): Graph {
           postalCode: settings.address.postalCode,
           addressCountry: settings.address.addressCountry,
         },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: PRACTICE_GEO.latitude,
+          longitude: PRACTICE_GEO.longitude,
+        },
+        hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+          [
+            settings.address.streetAddress,
+            settings.address.addressLocality,
+            settings.address.addressRegion,
+            settings.address.postalCode,
+          ].join(", "),
+        )}`,
+        priceRange: "$$",
         areaServed: settings.areaServed,
         openingHoursSpecification: openingHoursSpecification(settings.hours),
         sameAs: settings.externalProfiles?.map((profile) => profile.url),

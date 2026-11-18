@@ -13,6 +13,8 @@ const routes = [
   "/specialties/imago-relationship-therapy",
   "/specialties/postpartum-anxiety-therapy",
   "/specialties/postpartum-depression-therapy",
+  "/specialties/marriage-counseling",
+  "/specialties/online-therapy",
   "/resources",
   "/research",
   "/research/monroe-county-therapists",
