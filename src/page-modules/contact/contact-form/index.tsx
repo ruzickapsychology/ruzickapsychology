@@ -27,6 +27,13 @@ type InquiryState = {
 const initialState: InquiryState = { status: "idle" };
 const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 const successTransitionMs = 420;
+/**
+ * Text honeypot. Its name and label must not look like anything a browser or
+ * password manager autofills (company, organization, address, url, name...):
+ * Chrome fills off-screen fields it recognises, and a filled honeypot silently
+ * drops a real visitor's inquiry. That happened with the old "company" field.
+ */
+export const HONEYPOT_FIELD = "rp_hp_7k";
 const safetyNoteId = "contact-form-safety-note";
 
 function wait(ms: number) {
@@ -113,7 +120,7 @@ export function ContactForm({ note }: { note?: string }) {
 
     const botcheck = formData.get("botcheck");
 
-    if (String(formData.get("company") ?? "").trim() || botcheck) {
+    if (String(formData.get(HONEYPOT_FIELD) ?? "").trim() || botcheck) {
       submissionInFlight.current = true;
       setPending(true);
       await wait(successTransitionMs);
@@ -228,8 +235,17 @@ export function ContactForm({ note }: { note?: string }) {
         style={successHeight ? { minHeight: successHeight } : undefined}
       >
         <div aria-hidden className={styles.honeypot}>
-          <label htmlFor="company">Company</label>
-          <input id="company" name="company" tabIndex={-1} autoComplete="off" />
+          <label htmlFor={HONEYPOT_FIELD}>Leave this field empty</label>
+          <input
+            id={HONEYPOT_FIELD}
+            name={HONEYPOT_FIELD}
+            tabIndex={-1}
+            autoComplete="off"
+            data-lpignore="true"
+            data-1p-ignore="true"
+            data-bwignore="true"
+            data-form-type="other"
+          />
           <label htmlFor="botcheck">Do not check this box</label>
           <input
             id="botcheck"
