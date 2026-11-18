@@ -69,6 +69,20 @@ Use `src/components/cta-link/index.tsx` for tracked internal CTAs and
 `src/components/tracked-external-link/index.tsx` for tracked external links.
 Keep event names stable unless analytics reporting is intentionally reset.
 
+## eSEOspace Phone-Tap Counter
+
+`public/eseo-calls.js` is the eSEOspace agency's fleet phone-tap counter. It is
+loaded by `SiteAnalytics` (public layout only, not Studio) and sends one
+anonymous beacon to `https://eseospace-leads.vercel.app/api/t` per `tel:` link
+tap: page path, number tapped, and a traffic-source label (plus `utm_campaign`
+when present). It only listens in the capture phase and never blocks the click.
+It sets no cookies; `sessionStorage` keeps the visit's source label.
+
+- Keep the file byte-identical to the fleet source; it is excluded from Prettier
+  and ESLint for that reason.
+- The collector origin is in the public `connect-src`, and eSEOspace is a
+  required disclosure in the privacy notice (`npm run privacy:check`).
+
 ## Success And Error States
 
 Success should:

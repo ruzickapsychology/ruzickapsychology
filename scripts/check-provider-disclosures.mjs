@@ -12,6 +12,7 @@ const requiredProviders = [
   "Sanity",
   "Google Maps",
   "SimplePractice",
+  "eSEOspace",
 ];
 const missingProviders = requiredProviders.filter(
   (provider) => !privacySource.includes(provider),

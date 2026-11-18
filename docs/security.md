@@ -15,7 +15,7 @@
 ## External Content
 
 - Treat CMS links as untrusted input. Render only allow-listed Portable Text marks and add safe `rel` values to external links.
-- Keep the Content Security Policy aligned with Sanity Studio, Sanity image delivery, Google Maps, Vercel analytics, and Web3Forms. Add a source only when a shipped feature needs it.
+- Keep the Content Security Policy aligned with Sanity Studio, Sanity image delivery, Google Maps, Vercel analytics, Web3Forms, and the eSEOspace phone-tap counter (`https://eseospace-leads.vercel.app` in the public `connect-src`). Add a source only when a shipped feature needs it.
 
 ## Dependencies
 

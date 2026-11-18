@@ -63,6 +63,7 @@ const publicContentSecurityPolicy = contentSecurityPolicy({
   "connect-src": [
     "'self'",
     "https://api.web3forms.com",
+    "https://eseospace-leads.vercel.app",
     "https://*.sanity.io",
     "https://*.api.sanity.io",
     "https://*.apicdn.sanity.io",

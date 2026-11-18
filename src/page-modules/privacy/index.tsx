@@ -62,6 +62,16 @@ export function PrivacyPage() {
               into the contact form.
             </Text>
             <Text>
+              When you tap a phone number on this site, your browser sends an
+              anonymous count to eSEOspace, the practice&apos;s website agency,
+              so the practice can see how many calls the website brings in. The
+              count records the page, the number tapped, the device type, your
+              approximate city, and a general label for how you reached the site
+              (for example, a search engine, a referring site, or an ad campaign
+              name). It does not set cookies or record your IP address, name,
+              contact details, or anything you type.
+            </Text>
+            <Text>
               Sanity provides the website&apos;s content-management and image
               delivery services. Requests for published content and images may
               be processed through Sanity&apos;s infrastructure.
@@ -106,7 +116,7 @@ export function PrivacyPage() {
           </Stack>
 
           <Text variant="detail" tone="subdued">
-            Website information updated October 16, 2026.
+            Website information updated November 18, 2026.
           </Text>
         </Stack>
       </ContentSection>

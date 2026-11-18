@@ -1,5 +1,6 @@
 "use client";
 
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { sanitizeAnalyticsEvent } from "@/lib/analytics-privacy";
@@ -10,6 +11,8 @@ export function SiteAnalytics() {
     <>
       <Analytics beforeSend={sanitizeAnalyticsEvent} />
       <SpeedInsights beforeSend={sanitizeAnalyticsEvent} />
+      {/* eSEOspace phone-tap counter: one anonymous count per tel: link tap. */}
+      <Script src="/eseo-calls.js" strategy="afterInteractive" />
     </>
   );
 }
