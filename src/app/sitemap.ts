@@ -6,6 +6,8 @@ import {
   serviceHref,
 } from "@/config/services";
 import { SITE_URL } from "@/config/site";
+import { getGuideLastModified, getGuides } from "@/data/guides";
+import { guidePath } from "@/lib/guides";
 import {
   getResearchLastModified,
   getResearchPages,
@@ -114,5 +116,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 
-  return [...routes, ...services, ...research, ...posts];
+  // Guide pages are code-owned JSON (src/data/guides), not Sanity documents.
+  const guides = getGuides().flatMap((guide) => [
+    {
+      url: `${SITE_URL}${guidePath(guide.slug)}`,
+      lastModified: new Date(`${getGuideLastModified(guide)}T00:00:00Z`),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    ...guide.pages.map((page) => ({
+      url: `${SITE_URL}${guidePath(guide.slug, page.slug)}`,
+      lastModified: new Date(`${page.dateModified}T00:00:00Z`),
+      changeFrequency: "yearly" as const,
+      priority: 0.6,
+    })),
+  ]);
+
+  return [...routes, ...services, ...guides, ...research, ...posts];
 }

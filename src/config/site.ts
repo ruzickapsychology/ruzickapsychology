@@ -50,6 +50,7 @@ export const FOOTER_NAV = [
   { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/faq" },
   { label: "Resources", href: "/resources" },
+  { label: "Postpartum Guide", href: "/guides/postpartum" },
   { label: "Research", href: "/research" },
   { label: "Contact", href: "/contact" },
   { label: "Privacy", href: "/privacy" },

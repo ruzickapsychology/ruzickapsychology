@@ -8,6 +8,7 @@ import {
   getSiteSettings,
 } from "@/data/cms";
 import { getServiceDefinition } from "@/config/services";
+import { getServiceGuideLinks } from "@/data/guides";
 import { ServicePage } from "@/page-modules/service";
 
 export async function generateStaticParams() {
@@ -48,6 +49,7 @@ export default async function ServiceRoute(
       site={site}
       about={about}
       practitionerReviewed={definition.practitionerReviewed}
+      guide={getServiceGuideLinks(definition.slug)}
     />
   );
 }

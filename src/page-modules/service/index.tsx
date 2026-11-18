@@ -42,6 +42,8 @@ import type {
   ServicePageContent,
   SiteSettings,
 } from "@/data/cms";
+import type { GuideContent, GuidePageContent } from "@/data/guides";
+import { GUIDE_STAGE_LABELS, guidePath } from "@/lib/guides";
 import {
   faqPageJsonLd,
   serviceEventsJsonLd,
@@ -70,11 +72,14 @@ export function ServicePage({
   site,
   about,
   practitionerReviewed,
+  guide = null,
 }: {
   service: ServicePageContent;
   site: SiteSettings;
   about: AboutPageContent | null;
   practitionerReviewed: boolean;
+  /** Reader guide pages to feature, for services that have a guide. */
+  guide?: { guide: GuideContent; pages: readonly GuidePageContent[] } | null;
 }) {
   const reviewer = practitionerReviewed && about?.heading ? about : null;
   const faqJsonLd = faqPageJsonLd(
@@ -254,6 +259,34 @@ export function ServicePage({
               </li>
             ))}
           </ul>
+        </ContentSection>
+      ) : null}
+
+      {guide ? (
+        <ContentSection tone="muted" size="spacious" containerSize="xl">
+          <ContentHeader align="left" gap="none">
+            <ContentHeaderEyebrow variant="overline">
+              {guide.guide.title}
+            </ContentHeaderEyebrow>
+            <ContentHeaderTitle>Read more before you decide</ContentHeaderTitle>
+            <ContentHeaderActions>
+              <TextLink href={guidePath(guide.guide.slug) as Route}>
+                See the full guide
+              </TextLink>
+            </ContentHeaderActions>
+          </ContentHeader>
+          <EditorialLinkCardGrid className={styles.guideCards}>
+            {guide.pages.map((page) => (
+              <EditorialLinkCard
+                key={page.slug}
+                href={guidePath(guide.guide.slug, page.slug) as Route}
+                eyebrow={GUIDE_STAGE_LABELS[page.stage]}
+                title={page.title}
+                description={page.summary}
+                action="Read →"
+              />
+            ))}
+          </EditorialLinkCardGrid>
         </ContentSection>
       ) : null}
 
