@@ -28,6 +28,8 @@ const eslintConfig = defineConfig([
     "test-results/**",
     ".local/ux-audit-*/**",
     "next-env.d.ts",
+    // eSEOspace phone-tap counter, copied verbatim from the fleet source.
+    "public/eseo-calls.js",
   ]),
 ]);
 
