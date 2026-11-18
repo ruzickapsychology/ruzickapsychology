@@ -16,6 +16,7 @@ describe("service route definitions", () => {
     expect(isServiceSlug("postpartum-depression-therapy")).toBe(true);
     expect(isServiceSlug("marriage-counseling")).toBe(true);
     expect(isServiceSlug("online-therapy")).toBe(true);
+    expect(isServiceSlug("online-postpartum-therapy")).toBe(true);
     expect(getServiceDefinition("couples-counseling")).toBeUndefined();
   });
 

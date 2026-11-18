@@ -58,6 +58,8 @@ export type GuideContent = {
     eyebrow: string;
     heading: string;
     description: string;
+    /** Optional sub-groups for a long stage; pages not listed go last. */
+    groups?: Array<{ heading: string; slugs: string[] }>;
   }>;
   practiceNote: { heading: string; paragraphs: string[] };
   pages: GuidePageContent[];
@@ -110,6 +112,11 @@ export const POSTPARTUM_GUIDE_SERVICE_LINKS: Record<string, readonly string[]> =
       "postpartum-anxiety-signs",
       "intrusive-thoughts-after-baby",
       "questions-to-ask-a-perinatal-therapist",
+    ],
+    "online-postpartum-therapy": [
+      "perinatal-mood-and-anxiety-disorders",
+      "first-postpartum-therapy-session",
+      "paying-for-postpartum-therapy-rochester",
     ],
     "perinatal-postpartum-therapy": [
       "depression-anxiety-during-pregnancy",

@@ -8,3 +8,19 @@
 .cards {
   margin-top: var(--space-8);
 }
+
+.ctaBodyText {
+  display: block;
+}
+
+.ctaSupportLinks {
+  margin-top: var(--space-4);
+}
+
+.group + .group {
+  margin-top: var(--space-12);
+}
+
+.groupHeading {
+  margin-top: var(--space-8);
+}

@@ -1,4 +1,5 @@
 import type { Route } from "next";
+import { ActionGroup } from "@/components/action-group";
 import { BreadcrumbTrail } from "@/components/breadcrumb-trail";
 import {
   ContentHeader,
@@ -24,14 +25,37 @@ import {
 } from "@/components/page-header";
 import { PageShell } from "@/components/page-shell";
 import { Stack } from "@/components/stack";
+import { Heading } from "@/components/typography";
+import { TextLink } from "@/components/text-link";
 import { getAvailabilityCtaContent } from "@/config/availability";
 import { guideHubJsonLd } from "@/config/seo";
+import { serviceHref } from "@/config/services";
 import type { SiteSettings } from "@/data/cms";
 import type { GuideContent, GuidePageContent } from "@/data/guides";
 import { GUIDE_SAFETY_NOTE, GUIDE_STAGE_LABELS, guidePath } from "@/lib/guides";
 import styles from "./styles.module.css";
 
 const stageTones = ["default", "muted", "default"] as const;
+
+/** Split a stage's pages into its named groups, keeping any leftovers last. */
+function groupPages(
+  groups: GuideContent["stages"][number]["groups"],
+  pages: readonly GuidePageContent[],
+): Array<{ heading?: string; pages: GuidePageContent[] }> {
+  if (!groups?.length) return [{ pages: [...pages] }];
+  const used = new Set<string>();
+  const result: Array<{ heading?: string; pages: GuidePageContent[] }> =
+    groups.map((group) => {
+      const groupPages = group.slugs
+        .map((slug) => pages.find((page) => page.slug === slug))
+        .filter((page) => page !== undefined);
+      groupPages.forEach((page) => used.add(page.slug));
+      return { heading: group.heading, pages: groupPages };
+    });
+  const rest = pages.filter((page) => !used.has(page.slug));
+  if (rest.length) result.push({ heading: "More", pages: rest });
+  return result.filter((group) => group.pages.length);
+}
 
 /** Not stamped "Reviewed by": guide pages wait for Dr. Ruzicka's read. */
 export function GuideHubPage({
@@ -98,18 +122,31 @@ export function GuideHubPage({
                 {stage.description}
               </ContentHeaderDescription>
             </ContentHeader>
-            <EditorialLinkCardGrid className={styles.cards}>
-              {stagePages.map((page) => (
-                <EditorialLinkCard
-                  key={page.slug}
-                  href={guidePath(guide.slug, page.slug) as Route}
-                  eyebrow={GUIDE_STAGE_LABELS[page.stage]}
-                  title={page.title}
-                  description={page.summary}
-                  action="Read →"
-                />
-              ))}
-            </EditorialLinkCardGrid>
+            {groupPages(stage.groups, stagePages).map((group) => (
+              <div key={group.heading ?? "all"} className={styles.group}>
+                {group.heading ? (
+                  <Heading
+                    as="h3"
+                    size="module"
+                    className={styles.groupHeading}
+                  >
+                    {group.heading}
+                  </Heading>
+                ) : null}
+                <EditorialLinkCardGrid className={styles.cards}>
+                  {group.pages.map((page) => (
+                    <EditorialLinkCard
+                      key={page.slug}
+                      href={guidePath(guide.slug, page.slug) as Route}
+                      eyebrow={GUIDE_STAGE_LABELS[page.stage]}
+                      title={page.title}
+                      description={page.summary}
+                      action="Read →"
+                    />
+                  ))}
+                </EditorialLinkCardGrid>
+              </div>
+            ))}
           </ContentSection>
         );
       })}
@@ -134,7 +171,23 @@ export function GuideHubPage({
         <CtaSection
           phone={site?.phone}
           heading={cta.heading}
-          body={cta.body}
+          body={
+            <>
+              {cta.body ? (
+                <span className={styles.ctaBodyText}>{cta.body}</span>
+              ) : null}
+              <ActionGroup
+                as="span"
+                align="center"
+                className={styles.ctaSupportLinks}
+              >
+                <TextLink href={serviceHref("online-postpartum-therapy")}>
+                  Sessions by video anywhere in New York
+                </TextLink>
+                <TextLink href="/pricing">Fees and insurance</TextLink>
+              </ActionGroup>
+            </>
+          }
           cta={cta.label}
           href="/contact"
         />

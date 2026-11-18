@@ -1,4 +1,5 @@
 import type { Route } from "next";
+import { ActionGroup } from "@/components/action-group";
 import { BreadcrumbTrail } from "@/components/breadcrumb-trail";
 import {
   ContentHeader,
@@ -34,6 +35,7 @@ import { TextLink } from "@/components/text-link";
 import { Eyebrow, Text } from "@/components/typography";
 import { getAvailabilityCtaContent } from "@/config/availability";
 import { faqPageJsonLd, guidePageJsonLd } from "@/config/seo";
+import { serviceHref } from "@/config/services";
 import type { SiteSettings } from "@/data/cms";
 import type { GuideContent, GuidePageContent } from "@/data/guides";
 import { GUIDE_SAFETY_NOTE, GUIDE_STAGE_LABELS, guidePath } from "@/lib/guides";
@@ -228,7 +230,23 @@ export function GuidePage({
         <CtaSection
           phone={site?.phone}
           heading={cta.heading}
-          body={cta.body}
+          body={
+            <>
+              {cta.body ? (
+                <span className={styles.ctaBodyText}>{cta.body}</span>
+              ) : null}
+              <ActionGroup
+                as="span"
+                align="center"
+                className={styles.ctaSupportLinks}
+              >
+                <TextLink href={serviceHref("online-postpartum-therapy")}>
+                  Sessions by video anywhere in New York
+                </TextLink>
+                <TextLink href="/pricing">Fees and insurance</TextLink>
+              </ActionGroup>
+            </>
+          }
           cta={cta.label}
           href="/contact"
         />
