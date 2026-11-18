@@ -4,7 +4,10 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import "../setup/dom";
 import { track } from "@vercel/analytics";
-import { ContactForm } from "@/page-modules/contact/contact-form";
+import {
+  ContactForm,
+  HONEYPOT_FIELD,
+} from "@/page-modules/contact/contact-form";
 
 vi.hoisted(() => {
   process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY = "test-only-key";
@@ -121,7 +124,7 @@ describe("contact form delivery", () => {
     );
   });
 
-  it.each(["company", "botcheck"])(
+  it.each([HONEYPOT_FIELD, "botcheck"])(
     "does not deliver or track when %s is filled",
     async (field) => {
       const fetchMock = vi.fn();
@@ -139,4 +142,18 @@ describe("contact form delivery", () => {
       expect(track).not.toHaveBeenCalled();
     },
   );
+
+  it("keeps honeypot names and labels clear of autofill keywords", () => {
+    const { container } = render(<ContactForm />);
+    const autofillWords =
+      /company|organi[sz]ation|org\b|address|street|city|zip|postal|url|website|name|email|phone|tel/i;
+    const trap = container.querySelector(`input[name="${HONEYPOT_FIELD}"]`)!;
+    expect(trap).not.toBeNull();
+    expect(trap.getAttribute("name")).not.toMatch(autofillWords);
+    expect(trap.id).not.toMatch(autofillWords);
+    expect(trap.getAttribute("autocomplete")).toBe("off");
+    const label = container.querySelector(`label[for="${trap.id}"]`)!;
+    expect(label.textContent).not.toMatch(autofillWords);
+    expect(container.querySelector('input[name="company"]')).toBeNull();
+  });
 });

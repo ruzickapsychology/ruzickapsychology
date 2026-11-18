@@ -7,7 +7,8 @@ The contact form is `src/page-modules/contact/contact-form/index.tsx`.
 It is a client component that:
 
 - Validates required fields in the browser.
-- Uses a local honeypot field named `company` and the Web3Forms reserved
+- Uses a local text honeypot with a meaningless name (`HONEYPOT_FIELD`, never
+  `company`, `url` or anything else browsers autofill) and the Web3Forms reserved
   `botcheck` checkbox honeypot.
 - Submits directly to `https://api.web3forms.com/submit`.
 - Uses `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`.
@@ -42,7 +43,8 @@ Current fields:
 - City.
 - Phone.
 - Message.
-- Hidden `company` honeypot.
+- Hidden text honeypot (`HONEYPOT_FIELD`). It was named `company` until 18 Nov 2026,
+  when Chrome autofill filling it silently dropped real inquiries.
 - Hidden `botcheck` checkbox honeypot reserved by Web3Forms.
 
 If fields change, update the payload mapping and keep the email message readable.
