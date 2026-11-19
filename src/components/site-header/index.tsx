@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CtaLink } from "@/components/cta-link";
 import {
-  getInquiryCtaLabel,
+  getNavigationInquiryLabel,
   normalizeAvailabilityStatus,
 } from "@/config/availability";
 import { Container } from "@/components/container";
@@ -221,13 +221,11 @@ export function SiteHeader({
   );
   const contactLabel = !siteSettings
     ? "Contact"
-    : availability === "closed"
-      ? "Current availability"
-      : getInquiryCtaLabel(
-          availability,
-          siteSettings.availabilityMessaging,
-          siteSettings.consultationCtaLabel,
-        );
+    : getNavigationInquiryLabel(
+        availability,
+        siteSettings.availabilityMessaging,
+        siteSettings.consultationCtaLabel,
+      );
   const mobileUtilityLinks = [
     { label: "Blog", href: "/blog" },
     { label: "FAQ", href: "/faq" },

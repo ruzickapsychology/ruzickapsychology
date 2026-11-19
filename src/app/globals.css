@@ -7,6 +7,11 @@
    so a new direction means new values here and nothing else.
    ============================================================ */
 :root {
+  /* Height of the fixed mobile contact bar (44px button + padding + border),
+     reserved at the bottom of the page below 1024px. */
+  --mobile-cta-clearance: calc(
+    44px + 2 * var(--space-2) + 1px + env(safe-area-inset-bottom)
+  );
   --color-bg: #eae6dd; /* warm sand page background (paper texture overlaid) */
   --color-fg: #3a232a; /* aubergine ink — headings + dark bands */
   --color-body: #514a4c; /* body copy (softer than fg) */
@@ -332,5 +337,12 @@
   .rp-fade,
   .rp-bob {
     animation: none;
+  }
+}
+
+/* Keep anchor jumps and focus clear of the fixed mobile contact bar. */
+@media (max-width: 1023.98px) {
+  html {
+    scroll-padding-bottom: var(--mobile-cta-clearance);
   }
 }

@@ -226,6 +226,17 @@ export function getInquiryCtaLabel(
   return consultationLabel?.trim() || undefined;
 }
 
+// The header and the mobile contact bar show the same inquiry label.
+export function getNavigationInquiryLabel(
+  status?: unknown,
+  messaging?: AvailabilityMessagingInput,
+  consultationLabel?: string | null,
+) {
+  return normalizeAvailabilityStatus(status) === "closed"
+    ? "Current availability"
+    : getInquiryCtaLabel(status, messaging, consultationLabel);
+}
+
 export function getAvailabilityBadgeMessages(
   status?: unknown,
   badgeMessages?: Partial<AvailabilityBadgeMessages> | null,
