@@ -1,3 +1,4 @@
+import { MobileCta } from "@/components/mobile-cta";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteAnalytics } from "@/components/site-analytics";
 import { SpecialtyMotion } from "@/components/specialty-motion";
@@ -37,6 +38,7 @@ export default async function SiteLayout({
         {children}
       </main>
       <SiteFooter siteSettings={siteSettings} licenses={licenses} />
+      <MobileCta siteSettings={siteSettings} />
     </div>
   );
 }

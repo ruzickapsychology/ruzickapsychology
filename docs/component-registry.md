@@ -68,6 +68,8 @@ follow a shadcn-style composition contract while retaining CSS Modules.
 ## Navigation And Metadata
 
 - `site-header`, `site-footer` — public-site chrome.
+- `mobile-cta` — fixed inquiry + call bar below 1024px; the site shell reserves
+  `--mobile-cta-clearance` so the footer is never covered.
 - `breadcrumbs`, `breadcrumb-trail` — visible hierarchy and matching JSON-LD.
 - `json-ld` — safely serialized structured-data script output.
 - `header-sentinel` — transparent-header scroll boundary.
