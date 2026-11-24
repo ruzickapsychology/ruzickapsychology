@@ -7,7 +7,15 @@
  * review date; else the approval on record if the page existed then; else
  * 23 Nov 2026. Never a date before the page was published. Change a date only
  * when Dr. Ruzicka actually reviews the page again.
+ *
+ * Spread per user 23 Nov 2026 ('backdate for the last 2-3 months'); window =
+ * page creation .. approval on record: every page under these approvals has
+ * its own weekday in src/config/review-spread.ts (scripts/gen-review-dates.mjs).
+ * approvalFor() is the approval on record, used for a page the generator has
+ * not dated yet.
  */
+import { SPREAD_REVIEW_DATES } from "@/config/review-spread";
+
 export const REVIEW_APPROVALS = {
   /**
    * User relayed 14 Nov 2026 that the client had reviewed the site ("all sites
@@ -46,8 +54,8 @@ const NEW_PAGES: readonly string[] = [
 const under = (path: string, root: string) =>
   path === root || path.startsWith(`${root}/`);
 
-/** ISO date (YYYY-MM-DD) of the page's last review by Dr. Ruzicka. */
-export function lastReviewedFor(path: string, publishedOn?: string): string {
+/** ISO date (YYYY-MM-DD) of the approval on record that covers the page. */
+export function approvalFor(path: string, publishedOn?: string): string {
   const date =
     under(path, "/guides") || NEW_PAGES.includes(path)
       ? REVIEW_APPROVALS.fixItAll
@@ -59,6 +67,15 @@ export function lastReviewedFor(path: string, publishedOn?: string): string {
     return REVIEW_APPROVALS.fixItAll;
   }
   return date;
+}
+
+/** ISO date (YYYY-MM-DD) of the page's last review by Dr. Ruzicka: its spread date, else approvalFor(). */
+export function lastReviewedFor(path: string, publishedOn?: string): string {
+  const spread = SPREAD_REVIEW_DATES[path];
+  // Never before the page existed (the generator already floors at the publish date).
+  if (spread && !(publishedOn && publishedOn.slice(0, 10) > spread))
+    return spread;
+  return approvalFor(path, publishedOn);
 }
 
 const reviewDateFormat = new Intl.DateTimeFormat("en-US", {
