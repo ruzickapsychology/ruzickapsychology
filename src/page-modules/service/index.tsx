@@ -52,6 +52,7 @@ import {
 } from "@/config/seo";
 import { serviceContactHref } from "@/config/services";
 import { PRACTITIONER_LICENSE } from "@/config/site";
+import { lastReviewedFor } from "@/config/review-dates";
 import styles from "./styles.module.css";
 
 const sessionDate = new Intl.DateTimeFormat("en-US", {
@@ -137,6 +138,7 @@ export function ServicePage({
               name={reviewer.heading}
               credentials={reviewer.credentials}
               license={PRACTITIONER_LICENSE.label}
+              reviewedOn={lastReviewedFor(`/specialties/${service.slug}`)}
               image={reviewer.portraitImage}
               href="/about"
             />

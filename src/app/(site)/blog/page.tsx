@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/config/seo";
 import { getBlogPageCount, getPostMetaPage } from "@/data/blog";
+import { getAboutPage } from "@/data/cms";
 import { BlogIndexPage } from "@/page-modules/blog-index";
 
 export const metadata: Metadata = pageMetadata({
@@ -11,10 +12,18 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default async function BlogIndexRoute() {
-  const [posts, totalPages] = await Promise.all([
+  const [posts, totalPages, about] = await Promise.all([
     getPostMetaPage(1),
     getBlogPageCount(),
+    getAboutPage(),
   ]);
 
-  return <BlogIndexPage posts={posts} page={1} totalPages={totalPages} />;
+  return (
+    <BlogIndexPage
+      posts={posts}
+      page={1}
+      totalPages={totalPages}
+      about={about}
+    />
+  );
 }

@@ -30,6 +30,7 @@ import {
   getAvailabilityContext,
   getAvailabilityCtaContent,
 } from "@/config/availability";
+import { lastReviewedFor } from "@/config/review-dates";
 import styles from "./styles.module.css";
 
 const newYorkLicenseVerificationUrl =
@@ -106,6 +107,7 @@ export function AboutPage({
                 name={about.heading}
                 credentials={about.credentials}
                 license={PRACTITIONER_LICENSE.label}
+                reviewedOn={lastReviewedFor("/about")}
                 className={styles.reviewer}
               />
             ) : null}

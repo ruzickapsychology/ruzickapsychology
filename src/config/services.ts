@@ -27,7 +27,8 @@ export type ServicePageDefinition = {
    * Shows the "Reviewed by" card and reviewedBy markup. The four 11 Nov 2026
    * pages (anxiety, Imago, postpartum anxiety and depression) are stamped on
    * user approval 15 Nov 2026. The 18 Nov 2026 pages (marriage counseling,
-   * online therapy) are not stamped yet.
+   * online therapy, online postpartum therapy) are stamped on user
+   * instruction 23 Nov 2026 ("fix it all"). Dates: src/config/review-dates.ts.
    */
   practitionerReviewed: boolean;
 };
@@ -122,7 +123,7 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
     pageTitle: "Marriage Counseling in Rochester, NY",
     description:
       "Marriage counseling in Rochester, NY with Dr. Christina Ruzicka, Psy.D., for spouses caught in the same arguments, growing distance or a hard season.",
-    practitionerReviewed: false,
+    practitionerReviewed: true,
     contactLabel: "Marriage counseling",
   },
   {
@@ -132,7 +133,7 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
     pageTitle: "Online Therapy in New York",
     description:
       "Online therapy by secure video anywhere in New York with Dr. Christina Ruzicka, Psy.D.: individual, anxiety, couples and postpartum therapy.",
-    practitionerReviewed: false,
+    practitionerReviewed: true,
     contactLabel: "Online therapy",
   },
   {
@@ -142,7 +143,7 @@ export const SERVICE_PAGES: readonly ServicePageDefinition[] = [
     pageTitle: "Online Postpartum Therapy in New York",
     description:
       "Postpartum and pregnancy therapy by secure video anywhere in New York with Dr. Christina Ruzicka, Psy.D. Your baby is welcome in sessions.",
-    practitionerReviewed: false,
+    practitionerReviewed: true,
     contactLabel: "Online postpartum therapy",
   },
 ] as const;

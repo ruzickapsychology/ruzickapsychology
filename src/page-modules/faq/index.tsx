@@ -21,6 +21,7 @@ import { Stack } from "@/components/stack";
 import { faqPageJsonLd } from "@/config/seo";
 import { PRACTITIONER_LICENSE } from "@/config/site";
 import { getAvailabilityCtaContent } from "@/config/availability";
+import { lastReviewedFor } from "@/config/review-dates";
 import type {
   AboutPageContent,
   FAQPageContent,
@@ -76,6 +77,7 @@ export function FAQPage({
               name={about.heading}
               credentials={about.credentials}
               license={PRACTITIONER_LICENSE.label}
+              reviewedOn={lastReviewedFor("/faq")}
               image={about.portraitImage}
               href="/about"
             />

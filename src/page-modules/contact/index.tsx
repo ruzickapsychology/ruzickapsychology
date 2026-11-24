@@ -20,18 +20,29 @@ import { TextLink } from "@/components/text-link";
 import { TrackedExternalLink } from "@/components/tracked-external-link";
 import { Eyebrow, Heading, Text } from "@/components/typography";
 import { getAvailabilityContext } from "@/config/availability";
-import { PRACTICE_NEARBY } from "@/config/site";
-import type { ContactPageContent, SiteSettings } from "@/data/cms";
+import { PRACTICE_NEARBY, PRACTITIONER_LICENSE } from "@/config/site";
+import type {
+  AboutPageContent,
+  ContactPageContent,
+  SiteSettings,
+} from "@/data/cms";
 import { cn } from "@/lib/class-names";
 import { ContactForm } from "./contact-form";
 import styles from "./styles.module.css";
+import { AuthorCard } from "@/components/author-card";
+import { JsonLd } from "@/components/json-ld";
+import { lastReviewedFor } from "@/config/review-dates";
+import { reviewedPageJsonLd } from "@/config/seo";
 
+/** "Reviewed by" card + ContactPage reviewedBy: user instruction 23 Nov 2026 ("fix it all"). */
 export function ContactPage({
   contact,
   site,
+  about = null,
 }: {
   contact: ContactPageContent;
   site: SiteSettings;
+  about?: AboutPageContent | null;
 }) {
   const availability = getAvailabilityContext(
     site.availabilityStatus,
@@ -50,6 +61,15 @@ export function ContactPage({
 
   return (
     <PageShell>
+      {about?.heading ? (
+        <JsonLd
+          data={reviewedPageJsonLd({
+            path: "/contact",
+            name: contact.heading,
+            type: "ContactPage",
+          })}
+        />
+      ) : null}
       <ImmersivePageHeader
         className={cn(styles.header, styles.headerWash, styles.imageGrain)}
         media={
@@ -218,6 +238,20 @@ export function ContactPage({
           </TextLink>
         </Stack>
       </ContentSection>
+      {about?.heading ? (
+        <ContentSection size="compact" containerSize="md">
+          <AuthorCard
+            label="Reviewed by"
+            aria-label="Page reviewer"
+            name={about.heading}
+            credentials={about.credentials}
+            license={PRACTITIONER_LICENSE.label}
+            reviewedOn={lastReviewedFor("/contact")}
+            image={about.portraitImage}
+            href="/about"
+          />
+        </ContentSection>
+      ) : null}
     </PageShell>
   );
 }

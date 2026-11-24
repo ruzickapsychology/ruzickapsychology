@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { pageMetadata } from "@/config/seo";
 import {
+  getAboutPage,
   getPricingPage,
   getPublishedServiceDefinitions,
   getSiteSettings,
@@ -16,10 +17,11 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default async function PricingRoute() {
-  const [pricing, site, publishedServices] = await Promise.all([
+  const [pricing, site, publishedServices, about] = await Promise.all([
     getPricingPage(),
     getSiteSettings(),
     getPublishedServiceDefinitions(),
+    getAboutPage(),
   ]);
   if (!pricing) notFound();
 
@@ -28,6 +30,7 @@ export default async function PricingRoute() {
       pricing={pricing}
       site={site}
       publishedServices={publishedServices}
+      about={about}
     />
   );
 }

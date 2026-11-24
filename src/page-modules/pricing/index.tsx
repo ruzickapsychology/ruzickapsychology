@@ -28,19 +28,31 @@ import { PageShell } from "@/components/page-shell";
 import { PortableContent } from "@/components/portable-content";
 import { Heading, Text } from "@/components/typography";
 import { getAvailabilityCtaContent } from "@/config/availability";
-import type { PricingPageContent, SiteSettings } from "@/data/cms";
+import type {
+  AboutPageContent,
+  PricingPageContent,
+  SiteSettings,
+} from "@/data/cms";
 import type { ServicePageDefinition } from "@/config/services";
 import { pricingFeeServiceHref } from "@/config/pricing";
 import styles from "./styles.module.css";
+import { AuthorCard } from "@/components/author-card";
+import { JsonLd } from "@/components/json-ld";
+import { lastReviewedFor } from "@/config/review-dates";
+import { reviewedPageJsonLd } from "@/config/seo";
+import { PRACTITIONER_LICENSE } from "@/config/site";
 
+/** "Reviewed by" card + WebPage reviewedBy: user instruction 23 Nov 2026 ("fix it all"). */
 export function PricingPage({
   pricing,
   site,
   publishedServices,
+  about = null,
 }: {
   pricing: PricingPageContent;
   site: SiteSettings | null;
   publishedServices: ServicePageDefinition[];
+  about?: AboutPageContent | null;
 }) {
   const cta = getAvailabilityCtaContent({
     status: site?.availabilityStatus,
@@ -68,6 +80,15 @@ export function PricingPage({
 
   return (
     <PageShell>
+      {about?.heading ? (
+        <JsonLd
+          data={reviewedPageJsonLd({
+            path: "/pricing",
+            name: pricing.heading,
+            type: "WebPage",
+          })}
+        />
+      ) : null}
       <PageHeader>
         <PageHeaderContent variant="overview" width="md">
           {pricing.eyebrow ? (
@@ -169,6 +190,21 @@ export function PricingPage({
               ))}
             </DisclosureList>
           ) : null}
+        </ContentSection>
+      ) : null}
+
+      {about?.heading ? (
+        <ContentSection size="compact" containerSize="md">
+          <AuthorCard
+            label="Reviewed by"
+            aria-label="Page reviewer"
+            name={about.heading}
+            credentials={about.credentials}
+            license={PRACTITIONER_LICENSE.label}
+            reviewedOn={lastReviewedFor("/pricing")}
+            image={about.portraitImage}
+            href="/about"
+          />
         </ContentSection>
       ) : null}
 

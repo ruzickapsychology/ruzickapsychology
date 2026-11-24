@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { pageMetadata } from "@/config/seo";
-import { getSiteSettings } from "@/data/cms";
+import { getAboutPage, getSiteSettings } from "@/data/cms";
 import { getGuide, getGuidePage } from "@/data/guides";
 import { guidePath } from "@/lib/guides";
 import { GuidePage } from "@/page-modules/guide-page";
@@ -49,7 +49,15 @@ export default async function PostpartumGuidePageRoute(
   const related = page.related
     .map((relatedSlug) => getGuidePage(GUIDE_SLUG, relatedSlug)?.page)
     .filter((item) => item !== undefined);
-  const site = await getSiteSettings();
+  const [site, about] = await Promise.all([getSiteSettings(), getAboutPage()]);
 
-  return <GuidePage guide={guide} page={page} related={related} site={site} />;
+  return (
+    <GuidePage
+      guide={guide}
+      page={page}
+      related={related}
+      site={site}
+      about={about}
+    />
+  );
 }

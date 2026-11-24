@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { pageMetadata } from "@/config/seo";
-import { getSiteSettings } from "@/data/cms";
+import { getAboutPage, getSiteSettings } from "@/data/cms";
 import { getGuide, getGuidePages } from "@/data/guides";
 import { guidePath } from "@/lib/guides";
 import { GuideHubPage } from "@/page-modules/guide-hub";
@@ -21,9 +21,14 @@ export function generateMetadata(): Metadata {
 export default async function PostpartumGuideRoute() {
   const guide = getGuide(GUIDE_SLUG);
   if (!guide) notFound();
-  const site = await getSiteSettings();
+  const [site, about] = await Promise.all([getSiteSettings(), getAboutPage()]);
 
   return (
-    <GuideHubPage guide={guide} pages={getGuidePages(guide)} site={site} />
+    <GuideHubPage
+      guide={guide}
+      pages={getGuidePages(guide)}
+      site={site}
+      about={about}
+    />
   );
 }

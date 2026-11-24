@@ -24,24 +24,36 @@ import { TextLink } from "@/components/text-link";
 import { CtaLink } from "@/components/cta-link";
 import { imageBlurData, imageSrc } from "@/config/cms-images";
 import { serviceHref } from "@/config/services";
-import { PRACTICE_NEARBY } from "@/config/site";
+import { PRACTICE_NEARBY, PRACTITIONER_LICENSE } from "@/config/site";
 import {
   getAvailabilityBadgeMessages,
   getAvailabilityContext,
   getAvailabilityCtaContent,
   getInquiryCtaLabel,
 } from "@/config/availability";
-import type { HomePageContent, SiteSettings } from "@/data/cms";
+import type {
+  AboutPageContent,
+  HomePageContent,
+  SiteSettings,
+} from "@/data/cms";
 import { HomeSpecialties } from "./specialties";
 import styles from "./styles.module.css";
 import { Sunlight } from "./sunlight";
+import { AuthorCard } from "@/components/author-card";
+import { JsonLd } from "@/components/json-ld";
+import { lastReviewedFor } from "@/config/review-dates";
+import { reviewedPageJsonLd } from "@/config/seo";
+import { ContentSection } from "@/components/content-section";
 
+/** "Reviewed by" card + WebPage reviewedBy: user instruction 23 Nov 2026 ("fix it all"). */
 export function HomePage({
   home,
   site,
+  about = null,
 }: {
   home: HomePageContent;
   site: SiteSettings | null;
+  about?: AboutPageContent | null;
 }) {
   const availability = getAvailabilityContext(
     site?.availabilityStatus,
@@ -77,6 +89,15 @@ export function HomePage({
 
   return (
     <PageShell>
+      {about?.heading ? (
+        <JsonLd
+          data={reviewedPageJsonLd({
+            path: "/",
+            name: home.hero.heading,
+            type: "WebPage",
+          })}
+        />
+      ) : null}
       {/* hero */}
       <ImmersivePageHeader
         readability="dark"
@@ -196,6 +217,21 @@ export function HomePage({
             </ContentHeader>
           </GridContainer>
         </Section>
+      ) : null}
+
+      {about?.heading ? (
+        <ContentSection size="compact" containerSize="md">
+          <AuthorCard
+            label="Reviewed by"
+            aria-label="Page reviewer"
+            name={about.heading}
+            credentials={about.credentials}
+            license={PRACTITIONER_LICENSE.label}
+            reviewedOn={lastReviewedFor("/")}
+            image={about.portraitImage}
+            href="/about"
+          />
+        </ContentSection>
       ) : null}
 
       {/* CTA band */}

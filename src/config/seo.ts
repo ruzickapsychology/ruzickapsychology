@@ -25,6 +25,7 @@ import {
   SITE_LEGAL_NAME,
   SITE_URL,
 } from "@/config/site";
+import { lastReviewedFor } from "@/config/review-dates";
 
 export const metadataBase = new URL(SITE_URL);
 
@@ -348,7 +349,10 @@ export function breadcrumbJsonLd(
   };
 }
 
-/** Page node naming Dr. Ruzicka as reviewer, for pages she has read. */
+/**
+ * Page node naming Dr. Ruzicka as reviewer, with lastReviewed equal to the
+ * date on the page's "Reviewed by" card (src/config/review-dates.ts).
+ */
 export function reviewedPageJsonLd({
   path,
   name,
@@ -356,7 +360,7 @@ export function reviewedPageJsonLd({
 }: {
   path: string;
   name: string;
-  type?: "WebPage" | "AboutPage";
+  type?: "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage";
 }): WithContext<WebPage> {
   const url = `${SITE_URL}${path}`;
   return {
@@ -366,6 +370,7 @@ export function reviewedPageJsonLd({
     url,
     name,
     reviewedBy: practitionerReviewer,
+    lastReviewed: lastReviewedFor(path),
   };
 }
 
@@ -377,7 +382,12 @@ export function faqPageJsonLd(
     "@context": "https://schema.org",
     "@type": "FAQPage",
     ...(page ? { url: `${SITE_URL}${page.path}` } : {}),
-    ...(page?.reviewed ? { reviewedBy: practitionerReviewer } : {}),
+    ...(page?.reviewed
+      ? {
+          reviewedBy: practitionerReviewer,
+          lastReviewed: lastReviewedFor(page.path),
+        }
+      : {}),
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.question,
@@ -408,6 +418,7 @@ export function blogPostJsonLd(post: {
       "@id": url,
       url,
       reviewedBy: practitionerReviewer,
+      lastReviewed: lastReviewedFor(`/blog/${post.slug}`, post.date),
     },
     datePublished: post.date,
     dateModified: post.updatedAt ?? post.date,
@@ -431,6 +442,10 @@ export function researchPageJsonLd(page: ResearchPageContent): Graph {
         "@id": url,
         url,
         reviewedBy: practitionerReviewer,
+        lastReviewed: lastReviewedFor(
+          `/research/${page.slug}`,
+          page.datePublished,
+        ),
       },
       datePublished: page.datePublished,
       dateModified: page.dateModified,
@@ -486,6 +501,7 @@ export function researchHubJsonLd(
     inLanguage: "en-US",
     publisher: { "@id": practiceId },
     reviewedBy: practitionerReviewer,
+    lastReviewed: lastReviewedFor("/research"),
     hasPart: pages.map((page) => ({
       "@type": "Article" as const,
       "@id": `${url}/${page.slug}#article`,
@@ -498,7 +514,7 @@ export function researchHubJsonLd(
 
 /**
  * Article for a /guides page. Author and publisher are the practice node.
- * No reviewedBy: guide pages are not stamped until Dr. Ruzicka has read them.
+ * Reviewer stamp on user instruction 23 Nov 2026 ("fix it all").
  */
 export function guidePageJsonLd(
   guide: GuideContent,
@@ -512,7 +528,16 @@ export function guidePageJsonLd(
     headline: page.headline,
     description: page.metaDescription,
     url,
-    mainEntityOfPage: { "@type": "WebPage", "@id": url, url },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+      url,
+      reviewedBy: practitionerReviewer,
+      lastReviewed: lastReviewedFor(
+        guidePath(guide.slug, page.slug),
+        page.datePublished,
+      ),
+    },
     datePublished: page.datePublished,
     dateModified: page.dateModified,
     inLanguage: "en-US",
@@ -537,6 +562,8 @@ export function guideHubJsonLd(
     url,
     inLanguage: "en-US",
     publisher: { "@id": practiceId },
+    reviewedBy: practitionerReviewer,
+    lastReviewed: lastReviewedFor(guidePath(guide.slug)),
     hasPart: pages.map((page) => ({
       "@type": "Article" as const,
       "@id": `${url}/${page.slug}#article`,

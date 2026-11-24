@@ -115,6 +115,32 @@ describe("structured data", () => {
     );
   });
 
+  it("sets lastReviewed to the date printed on the reviewer card", () => {
+    const post = blogPostJsonLd({
+      title: "A useful article",
+      slug: "a-useful-article",
+      excerpt: "Description",
+      date: "2026-01-01",
+    });
+    const items = [{ question: "How do I begin?", answer: "Reach out." }];
+
+    expect(post.mainEntityOfPage).toEqual(
+      expect.objectContaining({ lastReviewed: "2026-11-14" }),
+    );
+    expect(
+      reviewedPageJsonLd({ path: "/resources", name: "Resources" }),
+    ).toEqual(expect.objectContaining({ lastReviewed: "2026-11-15" }));
+    expect(faqPageJsonLd(items, { path: "/faq", reviewed: true })).toEqual(
+      expect.objectContaining({ lastReviewed: "2026-11-14" }),
+    );
+    expect(
+      faqPageJsonLd(items, { path: "/specialties/x", reviewed: false }),
+    ).not.toHaveProperty("lastReviewed");
+    expect(researchHubJsonLd([])).toEqual(
+      expect.objectContaining({ lastReviewed: "2026-11-15" }),
+    );
+  });
+
   it("uses absolute breadcrumb URLs and article dates", () => {
     const breadcrumbs = breadcrumbJsonLd([
       { name: "Home", path: "/" },

@@ -14,6 +14,7 @@ import { Stack } from "@/components/stack";
 import { Heading, Text } from "@/components/typography";
 import { reviewedPageJsonLd } from "@/config/seo";
 import { PRACTITIONER_LICENSE } from "@/config/site";
+import { lastReviewedFor } from "@/config/review-dates";
 import type { AboutPageContent, ResourcesPageContent } from "@/data/cms";
 
 /** Stamped on user approval 15 Nov 2026. */
@@ -55,6 +56,7 @@ export function ResourcesPage({
               name={about.heading}
               credentials={about.credentials}
               license={PRACTITIONER_LICENSE.label}
+              reviewedOn={lastReviewedFor("/resources")}
               image={about.portraitImage}
               href="/about"
             />

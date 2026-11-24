@@ -26,6 +26,7 @@ import { Text } from "@/components/typography";
 import { getAvailabilityCtaContent } from "@/config/availability";
 import { researchHubJsonLd } from "@/config/seo";
 import { PRACTITIONER_LICENSE } from "@/config/site";
+import { lastReviewedFor } from "@/config/review-dates";
 import type {
   AboutPageContent,
   HomePageContent,
@@ -84,6 +85,7 @@ export function ResearchHubPage({
             name={about.heading}
             credentials={about.credentials}
             license={PRACTITIONER_LICENSE.label}
+            reviewedOn={lastReviewedFor("/research")}
             image={about.portraitImage}
             href="/about"
           />
