@@ -18,6 +18,7 @@ import type { ServicePageContent, SiteSettings } from "@/data/cms";
 import type { GuideContent, GuidePageContent } from "@/data/guides";
 import type { ResearchPageContent } from "@/data/research";
 import { guidePath } from "@/lib/guides";
+import { researchPlainText } from "@/lib/research-text";
 import {
   PRACTICE_GEO,
   PRACTITIONER_LICENSE,
@@ -34,6 +35,9 @@ const defaultSocialImage = {
   width: 1200,
   height: 630,
 };
+
+/** Every page's og:image; Article nodes use it as their image (schema audit 24 Nov 2026). */
+const articleImage = `${SITE_URL}${defaultSocialImage.url}`;
 
 // Use the public-facing name in page titles; retain the legal identity elsewhere.
 const titleBrand = "Ruzicka Psychology";
@@ -388,12 +392,13 @@ export function faqPageJsonLd(
           lastReviewed: lastReviewedFor(page.path),
         }
       : {}),
+    // Guide answers carry `[label](href)` links for LinkedText; schema text keeps the label only.
     mainEntity: items.map((item) => ({
       "@type": "Question",
-      name: item.question,
+      name: researchPlainText(item.question),
       acceptedAnswer: {
         "@type": "Answer",
-        text: item.answer,
+        text: researchPlainText(item.answer),
       },
     })),
   };
@@ -413,6 +418,7 @@ export function blogPostJsonLd(post: {
     headline: post.title,
     description: post.excerpt,
     url,
+    image: articleImage,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": url,
@@ -437,6 +443,7 @@ export function researchPageJsonLd(page: ResearchPageContent): Graph {
       headline: page.title,
       description: page.metaDescription,
       url,
+      image: articleImage,
       mainEntityOfPage: {
         "@type": "WebPage",
         "@id": url,
@@ -507,7 +514,9 @@ export function researchHubJsonLd(
       "@id": `${url}/${page.slug}#article`,
       headline: page.title,
       url: `${url}/${page.slug}`,
+      image: articleImage,
       datePublished: page.datePublished,
+      author: { "@id": practiceId },
     })),
   };
 }
@@ -528,6 +537,7 @@ export function guidePageJsonLd(
     headline: page.headline,
     description: page.metaDescription,
     url,
+    image: articleImage,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": url,
@@ -569,7 +579,9 @@ export function guideHubJsonLd(
       "@id": `${url}/${page.slug}#article`,
       headline: page.headline,
       url: `${url}/${page.slug}`,
+      image: articleImage,
       datePublished: page.datePublished,
+      author: { "@id": practiceId },
     })),
   };
 }
