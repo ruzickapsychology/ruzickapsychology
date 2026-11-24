@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { SERVICE_SLUGS } from "@/config/services";
+import { lastReviewedFor } from "@/config/review-dates";
 import { guidePageJsonLd, guideHubJsonLd } from "@/config/seo";
 import { SITE_URL } from "@/config/site";
 import { getResearchPages } from "./research";
@@ -136,7 +137,10 @@ describe("reader guides", () => {
     expect(article.mainEntityOfPage).toEqual(
       expect.objectContaining({
         reviewedBy: expect.objectContaining({ "@type": "Person" }),
-        lastReviewed: "2026-11-23",
+        lastReviewed: lastReviewedFor(
+          `/guides/postpartum/${pages[0].slug}`,
+          pages[0].datePublished,
+        ),
       }),
     );
     expect(article.url).toBe(`${SITE_URL}/guides/postpartum/${pages[0].slug}`);

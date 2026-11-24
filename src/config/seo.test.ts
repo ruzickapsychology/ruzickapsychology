@@ -10,6 +10,7 @@ import {
   researchHubJsonLd,
   reviewedPageJsonLd,
 } from "./seo";
+import { lastReviewedFor } from "./review-dates";
 
 describe("pageMetadata", () => {
   it("includes default social images on every page", () => {
@@ -129,15 +130,17 @@ describe("structured data", () => {
     );
     expect(
       reviewedPageJsonLd({ path: "/resources", name: "Resources" }),
-    ).toEqual(expect.objectContaining({ lastReviewed: "2026-11-15" }));
+    ).toEqual(
+      expect.objectContaining({ lastReviewed: lastReviewedFor("/resources") }),
+    );
     expect(faqPageJsonLd(items, { path: "/faq", reviewed: true })).toEqual(
-      expect.objectContaining({ lastReviewed: "2026-11-14" }),
+      expect.objectContaining({ lastReviewed: lastReviewedFor("/faq") }),
     );
     expect(
       faqPageJsonLd(items, { path: "/specialties/x", reviewed: false }),
     ).not.toHaveProperty("lastReviewed");
     expect(researchHubJsonLd([])).toEqual(
-      expect.objectContaining({ lastReviewed: "2026-11-15" }),
+      expect.objectContaining({ lastReviewed: lastReviewedFor("/research") }),
     );
   });
 
