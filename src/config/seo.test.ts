@@ -168,6 +168,30 @@ describe("structured data", () => {
     expect(post.dateModified).toBe("2026-02-01");
   });
 
+  it("gives articles an image and keeps FAQ schema text free of link markup", () => {
+    const post = blogPostJsonLd({
+      title: "A useful article",
+      slug: "a-useful-article",
+      excerpt: "Description",
+      date: "2026-01-01",
+    });
+    const faq = faqPageJsonLd([
+      {
+        question: "Is there a group?",
+        answer: "Yes. See [PSI](https://postpartum.net/) or [our page](/faq).",
+      },
+    ]);
+
+    expect(post.image).toMatch(/^https:\/\/.+\/opengraph-image$/);
+    expect(faq.mainEntity).toEqual([
+      expect.objectContaining({
+        acceptedAnswer: expect.objectContaining({
+          text: "Yes. See PSI or our page.",
+        }),
+      }),
+    ]);
+  });
+
   it("builds FAQ structured data from the shared question shape", () => {
     const faq = faqPageJsonLd([
       { question: "How do I begin?", answer: "Request a consultation." },
