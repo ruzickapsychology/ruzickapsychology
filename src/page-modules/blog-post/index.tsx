@@ -25,6 +25,7 @@ import { TextLink } from "@/components/text-link";
 import { Heading, Text } from "@/components/typography";
 import { blogPostJsonLd } from "@/config/seo";
 import { PRACTITIONER_LICENSE } from "@/config/site";
+import { formatReviewDate, lastReviewedFor } from "@/config/review-dates";
 import type { Post, PostMeta } from "@/data/blog";
 import { formatPostDate } from "@/lib/format-post-date";
 import styles from "./styles.module.css";
@@ -62,6 +63,8 @@ export function BlogPostPage({
       })
     : null;
 
+  const reviewedOn = lastReviewedFor(`/blog/${post.slug}`, post.date);
+
   return (
     <PageShell>
       <JsonLd data={blogPostJsonLd(post)} />
@@ -96,6 +99,7 @@ export function BlogPostPage({
               name={about.heading}
               credentials={about.credentials}
               license={PRACTITIONER_LICENSE.label}
+              reviewedOn={reviewedOn}
               image={about.portraitImage}
               href="/about"
             />
@@ -105,7 +109,7 @@ export function BlogPostPage({
               <TextLink href="/about" variant="inline">
                 {site.practitioner}
               </TextLink>
-              {` · ${PRACTITIONER_LICENSE.label}`}
+              {` · ${PRACTITIONER_LICENSE.label} · Last reviewed ${formatReviewDate(reviewedOn)}`}
             </Text>
           ) : null}
           <PortableContent value={post.body} variant="article" />

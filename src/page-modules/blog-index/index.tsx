@@ -12,22 +12,40 @@ import { Eyebrow, Heading, Text } from "@/components/typography";
 import type { PostMeta } from "@/data/blog";
 import { formatPostDate } from "@/lib/format-post-date";
 import styles from "./styles.module.css";
+import { AuthorCard } from "@/components/author-card";
+import { JsonLd } from "@/components/json-ld";
+import { lastReviewedFor } from "@/config/review-dates";
+import { reviewedPageJsonLd } from "@/config/seo";
+import { PRACTITIONER_LICENSE } from "@/config/site";
+import type { AboutPageContent } from "@/data/cms";
 
 function pageHref(page: number): Route {
   return page === 1 ? "/blog" : (`/blog/page/${page}` as Route);
 }
 
+/** "Reviewed by" card + CollectionPage reviewedBy on /blog (page 1 only): user instruction 23 Nov 2026 ("fix it all"). */
 export function BlogIndexPage({
   posts,
   page,
   totalPages,
+  about = null,
 }: {
   posts: PostMeta[];
   page: number;
   totalPages: number;
+  about?: AboutPageContent | null;
 }) {
   return (
     <PageShell>
+      {about?.heading ? (
+        <JsonLd
+          data={reviewedPageJsonLd({
+            path: "/blog",
+            name: "Blog",
+            type: "CollectionPage",
+          })}
+        />
+      ) : null}
       <PageHeader>
         <PageHeaderContent variant="overview">
           <PageHeaderTitle>Blog</PageHeaderTitle>
@@ -72,6 +90,20 @@ export function BlogIndexPage({
           hrefForPage={pageHref}
         />
       </ContentSection>
+      {about?.heading ? (
+        <ContentSection size="compact" containerSize="md">
+          <AuthorCard
+            label="Reviewed by"
+            aria-label="Page reviewer"
+            name={about.heading}
+            credentials={about.credentials}
+            license={PRACTITIONER_LICENSE.label}
+            reviewedOn={lastReviewedFor("/blog")}
+            image={about.portraitImage}
+            href="/about"
+          />
+        </ContentSection>
+      ) : null}
     </PageShell>
   );
 }

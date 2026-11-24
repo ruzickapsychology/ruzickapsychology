@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { pageMetadata } from "@/config/seo";
-import { getContactPage, getSiteSettings } from "@/data/cms";
+import { getAboutPage, getContactPage, getSiteSettings } from "@/data/cms";
 import { ContactPage } from "@/page-modules/contact";
 
 export const metadata: Metadata = pageMetadata({
@@ -12,11 +12,12 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default async function ContactRoute() {
-  const [contact, site] = await Promise.all([
+  const [contact, site, about] = await Promise.all([
     getContactPage(),
     getSiteSettings(),
+    getAboutPage(),
   ]);
   if (!contact || !site) notFound();
 
-  return <ContactPage contact={contact} site={site} />;
+  return <ContactPage contact={contact} site={site} about={about} />;
 }

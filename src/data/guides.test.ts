@@ -128,12 +128,17 @@ describe("reader guides", () => {
     expect(getServiceGuideLinks("couples-therapy")).toBeNull();
   });
 
-  it("describes guide pages as unreviewed articles by the practice", () => {
+  it("describes guide pages as practice articles reviewed by Dr. Ruzicka", () => {
     if (!guide || !pages.length) return;
     const article = guidePageJsonLd(guide, pages[0]);
     expect(article["@type"]).toBe("Article");
     expect(article).not.toHaveProperty("reviewedBy");
-    expect(article.mainEntityOfPage).not.toHaveProperty("reviewedBy");
+    expect(article.mainEntityOfPage).toEqual(
+      expect.objectContaining({
+        reviewedBy: expect.objectContaining({ "@type": "Person" }),
+        lastReviewed: "2026-11-23",
+      }),
+    );
     expect(article.url).toBe(`${SITE_URL}/guides/postpartum/${pages[0].slug}`);
     const hub = guideHubJsonLd(guide, pages);
     expect(hub["@type"]).toBe("CollectionPage");

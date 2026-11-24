@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { pageMetadata } from "@/config/seo";
-import { getSiteSettings, getSpecialtiesPage } from "@/data/cms";
+import { getAboutPage, getSiteSettings, getSpecialtiesPage } from "@/data/cms";
 import { SpecialtiesPage } from "@/page-modules/specialties";
 
 export const metadata: Metadata = pageMetadata({
@@ -12,11 +12,14 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default async function SpecialtiesRoute() {
-  const [specialties, site] = await Promise.all([
+  const [specialties, site, about] = await Promise.all([
     getSpecialtiesPage(),
     getSiteSettings(),
+    getAboutPage(),
   ]);
   if (!specialties) notFound();
 
-  return <SpecialtiesPage specialties={specialties} site={site} />;
+  return (
+    <SpecialtiesPage specialties={specialties} site={site} about={about} />
+  );
 }

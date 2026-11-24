@@ -41,18 +41,24 @@ import type { GuideContent, GuidePageContent } from "@/data/guides";
 import { GUIDE_SAFETY_NOTE, GUIDE_STAGE_LABELS, guidePath } from "@/lib/guides";
 import { formatResearchDate } from "@/lib/research-text";
 import styles from "./styles.module.css";
+import { AuthorCard } from "@/components/author-card";
+import { lastReviewedFor } from "@/config/review-dates";
+import { PRACTITIONER_LICENSE } from "@/config/site";
+import type { AboutPageContent } from "@/data/cms";
 
-/** Not stamped "Reviewed by": guide pages wait for Dr. Ruzicka's read. */
+/** "Reviewed by" card + reviewedBy on the Article's WebPage: user instruction 23 Nov 2026 ("fix it all"). */
 export function GuidePage({
   guide,
   page,
   related,
   site,
+  about = null,
 }: {
   guide: GuideContent;
   page: GuidePageContent;
   related: readonly GuidePageContent[];
   site: SiteSettings | null;
+  about?: AboutPageContent | null;
 }) {
   const path = guidePath(guide.slug, page.slug);
   const hubPath = guidePath(guide.slug);
@@ -100,6 +106,18 @@ export function GuidePage({
               ? ` · Updated ${formatResearchDate(page.dateModified)}`
               : null}
           </Text>
+          {about?.heading ? (
+            <AuthorCard
+              label="Reviewed by"
+              aria-label="Page reviewer"
+              name={about.heading}
+              credentials={about.credentials}
+              license={PRACTITIONER_LICENSE.label}
+              reviewedOn={lastReviewedFor(path, page.datePublished)}
+              image={about.portraitImage}
+              href="/about"
+            />
+          ) : null}
         </PageHeaderContent>
       </PageHeader>
 

@@ -34,6 +34,10 @@ import type { SiteSettings } from "@/data/cms";
 import type { GuideContent, GuidePageContent } from "@/data/guides";
 import { GUIDE_SAFETY_NOTE, GUIDE_STAGE_LABELS, guidePath } from "@/lib/guides";
 import styles from "./styles.module.css";
+import { AuthorCard } from "@/components/author-card";
+import { lastReviewedFor } from "@/config/review-dates";
+import { PRACTITIONER_LICENSE } from "@/config/site";
+import type { AboutPageContent } from "@/data/cms";
 
 const stageTones = ["default", "muted", "default"] as const;
 
@@ -57,15 +61,17 @@ function groupPages(
   return result.filter((group) => group.pages.length);
 }
 
-/** Not stamped "Reviewed by": guide pages wait for Dr. Ruzicka's read. */
+/** "Reviewed by" card + CollectionPage reviewedBy: user instruction 23 Nov 2026 ("fix it all"). */
 export function GuideHubPage({
   guide,
   pages,
   site,
+  about = null,
 }: {
   guide: GuideContent;
   pages: readonly GuidePageContent[];
   site: SiteSettings | null;
+  about?: AboutPageContent | null;
 }) {
   const path = guidePath(guide.slug);
   const cta = site
@@ -94,6 +100,18 @@ export function GuideHubPage({
           <PageHeaderEyebrow>{guide.eyebrow}</PageHeaderEyebrow>
           <PageHeaderTitle>{guide.headline}</PageHeaderTitle>
           <PageHeaderDescription>{guide.intro}</PageHeaderDescription>
+          {about?.heading ? (
+            <AuthorCard
+              label="Reviewed by"
+              aria-label="Page reviewer"
+              name={about.heading}
+              credentials={about.credentials}
+              license={PRACTITIONER_LICENSE.label}
+              reviewedOn={lastReviewedFor(path)}
+              image={about.portraitImage}
+              href="/about"
+            />
+          ) : null}
         </PageHeaderContent>
       </PageHeader>
 
